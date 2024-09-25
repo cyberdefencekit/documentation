@@ -3,7 +3,7 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/T3NmBjPWuEc?si=9f-LyW4kFsmUC0vp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 # 1. Executive Summary
 
-## 1.1 Purpose of Cyber Defence Kit
+## Purpose of Cyber Defence Kit
 
 The main purpose of project **Cyber Defence Kit** is to enhance the cybersecurity infrastructure of our organisation. By researching and implementing cybersecurity tools in a phased approach—starting with Security Information and Event Management (SIEM) tools, specifically **Splunk** and **Wazuh**—the project aims to:
 
@@ -18,7 +18,7 @@ This phased implementation allows us to focus on establishing a strong foundatio
 
 This project aligns with our strategic goal of protecting our assets and developing a small Security Operations Center (SOC) within our organisation. By integrating these tools and practices gradually, we will enhance our ability to proactively detect, respond to, and mitigate cybersecurity threats.
 
-# 2. Background and Introduction
+# Background and Introduction
 
 ## 2.1 Current Cybersecurity Posture
 
@@ -163,7 +163,7 @@ By addressing these gaps through a phased approach in Project Cyber Defence Kit,
 
 ## Gantt Chart
 
-![image.png](image/image.png)
+![image.png](image.png)
 
 # 7. Budget Estimate
 
