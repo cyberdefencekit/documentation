@@ -24,7 +24,7 @@ The **Cyber Defence Kit** is our initiative to strengthen our defences against c
 - **Ensure Compliance:** Meet all necessary cybersecurity standards and regulations.
 - **Promote Proactive Security:** Stay ahead of threats before they become problems.
 
-![1.png](1.png)
+![1.png](images/1.png)
 
 ## **How Will We Achieve This?**
 
