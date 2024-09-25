@@ -213,3 +213,5 @@ Identify potential risks and mitigation strategies for **Phase 1**:
 - **Elevate trust with stakeholders and partners**, reinforcing our reputation for security and reliability.
 
 By successfully implementing SIEM tools in the initial phase, the Cyber Defence Kit project not only fortifies our cyber defences but also sets the stage for introducing additional tools in future phases. This strategic, phased approach aligns with our mission to protect critical CIS assets and develop a Security Operations Centre (SOC) capability. By undertaking this initiative, we are taking essential steps to protect our organisation's future, improve operational readiness, and close the gap in our cybersecurity posture.
+
+test
