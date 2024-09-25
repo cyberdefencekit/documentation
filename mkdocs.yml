@@ -11,6 +11,8 @@ nav:
         - 'Understanding SIEM': understanding-SIEM/understanding-SIEM.md
       - 'Splunk':
         - 'Splunk': splunk/splunk.md
+      - 'Wazuh':
+        - 'Wazuh': wazuh/wazuh.md
 
 
 theme:
