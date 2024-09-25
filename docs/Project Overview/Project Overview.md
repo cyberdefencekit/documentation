@@ -1,9 +1,10 @@
 # **Project Overview**
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/T3NmBjPWuEc?si=9f-LyW4kFsmUC0vp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-# 1. Executive Summary
 
-## **Purpose of Cyber Defence Kit**
+# **1. Executive Summary**
+
+## **1.1 Purpose of Cyber Defence Kit**
 
 The main purpose of project **Cyber Defence Kit** is to enhance the cybersecurity infrastructure of our organisation. By researching and implementing cybersecurity tools in a phased approach—starting with Security Information and Event Management (SIEM) tools, specifically **Splunk** and **Wazuh**—the project aims to:
 
@@ -18,9 +19,9 @@ This phased implementation allows us to focus on establishing a strong foundatio
 
 This project aligns with our strategic goal of protecting our assets and developing a small Security Operations Center (SOC) within our organisation. By integrating these tools and practices gradually, we will enhance our ability to proactively detect, respond to, and mitigate cybersecurity threats.
 
-# Background and Introduction
+# **2. Background and Introduction**
 
-## 2.1 Current Cybersecurity Posture
+## **2.1 Current Cybersecurity Posture**
 
 Understanding our current cybersecurity posture is crucial for identifying gaps and areas for improvement as we implement the Cyber Defence Kit. Presently, our organisation's cybersecurity infrastructure includes the following components:
 
@@ -82,7 +83,7 @@ By addressing these gaps through a phased approach in Project Cyber Defence Kit,
 - **Improve Operational Efficiency:** Automate processes and improve response times.
 - **Support Strategic Goals:** Protect critical assets and ensure mission success.
 
-# 3. Project Objectives
+# **3. Project Objectives**
 
 - **Phase 1:** Research and implement SIEM tools (**Splunk** and **Wazuh**) to enhance security infrastructure.
 - **Subsequent Phases:** Gradually research and implement additional cybersecurity tools (SOAR, Incident Response and Case Management, IDS/IPS, EDR, DFIR).
@@ -90,7 +91,7 @@ By addressing these gaps through a phased approach in Project Cyber Defence Kit,
 - **Improve** threat detection and response times.
 - **Comply** with military cybersecurity standards.
 
-# 4. Project Scope
+# **4. Project Scope**
 
 ### **4.1 In-Scope**
 
@@ -113,7 +114,7 @@ By addressing these gaps through a phased approach in Project Cyber Defence Kit,
 - **Future Phases:**
     - Implementation and training for additional tools (to be addressed in subsequent project iterations).
 
-# 5. Methodology and Approach
+# **5. Methodology and Approach**
 
 ## **5.1 Phase 1: SIEM Implementation**
 
@@ -147,7 +148,7 @@ By addressing these gaps through a phased approach in Project Cyber Defence Kit,
 - **Plan Subsequent Implementations:** Develop detailed methodologies for introducing additional tools.
 - **Iterative Approach:** Apply lessons learned from Phase 1 to future phases.
 
-# 6. Draft Project Timeline
+# **6. Draft Project Timeline**
 
 ## **Phase 1: SIEM Implementation**
 
@@ -161,11 +162,11 @@ By addressing these gaps through a phased approach in Project Cyber Defence Kit,
 
 - **To Be Scheduled:** Timelines for introducing additional tools will be planned after the successful completion of Phase 1.
 
-## Gantt Chart
+## **Gantt Chart**
 
 ![image.png](image.png)
 
-# 7. Budget Estimate
+# **7. Budget Estimate**
 
 **Phase 1: SIEM Implementation**
 
@@ -189,7 +190,7 @@ By addressing these gaps through a phased approach in Project Cyber Defence Kit,
 
 - **Budget Planning:** Costs for additional tools and training will be estimated in subsequent proposals.
 
-# 8. Risk Assessment and Mitigation
+# **8. Risk Assessment and Mitigation**
 
 Identify potential risks and mitigation strategies for **Phase 1**:
 
@@ -201,7 +202,7 @@ Identify potential risks and mitigation strategies for **Phase 1**:
 | Version changes to open-source tools | High | Low | Regularly monitor for updates and apply patches as needed |
 | Data privacy concerns | Low | High | Ensure compliance with data protection regulations |
 
-# 9. Conclusion
+# **9. Conclusion**
 
 **Cyber Defence Kit** is essential for our organisation's security, starting with the implementation of SIEM tools in Phase 1. This phased approach will:
 
