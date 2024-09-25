@@ -1,4 +1,10 @@
 site_name: Cyber Defence Kit
+
+nav:
+  - Home: index.md
+  - CDK Explained: Cyber Defence Kit Explained/Cyber Defence Kit Explained.md
+  - Project Overview: Project Overview/Project Overview.md
+
 theme:
   name: material
   logo: images/Cyber Defence Kit logo.png
@@ -58,8 +64,6 @@ markdown_extensions:
   - pymdownx.mark
   - attr_list
   - md_in_html
-
-
   
 copyright: |
   &copy; 2024 <a href="https://github.com/cyberdefencekit"  target="_blank" rel="noopener">Cyber Defence Kit - Joseph Jee</a>
