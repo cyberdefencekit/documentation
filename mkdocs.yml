@@ -1,10 +1,15 @@
 site_name: Cyber Defence Kit
 
 nav:
-  - Home: index.md
+  - Home: https://cyberdefencekit.github.io/documentation/
   - Cyber Defence Kit:
-      - 'Cyber Defence Kit Explained': Cyber Defence Kit Explained/Cyber Defence Kit Explained.md
-      - 'Project Overview': Project Overview/Project Overview.md
+      - 'Start Here': 
+        - 'Start Here': index.md
+      - 'Cyber Defence Kit Explained':
+        - 'Cyber Defence Kit Explained': CDK-explained/CDK-explained.md
+      - 'Project Overview': 
+        - 'Project Overview': project-overview/project-overview.md
+
 
 theme:
   name: material
