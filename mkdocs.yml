@@ -8,7 +8,7 @@ nav:
       - 'Cyber Defence Kit Explained':
         - 'Cyber Defence Kit Explained': CDK-explained/CDK-explained.md
       - 'Project Overview': 
-        - 'Project Overview': project-overview/project-overview.md
+        - 'Project Overview': project-overview/po.md
 
 
 theme:
