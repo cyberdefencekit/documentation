@@ -69,7 +69,7 @@ sudo firewall-cmd --zone=public --add-port=601/tcp --permanent # syslog
 sudo firewall-cmd --zone=public --add-port=8000/tcp --permanent # Web UI Port
 sudo firewall-cmd --zone=public --add-port=8080/tcp --permanent # HEC port
 sudo firewall-cmd --zone=public --add-port=8088/tcp --permanent # HEC port
-sudo firewall-cmd --zone=public --add-port=8089/tcp --permanent # Managment Port
+sudo firewall-cmd --zone=public --add-port=8089/tcp --permanent # Management Port
 sudo firewall-cmd --zone=public --add-port=9997/tcp --permanent # Data flow
 sudo firewall-cmd --zone=public --add-port=8065/tcp --permanent # appserver
 sudo firewall-cmd --zone=public --add-port=8191/tcp --permanent # kvstore
@@ -129,7 +129,7 @@ cd splunk/bin
 ./splunk start --accept-license
 ```
 
-Wait for webser at `http://127.0.0.1:8000` to be available. Navigate to `http://<IP address>:8000`or `http://localhost:8000` on web browser.  
+Wait for web server at `http://127.0.0.1:8000` to be available. Navigate to `http://<IP address>:8000`or `http://localhost:8000` on web browser.  
 
 Enter in splunk admin credentials you created when installing Splunk Enterprise
 
