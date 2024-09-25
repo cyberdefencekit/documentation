@@ -30,7 +30,7 @@ Understanding our current cybersecurity posture is crucial for identifying gaps 
         - Function: Performs periodic scans to identify known vulnerabilities and misconfigurations.
         - Strength: Provides comprehensive reports to prioritise remediation efforts.
 - Endpoint Protection
-    - Trend Micro Endpoint Detection and Response (EDR)**
+    - Trend Micro Endpoint Detection and Response (EDR)
         - Function: Detects and blocks malware and monitors endpoint activities for suspicious behavior.
         - Strength: Leverages threat intelligence for up-to-date protection.
     - Windows Defender (EDR)
