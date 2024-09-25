@@ -2,8 +2,8 @@ site_name: Cyber Defence Kit
 
 nav:
   - Cyber Defence Kit:
-      - 'Start Here': 
-        - 'Start Here': index.md
+      - 'Getting Started': 
+        - 'Getting Started': index.md
       - 'About Cyber Defence Kit':
         - 'Cyber Defence Kit Explained': CDK-explained/CDK-explained.md
         - 'Project Overview': project-overview/project-overview.md

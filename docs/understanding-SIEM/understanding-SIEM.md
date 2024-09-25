@@ -12,14 +12,14 @@ Security Information and Event Management (SIEM) is a technology that provides r
 ## Why SIEM Matters to Us
 
 1. Proactive Threat Detection
-   - Early Identification: SIEM enables us to detect potential security incidents before they escalate.
-   - Real-Time Monitoring: Continuous surveillance helps us respond swiftly to threats.
+      - Early Identification: SIEM enables us to detect potential security incidents before they escalate.
+      - Real-Time Monitoring: Continuous surveillance helps us respond swiftly to threats.
 2. Regulatory Compliance
-   - Meeting Standards: SIEM assists in complying with military cybersecurity standards and other regulations.
-   - Audit Trails: Maintains comprehensive logs necessary for audits and compliance reporting.
+      - Meeting Standards: SIEM assists in complying with military cybersecurity standards and other regulations.
+      - Audit Trails: Maintains comprehensive logs necessary for audits and compliance reporting.
 3. Risk Mitigation
-   - Reducing Breaches: Consolidated security events help prevent breaches that could harm operations and reputation.
-   - Strategic Decision-Making: Provides insights to inform cybersecurity investments and policies.
+      - Reducing Breaches: Consolidated security events help prevent breaches that could harm operations and reputation.
+      - Strategic Decision-Making: Provides insights to inform cybersecurity investments and policies.
 
 ![SIEM Illustration](2.png)
 
