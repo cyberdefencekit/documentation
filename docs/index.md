@@ -3,12 +3,6 @@
 ## Introduction
 The Cyber Defence Kit is a cybersecurity toolkit designed to enhance your organisation's cybersecurity posture. It combines a selection of open-source and proprietary tools, methodologies, and best practices to help you proactively detect, respond to, and mitigate cybersecurity threats.
 
-## Purpose
-- Strengthen Cyber Defence Capabilities: Integrate advanced cybersecurity tools like SIEM (Splunk, Wazuh), SOAR, IDS/IPS, EDR, and more.
-- Enhance Threat Detection and Response: Automate security operations and improve response times.
-- Ensure Compliance: Align with industry and military cybersecurity standards.
-- Develop a Security Operations Center (SOC): Build a foundation for a small SOC within your organisation.
-
 ## Getting Started
 To begin leveraging the Cyber Defence Kit:
 
