@@ -7,11 +7,9 @@ nav:
       - 'About Cyber Defence Kit':
         - 'Cyber Defence Kit Explained': CDK-explained/CDK-explained.md
         - 'Project Overview': project-overview/project-overview.md
-      - 'Understadning SIEM':
+      - 'SIEM':
         - 'Understanding SIEM': understanding-SIEM/understanding-SIEM.md
-      - 'Splunk':
         - 'Splunk': splunk/splunk.md
-      - 'Wazuh':
         - 'Wazuh': wazuh/wazuh.md
 
 
