@@ -164,7 +164,7 @@ By addressing these gaps through a phased approach in Project Cyber Defence Kit,
 
 ## Gantt Chart
 
-![image.png](image.png)
+![image.png](image/image.png)
 
 # 7. Budget Estimate
 
