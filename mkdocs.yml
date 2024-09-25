@@ -2,8 +2,9 @@ site_name: Cyber Defence Kit
 
 nav:
   - Home: index.md
-  - Cyber Defence Kit Explained: Cyber Defence Kit Explained/Cyber Defence Kit Explained.md
-  - Project Overview: Project Overview/Project Overview.md
+  - Cyber Defence Kit:
+      - 'Cyber Defence Kit Explained': Cyber Defence Kit Explained/Cyber Defence Kit Explained.md
+      - 'Project Overview': Project Overview/Project Overview.md
 
 theme:
   name: material
