@@ -30,6 +30,7 @@ theme:
 plugins:
   - social
   - search
+  - glightbox
 
 extra:
   social:
