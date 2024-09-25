@@ -9,6 +9,9 @@ theme:
   name: material
   logo: images/Cyber Defence Kit logo.png
   favicon: images/Cyber Defence Kit logo.png
+  font:
+    text: Roboto
+    code: Roboto Mono
   features:
     - content.code.annotate
     - content.code.copy
@@ -21,6 +24,7 @@ theme:
     - navigation.tabs
     - navigation.top
     - navigation.tracking
+    - navigation.expand
     - search.highlight
     - search.share
     - search.suggest
@@ -44,6 +48,7 @@ plugins:
   - social
   - search
   - glightbox
+  - offline
 
 extra:
   social:
@@ -51,19 +56,23 @@ extra:
       link: https://github.com/cyberdefencekit
 
 markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - admonition
   - pymdownx.arithmatex:
       generic: true
   - footnotes
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.mark
-  - attr_list
   - md_in_html
+  - tables
+  - toc:
+      title: On this page
   
 copyright: |
   &copy; 2024 <a href="https://github.com/cyberdefencekit"  target="_blank" rel="noopener">Cyber Defence Kit - Joseph Jee</a>
