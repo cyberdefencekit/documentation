@@ -20,7 +20,7 @@ A virtual lab in an Unclassified environment is used as a proof of concept. Inte
 
 ![Splunk PoC.drawio.png](Splunk_PoC.drawio.png)
 
-# Splunk Enterprise
+## Splunk Enterprise
 
 ## Configure Firewall
 
@@ -283,7 +283,7 @@ Change into `/opt/splunk/bin` and restart Splunk Enterprise as the `splunk` user
 ./splunk restart
 ```
 
-**Note**: **do not edit `/opt/splunk/etc/system/default/indexes.conf`**
+**Note**: do not edit `/opt/splunk/etc/system/default/indexes.conf`
 This step will create the following default indexes that are used by SC4S:
 
 - `email`
@@ -454,8 +454,8 @@ After=NetworkManager.service network-online.target
 WantedBy=multi-user.target
 
 [Service]
-**# Select the locally loaded image
-Environment="SC4S_IMAGE=sc4slocal:latest"**
+# Select the locally loaded image
+Environment="SC4S_IMAGE=sc4slocal:latest"
 
 # Required mount point for syslog-ng persist data (including disk buffer)
 Environment="SC4S_PERSIST_MOUNT=splunk-sc4s-var:/var/lib/syslog-ng"
@@ -471,7 +471,7 @@ Environment="SC4S_TLS_MOUNT=/opt/sc4s/tls:/etc/syslog-ng/tls:z"
 
 TimeoutStartSec=0
 
-**#ExecStartPre=/usr/bin/podman pull $SC4S_IMAGE**
+#ExecStartPre=/usr/bin/podman pull $SC4S_IMAGE
 
 # Note: /usr/bin/bash will not be valid path for all OS
 # when startup fails on running bash check if the path is correct
@@ -746,7 +746,7 @@ logging synchronous
 
 *Note: in this scenario, we are sending syslogs from network devices to a containerised syslog-ng server using HTTP/HTTPS. This is Splunk team’s recommended method when using Splunk products. Alternatively, you can send syslogs from network devices to a rsyslog server and rotate the logs. This method is used by other SIEMs like Wazuh. For more details, refer to the Wazuh documentation.*  
 
-# Splunk Universal Forwarder
+## Splunk Universal Forwarder
 
 ## **Install Sysmon on Windows**
 
@@ -1120,7 +1120,7 @@ Verify that indexes have been created and enabled
 
 On the Linux host where Splunk Enterprise is installed, change into `opt/splunk/etc/deployment-apps/Splunk_TA_windows/local` directory
 
-Copy `app.conf` ****and `inputs.conf` from `/opt/splunk/etc/deployment-apps/Splunk_TA_windows/default` ****directory
+Copy `app.conf` and `inputs.conf` from `/opt/splunk/etc/deployment-apps/Splunk_TA_windows/default` directory
 
 ```bash
 cd /opt/splunk/etc/deployment-apps/Splunk_TA_windows/local
@@ -1602,11 +1602,11 @@ Verify that data is being indexed (i.e. forwarded) on Splunk Enterprise
 
 Navigate to Splunk Enterprise web UI > Search & Reporting > Data Summary
 
-# Introduction to Splunk
+## Introduction to Splunk
 
 Splunk offers free training. You will need to create a user account to access [free training materials](https://www.splunk.com/en_us/training/course-catalog.html?sort=Newest&filters=filterGroup1FreeCourses). The following content is available from the free course “Introduction to Splunk.” Alternatively, same contents are available from [SplunkHowTo YouTube channel](https://www.youtube.com/@SplunkHowTo).
 
-## Creating Reports
+### Creating Reports
 
 For demonstration, SSH Brute Force attack was simulated from Kali machine to FortiGate. Also SSH login attempts were made from other internal hosts to FortiGate. 
 
@@ -1670,7 +1670,7 @@ click Save
 
 ![image.png](image%2086.png)
 
-## Creating Alerts
+### Creating Alerts
 
 On Splunk Enterprise web UI, search for Admin login failed on FortiGate.
 
@@ -1742,7 +1742,7 @@ Alerts can also be viewed from the Alerts tab
 
 ![image.png](image%2097.png)
 
-## Creating Dashboards
+### Creating Dashboards
 
 On Splunk Enterprise web UI, search for Admin login failed events are generated on FortiGate
 
@@ -1852,7 +1852,7 @@ Save the Dashboard
 
 ![image.png](image%20117.png)
 
-## Dashboard Studio
+### Dashboard Studio
 
 Make sure FortiGate Logins Dashboard is opened
 
@@ -1880,7 +1880,7 @@ Click View
 
 ![image.png](image%20121.png)
 
-# References
+## References
 
 - https://youtu.be/gNeF_mT6Eng?si=No3aBK1EDt_LuK80
 - https://youtu.be/Wze0yXsMKVM?si=N6Y4iW3m5ewxD1Hv
