@@ -21,7 +21,7 @@ To begin leveraging the Cyber Defence Kit:
     - Refer to installtion guide for Splunk and Wazuh
 
 4. Learn and Explore:
-- Explore proof of concept videos and documentation on attack simulation.
+    - Explore proof of concept videos and documentation on attack simulation.
 
 ## Documentation Navigation
 - Project Overview: Detailed information about the project's objectives, scope, and phases.
