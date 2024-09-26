@@ -3,7 +3,7 @@
 ## Introduction
 The Cyber Defence Kit is a cybersecurity toolkit designed to enhance your organisation's cybersecurity posture. It combines a selection of open-source and proprietary tools, methodologies, and best practices to help you proactively detect, respond to, and mitigate cybersecurity threats.
 
-![CDK-intro.png](/images/CDK-intro.png)
+![CDK-intro.png](images/CDK-intro.png)
 
 ## Getting Started
 To begin leveraging the Cyber Defence Kit:
