@@ -149,19 +149,15 @@ Future Phases:
 
 ### Phase 1: SIEM Implementation
 
-- Phase 1.1: Research and Selection (30 SEP 24)
-- Phase 1.2: Implementation (14 OCT 24)
-- Phase 1.3: Testing and Validation (1 NOV 24)
-- Phase 1.4: Documentation (15 NOV 24)
-- Phase 1.5: Implementation Support and Feedback (18 NOV 24)
+- Phase 1.1: Research and Selection 
+- Phase 1.2: Implementation 
+- Phase 1.3: Testing and Validation 
+- Phase 1.4: Documentation 
+- Phase 1.5: Implementation Support and Feedback 
 
 ### Future Phases
 
 - To Be Scheduled: Timelines for introducing additional tools will be planned after the successful completion of Phase 1.
-
-### Gantt Chart
-
-![image.png](image.png)
 
 ## 7. Budget Estimate
 
