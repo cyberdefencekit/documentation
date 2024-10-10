@@ -14,6 +14,7 @@ nav:
       - 'IDS/IPS':
         - 'Understanding IDS/IPS': understanding-IDS-IPS/understanding-IDS-IPS.md 
         - 'Snort': snort/snort.md
+        - 'Suricata': suricata/suricata.md
 
 theme:
   name: material
