@@ -11,7 +11,8 @@ nav:
         - 'Understanding SIEM': understanding-SIEM/understanding-SIEM.md
         - 'Splunk': splunk/splunk.md
         - 'Wazuh': wazuh/wazuh.md
-
+      - 'IDS/IPS':
+        - 'Understanding IDS/IPS': understanding-IDS-IPS/understanding-IDS-IPS.md 
 
 theme:
   name: material
