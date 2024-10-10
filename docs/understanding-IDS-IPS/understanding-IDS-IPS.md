@@ -1,6 +1,6 @@
 # Understanding IDS/IPS
 
-### **Introduction**
+## **Introduction**
 
 In today's digital world, cybersecurity is more important than ever. Protecting our organisation's information and systems from cyber threats is essential to maintaining our operations, reputation, and the trust of our clients and partners. To strengthen our defenses, we are implementing Intrusion Detection Systems (IDS) and Intrusion Prevention Systems (IPS).
 
@@ -13,7 +13,7 @@ This document explains what IDS and IPS are, why they're important, and how they
 - **IDS**: Monitors network traffic and alerts security teams when suspicious activities are detected.
 - **IPS**: Not only detects suspicious activities but also takes action to prevent potential threats from causing harm.
 
-### **Why IDS/IPS Matter to Us**
+## **Why IDS/IPS Matter to Us**
 
 1. **Proactive Threat Detection**
     - **Early Warning**: IDS alerts us to potential security threats before they become serious issues.
@@ -30,21 +30,21 @@ This document explains what IDS and IPS are, why they're important, and how they
 
 ![IDS-IPS.png](IDS-IPS.png)
 
-### **Benefits of Implementing IDS/IPS**
+## **Benefits of Implementing IDS/IPS**
 
 - **Enhanced Security**: Strengthens our defenses against cyber attacks.
 - **Operational Efficiency**: Automates threat detection and prevention, reducing manual efforts.
 - **Stakeholder Confidence**: Shows our commitment to security, building trust with clients and partners.
 - **Cost Savings**: Prevents costly security breaches and downtime.
 
-### **How IDS/IPS Work**
+## **How IDS/IPS Work**
 
 1. **Traffic Monitoring**: Continuously scans network traffic for unusual patterns or known threat signatures.
 2. **Analysis**: Uses rules and algorithms to detect potential threats based on predefined criteria.
 3. **Alerting (IDS)**: Sends notifications to the security team when suspicious activity is detected.
 4. **Prevention (IPS)**: Automatically blocks or quarantines malicious traffic to prevent damage.
 
-### **Our IDS/IPS Solutions**
+## **Our IDS/IPS Solutions**
 
 - **Snort**
     - **Open-Source IDS/IPS**: Widely used for real-time traffic analysis and packet logging.
@@ -57,12 +57,12 @@ This document explains what IDS and IPS are, why they're important, and how they
 
 ![snort-suricata.png](snort-suricata.png)
 
-### **Support Available**
+## **Support Available**
 
 - **Resources**: We will provide easy-to-understand materials to help you implement IDS/IPS solutions and recognize potential threats.
 - **Assistance**: Our cybersecurity team is here to support you with any concerns or issues.
 
-### **Summary**
+## **Summary**
 
 IDS and IPS are crucial cybersecurity tools that help detect and prevent threats, ensuring the safety of our organisation's assets and reputation. Implementing these systems enhances our security posture, aids in compliance, and demonstrates our commitment to protecting our network. Your participation is essential for the successful integration and management of these systems.
 
