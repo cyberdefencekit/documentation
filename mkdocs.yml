@@ -17,6 +17,7 @@ nav:
         - 'Suricata': suricata/suricata.md
       - 'IR':
         - 'Understanding IR': understanding-IR/understanding-IR.md 
+        - 'TheHive': thehive/thehive.md
 
 theme:
   name: material
