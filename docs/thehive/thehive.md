@@ -2,6 +2,17 @@
 
 TheHive is an open-source security incident response platform designed to help organisations efficiently manage and respond to cybersecurity incidents. Developed to facilitate collaboration among security teams, it provides a centralised system for tracking and investigating security events, alerts, and cases.
 
+## Lab Setup for Proof of Concept
+
+In this proof of concept, TheHive was installed on an Ubuntu Virtual Machine (VM). 
+
+| **Host** | **OS** | **Role** | **IP Address** |
+| --- | --- | --- | --- |
+| Fortigate | Fortios 7.6.0 | Firewall/Router | 192.168.1.111 (WAN) / 10.0.0.1 (LAN) |
+| hive | Ubuntu 22.04 LTS | TheHive VM | 10.0.0.40 |
+
+![thehive.drawio.png](thehive.drawio.png)
+
 ## Install TheHive Offline
 
 ### Download the dependencies
