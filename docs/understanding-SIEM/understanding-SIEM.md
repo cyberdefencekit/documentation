@@ -1,4 +1,4 @@
-# Understanding SIEM
+# **Understanding SIEM**
 
 ## **Introduction**
 
