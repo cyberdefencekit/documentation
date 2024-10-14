@@ -15,8 +15,8 @@ nav:
         - 'Understanding IDS/IPS': understanding-IDS-IPS/understanding-IDS-IPS.md 
         - 'Snort': snort/snort.md
         - 'Suricata': suricata/suricata.md
-      - 'IR':
-        - 'Understanding IR': understanding-IR/understanding-IR.md 
+      - 'SIRP':
+        - 'Understanding SIRP': understanding-SIRP/understanding-SIRP.md 
         - 'TheHive': thehive/thehive.md
 
 theme:
