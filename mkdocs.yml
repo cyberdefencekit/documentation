@@ -18,6 +18,9 @@ nav:
       - 'SIRP':
         - 'Understanding SIRP': understanding-SIRP/understanding-SIRP.md 
         - 'TheHive': thehive/thehive.md
+      - 'SOAR':
+        - 'Understanding SOAR': understanding-SOAR/understanding-SOAR.md 
+        - 'Shuffle': shuffle/shuffle.md
 
 theme:
   name: material
