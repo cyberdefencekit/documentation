@@ -18,8 +18,6 @@ In this proof of concept, Shuffle is installed on an Ubuntu VM. Automated workfl
 
 ![Shuffle.drawio.png](Shuffle.drawio.png)
 
-## **Shuffle**
-
 ## **Install Shuffle online**
 
 ### **Install Docker using the apt repository (Ubuntu)**
