@@ -1,14 +1,14 @@
-# Suricata
+# **Suricata**
 
 Suricata is an open-source network threat detection engine developed by the Open Information Security Foundation (OISF). It provides capabilities for real-time intrusion detection (IDS), inline intrusion prevention (IPS), network security monitoring (NSM), and offline packet capture (pcap) processing. 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/vI5qRZgY1ws?si=bT3QcA2z9sl4vyrh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vI5qRZgY1ws?si=fXH6ei0qWLlRhD99" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-## Lab Setup for Proof of Concept
+## **Lab Setup for Proof of Concept**
 
 In this proof of concept, instead of simulating attacks, the Windows host acted as a compromised machine where malicious websites were visited to trigger alerts in a safe and controlled setting.
 
-| Host | OS | Role | IP Address |
+| **Host** | **OS** | **Role** | **IP Address** |
 | --- | --- | --- | --- |
 | pfsense | FreeBSD (pfSense v2.7.2) | Firewall/Router (Gateway IDS/IPS) | 192.168.1.200 (WAN) / 10.0.0.2 (LAN) |
 | Suricata | Ubuntu 22.04 LTS | Host IDS/IPS | 10.0.0.27 |
@@ -16,7 +16,7 @@ In this proof of concept, instead of simulating attacks, the Windows host acted 
 
 ![suricata.drawio (1).png](suricata.drawio_(1).png)
 
-## Install Suricata on Host
+## **Install Suricata on Host**
 
 In this demonstration, we will be installing Suricata on the Ubuntu virtual machine. We will be simulating install in an air-gapped environment but note that some parts of the step requires internet connection.
 
@@ -78,7 +78,7 @@ Install dependencies and suricata
 
 ```bash
 cd /opt/suricata-offline/dependencies
-sudo dpkg -i 
+sudo dpkg -i *
 ```
 
 Install Suricata
@@ -97,7 +97,7 @@ sudo suricata --build-info
 sudo systemctl status suricata
 ```
 
-## Basic setup
+### **Basic setup**
 
 First, determine the interface(s) and IP address(es) on which Suricata should be inspecting network packets:
 
@@ -146,7 +146,7 @@ pcap:
  checksum-validation: no
 ```
 
-## Suricata-update offline
+### **Suricata-update offline**
 
 Run `suricata-update` to update rules and create /var/lib/suricata folder
 
@@ -166,10 +166,10 @@ sudo tar -xvzf emerging.rules.tar.gz -C /opt/suricata-offline/suricata-rules/
 Append the rules from the file to the main /var/lib/suricata/rules/suricata.rules file
 
 ```bash
-sudo bash -c 'find /opt/suricata-offline/suricata-rules/rules/ -name ".rules" -exec cat {} + >> /var/lib/suricata/rules/suricata.rules'
+sudo bash -c 'find /opt/suricata-offline/suricata-rules/rules/ -name "*.rules" -exec cat {} + >> /var/lib/suricata/rules/suricata.rules'
 ```
 
-## Suricata-update online (recommended)
+### **Suricata-update online (recommended)**
 
 Running suricata-update with internet connection simplifies the process of downloading and installing rulesets.
 
@@ -183,13 +183,13 @@ You can also list sources and download rules from a specific source
 sudo suricata-update list-sources
 ```
 
-Summary of different license types:
+**Summary of different license types:**
 
-- MIT is very permissive, allowing almost any use, even commercial.
-- Commercial requires you to pay or subscribe for usage rights, often with strict terms.
-- CC-BY-SA-4.0 requires you to give credit and share any modifications under the same license.
-- GPL-3.0 requires sharing modifications under the same open-source license and offering the source code.
-- Non-Commercial restricts usage to personal or non-commercial contexts.
+- **MIT** is very permissive, allowing almost any use, even commercial.
+- **Commercial** requires you to pay or subscribe for usage rights, often with strict terms.
+- **CC-BY-SA-4.0** requires you to give credit and share any modifications under the same license.
+- **GPL-3.0** requires sharing modifications under the same open-source license and offering the source code.
+- **Non-Commercial** restricts usage to personal or non-commercial contexts.
 
 To download the ruleset from a specific source, run:
 
@@ -231,7 +231,7 @@ Info: detect: 39669 signatures processed. 1158 are IP-only rules, 4110 are inspe
 Notice: suricata: Configuration provided was successfully loaded. Exiting.
 ```
 
-## Running Suricata
+### **Running Suricata**
 
 With the rules installed, Suricata can run properly and thus we restart it:
 
@@ -261,7 +261,7 @@ sudo tail -f /var/log/suricata/stats.log
 
 By default, it is updated every 8 seconds to show updated values with the current state, like how many packets have been processed and what type of traffic was decoded.
 
-## Alerting
+### **Alerting**
 
 To test the IDS functionality of Suricata it's best to test with a signature. The signature with ID `2100498` from the ET Open ruleset is written specific for such test cases.
 
@@ -281,12 +281,12 @@ sudo tail /var/log/suricata/fast.log
 The following output should now be seen in the log:
 
 ```bash
-09/12/2024-13:51:32.520238  [] [1:2100498:7] GPL ATTACK_RESPONSE id check returned root [] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} 65.9.141.53:80 -> 10.0.0.25:34606Alerts:
+09/12/2024-13:51:32.520238  [**] [1:2100498:7] GPL ATTACK_RESPONSE id check returned root [**] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} 65.9.141.53:80 -> 10.0.0.25:34606Alerts:
 ```
 
 This should include the timestamp and the IP of your system.
 
-## Custom rules
+### **Custom rules**
 
 Stop Suricata service:
 
@@ -344,11 +344,11 @@ sudo tail /var/log/suricata/fast.log
 ```
 
 ```bash
-09/12/2024-14:14:31.052314  [] [1:1:1] ICMP Ping Detected [] [Classification: (null)] [Priority: 3] {ICMP} 10.0.0.25:0 -> 10.0.0.20:0
-09/12/2024-14:14:57.907164  [] [1:1:1] ICMP Ping Detected [] [Classification: (null)] [Priority: 3] {ICMP} 10.0.0.20:3 -> 10.0.0.1:3
+09/12/2024-14:14:31.052314  [**] [1:1:1] ICMP Ping Detected [**] [Classification: (null)] [Priority: 3] {ICMP} 10.0.0.25:0 -> 10.0.0.20:0
+09/12/2024-14:14:57.907164  [**] [1:1:1] ICMP Ping Detected [**] [Classification: (null)] [Priority: 3] {ICMP} 10.0.0.20:3 -> 10.0.0.1:3
 ```
 
-## EVE JSON
+### **EVE JSON**
 
 The more advanced output is the EVE JSON output which is explained in detail in [Eve JSON Output](https://docs.suricata.io/en/latest/output/eve/eve-json-output.html#eve-json-output). To see what this looks like it's recommended to use `jq` to parse the JSON output.
 Alerts:
@@ -405,9 +405,9 @@ sudo tail -f /var/log/suricata/eve.json | jq 'select(.event_type=="stats")'
 
 The first example displays the number of packets captured by the kernel; the second examples shows all of the statistics.
 
-## Setting up IPS inline for Linux
+### **Setting up IPS inline for Linux**
 
-### Setting up IPS with Netfilter
+### **Setting up IPS with Netfilter**
 
 To check if you have NFQ enabled in your Suricata build, enter the following command:
 
@@ -458,7 +458,7 @@ tail -f /var/log/suricata/fast.log
 ```
 
 ```python
-09/14/2024-16:11:08.050136  [Drop] [] [1:2:1] ICMP Detected and Blocked to 1.1.1.1 [] [Classification: (null)] [Priority: 3] {ICMP} 10.0.0.27:8 -> 1.1.1.1:0
+09/14/2024-16:11:08.050136  [Drop] [**] [1:2:1] ICMP Detected and Blocked to 1.1.1.1 [**] [Classification: (null)] [Priority: 3] {ICMP} 10.0.0.27:8 -> 1.1.1.1:0
 ```
 
 To see if you have set your `iptables` rules correct make sure Suricata is running and enter:
@@ -472,19 +472,19 @@ In the example you can see if packets are being logged.
 ```python
 Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
  pkts bytes target     prot opt in     out     source               destination         
- 1032 1101K NFQUEUE    all  --               0.0.0.0/0            0.0.0.0/0            NFQUEUE num 0
+ 1032 1101K NFQUEUE    all  --  *      *       0.0.0.0/0            0.0.0.0/0            NFQUEUE num 0
 
 Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
  pkts bytes target     prot opt in     out     source               destination         
 
 Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
  pkts bytes target     prot opt in     out     source               destination         
- 1469  126K NFQUEUE    all  --               0.0.0.0/0            0.0.0.0/0            NFQUEUE num 0
+ 1469  126K NFQUEUE    all  --  *      *       0.0.0.0/0            0.0.0.0/0            NFQUEUE num 0
 ```
 
-## Install Suricata on Gateway
+## **Install Suricata on Gateway**
 
-While Suricata can be installed on a host, it can also be installed on a gateway such as pfSense. The pfSense is a free and open source firewall and router. For installing and configuring pfSense, refer to pfSense [documentation](https://docs.netgate.com/pfsense/en/latest/) and instruction [video](https://youtu.be/Ayr_av2EX_U?si=c4k5XdMjTvNpqRa4). pfSense can be downloaded from [here.](https://www.pfsense.org/download/)
+While Suricata can be installed on a host, it can also be installed on a gateway such as **pfSense**. The pfSense is a free and open source firewall and router. For installing and configuring pfSense, refer to pfSense [documentation](https://docs.netgate.com/pfsense/en/latest/) and instruction [video](https://youtu.be/Ayr_av2EX_U?si=c4k5XdMjTvNpqRa4). pfSense can be downloaded from [here.](https://www.pfsense.org/download/)
 
 Full demonstration video on configuring Suricata on pfSense can be found [here](https://youtu.be/u1gZrJEQ_30?si=9rbd6SHLVnTHhHoz). 
 
@@ -498,11 +498,11 @@ Search for `suricata` and click install (confirm when prompted). Internet connec
 
 Once install is complete, navigate to Services > Suricata > Global Settings.
 
-Select Install ETOpen Emerging Threats rules, Install Feodo Tracker Botnet C2 IP rules and Install ABUSE.ch SSL Blacklist rules.
+Select **Install ETOpen Emerging Threats rules, Install Feodo Tracker Botnet C2 IP rules** and **Install ABUSE.ch SSL Blacklist rules**.
 
 ![image.png](image%202.png)
 
-Select 1 Day for Update Interval and select Live Rule Swap on Update.
+Select 1 Day for Update Interval and select **Live Rule Swap on Update**.
 
 ![image.png](image%203.png)
 
@@ -554,7 +554,7 @@ Navigate to the Alerts tab, and verify that there are no alerts.
 
 ![image.png](image%2013.png)
 
-### Testing IDS
+### **Testing IDS**
 
 Suricata by default generates alert when a user access .to domain. From the Windows host connected to pfSense on an internal network, navigate to [https://amzn.to/3xPjJbS](https://amzn.to/3xPjJbS) on a web browser.
 
@@ -562,9 +562,9 @@ Note that the alerts have been generated but these are false positives.
 
 ![image.png](image%2014.png)
 
-### Finetuning rules to reduce false positives
+### **Finetuning rules to reduce false positives**
 
-Copy GID:SID `1:2027757` . Navigate to SID Mgmt tab, select Enable Automatic SID State Management. Edit the disablesid-sample.conf
+Copy GID:SID `1:2027757` . Navigate to SID Mgmt tab, select Enable Automatic SID State Management. Edit the **disablesid-sample.conf**
 
 ![image.png](image%2015.png)
 
@@ -577,9 +577,9 @@ Edit the List Name as LAN-Disabled. Delete the existing content and copy and pas
 
 ![image.png](image%2016.png)
 
-Repeat the same process for dropsid-sample.conf and enablesid-sample.conf. Change the List Name of dropsid-sample.conf to LAN-Drops and enablesid-sample.conf to LAN-Enabled. Make sure they each have nothing in the content.
+Repeat the same process for **dropsid-sample.conf** and **enablesid-sample.conf.** Change the List Name of **dropsid-sample.conf** to **LAN-Drops** and **enablesid-sample.conf** to **LAN-Enabled**. Make sure they each have **nothing** in the content.
 
-For Interface SID Management List Assignments, select Rebuild. Select LAN-Enabled for Enable SID List, LAN-Disabled for Disable SID List.
+For Interface SID Management List Assignments, select **Rebuild**. Select **LAN-Enabled** for Enable SID List, **LAN-Disabled** for Disable SID List.
 
 ![image.png](image%2017.png)
 
@@ -599,7 +599,7 @@ Search for `.to` . Verify that ET DNS Query for .to TLD is Auto-disabled by sett
 
 ![image.png](image%2021.png)
 
-### Testing IPS
+### **Testing IPS**
 
 Disable Hardware Checksum Offloading. Navigate to System > Advanced > Networking.
 
@@ -642,7 +642,7 @@ Navigate to Interface tab and restart Suricata
 
 ![image.png](image%2026.png)
 
-On Windows host, browse through `http://malware.wicar.org/`: This site hosts files and URLs that trigger IPS/IDS signatures without actually hosting real malware.
+On Windows host, browse through **`http://malware.wicar.org/`**: This site hosts files and URLs that trigger IPS/IDS signatures without actually hosting real malware.
 
 Verify that the alerts have been generated.
 
@@ -661,14 +661,14 @@ DNS request timed out.
     timeout was 2 seconds.
 DNS request timed out.
     timeout was 2 seconds.
- Request to UnKnown timed-out
+*** Request to UnKnown timed-out
 ```
 
 Alerts log shows that DNS query to .cc TLD has been dropped
 
 ![image.png](image%2028.png)
 
-## References
+## **References**
 
 - https://docs.suricata.io/en/latest/index.html
 - https://documentation.wazuh.com/current/proof-of-concept-guide/integrate-network-ids-suricata.html

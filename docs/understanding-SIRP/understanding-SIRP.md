@@ -1,4 +1,4 @@
-# Understanding SIRP
+# **Understanding SIRP**
 
 ## **Introduction**
 

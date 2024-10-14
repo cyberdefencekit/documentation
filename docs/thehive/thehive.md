@@ -1,8 +1,8 @@
-# TheHive
+# **TheHive**
 
 TheHive is an open-source security incident response platform designed to help organisations efficiently manage and respond to cybersecurity incidents. Developed to facilitate collaboration among security teams, it provides a centralised system for tracking and investigating security events, alerts, and cases.
 
-## Lab Setup for Proof of Concept
+## **Lab Setup for Proof of Concept**
 
 In this proof of concept, TheHive was installed on an Ubuntu Virtual Machine (VM). 
 
@@ -13,9 +13,9 @@ In this proof of concept, TheHive was installed on an Ubuntu Virtual Machine (VM
 
 ![thehive.drawio.png](thehive.drawio.png)
 
-## Install TheHive Offline
+## **Install TheHive Offline**
 
-### Download the dependencies
+### **Download the dependencies**
 
 On an internet-connected Ubuntu machine, make a folder called the hive-package
 
@@ -76,7 +76,7 @@ tar -xzvf thehive_packages.tar.gz
 sudo dpkg -i *
 ```
 
-### Configure TheHive
+### **Configure TheHive**
 
 Edit /etc/cassandra/cassandra.yaml
 
@@ -221,7 +221,7 @@ Login using default credentials admin@hive.local (password: secret)
 
 ![image.png](image.png)
 
-## References
+## **References**
 
 - https://github.com/MyDFIR/SOC-Automation-Project/blob/main/TheHive-Install-Instructions
 - https://youtu.be/YxpUx0czgx4?si=-B57fRikVW8AVORo
