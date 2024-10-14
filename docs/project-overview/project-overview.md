@@ -1,6 +1,6 @@
 # Project Overview
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/78k5_wiy--4?si=egTvtGKt1W6-TrBW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sjBiYWebI6M?si=8D6GVogPJRJrYdHH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## 1. Executive Summary
 
@@ -8,22 +8,23 @@
 
 The main purpose of project Cyber Defence Kit is to enhance the cybersecurity infrastructure of our organisation. By researching and implementing cybersecurity tools in a phased approach—starting with Security Information and Event Management (SIEM) tools, specifically Splunk and Wazuh—the project aims to:
 
-- Strengthen cyber defence capabilities
-- Integrate advanced cybersecurity tools
-- Enhance threat detection and response
-- Automate security operations
-- Ensure compliance with cybersecurity standards
-- Promote a proactive security posture
+- Enhance Protection
+- Improve Detection
+- Automate Responses
+- Ensure Compliance
+- Promote Proactive Security
 
-This phased implementation allows us to focus on establishing a strong foundation with SIEM solutions before gradually introducing additional tools like Security Orchestration, Automation, and Response (SOAR), Incident Response and Case Management, Intrusion Detection and Prevention Systems (IDS/IPS), Endpoint Detection and Response (EDR), Extended Detection and Response (XDR), and Digital Forensics and Incident Response (DFIR).
+This phased implementation allows us to focus on establishing a strong foundation with SIEM solutions before gradually introducing additional tools like Security Orchestration, Automation, and Response (SOAR), Security Incident Response Platform (SIRP), Intrusion Detection and Prevention Systems (IDS/IPS), Endpoint Detection and Response (EDR), Extended Detection and Response (XDR), and Digital Forensics and Incident Response (DFIR).
 
 This project aligns with our strategic goal of protecting our assets and developing a small Security Operations Center (SOC) within our organisation. By integrating these tools and practices gradually, we will enhance our ability to proactively detect, respond to, and mitigate cybersecurity threats.
+
+![CDK.png](CDK.png)
 
 ## 2. Background and Introduction
 
 ### 2.1 Current Cybersecurity Posture
 
-Understanding our current cybersecurity posture is crucial for identifying gaps and areas for improvement as we implement the Cyber Defence Kit. Presently, our organisation's cybersecurity infrastructure includes the following components:
+Understanding our current cybersecurity posture is crucial for identifying gaps and areas for improvement as we implement the Cyber Defence Kit. Presently, our organisation's cybersecurity infrastructure includes the following components
 
 - Vulnerability Management
     - Nessus Vulnerability Scanner
@@ -48,7 +49,7 @@ Understanding our current cybersecurity posture is crucial for identifying gaps 
 1. Lack of Centralised Monitoring and Incident Management
     - No SIEM Solution: Limited visibility into security events across the network.
     - No SOAR Capabilities: Incident response processes are manual and slow.
-    - No Incident Response Platform: Inefficient handling of security incidents.
+    - No SIRP Solution: Inefficient handling of security incidents.
 2. Limited Threat Detection Capabilities
     - No IDS/IPS Deployment: Absence of real-time network traffic analysis.
     - No Network Traffic Analyser: Limited insight into network behaviors and anomalies.
@@ -61,6 +62,8 @@ Understanding our current cybersecurity posture is crucial for identifying gaps 
     - Inability to Investigate Incidents Thoroughly: Hinders in-depth incident analysis.
     - Compliance Risks: Potential non-compliance due to inadequate incident response processes.
 
+![strengths and weaknesses.png](strengths_and_weaknesses.png)
+
 ### Recommendations
 
 1. Phase 1: Implement SIEM Solution
@@ -68,8 +71,8 @@ Understanding our current cybersecurity posture is crucial for identifying gaps 
     - Integrate XDR Capabilities: Through Wazuh, explore XDR solutions for cross-platform threat detection.
 2. Subsequent Phases: Gradually Introduce Additional Tools
     - Adopt SOAR Technology: Introduce SOAR tools such as Shuffle to automate and orchestrate security workflows.
-    - Deploy IDS/IPS and Network Traffic Analysis Tools: Use tools like Suricata, Snort, and Zeek for real-time network monitoring.
-    - Establish Incident Response and Case Management System: Implement a platform like TheHive for managing security incidents.
+    - Deploy IDS/IPS and Network Traffic Analysis Tools: Use tools like Suricata, Snort and Zeek for real-time network monitoring.
+    - Deploy SIRP: Implement a SIRP like TheHive for managing security incidents.
     - Develop DFIR Capabilities: Introduce tools such as Velociraptor for digital forensics and incident response.
 
 By focusing on SIEM implementation first, we address the most critical gap in our cybersecurity posture—lack of centralised monitoring—and lay the groundwork for future enhancements.
@@ -96,12 +99,15 @@ By addressing these gaps through a phased approach in Project Cyber Defence Kit,
 ### 4.1 In-Scope
 
 Phase 1:
+
 - SIEM Tools: Splunk and Wazuh
 - Research and implementation of the SIEM solutions.
 - Introductory Training Sessions: We will offer beginner-level training to help you get started with the SIEM tools and understand the basics of configuring and using them.
 - Documentation and proof-of-concept videos for the SIEM tools.
+
 Future Phases:
-- Introduction of additional tools like Shuffle, TheHive, Zeek, Snort, Suricata, and Velociraptor.
+
+- Introduction of additional tools like Shuffle, TheHive, Zeek, Snort,Suricata and Velociraptor.
 
 ### 4.2 Out-of-Scope
 
@@ -149,11 +155,11 @@ Future Phases:
 
 ### Phase 1: SIEM Implementation
 
-- Phase 1.1: Research and Selection 
-- Phase 1.2: Implementation 
-- Phase 1.3: Testing and Validation 
-- Phase 1.4: Documentation 
-- Phase 1.5: Implementation Support and Feedback 
+- Phase 1.1: Research and Selection
+- Phase 1.2: Implementation
+- Phase 1.3: Testing and Validation
+- Phase 1.4: Documentation
+- Phase 1.5: Implementation Support and Feedback
 
 ### Future Phases
 
@@ -187,13 +193,13 @@ Future Phases:
 
 Identify potential risks and mitigation strategies for Phase 1:
 
-| **Risk**                                   | **Likelihood** | **Impact** | **Mitigation Strategy**                             |
-|--------------------------------------------|----------------|------------|-----------------------------------------------------|
-| Integration challenges with existing systems | High           | Medium     | Conduct compatibility assessments beforehand        |
-| Cost changes for Splunk licensing           | Medium         | Medium     | Explore alternative SIEM solutions or adjust usage levels |
-| Staff unfamiliarity with SIEM tools         | Medium         | Medium     | Provide training resources and ongoing support      |
-| Version changes to open-source tools        | High           | Low        | Regularly monitor for updates and apply patches as needed |
-| Data privacy concerns                       | Low            | High       | Ensure compliance with data protection regulations  |
+| Risk | Likelihood | Impact | Mitigation Strategy |
+| --- | --- | --- | --- |
+| Integration challenges with existing systems | High | Medium | Conduct compatibility assessments beforehand |
+| Cost changes for Splunk licensing | Medium | Medium | Explore alternative SIEM solutions or adjust usage levels |
+| Staff unfamiliarity with SIEM tools | Medium | Medium | Provide training resources and ongoing support |
+| Version changes to open-source tools | High | Low | Regularly monitor for updates and apply patches as needed |
+| Data privacy concerns | Low | High | Ensure compliance with data protection regulations |
 
 ## 9. Conclusion
 
