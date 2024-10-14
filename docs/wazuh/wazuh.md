@@ -1,10 +1,10 @@
-# Wazuh
+# **Wazuh**
 
 Wazuh is the open source security platform that unifies XDR and SIEM protection for endpoints and cloud workloads. It is designed to help organisations detect threats, monitor integrity, and ensure compliance across their infrastructure, including physical, virtual, containerised, and cloud environments.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/yuwhqNPKO0M?si=KtjQ4D0GHXYorAno" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-## Lab Setup for Proof of Concept
+## **Lab Setup for Proof of Concept**
 
 In this proof of concept, attack emulation was conducted on the FortiGate VM, Windows and Ubuntu hosts in a safe and controlled setting. 
 
@@ -20,7 +20,7 @@ In this proof of concept, attack emulation was conducted on the FortiGate VM, Wi
 
 ![Wazuh PoC.drawio.png](Wazuh_PoC.drawio.png)
 
-## Wazuh
+## **Wazuh**
 
 ## **Install Wazuh Server offline**
 
@@ -28,7 +28,7 @@ You can install Wazuh even when there is no connection to the Internet. Installi
 
 **Note:** You need root user privileges to run all the commands described below.
 
-### Configure Firewall rule
+### **Configure Firewall rule**
 
 Configure Firewall rule to allow access on required ports
 
@@ -460,7 +460,7 @@ Access the web interface.
 
 ![image.png](image.png)
 
-### Import Certificate (optional)
+### **Import Certificate (optional)**
 
 Upon the first access to the Wazuh dashboard, the browser shows a warning message stating that the certificate was not issued by a trusted authority. An exception can be added in the advanced options of the web browser or, for increased security, the `root-ca.pem` file previously generated can be imported to the certificate manager of the browser. 
 
@@ -550,9 +550,9 @@ systemctl restart wazuh-dashboard
 systemctl status wazuh-dashboard
 ```
 
-## Install Wazuh agents on endpoints
+## **Install Wazuh agents on endpoints**
 
-### Configure Firewall on Windows endpoints
+### **Configure Firewall on Windows endpoints**
 
 For Wazuh agent to communicate with the Wazuh manager services, the following ports needs to be allowed for outbound connection:
 
@@ -612,7 +612,7 @@ NET START Wazuh
 
 Once started, the Wazuh agent will start the enrollment process and register with the manager.
 
-### Troubleshooting Windows Wazuh Agent
+### **Troubleshooting Windows Wazuh Agent**
 
 If Wazuh agent on Windows is unable to connect to Wazuh server, open Wazuh Agent Manager
 
@@ -636,7 +636,7 @@ Verify that the Windows agent is active.
 
 ![image.png](image%2010.png)
 
-### Sysmon Integration
+### **Sysmon Integration**
 
 Perform the steps below to install and configure Sysmon on the Windows endpoint.
 
@@ -669,7 +669,7 @@ Restart-Service -Name Wazuh
 
 ## **Monitoring network devices with Wazuh**
 
-### Configure FortiGate to send syslog
+### **Configure FortiGate to send syslog**
 
 Refer to the admin manual for specific details of configuration to send Reliable syslog using RFC 3195 format, a typical logging configuration will include the following features.
 
@@ -703,7 +703,7 @@ set neighbor-event enable
 end
 ```
 
-### Configure log rotation
+### **Configure log rotation**
 
 By default, the `logrotate` service is configured to rotate logs in directories like `/var/log/`
 
@@ -751,7 +751,7 @@ The **Wazuh server** can collect logs via syslog from endpoints such as firewall
 
 If you have a central logging server like Syslog or Logstash in place, you can install the Wazuh agent on that server to streamline log collection. This setup enables seamless forwarding of logs from multiple sources to the Wazuh server, facilitating comprehensive analysis.
 
-### Configure Rsyslog on Ubuntu endpoint (recommended)
+### **Configure Rsyslog on Ubuntu endpoint (recommended)**
 
 **Rsyslog** is a preinstalled utility in Ubuntu 22.04 for receiving syslog events. The following section shows the steps for enabling Rsyslog on the Ubuntu endpoint and configuring the Wazuh agent to send the syslog log data to the Wazuh server.
 
@@ -818,7 +818,7 @@ Example output
 2024-09-13T08:13:46.806479+12:00 fortigate date=2024-09-12 time=15:44:50 devname="Fortigate" devid="FGVMEVUEOETC5XC8" eventtime=1726112689938988753 tz="+1200" logid="0001000014" type="traffic" subtype="local" level="notice" vd="root" srcip=192.168.1.64 srcport=14712 srcintf="root" srcintfrole="undefined" dstip=38.21.192.5 dstport=443 dstintf="port1" dstintfrole="wan" srccountry="Reserved" dstcountry="United States" sessionid=44992 proto=6 action="close" policyid=0 service="HTTPS" trandisp="noop" app="HTTPS" duration=1 sentbyte=441 rcvdbyte=223 sentpkt=5 rcvdpkt=4
 ```
 
-### Install Wazuh agent on Ubuntu endpoint
+### **Install Wazuh agent on Ubuntu endpoint**
 
 Configure Firewall:
 
@@ -878,7 +878,7 @@ On Wazuh server UI, verify Ubuntu agent is active
 
 ![image.png](image%2011.png)
 
-### Configure Wazuh to monitor Fortigate log
+### **Configure Wazuh to monitor Fortigate log**
 
 Add the following to /var/ossec/etc/ossec.conf file on Wazuh manager and agent
 
@@ -909,7 +909,7 @@ Add filter for location is /var/log/fortigate.log
 
 ![image.png](image%2013.png)
 
-### Default decoders and rules for FortiGate
+### **Default decoders and rules for FortiGate**
 
 By default, Wazuh has pre-installed decoders and rules for FortiGate. 
 
@@ -927,7 +927,7 @@ This can be verified in Threat Intelligent, Events section on the web UI.
 
 ![image.png](image%2016.png)
 
-## Event Logging
+## **Event Logging**
 
 ### **Log compression and rotation**
 
@@ -1076,7 +1076,7 @@ Several calculator instances will pop up after a successful execution of the exp
 
 ![image.png](image%2020.png)
 
-### Wazuh dashboard
+### **Wazuh dashboard**
 
 Use the Wazuh archives to query and display events related to the technique being hunted. It's important to note that while consulting the archives, some events might already be captured as alerts on the Wazuh dashboard. You can use information from the Wazuh archives, including alerts and events that have no detection to create custom rules based on your specific requirements.
 
@@ -1118,7 +1118,7 @@ Clear all filters then add the filter data.wineventda.image is C:\\Windows\\SYSW
 
 ![image.png](image%2029.png)
 
-### Troubleshooting Index Patterns
+### **Troubleshooting Index Patterns**
 
 If search results displays the error icon and the message “No cached mapping for this field. Refresh field list from the index patterns page,” go to Dashboard Management, Index patterns and select each index. Click refresh button. 
 
@@ -1322,7 +1322,7 @@ After SSH Brute Force attack was launched from Kali machine, the login was disab
 
 In this use case, we demonstrate how to block malicious IP addresses from accessing web resources on a web server. 
 
-### Configure Ubuntu endpoint
+### **Configure Ubuntu endpoint**
 
 Update local packages and install the Apache web server:
 
@@ -1476,9 +1476,9 @@ You can visualize the alert data in the Wazuh dashboard. To do this, go to the 
 
 ![image.png](image%2038.png)
 
-## Network IDS integration
+## **Network IDS integration**
 
-### Snort3
+### **Snort3**
 
 Install Wazuh agent on a Linux host where Snort3 is installed.
 
@@ -1545,7 +1545,7 @@ On Wazuh dashboard, verify IDS Event alerts are generated and it points to alert
 
 ![image.png](image%2040.png)
 
-### Suricata
+### **Suricata**
 
 Install Wazuh agent on a Linux host where Suricata is installed.
 
@@ -1621,7 +1621,7 @@ Verify the results in Wazuh dashboard. Naviage to Threat Hunting > Suricata
 
 ![image.png](image%2041.png)
 
-## References
+## **References**
 
 - https://www.youtube.com/watch?v=Lb_ukgtYK_U&list=PLG6KGSNK4PuBWmX9NykU0wnWamjxdKhDJ&index=5
 - https://documentation.wazuh.com/current/deployment-options/offline-installation.html
