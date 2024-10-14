@@ -1,4 +1,4 @@
-# Understanding IDS/IPS
+# **Understanding IDS/IPS**
 
 ## **Introduction**
 
