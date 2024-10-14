@@ -2,13 +2,13 @@
 
 Wazuh is the open source security platform that unifies XDR and SIEM protection for endpoints and cloud workloads. It is designed to help organisations detect threats, monitor integrity, and ensure compliance across their infrastructure, including physical, virtual, containerised, and cloud environments.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/yuwhqNPKO0M?si=c6C3chKKMGID-rqW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yuwhqNPKO0M?si=KtjQ4D0GHXYorAno" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Lab Setup for Proof of Concept
 
 In this proof of concept, attack emulation was conducted on the FortiGate VM, Windows and Ubuntu hosts in a safe and controlled setting. 
 
-Note: Do not attempt to replicate the attack emulation demonstrated here unless you are properly trained and it is safe to do so. Unauthorised attack emulation can lead to legal consequences and unintended damage to systems. Always ensure that such activities are conducted by qualified professionals in a secure, isolated environment.
+**Note: Do not attempt to replicate the attack emulation demonstrated here unless you are properly trained and it is safe to do so. Unauthorised attack emulation can lead to legal consequences and unintended damage to systems. Always ensure that such activities are conducted by qualified professionals in a secure, isolated environment.**
 
 | **Host** | **OS** | **Role** | **IP Address** |
 | --- | --- | --- | --- |
@@ -22,11 +22,11 @@ Note: Do not attempt to replicate the attack emulation demonstrated here unless 
 
 ## Wazuh
 
-## Install Wazuh Server offline
+## **Install Wazuh Server offline**
 
 You can install Wazuh even when there is no connection to the Internet. Installing the solution offline involves downloading the Wazuh central components to later install them on a system with no Internet connection. The Wazuh server, the Wazuh indexer, and the Wazuh dashboard can be installed and configured on the same host in an all-in-one deployment, or each component can be installed on a separate host as a distributed deployment, depending on your environment needs. Check [requirements for Wazuh Server](https://documentation.wazuh.com/current/installation-guide/wazuh-server/index.html).
 
-Note: You need root user privileges to run all the commands described below.
+**Note:** You need root user privileges to run all the commands described below.
 
 ### Configure Firewall rule
 
@@ -56,7 +56,7 @@ ufw allow 1514/tcp
 ufw allow 1515/tcp
 ```
 
-### Download the packages and configuration files
+### **Download the packages and configuration files**
 
 Run the following commands from any Linux system with Internet connection. This action executes a script that downloads all required files for the offline installation on x86_64 architectures. Select the package format to download.
 
@@ -128,7 +128,7 @@ Copy or move the following files to a directory on the host(s) from where the of
 - `wazuh-offline.tar.gz`
 - `wazuh-install-files.tar`
 
-### Install Wazuh components from local files
+### **Install Wazuh components from local files**
 
 Note: Internet access was disabled at this point for offline installation.
 
@@ -139,7 +139,7 @@ tar xf wazuh-offline.tar.gz
 tar xf wazuh-install-files.tar
 ```
 
-### Install the Wazuh indexer
+### **Install the Wazuh indexer**
 
 Run the following commands to install the Wazuh indexer.
 
@@ -152,7 +152,7 @@ rpm -ivh ./wazuh-offline/wazuh-packages/wazuh-indexer*.rpm
 
 For deb:
 
-```python
+```jsx
 dpkg -i ./wazuh-offline/wazuh-packages/wazuh-indexer*.deb
 ```
 
@@ -176,7 +176,7 @@ chmod 400 /etc/wazuh-indexer/certs/*
 chown -R wazuh-indexer:wazuh-indexer /etc/wazuh-indexer/certs
 ```
 
-Here you move the node certificate and key files, such as node-1.pem and node-1-key.pem, to their corresponding certs folder. They are specific to the node and are not required on the other nodes. However, note that the root-ca.pem certificate isn't moved but copied to the certs folder. This way, you can continue deploying it to other component folders in the next steps.
+*Here you move the node certificate and key files, such as node-1.pem and node-1-key.pem, to their corresponding certs folder. They are specific to the node and are not required on the other nodes. However, note that the root-ca.pem certificate isn't moved but copied to the certs folder. This way, you can continue deploying it to other component folders in the next steps.*
 
 Edit `/etc/wazuh-indexer/opensearch.yml` and replace the following values:
 
@@ -237,9 +237,9 @@ curl -XGET https://10.0.0.20:9200 -u admin:admin -k
 }
 ```
 
-### Installing the Wazuh server
+### **Installing the Wazuh server**
 
-### Installing the Wazuh manager
+### **Installing the Wazuh manager**
 
 Run the following commands to import the Wazuh key and install the Wazuh manager.
 
@@ -252,7 +252,7 @@ rpm -ivh ./wazuh-offline/wazuh-packages/wazuh-manager*.rpm
 
 For deb:
 
-```python
+```jsx
 dpkg -i ./wazuh-offline/wazuh-packages/wazuh-manager*.deb
 ```
 
@@ -272,7 +272,7 @@ systemctl start wazuh-manager
 systemctl status wazuh-manager
 ```
 
-### Installing Filebeat
+### **Installing Filebeat**
 
 Filebeat must be installed and configured on the same server as the Wazuh manager.
 
@@ -286,7 +286,7 @@ rpm -ivh ./wazuh-offline/wazuh-packages/filebeat*.rpm
 
 For deb:
 
-```python
+```jsx
 dpkg -i ./wazuh-offline/wazuh-packages/filebeat*.deb
 ```
 
@@ -384,7 +384,7 @@ elasticsearch: https://10.0.0.20:9200...
 
 Wazuh server node is now successfully installed.
 
-### Install the Wazuh dashboard
+### **Install the Wazuh dashboard**
 
 Run the following commands to install the Wazuh dashboard.
 
@@ -397,7 +397,7 @@ rpm -ivh ./wazuh-offline/wazuh-packages/wazuh-dashboard*.rpm
 
 For deb:
 
-```python
+```jsx
 dpkg -i ./wazuh-offline/wazuh-packages/wazuh-dashboard*.deb
 ```
 
@@ -425,9 +425,9 @@ Edit the `/etc/wazuh-dashboard/opensearch_dashboards.yml` file and replace the
 2. `opensearch.hosts`: The URLs of the Wazuh indexer instances to use for all your queries. The Wazuh dashboard can be configured to connect to multiple Wazuh indexer nodes in the same cluster. The addresses of the nodes can be separated by commas. 
 
 ```python
-server.host: 10.0.0.20
+**server.host: 10.0.0.20**
 server.port: 443
-opensearch.hosts: https://10.0.0.20:9200
+**opensearch.hosts: https://10.0.0.20:9200**
 opensearch.ssl.verificationMode: certificate
 ```
 
@@ -454,9 +454,9 @@ hosts:
 
 Access the web interface.
 
-- URL: https://<WAZUH_DASHBOARD_IP_ADDRESS>
-- Username: admin
-- Password: admin
+- URL: *https://<WAZUH_DASHBOARD_IP_ADDRESS>*
+- **Username**: admin
+- **Password**: admin
 
 ![image.png](image.png)
 
@@ -489,13 +489,13 @@ Click OK
 
 ![image.png](image%202.png)
 
-Delete root-ca.pem from user’s home directory
+Delete root-ca.pem from **user’s home directory**
 
 ```python
 sudo rm root-ca.pem
 ```
 
-### Securing Wazuh installation (optional)
+### **Securing Wazuh installation (optional)**
 
 You have now installed and configured all the Wazuh central components. We recommend changing the default credentials to protect your infrastructure from possible attacks.
 
@@ -588,7 +588,7 @@ Name the New Outbound Rule as Wazuh outbound and click Finish
 
 ![image.png](image%207.png)
 
-### Install Wazuh agent on Windows endpoint
+### **Install Wazuh agent on Windows endpoint**
 
 The agent runs on the endpoint you want to monitor and communicates with the Wazuh server, sending data in near real-time through an encrypted and authenticated channel.
 
@@ -667,7 +667,7 @@ Restart the Wazuh agent to apply the changes by running the following PowerShell
 Restart-Service -Name Wazuh
 ```
 
-## Monitoring network devices with Wazuh
+## **Monitoring network devices with Wazuh**
 
 ### Configure FortiGate to send syslog
 
@@ -721,43 +721,43 @@ Add the path to your `fortigate.log` file under the existing log files.
 **/var/log/fortigate.log**
 ...
 {
-	rotate 4
-	weekly
-	missingok
-	notifempty
-	compress
-	delaycompress
-	sharedscripts
-	postrotate
-		/usr/lib/rsyslog/rsyslog-rotate
-	endscript
+  rotate 4
+  weekly
+  missingok
+  notifempty
+  compress
+  delaycompress
+  sharedscripts
+  postrotate
+    /usr/lib/rsyslog/rsyslog-rotate
+  endscript
 }
 ```
 
-Key Settings:
+**Key Settings:**
 
-- rotate 4: Keeps 4 log files before deleting the oldest one.
-- weekly: Rotates logs once per week.
-- missingok: If the log file is missing, no error will be raised.
-- notifempty: Only rotates logs if they are not empty.
-- compress: Compresses old log files (e.g., to `.gz`).
-- delaycompress: Compresses the logs on the second rotation cycle, meaning the most recent rotated file is not compressed immediately.
-- sharedscripts: Runs the `postrotate` script only once, even if multiple logs are rotated.
-- postrotate: After log rotation, it runs `/usr/lib/rsyslog/rsyslog-rotate` to ensure that `rsyslog` reopens its log files (so it doesn't keep writing to the old rotated file).
+- **rotate 4**: Keeps 4 log files before deleting the oldest one.
+- **weekly**: Rotates logs once per week.
+- **missingok**: If the log file is missing, no error will be raised.
+- **notifempty**: Only rotates logs if they are not empty.
+- **compress**: Compresses old log files (e.g., to `.gz`).
+- **delaycompress**: Compresses the logs on the second rotation cycle, meaning the most recent rotated file is not compressed immediately.
+- **sharedscripts**: Runs the `postrotate` script only once, even if multiple logs are rotated.
+- **postrotate**: After log rotation, it runs `/usr/lib/rsyslog/rsyslog-rotate` to ensure that `rsyslog` reopens its log files (so it doesn't keep writing to the old rotated file).
 
-### Configuring syslog on the Wazuh server (optional)
+### **Configuring syslog on the Wazuh server (optional)**
 
-The Wazuh server can collect logs via syslog from endpoints such as firewalls, switches, routers, and other devices that don’t support the installation of Wazuh agents. More details can be found [here](https://documentation.wazuh.com/current/user-manual/capabilities/log-data-collection/syslog.html).
+The **Wazuh server** can collect logs via syslog from endpoints such as firewalls, switches, routers, and other devices that don’t support the installation of Wazuh agents. More details can be found [here](https://documentation.wazuh.com/current/user-manual/capabilities/log-data-collection/syslog.html).
 
 If you have a central logging server like Syslog or Logstash in place, you can install the Wazuh agent on that server to streamline log collection. This setup enables seamless forwarding of logs from multiple sources to the Wazuh server, facilitating comprehensive analysis.
 
 ### Configure Rsyslog on Ubuntu endpoint (recommended)
 
-Rsyslog is a preinstalled utility in Ubuntu 22.04 for receiving syslog events. The following section shows the steps for enabling Rsyslog on the Ubuntu endpoint and configuring the Wazuh agent to send the syslog log data to the Wazuh server.
+**Rsyslog** is a preinstalled utility in Ubuntu 22.04 for receiving syslog events. The following section shows the steps for enabling Rsyslog on the Ubuntu endpoint and configuring the Wazuh agent to send the syslog log data to the Wazuh server.
 
 Edit /etc/rsyslog.conf. 
 
-```python
+```jsx
 nano /etc/rsyslog.conf
 ```
 
@@ -899,7 +899,7 @@ systemctl restart wazuh-agent
 
 Verify fortigate logs are being ingested.
 
-Follow the steps below to enable archiving and set up wazuh-archives-* index.
+**Follow the steps below to enable archiving and set up wazuh-archives-* index.**
 
 Search wazuh-alerts-* and wazuh-archives-* index.
 
@@ -929,23 +929,23 @@ This can be verified in Threat Intelligent, Events section on the web UI.
 
 ## Event Logging
 
-### Log compression and rotation
+### **Log compression and rotation**
 
 Log files can quickly accumulate and consume significant disk space in a system. To prevent this, the Wazuh manager compresses logs during its rotation process, helping to manage disk usage efficiently and maintain system performance. The Wazuh manager compresses log files daily or when they reach a certain threshold (file size, age, time, and more) and archives them. In the log rotation process, Wazuh creates a new log file with the original name to continuously write new events.
 
 Log files are compressed daily and digitally signed using MD5, SHA1, and SHA256 hashing algorithms. The compressed log files are stored in the `/var/ossec/logs/` directory
 
-### Archiving event logs
+### **Archiving event logs**
 
 Events are logs generated by applications, endpoints, and network devices. The Wazuh server stores all events it receives, whether or not they trigger a rule. These events are stored in the Wazuh archives located at `/var/ossec/logs/archives/archives.log` and `/var/ossec/logs/archives/archives.json`. Security teams use archived logs to review historical data of security incidents, analyze trends, and generate reports to hunt threats.
 
 By default, the Wazuh archives are disabled because it stores logs indefinitely on the Wazuh server. When enabled, the Wazuh manager creates archived files to store and retain security data for compliance and forensic purposes.
 
-Note: The Wazuh archives retain logs collected from all monitored endpoints, therefore consuming significant storage resources on the Wazuh server over time. So, it is important to consider the impact on disk space and performance before enabling them.
+**Note:** The Wazuh archives retain logs collected from all monitored endpoints, therefore consuming significant storage resources on the Wazuh server over time. So, it is important to consider the impact on disk space and performance before enabling them.
 
-### Enabling archiving
+### **Enabling archiving**
 
-Edit the Wazuh manager configuration file `/var/ossec/etc/ossec.conf` and set the value of the highlighted fields below to `yes`:
+Edit the **Wazuh manager** configuration file `/var/ossec/etc/ossec.conf` and set the value of the highlighted fields below to `yes`:
 
 ```python
 <ossec_config>
@@ -969,7 +969,7 @@ systemctl restart wazuh-manager
 
 Depending on your chosen format, the file `archives.log`, `archives.json`, or both will be created in the `/var/ossec/logs/archives/` directory on the Wazuh server. Wazuh uses a default log rotation policy. It ensures that available disk space is conserved by rotating and compressing logs on a daily, monthly, and yearly basis.
 
-### Visualising the events on the dashboard
+### **Visualising the events on the dashboard**
 
 Edit the Filebeat configuration file `/etc/filebeat/filebeat.yml` and change the value of `archives: enabled` from `false` to `true`:
 
@@ -984,25 +984,25 @@ Restart Filebeat to apply the configuration changes:
 systemctl restart filebeat
 ```
 
-### Wazuh dashboard
+### **Wazuh dashboard**
 
-Click the upper-left menu icon and navigate to Dashboard management > Index patterns > Create index pattern. Use `wazuh-archives-*` as the index pattern name, and set `timestamp` in the Time field drop-down list.
+Click the upper-left menu icon and navigate to **Dashboard** **management** > **Index patterns** > **Create index pattern**. Use `wazuh-archives-*` as the index pattern name, and set `timestamp` in the **Time field** drop-down list.
 
 ![image.png](image%2017.png)
 
 ![image.png](image%2018.png)
 
-To view the events on the dashboard, click the upper-left menu icon and navigate to Discover. Change the index pattern to `wazuh-archives-*`.
+To view the events on the dashboard, click the upper-left menu icon and navigate to **Discover**. Change the index pattern to `wazuh-archives-*`.
 
 ![image.png](image%2019.png)
 
-### Use case: Detecting Signed Binary Proxy Execution
+### **Use case: Detecting Signed Binary Proxy Execution**
 
 Signed binary proxy execution is a technique threat actors use to bypass application whitelisting by using trusted binaries to run malicious code. This technique is identified as `T1218.010` based on the MITRE ATT&CK framework.
 
 In this use case, we show how to abuse the Windows utility, `regsvr32.exe`, to bypass application controls. We then analyze events in the Wazuh archives to detect suspicious activity related to this technique.
 
-### Atomic Red Team installation
+### **Atomic Red Team installation**
 
 Note: this has been tested in an isolated Unclassified environment. 
 
@@ -1046,7 +1046,7 @@ T1218.010-4 Regsvr32 Registering Non DLL
 T1218.010-5 Regsvr32 Silent DLL Install Call DllRegisterServer
 ```
 
-### Attack emulation
+### **Attack emulation**
 
 Emulate the signed binary proxy execution technique on the Windows endpoint.
 
@@ -1126,7 +1126,7 @@ If search results displays the error icon and the message “No cached mapping f
 
 ![image.png](image%2031.png)
 
-## Detecting Suspicious Binaries (Testing Endpoint Security)
+## **Detecting Suspicious Binaries (Testing Endpoint Security)**
 
 Wazuh has anomaly and malware detection capabilities that detect suspicious binaries on an endpoint. Binaries are executable code written to perform automated tasks. Malicious actors use them mostly to carry out exploitation to avoid being detected.
 
@@ -1134,7 +1134,7 @@ In this use case, we demonstrate how the Wazuh rootcheck module can detect a tro
 
 The Wazuh rootcheck module also checks for hidden processes, ports, and files.
 
-### Configuration
+### **Configuration**
 
 Take the following steps on the Ubuntu endpoint to enable the Wazuh rootcheck module and perform anomaly and malware detection.
 
@@ -1162,7 +1162,7 @@ By default, the Wazuh rootcheck module is enabled in the Wazuh agent configurati
 </rootcheck>
 ```
 
-### Attack emulation
+### **Attack emulation**
 
 Create a copy of the original system binary:
 
@@ -1188,18 +1188,18 @@ The rootcheck scan runs every 12 hours by default. Force a scan by restarting th
 sudo systemctl restart wazuh-agent
 ```
 
-### Visualise the alerts
+### **Visualise the alerts**
 
-You can visualise the alert data in the Wazuh dashboard. To do this, go to the Threat Hunting module and add the filters in the search bar to query the alerts.
+You can visualise the alert data in the Wazuh dashboard. To do this, go to the **Threat Hunting** module and add the filters in the search bar to query the alerts.
 `location:rootcheck AND rule.id:510`
 
 ![image.png](image%2032.png)
 
-## File Integrity Monitoring (Testing Endpoint Security)
+## **File Integrity Monitoring (Testing Endpoint Security)**
 
 File Integrity Monitoring (FIM) helps in auditing sensitive files and meeting regulatory compliance requirements. Wazuh has an inbuilt FIM module that monitors file system changes to detect the creation, modification, and deletion of files.
 
-### Configuration on Ubuntu endpoint
+### **Configuration on Ubuntu endpoint**
 
 Edit the Wazuh agent `/var/ossec/etc/ossec.conf` configuration file. Add the directories for monitoring within the `<syscheck>` block. For this use case, you configure Wazuh to monitor the `/root` directory. 
 
@@ -1213,25 +1213,25 @@ Restart the Wazuh agent to apply the configuration changes:
 sudo systemctl restart wazuh-agent
 ```
 
-### Test the configuration
+### **Test the configuration**
 
 1. Create a text file in the monitored directory then wait for 5 seconds.
 2. Add content to the text file and save it. Wait for 5 seconds.
 3. Delete the text file from the monitored directory.
 
-### Visualise the alerts
+### **Visualise the alerts**
 
-You can visualise the alert data in the Wazuh dashboard. To do this, go to the File Integrity Monitoring module and add the filters in the search bar to query the alerts:`rule.id: is one of 550,553,554`
+You can visualise the alert data in the Wazuh dashboard. To do this, go to the **File Integrity Monitoring** module and add the filters in the search bar to query the alerts:`rule.id: is one of 550,553,554`
 
 ![image.png](image%2033.png)
 
-## Vulnerability Detection (Testing Threat Intelligence)
+## **Vulnerability Detection (Testing Threat Intelligence)**
 
 Wazuh uses the Vulnerability Detection module to identify vulnerabilities in applications and operating systems running on endpoints.
 
 This use case shows how Wazuh detects unpatched Common Vulnerabilities and Exposures (CVEs) in the monitored endpoint.
 
-### Configuration
+### **Configuration**
 
 The Vulnerability Detection module is enabled by default. You can perform the following steps on the Wazuh server to ensure that the Wazuh Vulnerability Detection module is enabled and properly configured.
 
@@ -1276,23 +1276,23 @@ If you made changes to the configuration, restart the Wazuh manager.
 sudo systemctl restart wazuh-manager
 ```
 
-### Visualise the alerts
+### **Visualise the alerts**
 
-You can visualise the detected vulnerabilities in the Wazuh dashboard. To see a list of active vulnerabilities, go to Vulnerability Detection and select Inventory.
+You can visualise the detected vulnerabilities in the Wazuh dashboard. To see a list of active vulnerabilities, go to **Vulnerability Detection** and select **Inventory**.
 
 ![image.png](image%2034.png)
 
 ![image.png](image%2035.png)
 
-## Incident response
+## **Incident response**
 
 The goal of incident response is to effectively handle a security incident and restore normal business operations as quickly as possible. As organizations’ digital assets continuously grow, managing incidents manually becomes increasingly challenging, hence the need for automation.
 
-### Wazuh Active Response module
+### **Wazuh Active Response module**
 
 The Wazuh Active Response module allows users to run automated actions when incidents are detected on endpoints. This improves an organization's incident response processes, enabling security teams to take immediate and automated actions to counter detected threats.
 
-### Default active response actions
+### **Default active response actions**
 
 Out-of-the-box scripts are available on every operating system that runs the Wazuh agents. Some of the default active response scripts include
 
@@ -1304,11 +1304,11 @@ Out-of-the-box scripts are available on every operating system that runs the Waz
 | restart.sh | Restarts the Wazuh agent or server. |
 | netsh.exe | Blocks an IP address using netsh. |
 
-### Custom active response actions
+### **Custom active response actions**
 
 One of the benefits of the Wazuh Active Response module is its adaptability. Wazuh allows security teams to create custom active response actions in any programming language, tailoring them to their specific needs.
 
-### Disabling User Account After a Brute-Force Attack (Testing Default Active Response)
+### **Disabling User Account After a Brute-Force Attack (Testing Default Active Response)**
 
 Account lockout is a security measure used to defend against brute force attacks by limiting the number of login attempts a user can make within a specified time. We use the Wazuh Active Response module to disable the user account whose password is being guessed by an attacker.
 
@@ -1318,7 +1318,7 @@ After SSH Brute Force attack was launched from Kali machine, the login was disab
 
 ![image.png](image%2036.png)
 
-## Blocking a Known Malicious Actor (Testing Custom Active Response)
+## **Blocking a Known Malicious Actor (Testing Custom Active Response)**
 
 In this use case, we demonstrate how to block malicious IP addresses from accessing web resources on a web server. 
 
@@ -1366,7 +1366,7 @@ Restart the Wazuh agent to apply the changes:
 sudo systemctl restart wazuh-agent
 ```
 
-### Configure the Wazuh server
+### **Configure the Wazuh server**
 
 Download the utilities and configure the CDB list.
 
@@ -1400,7 +1400,7 @@ Assign the right permissions and ownership to the generated file:
 sudo chown wazuh:wazuh /var/ossec/etc/lists/blacklist-alienvault
 ```
 
-### Configure the active response module to block the malicious IP address
+### **Configure the active response module to block the malicious IP address**
 
 Add a custom rule to trigger a Wazuh active response script. Do this in the Wazuh server `/var/ossec/etc/rules/local_rules.xml` custom ruleset file:
 
@@ -1458,7 +1458,7 @@ Restart the Wazuh manager to apply the changes:
 sudo systemctl restart wazuh-manager
 ```
 
-### Attack emulation
+### **Attack emulation**
 
 Access any of the web servers from the Kali endpoint using the corresponding IP address. Replace `<WEBSERVER_IP>` with the appropriate value and execute the following command from the attacker endpoint:
 
@@ -1470,9 +1470,9 @@ The attacker endpoint connects to the victim's web servers the first time. After
 
 ![image.png](image%2037.png)
 
-### Visualise the alerts
+### **Visualise the alerts**
 
-You can visualize the alert data in the Wazuh dashboard. To do this, go to the Threat Hunting module and add the filters in the search bar to query the alerts: `rule.id is one of 651, 100100`
+You can visualize the alert data in the Wazuh dashboard. To do this, go to the **Threat Hunting** module and add the filters in the search bar to query the alerts: `rule.id is one of 651, 100100`
 
 ![image.png](image%2038.png)
 
@@ -1603,7 +1603,7 @@ Restart the Wazuh agent to apply the changes:
 sudo systemctl restart wazuh-agent
 ```
 
-### Attack emulation
+### **Attack emulation**
 
 Wazuh automatically parses data from `/var/log/suricata/eve.json` and generates related alerts on the Wazuh dashboard. From the Ubuntu host, run 
 
