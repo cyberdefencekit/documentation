@@ -1,10 +1,10 @@
-# Splunk
+# **Splunk**
 
 Splunk Enterprise is a Security Information and Event Management (SIEM) tool usually installed on the server. It is designed for searching, analysing, and visualising data. It allows users to collect and ingest data, and search across various data types. Splunk Universal Forwarders are usually installed on clients to provide reliable, secure data collection and forward that data into Splunk Enterprise for indexing. This part of documentation focuses on installing and configuring Splunk. For Splunk, the main focus will be installing Splunk Enterprise and Universal Forwarder. 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/p4Ta4ZvWsnY?si=EANyX3_cb_KtxHWi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-## Lab Setup for Proof of Concept
+## **Lab Setup for Proof of Concept**
 
 A virtual lab in an Unclassified environment is used as a proof of concept. Internet access was disabled during the installation to simulate an air-gapped environment. For a testing purpose, a free trial version was used for Splunk Enterprise and Universal Forwarder. Attack emulation was conducted on a FortiGate VM in a safe and controlled setting. 
 
@@ -20,9 +20,9 @@ A virtual lab in an Unclassified environment is used as a proof of concept. Inte
 
 ![Splunk PoC.drawio.png](Splunk_PoC.drawio.png)
 
-# Splunk Enterprise
+## **Splunk Enterprise**
 
-## Configure Firewall
+### **Configure Firewall**
 
 On Ubuntu, run the following command:
 
@@ -81,7 +81,7 @@ sudo firewall-cmd --reload
 sudo firewall-cmd --list-all
 ```
 
-## **Install and Configure Splunk Enterprise**
+### **Install and Configure Splunk Enterprise**
 
 Splunk Enterprise enables you to search, analyze and visualise your data to quickly act on insights from across your technology landscape. This step focuses on installing and configuring Splunk Enterprise. 
 
@@ -118,13 +118,13 @@ ls -la
 total 12
 drwxr-xr-x  3 root   root   4096 Sep 18 15:36 .
 drwxr-xr-x 20 root   root   4096 Sep 18 15:21 ..
-drwxr-xr-x 11 **splunk splunk** 4096 Sep  6 05:58 splunk
+drwxr-xr-x 11 splunk splunk 4096 Sep  6 05:58 splunk
 ```
 
 Switch to splunk user and start splunk. When prompted, create admin credentials.
 
 ```bash
-**su splunk**
+su splunk
 cd splunk/bin
 ./splunk start --accept-license
 ```
@@ -150,11 +150,11 @@ Settings > Forwarding and Receiving > Add new under Receive Data > Listen on thi
 
 ![Untitled](Untitled%202.png)
 
-## Ingesting FortiGate Logs through SC4S (Option 1)
+## **Ingesting FortiGate Logs through SC4S (Option 1)**
 
 SC4S is an open source packaged solution for getting data into Splunk. It is based on the syslog-ng Open Source Edition (Syslog-NG OSE) and transports data to Splunk via the Splunk HTTP event Collector (HEC) rather than writing events to disk for collection by a Universal Forwarder.
 
-### Create indexes for SC4S
+### **Create indexes for SC4S**
 
 Copy indexes.conf from here:
 
@@ -283,7 +283,7 @@ Change into `/opt/splunk/bin` and restart Splunk Enterprise as the `splunk` user
 ./splunk restart
 ```
 
-**Note**: **do not edit `/opt/splunk/etc/system/default/indexes.conf`**
+**Note:** do not edit `/opt/splunk/etc/system/default/indexes.conf`
 This step will create the following default indexes that are used by SC4S:
 
 - `email`
@@ -306,7 +306,7 @@ This step will create the following default indexes that are used by SC4S:
 
 **Verify that the SC4S default indexes are created on web UI (Settings > Indexes).**
 
-### Create a HTTP Event Collector (HEC) token for SC4S
+### **Create a HTTP Event Collector (HEC) token for SC4S**
 
 On Splunk Web UI, go to Settings > Data Inputs > HTTP Event Collector > Global Settings
 
@@ -340,7 +340,7 @@ You can also find your token value on Settings > Data Inputs > HTTP Event Collec
 
 ![image.png](image%204.png)
 
-### Configure Linux for SC4S
+### **Configure Linux for SC4S**
 
 Set the host OS kernel to match the default receiver buffer of SC4S, which is set to 16MB.
 
@@ -383,7 +383,7 @@ cd net-tools-offline
 sudo dpkg -i net-tools_1.60+git20181103.0eebece-1ubuntu5_amd64.deb
 ```
 
-### Install Podman offline on Ubuntu
+### **Install Podman offline on Ubuntu**
 
 By default, Podman is installed on CentOS Stream 9 but it is not installed on Ubuntu. 
 
@@ -407,7 +407,7 @@ cd podman-offline/archives
 sudo dpkg -i *.deb
 ```
 
-### Install SC4S container while offline
+### **Install SC4S container while offline**
 
 You can stage SC4S by downloading the image so that it can be loaded on a host machine, for example on an airgapped system, without internet connectivity.
 
@@ -454,8 +454,8 @@ After=NetworkManager.service network-online.target
 WantedBy=multi-user.target
 
 [Service]
-**# Select the locally loaded image
-Environment="SC4S_IMAGE=sc4slocal:latest"**
+# Select the locally loaded image
+Environment="SC4S_IMAGE=sc4slocal:latest"
 
 # Required mount point for syslog-ng persist data (including disk buffer)
 Environment="SC4S_PERSIST_MOUNT=splunk-sc4s-var:/var/lib/syslog-ng"
@@ -471,7 +471,7 @@ Environment="SC4S_TLS_MOUNT=/opt/sc4s/tls:/etc/syslog-ng/tls:z"
 
 TimeoutStartSec=0
 
-**#ExecStartPre=/usr/bin/podman pull $SC4S_IMAGE**
+#ExecStartPre=/usr/bin/podman pull $SC4S_IMAGE
 
 # Note: /usr/bin/bash will not be valid path for all OS
 # when startup fails on running bash check if the path is correct
@@ -493,7 +493,7 @@ ExecStart=/usr/bin/podman run \
 Restart=on-abnormal
 ```
 
-### Configure IPv4 forwarding
+### **Configure IPv4 forwarding**
 
 IPv4 forwarding is not enabled by default. IPv4 forwarding must be enabled for container networking.
 
@@ -618,7 +618,7 @@ Verify that SC4S is receiving Fortigate logs
 
 ![image.png](image%207.png)
 
-## Ingesting FortiGate Logs through FortiGate App (Option 2)
+## **Ingesting FortiGate Logs through FortiGate App (Option 2)**
 
 If SC4S does not work for your environment, another option to ingest FortiGate logs on Splunk is through FortiGate App.
 
@@ -626,7 +626,7 @@ Install from file on Splunk web UI: Manage Apps->Install from file->Upload the .
 
 ![image.png](image%208.png)
 
-### Add data input on Splunk server:
+### **Add data input on Splunk server**
 
 Note: From version 1.2, the Splunk TA(Add-on) for fortigate no longer match wildcard source or sourcetype to extract fortigate log data, a default sourcetype fortigate_log is specified in default/props.conf instead, please follow the instruction below to configure your input and props.conf for the App and TA(Add-on).
 
@@ -654,7 +654,7 @@ Search for `fortigate` and verify that FortiGate logs are being ingested.
 
 ![image.png](image%2011.png)
 
-## Configure FortiGate
+## **Configure FortiGate**
 
 Configure Port 1 as WAN interface 
 
@@ -672,7 +672,7 @@ To simulate an air-gapped environment without internet access, disable the polic
 
 ![image.png](image%2014.png)
 
-## Configure FortiGate to send syslog
+## **Configure FortiGate to send syslog**
 
 Refer to the admin manual for specific details of configuration to send Reliable syslog using RFC 3195 format, a typical logging configuration will include the following features.
 
@@ -746,7 +746,7 @@ logging synchronous
 
 *Note: in this scenario, we are sending syslogs from network devices to a containerised syslog-ng server using HTTP/HTTPS. This is Splunk team’s recommended method when using Splunk products. Alternatively, you can send syslogs from network devices to a rsyslog server and rotate the logs. This method is used by other SIEMs like Wazuh. For more details, refer to the Wazuh documentation.*  
 
-# Splunk Universal Forwarder
+## **Splunk Universal Forwarder**
 
 ## **Install Sysmon on Windows**
 
@@ -1093,7 +1093,7 @@ machineTypesFilter = windows-x64
 whitelist.0 = *
 ```
 
-## Create Indexes
+## **Create Indexes**
 
 Create indexes on the web UI.
 
@@ -1116,11 +1116,11 @@ Verify that indexes have been created and enabled
 
 ![image.png](image%2055.png)
 
-## Edit config files for Windows app
+## **Edit config files for Windows app**
 
 On the Linux host where Splunk Enterprise is installed, change into `opt/splunk/etc/deployment-apps/Splunk_TA_windows/local` directory
 
-Copy `app.conf` ****and `inputs.conf` from `/opt/splunk/etc/deployment-apps/Splunk_TA_windows/default` ****directory
+Copy `app.conf` and `inputs.conf` from `/opt/splunk/etc/deployment-apps/Splunk_TA_windows/default` directory
 
 ```bash
 cd /opt/splunk/etc/deployment-apps/Splunk_TA_windows/local
@@ -1135,33 +1135,33 @@ nano inputs.conf
 ```
 
 ```bash
-**[default]
-index = wineventlog**
+[default]
+index = wineventlog
 
 ###### OS Logs ######
 [WinEventLog://Application]
-**disabled = 0**
+disabled = 0
 start_from = oldest
 current_only = 0
 checkpointInterval = 5
-**renderXml=false** 
+renderXml=false
 
 [WinEventLog://Security]
-**disabled = 0**
+disabled = 0
 start_from = oldest
 current_only = 0
 evt_resolve_ad_obj = 1
 checkpointInterval = 5
 blacklist1 = EventCode="4662" Message="Object Type:(?!\s*groupPolicyContainer)"
 blacklist2 = EventCode="566" Message="Object Type:(?!\s*groupPolicyContainer)"
-**renderXml=false** 
+renderXml=false
 
 [WinEventLog://System]
-**disabled = 0**
+disabled = 0
 start_from = oldest
 current_only = 0
 checkpointInterval = 5
-**renderXml=false**
+renderXml=false
 ```
 
 On WS2019 host where Splunk Universal Forwarder is configured, navigate to 
@@ -1217,7 +1217,7 @@ If the logs are not being indexed, try refreshing the web UI.
 
 If searching for `index=wineventlog` does not return any result, try searching All time instead of Last 24 hours.
 
-## Edit config files for Sysmon app
+## **Edit config files for Sysmon app**
 
 On CentOS host where Splunk Enterprise is installed, change into `/opt/splunk/etc/deployment-apps/Splunk_TA_microsoft_sysmon/local` ****directory
 
@@ -1238,8 +1238,8 @@ nano inputs.conf
 Note: your index name must match with the index name you created earlier
 
 ```bash
-**[default]
-index = sysmonlog**
+[default]
+index = sysmonlog
 
 [WinEventLog://Microsoft-Windows-Sysmon/Operational]
 disabled = false
@@ -1302,11 +1302,11 @@ Search for `index=sysmonlog source=XmlWinEventLog:Microsoft-Windows-Sysmon/Opera
 
 ![image.png](image%2061.png)
 
-## Edit config files for Unix app (optional)
+## **Edit config files for Unix app (optional)**
 
-On a Linux host where Splunk Enterprise is installed, change into /opt/splunk/etc/deployment-apps/Splunk_TA_nix/**local** directory
+On a Linux host where Splunk Enterprise is installed, change into `/opt/splunk/etc/deployment-apps/Splunk_TA_nix/local` directory
 
-Copy app.conf, inputs.conf and props.conf from /opt/splunk/etc/deployment-apps/Splunk_TA_nix/**default** directory
+Copy app.conf, inputs.conf and props.conf from `/opt/splunk/etc/deployment-apps/Splunk_TA_nix/default` directory
 
 ```bash
 splunk@siem:/opt/splunk/etc/deployment-apps/Splunk_TA_nix/local$ cp /opt/splunk/etc/deployment-apps/Splunk_TA_nix/default/app.conf .
@@ -1320,19 +1320,19 @@ Make the following changes to inputs.conf
 Add your index name
 
 ```bash
-**[default]
-index = unixlog**
+[default]
+index = unixlog
 ...
 [monitor:///var/log]
 whitelist=(\.log|log$|messages|secure|auth|mesg$|cron$|acpid$|\.out)
 blacklist=(lastlog|anaconda\.syslog)
-**disabled = 0**
+disabled = 0
 ...
 ```
 
-On CentOShost where UF is configured, navigate to /opt/splunkforwarder/etc/apps/Splunk_TA_nix/**local** directory
+On CentOShost where UF is configured, navigate to `/opt/splunkforwarder/etc/apps/Splunk_TA_nix/local` directory
 
-Copy **app.conf, inputs.conf** and **props.conf** from /opt/splunkforwarder/etc/apps/Splunk_TA_nix/**default** directory
+Copy app.conf, inputs.conf and props.conf from `/opt/splunkforwarder/etc/apps/Splunk_TA_nix/default` directory
 
 ```python
 splunk@siem3:/opt/splunkforwarder/etc/apps/Splunk_TA_nix/local$ cp /opt/splunkforwarder/etc/apps/Splunk_TA_nix/default/app.conf .
@@ -1355,7 +1355,7 @@ Verify data being indexed
 
 ![image.png](image%2063.png)
 
-## Annex 1: Using Virtual Account to install Universal Forwarder (Windows)
+## **Annex 1: Using Virtual Account to install Universal Forwarder (Windows)**
 
 Selecting Virtual Account will create a service account called NT SERVICE\SplunkForwarder. For Sysmon Log Forwarding to work, NT SERVCIE\SplunkForwarder must be assigned as a member of Event Log Readers group through Group Policy. If your Windows host is not joined to a domain and you have technical issues with the Virtual Account, use Local System but note that this is not best security practice. 
 
@@ -1602,11 +1602,11 @@ Verify that data is being indexed (i.e. forwarded) on Splunk Enterprise
 
 Navigate to Splunk Enterprise web UI > Search & Reporting > Data Summary
 
-# Introduction to Splunk
+## **Introduction to Splunk**
 
 Splunk offers free training. You will need to create a user account to access [free training materials](https://www.splunk.com/en_us/training/course-catalog.html?sort=Newest&filters=filterGroup1FreeCourses). The following content is available from the free course “Introduction to Splunk.” Alternatively, same contents are available from [SplunkHowTo YouTube channel](https://www.youtube.com/@SplunkHowTo).
 
-## Creating Reports
+## **Creating Reports**
 
 For demonstration, SSH Brute Force attack was simulated from Kali machine to FortiGate. Also SSH login attempts were made from other internal hosts to FortiGate. 
 
@@ -1670,7 +1670,7 @@ click Save
 
 ![image.png](image%2086.png)
 
-## Creating Alerts
+## **Creating Alerts**
 
 On Splunk Enterprise web UI, search for Admin login failed on FortiGate.
 
@@ -1742,7 +1742,7 @@ Alerts can also be viewed from the Alerts tab
 
 ![image.png](image%2097.png)
 
-## Creating Dashboards
+## **Creating Dashboards**
 
 On Splunk Enterprise web UI, search for Admin login failed events are generated on FortiGate
 
@@ -1852,7 +1852,7 @@ Save the Dashboard
 
 ![image.png](image%20117.png)
 
-## Dashboard Studio
+## **Dashboard Studio**
 
 Make sure FortiGate Logins Dashboard is opened
 
@@ -1880,7 +1880,7 @@ Click View
 
 ![image.png](image%20121.png)
 
-# References
+# **References**
 
 - https://youtu.be/gNeF_mT6Eng?si=No3aBK1EDt_LuK80
 - https://youtu.be/Wze0yXsMKVM?si=N6Y4iW3m5ewxD1Hv
