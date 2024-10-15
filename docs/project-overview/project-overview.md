@@ -14,7 +14,7 @@ The main purpose of project **Cyber Defence Kit** is to enhance the cybersecurit
 - Ensure Compliance
 - Promote Proactive Security
 
-This phased implementation allows us to focus on establishing a strong foundation with SIEM solutions before gradually introducing additional tools like Security Orchestration, Automation, and Response (SOAR), Security Incident Response Platform (SIRP), Intrusion Detection and Prevention Systems (IDS/IPS), Endpoint Detection and Response (EDR), Extended Detection and Response (XDR), and Digital Forensics and Incident Response (DFIR).
+This phased implementation allows us to focus on establishing a strong foundation with SIEM solutions before gradually introducing additional tools like Security Orchestration, Automation, and Response (SOAR), Security Incident Response Platform (SIRP), Intrusion Detection and Prevention Systems (IDS/IPS), Network Traffic Analysis (NTA), Endpoint Detection and Response (EDR), Extended Detection and Response (XDR), and Digital Forensics and Incident Response (DFIR).
 
 This project aligns with our strategic goal of protecting our assets and developing a small Security Operations Center (SOC) within our organisation. By integrating these tools and practices gradually, we will enhance our ability to proactively detect, respond to, and mitigate cybersecurity threats.
 
