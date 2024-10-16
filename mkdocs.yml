@@ -1,26 +1,24 @@
 site_name: Cyber Defence Kit
 
 nav:
-  - Cyber Defence Kit:
-      - 'Getting Started': 
-        - 'Getting Started': index.md
-      - 'About Cyber Defence Kit':
-        - 'Cyber Defence Kit Explained': CDK-explained/CDK-explained.md
-        - 'Project Overview': project-overview/project-overview.md
-      - 'SIEM':
-        - 'Understanding SIEM': understanding-SIEM/understanding-SIEM.md
-        - 'Splunk': splunk/splunk.md
-        - 'Wazuh': wazuh/wazuh.md
-      - 'IDS/IPS':
-        - 'Understanding IDS/IPS': understanding-IDS-IPS/understanding-IDS-IPS.md 
-        - 'Snort': snort/snort.md
-        - 'Suricata': suricata/suricata.md
-      - 'SIRP':
-        - 'Understanding SIRP': understanding-SIRP/understanding-SIRP.md 
-        - 'TheHive': thehive/thehive.md
-      - 'SOAR':
-        - 'Understanding SOAR': understanding-SOAR/understanding-SOAR.md 
-        - 'Shuffle': shuffle/shuffle.md
+  - Getting Started: index.md
+  - About Cyber Defence Kit:
+    - Cyber Defence Kit Explained: CDK-explained/CDK-explained.md
+    - Project Overview: project-overview/project-overview.md
+  - SIEM:
+    - Understanding SIEM: understanding-SIEM/understanding-SIEM.md
+    - Splunk: splunk/splunk.md
+    - Wazuh: wazuh/wazuh.md
+  - IDS/IPS:
+    - Understanding IDS/IPS: understanding-IDS-IPS/understanding-IDS-IPS.md 
+    - Snort: snort/snort.md
+    - Suricata: suricata/suricata.md
+  - SIRP:
+    - Understanding SIRP: understanding-SIRP/understanding-SIRP.md 
+    - TheHive: thehive/thehive.md
+  - SOAR:
+    - Understanding SOAR: understanding-SOAR/understanding-SOAR.md 
+    - Shuffle: shuffle/shuffle.md
 
 theme:
   name: material
