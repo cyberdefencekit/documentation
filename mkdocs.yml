@@ -1,8 +1,8 @@
 site_name: Cyber Defence Kit
 
 nav:
-  - Getting Started: index.md
-  - About Cyber Defence Kit:
+  - Home: index.md
+  - About CDK:
     - Cyber Defence Kit Explained: CDK-explained/CDK-explained.md
     - Project Overview: project-overview/project-overview.md
   - SIEM:
