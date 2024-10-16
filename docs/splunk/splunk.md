@@ -12,8 +12,7 @@ A virtual lab in an Unclassified environment is used as a proof of concept. Inte
 
 | **Hostname** | **OS** | **Role** | **IP Address** |
 | --- | --- | --- | --- |
-| Fortigate | Fortios 7.6.0 | Firewall/Router | 192.168.1.111 (WAN) / 
-10.0.0.1 (LAN) |
+| Fortigate | Fortios 7.6.0 | Firewall/Router | 192.168.1.111 (WAN) / 10.0.0.1 (LAN) |
 | SplunkEnt | Centos Stream 9 | Splunk Enterprise (server), syslog server | 10.0.0.120 |
 | WS2019-2 | Windows Server 2019 | Splunk Universal Forwarder (client) | 10.0.0.140 |
 | Kali | Kali Linux 2024.2 | Attacker machine | 192.168.1.161, 10.0.0.29 |
