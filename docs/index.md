@@ -6,6 +6,7 @@ The Cyber Defence Kit is a cybersecurity toolkit designed to enhance your organi
 ![CDK intro visual.png](CDK_intro_visual.png)
 
 ## **Getting Started**
+
 To begin leveraging the Cyber Defence Kit:
 
 1. **Understand the Toolkit:**
