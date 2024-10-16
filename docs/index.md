@@ -8,16 +8,16 @@ The Cyber Defence Kit is a cybersecurity toolkit designed to enhance your organi
 # Getting Started
 To begin leveraging the Cyber Defence Kit:
 
-**1. Understand the Toolkit:**
+1. **Understand the Toolkit:**
     - Familiarise yourself with the components of the kit.
     - Review the Project Overview for a high-level understanding.
-**2. Set Up Your Environment:**
+2. **Set Up Your Environment:**
     - Ensure you have the necessary hardware and software prerequisites.
     - Prepare your systems for installation (e.g., air-gapped environment considerations).
-**3. Install Core Components:**
+3. **Install Core Components:**
     - Start with the SIEM solutions
     - Refer to installtion guide for Splunk and Wazuh
-**4. Learn and Explore:**
+4. **Learn and Explore:**
     - Explore proof of concept videos and documentation on attack simulation.
 
 # Prerequisites
