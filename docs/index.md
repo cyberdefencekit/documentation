@@ -1,14 +1,14 @@
 # **Getting Started**
 
-## **Welcome to the Cyber Defence Kit**
+# **Welcome to the Cyber Defence Kit**
 
-## **Introduction**
+# **Introduction**
 
 The Cyber Defence Kit is a cybersecurity toolkit designed to enhance your organisation's cybersecurity posture. It combines a selection of open-source and proprietary tools, methodologies, and best practices to help you proactively detect, respond to, and mitigate cybersecurity threats.
 
 ![CDK intro visual.png](CDK_intro_visual.png)
 
-## **Getting Started**
+# **Getting Started**
 
 To begin leveraging the Cyber Defence Kit:
 
@@ -24,31 +24,31 @@ To begin leveraging the Cyber Defence Kit:
 4. Learn and Explore:
     - Explore proof of concept videos and documentation on attack simulation.
 
-## **Documentation Navigation**
+# **Documentation Navigation**
 
 - Project Overview: Detailed information about the project's objectives, scope, and phases.
 - Understanding SIEM: An introduction to SIEM, its importance, and how it benefits your organisation.
 - Splunk: Installation and configuration guides for Splunk Enterprise and Universal Forwarder.
 - Wazuh: Steps to set up Wazuh for endpoint detection and response.
 
-## **Prerequisites**
+# **Prerequisites**
 
 - Technical Expertise: Basic understanding of cybersecurity principles and system administration.
 - Hardware Requirements: Servers or virtual machines meeting the minimum specifications.
 - Access Rights: Administrative privileges to install and configure software.
 
-## **Support and Resources**
+# **Support and Resources**
 
 - Online Resources: Access free online training materials, tutorials, and documentation.
 - Assistance: Reach out to the cybersecurity team via internal support channels for help.
 
-## **Important Notes**
+# **Important Notes**
 
 - Security First: Always follow security best practices when installing and configuring tools.
 - Air-Gapped Environments: Special considerations are required for installations without internet access.
 - Legal Compliance: Ensure all activities comply with legal and regulatory requirements.
 
-## **Next Steps**
+# **Next Steps**
 
 - Proceed to the Project Overview to understand the detailed objectives and plan.
 - Dive into Understanding SIEM to grasp the fundamentals of Security Information and Event Management.
