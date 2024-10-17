@@ -2,7 +2,7 @@
 
 Snort is an open-source network intrusion detection and prevention system (IDS/IPS) maintained by Cisco Systems. It is designed to monitor network traffic in real-time, analysing packets for signs of malicious activity, such as attacks, probes, or scans. Snort uses a combination of protocol analysis, content searching, and various preprocessors to detect and prevent intrusions.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/myel5Xb6ihg?si=-w9i3xlHjrXo6tj5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XrSN68MEK38?si=XQGCpy92K97gdvvQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## **Install Snort3 on Host**
 
@@ -693,7 +693,7 @@ Move the Merged File to the pulledpork.rules in the Snort Rules Directory:
 sudo mv merged.rules /etc/snort/rules/pulledpork.rules
 ```
 
-### **Malware traffic analysis - reading pcap with Snort**
+## **Malware traffic analysis - reading pcap with Snort**
 
 Make a directory called test and cd into it.
 
