@@ -2,7 +2,7 @@
 
 Snort is an open-source network intrusion detection and prevention system (IDS/IPS) maintained by Cisco Systems. It is designed to monitor network traffic in real-time, analysing packets for signs of malicious activity, such as attacks, probes, or scans. Snort uses a combination of protocol analysis, content searching, and various preprocessors to detect and prevent intrusions.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1Jdw0iY_h0c?si=W4EHGCM9MBoqhN6f" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/myel5Xb6ihg?si=-w9i3xlHjrXo6tj5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## **Install Snort3 on Host**
 
@@ -20,6 +20,8 @@ In this proof of concept, attack simulation was conducted on the Kali machine in
 | Snort | Ubuntu 22.04 LTS | Host IDS/IPS | 10.0.0.22 |
 | WS2019 | Windows Server 2019 | Windows client | 10.0.0.24 |
 | Kali | Kali Linux 2024.2 | Attacker machine | 10.0.0.29 |
+
+![snort.drawio.png](snort.drawio.png)
 
 ### **Download Pre-requisites**
 
@@ -223,7 +225,7 @@ Find your network interface by running `ip a`
 ```python
 ip a
 ...
-2: **ens32**: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 1000
+2: ens32: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 1000
     link/ether 00:0c:29:86:08:64 brd ff:ff:ff:ff:ff:ff
     altname enp2s0
     inet 10.0.0.22/24 brd 10.0.0.255 scope global dynamic noprefixroute ens32
@@ -278,7 +280,7 @@ generic-receive-offload: off
 large-receive-offload: off [fixed]
 ```
 
-### **Test IDS with local rules**
+## **Test IDS with local rules**
 
 Create a folder called rules in the following directory
 
@@ -556,7 +558,7 @@ ips =
     -- use include for rules files; be sure to set your path
     -- note that rules files can include other rules files
     -- (see also related path vars at the top of snort_defaults.lua)
-    include = "/usr/local/etc/rules/**pulledpork.rules**",
+    include = "/usr/local/etc/rules/pulledpork.rules",
     variables = default_variables
 }
 
@@ -593,7 +595,7 @@ tail alert_fast.txt
 09/16-23:11:12.926837 [**] [1:498:11] "INDICATOR-COMPROMISE id check returned root" [**] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} 217.160.0.187:80 -> 10.0.0.22:36076
 ```
 
-### **Test IPS**
+## **Test IPS**
 
 Start Snort in IPS mode using DAQ AFPacket by running:
 
@@ -800,17 +802,17 @@ Navigate to Firewall > NAT and add 1:1 NAT for Windows host.
 
 Navigate to Firewall > Virtual IPs and add Public IP for Windows host.
 
-![image.png](image%2014.png)
+![public ip.png](public_ip.png)
 
-From Kali machine, run `nmap 47.72.145.64` 
+From Kali machine, run `nmap (public IP)`  
 
 Navigate to Alerts and verify that alerts have been generated.
 
-![image.png](image%2015.png)
+![public ip.png](public_ip%201.png)
 
 Navigate to Blocked and verify that the Kali machine is being blocked
 
-![image.png](image%2016.png)
+![image.png](image%2014.png)
 
 ### **Test IDS and IPS with custom rules**
 
@@ -818,7 +820,7 @@ In this demonstration, we are running Snort on the **LAN** interface.
 
 Navigate to Snort Interfaces > WAN Settings. In this demonstration, we have changed the WAN to LAN. Enable interface and name it as the **LAN** interface. 
 
-![image.png](image%2017.png)
+![image.png](image%2015.png)
 
 Save and Edit the LAN interface. Note instead of WAN Settings it now displays LAN Settings.
 
@@ -828,11 +830,11 @@ Navigate to LAN Rules and select custom.rules. Copy and paste the following rule
 alert icmp $HOME_NET any -> [8.8.8.8] any (msg:"ICMP Ping Detected to EXTERNAL IP"; sid:1000001; rev:1;)
 ```
 
-![image.png](image%2018.png)
+![image.png](image%2016.png)
 
 Turn on the LAN interface by clicking the play button.
 
-![image.png](image%2019.png)
+![image.png](image%2017.png)
 
 From the Windows host that is connect to an internal network, run ping to 8.8.8.8
 
@@ -842,13 +844,13 @@ ping 8.8.8.8
 
 Navigate to Alerts and verify that Alerts have been generated.
 
-![image.png](image%2020.png)
+![image.png](image%2018.png)
 
 Navigate to Snort Interfaces > LAN Settings. 
 
 Select Block Offenders. Set IPS Mode to Inline Mode and click Save.
 
-![image.png](image%2021.png)
+![image.png](image%2019.png)
 
 Navigate to LAN Rules. Select custom.rules. Change the rule verb from `alert` to `drop` 
 
@@ -856,7 +858,7 @@ Navigate to LAN Rules. Select custom.rules. Change the rule verb from `alert` to
 drop icmp $HOME_NET any -> [8.8.8.8] any (msg:"ICMP Ping Detected to EXTERNAL IP"; sid:1000001; rev:1;)
 ```
 
-![image.png](image%2022.png)
+![image.png](image%2020.png)
 
 From the Windows host that is connect to an internal network, run ping to 8.8.8.8
 
@@ -866,7 +868,7 @@ ping 8.8.8.8
 
 Verify that pings were dropped.
 
-![image.png](image%2023.png)
+![image.png](image%2021.png)
 
 ## **References**
 
