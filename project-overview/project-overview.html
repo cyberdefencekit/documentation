@@ -1,0 +1,1656 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../CDK-explained/CDK-explained.html">
+      
+      
+        <link rel="next" href="../understanding-SIEM/understanding-SIEM.html">
+      
+      
+      <link rel="icon" href="../images/Cyber Defence Kit logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.41">
+    
+    
+      
+        <title>Project Overview - Cyber Defence Kit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Project Overview - Cyber Defence Kit" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="./assets/images/social/project-overview/project-overview.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="None" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Project Overview - Cyber Defence Kit" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="./assets/images/social/project-overview/project-overview.png" >
+      
+    
+    
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#project-overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-header__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cyber Defence Kit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Project Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../CDK-explained/CDK-explained.html" class="md-tabs__link">
+          
+  
+    
+  
+  About CDK
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SIEM/understanding-SIEM.html" class="md-tabs__link">
+          
+  
+    
+  
+  SIEM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-tabs__link">
+          
+  
+    
+  
+  IDS/IPS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SIRP/understanding-SIRP.html" class="md-tabs__link">
+          
+  
+    
+  
+  SIRP
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SOAR/understanding-SOAR.html" class="md-tabs__link">
+          
+  
+    
+  
+  SOAR
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-nav__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    Cyber Defence Kit
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    About CDK
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            About CDK
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CDK-explained/CDK-explained.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cyber Defence Kit Explained
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Project Overview
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="project-overview.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Project Overview
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Executive Summary
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Executive Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-purpose-of-cyber-defence-kit" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Purpose of Cyber Defence Kit
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-background-and-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Background and Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Background and Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-current-cybersecurity-posture" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Current Cybersecurity Posture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strengths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strengths
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weaknesses-and-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Weaknesses and Gaps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommendations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-introduction-to-project-cyber-defence-kit" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Introduction to Project Cyber Defence Kit
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-project-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Project Objectives
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-project-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Project Scope
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Project Scope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-in-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 In-Scope
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-out-of-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Out-of-Scope
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-methodology-and-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Methodology and Approach
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Methodology and Approach">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-phase-1-siem-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Phase 1: SIEM Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#research-and-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Research and Selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-and-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing and Validation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-support-and-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation Support and Feedback
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-future-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Future Phases
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-draft-project-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Draft Project Timeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Draft Project Timeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-siem-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 1: SIEM Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#future-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Phases
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-budget-estimate" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Budget Estimate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-risk-assessment-and-mitigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Risk Assessment and Mitigation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SIEM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SIEM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIEM/understanding-SIEM.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understanding SIEM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../splunk/splunk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Splunk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wazuh/wazuh.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Wazuh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    IDS/IPS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            IDS/IPS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understanding IDS/IPS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snort/snort.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Snort
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../suricata/suricata.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Suricata
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SIRP
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            SIRP
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIRP/understanding-SIRP.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understanding SIRP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../thehive/thehive.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TheHive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SOAR
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            SOAR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SOAR/understanding-SOAR.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understanding SOAR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shuffle/shuffle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shuffle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="project-overview"><strong>Project Overview</strong></h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sjBiYWebI6M?si=8D6GVogPJRJrYdHH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h2 id="1-executive-summary"><strong>1. Executive Summary</strong></h2>
+<h3 id="11-purpose-of-cyber-defence-kit"><strong>1.1 Purpose of Cyber Defence Kit</strong></h3>
+<p>The main purpose of project <strong>Cyber Defence Kit</strong> is to enhance the cybersecurity infrastructure of our organisation. By researching and implementing cybersecurity tools in a phased approach—starting with Security Information and Event Management (SIEM) tools, specifically <strong>Splunk</strong> and <strong>Wazuh</strong>—the project aims to:</p>
+<ul>
+<li>Enhance Protection</li>
+<li>Improve Detection</li>
+<li>Automate Responses</li>
+<li>Ensure Compliance</li>
+<li>Promote Proactive Security</li>
+</ul>
+<p>This phased implementation allows us to focus on establishing a strong foundation with SIEM solutions before gradually introducing additional tools like Security Orchestration, Automation, and Response (SOAR), Security Incident Response Platform (SIRP), Intrusion Detection and Prevention Systems (IDS/IPS), Network Traffic Analysis (NTA), Endpoint Detection and Response (EDR), Extended Detection and Response (XDR), and Digital Forensics and Incident Response (DFIR).</p>
+<p>This project aligns with our strategic goal of protecting our assets and developing a small Security Operations Center (SOC) within our organisation. By integrating these tools and practices gradually, we will enhance our ability to proactively detect, respond to, and mitigate cybersecurity threats.</p>
+<p><a class="glightbox" href="CDK.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="CDK.png" src="CDK.png" /></a></p>
+<h2 id="2-background-and-introduction"><strong>2. Background and Introduction</strong></h2>
+<h3 id="21-current-cybersecurity-posture"><strong>2.1 Current Cybersecurity Posture</strong></h3>
+<p>Understanding our current cybersecurity posture is crucial for identifying gaps and areas for improvement as we implement the Cyber Defence Kit. Presently, our organisation's cybersecurity infrastructure includes the following components</p>
+<ul>
+<li><strong>Vulnerability Management</strong><ul>
+<li><strong>Nessus Vulnerability Scanner</strong><ul>
+<li><strong>Function:</strong> Performs periodic scans to identify known vulnerabilities and misconfigurations.</li>
+<li><strong>Strength:</strong> Provides comprehensive reports to prioritise remediation efforts.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Endpoint Protection</strong><ul>
+<li><strong>Trend Micro Endpoint Detection and Response (EDR)</strong><ul>
+<li><strong>Function:</strong> Detects and blocks malware and monitors endpoint activities for suspicious behavior.</li>
+<li><strong>Strength:</strong> Leverages threat intelligence for up-to-date protection.</li>
+</ul>
+</li>
+<li><strong>Windows Defender (EDR)</strong><ul>
+<li><strong>Function:</strong> Offers basic real-time protection against common threats on Windows devices.</li>
+<li><strong>Strength:</strong> Integrates seamlessly with Windows OS and provides regular updates.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="strengths"><strong>Strengths</strong></h3>
+<ul>
+<li><strong>Foundational Security Measures:</strong> Basic protection against common cyber threats is in place.</li>
+<li><strong>Regular Vulnerability Assessments:</strong> Nessus helps identify and address known vulnerabilities.</li>
+<li><strong>Endpoint Protection Layer:</strong> Trend Micro EDR and Windows Defender offer a layer of defence at the endpoint level.</li>
+</ul>
+<h3 id="weaknesses-and-gaps"><strong>Weaknesses and Gaps</strong></h3>
+<ol>
+<li><strong>Lack of Centralised Monitoring and Incident Management</strong><ul>
+<li><strong>No SIEM Solution:</strong> Limited visibility into security events across the network.</li>
+<li><strong>No SOAR Capabilities:</strong> Incident response processes are manual and slow.</li>
+<li><strong>No SIRP Solution:</strong> Inefficient handling of security incidents.</li>
+</ul>
+</li>
+<li><strong>Limited Threat Detection Capabilities</strong><ul>
+<li><strong>No IDS/IPS Deployment:</strong> Absence of real-time network traffic analysis.</li>
+<li><strong>No Network Traffic Analyser:</strong> Limited insight into network behaviors and anomalies.</li>
+</ul>
+</li>
+<li><strong>Endpoint Security Limitations</strong><ul>
+<li><strong>Inconsistent EDR Deployment:</strong> Potential security policy inconsistencies.</li>
+<li><strong>Lack of Advanced Features:</strong> Current EDR solutions may not detect sophisticated threats.</li>
+</ul>
+</li>
+<li><strong>No Extended Detection and Response (XDR)</strong><ul>
+<li><strong>Limited Cross-Platform Detection:</strong> Cannot correlate threats across multiple security layers.</li>
+</ul>
+</li>
+<li><strong>No Digital Forensics and Incident Response (DFIR) Capability</strong><ul>
+<li><strong>Inability to Investigate Incidents Thoroughly:</strong> Hinders in-depth incident analysis.</li>
+<li><strong>Compliance Risks:</strong> Potential non-compliance due to inadequate incident response processes.</li>
+</ul>
+</li>
+</ol>
+<p><a class="glightbox" href="strengths_and_weaknesses.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="strengths and weaknesses.png" src="strengths_and_weaknesses.png" /></a></p>
+<h3 id="recommendations"><strong>Recommendations</strong></h3>
+<ol>
+<li><strong>Phase 1: Implement SIEM Solution</strong><ul>
+<li><strong>Deploy SIEM Platforms:</strong> Begin with Splunk and Wazuh for centralised event monitoring.</li>
+<li><strong>Integrate XDR Capabilities:</strong> Through Wazuh, explore XDR solutions for cross-platform threat detection.</li>
+</ul>
+</li>
+<li><strong>Subsequent Phases: Gradually Introduce Additional Tools</strong><ul>
+<li><strong>Adopt SOAR Technology:</strong> Introduce SOAR tools such as Shuffle to automate and orchestrate security workflows.</li>
+<li><strong>Deploy IDS/IPS and Network Traffic Analysis Tools:</strong> Use tools like Suricata, Snort and Zeek for real-time network monitoring.</li>
+<li><strong>Deploy SIRP:</strong> Implement a SIRP like TheHive for managing security incidents.</li>
+<li><strong>Develop DFIR Capabilities:</strong> Introduce tools such as Velociraptor for digital forensics and incident response.</li>
+</ul>
+</li>
+</ol>
+<p>By focusing on SIEM implementation first, we address the most critical gap in our cybersecurity posture—lack of centralised monitoring—and lay the groundwork for future enhancements.</p>
+<h3 id="22-introduction-to-project-cyber-defence-kit"><strong>2.2 Introduction to Project Cyber Defence Kit</strong></h3>
+<p>By addressing these gaps through a phased approach in Project Cyber Defence Kit, we aim to:</p>
+<ul>
+<li><strong>Mitigate Risks:</strong> Reduce the likelihood and impact of security incidents.</li>
+<li><strong>Enhance Compliance:</strong> Meet industry and military cybersecurity standards.</li>
+<li><strong>Improve Operational Efficiency:</strong> Automate processes and improve response times.</li>
+<li><strong>Support Strategic Goals:</strong> Protect critical assets and ensure mission success.</li>
+</ul>
+<h2 id="3-project-objectives"><strong>3. Project Objectives</strong></h2>
+<ul>
+<li><strong>Phase 1:</strong> Research and implement SIEM tools (<strong>Splunk</strong> and <strong>Wazuh</strong>) to enhance security infrastructure.</li>
+<li><strong>Subsequent Phases:</strong> Gradually research and implement additional cybersecurity tools (SOAR, Incident Response and Case Management, IDS/IPS, EDR, DFIR).</li>
+<li><strong>Integrate</strong> solutions for streamlined operations.</li>
+<li><strong>Improve</strong> threat detection and response times.</li>
+<li><strong>Comply</strong> with military cybersecurity standards.</li>
+</ul>
+<h2 id="4-project-scope"><strong>4. Project Scope</strong></h2>
+<h3 id="41-in-scope"><strong>4.1 In-Scope</strong></h3>
+<p><strong>Phase 1:</strong></p>
+<ul>
+<li>SIEM Tools: Splunk and Wazuh</li>
+<li>Research and implementation of the SIEM solutions.</li>
+<li>Introductory Training Sessions: We will offer beginner-level training to help you get started with the SIEM tools and understand the basics of configuring and using them.</li>
+<li>Documentation and proof-of-concept videos for the SIEM tools.</li>
+</ul>
+<p><strong>Future Phases:</strong></p>
+<ul>
+<li>Introduction of additional tools like Shuffle, TheHive, Zeek, Snort,Suricata and Velociraptor.</li>
+</ul>
+<h3 id="42-out-of-scope"><strong>4.2 Out-of-Scope</strong></h3>
+<ul>
+<li><strong>Phase 1:</strong><ul>
+<li>In-depth staff training for SIEM tools: Comprehensive training beyond the introductory sessions is not included. Free training materials are available online; assistance can be provided if required.</li>
+<li>Upgrades to unrelated IT infrastructure.</li>
+</ul>
+</li>
+<li><strong>Future Phases:</strong><ul>
+<li>Implementation and training for additional tools (to be addressed in subsequent project iterations).</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-methodology-and-approach"><strong>5. Methodology and Approach</strong></h2>
+<h3 id="51-phase-1-siem-implementation"><strong>5.1 Phase 1: SIEM Implementation</strong></h3>
+<h3 id="research-and-selection"><strong>Research and Selection</strong></h3>
+<ul>
+<li><strong>Conduct Research:</strong> Investigate SIEM tools, focusing on Splunk and Wazuh.</li>
+<li><strong>Evaluate Tools:</strong> Determine the best fit for our organisational needs.</li>
+</ul>
+<h3 id="implementation"><strong>Implementation</strong></h3>
+<ul>
+<li><strong>Install and Configure:</strong> Set up Splunk and Wazuh in a testing environment.</li>
+<li><strong>Design Proof of Concepts:</strong> Demonstrate SIEM capabilities and integration potential.</li>
+</ul>
+<h3 id="testing-and-validation"><strong>Testing and Validation</strong></h3>
+<ul>
+<li><strong>Deploy on Production Systems:</strong> Carefully roll out SIEM tools to live environments.</li>
+<li><strong>Functional Testing:</strong> Ensure tools operate as intended and meet security requirements.</li>
+</ul>
+<h3 id="documentation"><strong>Documentation</strong></h3>
+<ul>
+<li><strong>Create User Manuals:</strong> Develop comprehensive guides for SIEM tools.</li>
+<li><strong>Expert Review:</strong> Have documentation reviewed by cybersecurity experts.</li>
+</ul>
+<h3 id="implementation-support-and-feedback"><strong>Implementation Support and Feedback</strong></h3>
+<ul>
+<li><strong>Assist Operators:</strong> Support the implementation of SIEM tools into daily operations.</li>
+<li><strong>Feedback Loop:</strong> Update tools based on operational feedback.</li>
+</ul>
+<h3 id="52-future-phases"><strong>5.2 Future Phases</strong></h3>
+<ul>
+<li><strong>Plan Subsequent Implementations:</strong> Develop detailed methodologies for introducing additional tools.</li>
+<li><strong>Iterative Approach:</strong> Apply lessons learned from Phase 1 to future phases.</li>
+</ul>
+<h2 id="6-draft-project-timeline"><strong>6. Draft Project Timeline</strong></h2>
+<h3 id="phase-1-siem-implementation"><strong>Phase 1: SIEM Implementation</strong></h3>
+<ul>
+<li><strong>Phase 1.1:</strong> Research and Selection</li>
+<li><strong>Phase 1.2:</strong> Implementation</li>
+<li><strong>Phase 1.3:</strong> Testing and Validation</li>
+<li><strong>Phase 1.4:</strong> Documentation</li>
+<li><strong>Phase 1.5:</strong> Implementation Support and Feedback</li>
+</ul>
+<h3 id="future-phases"><strong>Future Phases</strong></h3>
+<ul>
+<li><strong>To Be Scheduled:</strong> Timelines for introducing additional tools will be planned after the successful completion of Phase 1.</li>
+</ul>
+<h2 id="7-budget-estimate"><strong>7. Budget Estimate</strong></h2>
+<p><strong>Phase 1: SIEM Implementation</strong></p>
+<ul>
+<li><strong>Splunk Licensing:</strong><ul>
+<li><strong>Free Trial Version:</strong> Limited capabilities suitable for initial testing.</li>
+<li><strong>Enterprise Licence:</strong> Costs based on data ingestion rates; necessary for full functionality. Our company currently has access to Enterprise Licence.</li>
+</ul>
+</li>
+<li><strong>Wazuh:</strong><ul>
+<li><strong>Open-Source:</strong> Free to use with community support.</li>
+<li><strong>Paid Support (Optional):</strong> For additional features and professional support services.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Documentation:</strong></p>
+<ul>
+<li>Use open-source documentation platforms compatible with an air-gapped environment.</li>
+<li>Consider paid documentation platforms for advanced features if needed.</li>
+</ul>
+<p><strong>Contingency Fund:</strong></p>
+<ul>
+<li>Allocate funds to address potential cost increases or the need for additional resources.</li>
+</ul>
+<p><strong>Future Phases:</strong></p>
+<ul>
+<li><strong>Budget Planning:</strong> Costs for additional tools and training will be estimated in subsequent proposals.</li>
+</ul>
+<h2 id="8-risk-assessment-and-mitigation"><strong>8. Risk Assessment and Mitigation</strong></h2>
+<p>Identify potential risks and mitigation strategies for <strong>Phase 1</strong>:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Risk</strong></th>
+<th><strong>Likelihood</strong></th>
+<th><strong>Impact</strong></th>
+<th><strong>Mitigation Strategy</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Integration challenges with existing systems</td>
+<td>High</td>
+<td>Medium</td>
+<td>Conduct compatibility assessments beforehand</td>
+</tr>
+<tr>
+<td>Cost changes for Splunk licensing</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Explore alternative SIEM solutions or adjust usage levels</td>
+</tr>
+<tr>
+<td>Staff unfamiliarity with SIEM tools</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Provide training resources and ongoing support</td>
+</tr>
+<tr>
+<td>Version changes to open-source tools</td>
+<td>High</td>
+<td>Low</td>
+<td>Regularly monitor for updates and apply patches as needed</td>
+</tr>
+<tr>
+<td>Data privacy concerns</td>
+<td>Low</td>
+<td>High</td>
+<td>Ensure compliance with data protection regulations</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-conclusion"><strong>9. Conclusion</strong></h2>
+<p><strong>Cyber Defence Kit</strong> is essential for our organisation's security, starting with the implementation of SIEM tools in Phase 1. This phased approach will:</p>
+<ul>
+<li><strong>Strengthen cybersecurity defences</strong> by implementing advanced SIEM solutions to detect and respond to threats effectively.</li>
+<li><strong>Enhance compliance with cybersecurity standards</strong>, ensuring we meet all regulatory and operational requirements.</li>
+<li><strong>Reduce the risk of cyber incidents</strong>, minimising potential operational disruptions and losses.</li>
+<li><strong>Improve operational efficiency through automation</strong>, allowing our team to focus on strategic initiatives.</li>
+<li><strong>Elevate trust with stakeholders and partners</strong>, reinforcing our reputation for security and reliability.</li>
+</ul>
+<p>By successfully implementing SIEM tools in the initial phase, the Cyber Defence Kit project not only fortifies our cyber defences but also sets the stage for introducing additional tools in future phases. This strategic, phased approach aligns with our mission to protect critical CIS assets and develop a Security Operations Centre (SOC) capability. By undertaking this initiative, we are taking essential steps to protect our organisation's future, improve operational readiness, and close the gap in our cybersecurity posture.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../CDK-explained/CDK-explained.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Cyber Defence Kit Explained">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Cyber Defence Kit Explained
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../understanding-SIEM/understanding-SIEM.html" class="md-footer__link md-footer__link--next" aria-label="Next: Understanding SIEM">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Understanding SIEM
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2024 <a href="https://github.com/cyberdefencekit"  target="_blank" rel="noopener">Cyber Defence Kit - Joseph Jee</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/cyberdefencekit" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "header.autohide", "announce.dismiss", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.integrate"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
