@@ -19,6 +19,11 @@ nav:
   - SOAR:
     - Understanding SOAR: understanding-SOAR/understanding-SOAR.md 
     - Shuffle: shuffle/shuffle.md
+  - NTA:
+    - Understanding NTA: understanding-NTA/understanding-NTA.md 
+    - Wireshark: wireshark/wireshark.md
+    - Zeek: zeek/zeek.md
+    - Zui: zui/zui.md
 
 theme:
   name: material
