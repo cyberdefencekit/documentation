@@ -1,10 +1,10 @@
-# Wireshark
+# **Wireshark**
 
 Wireshark is a free and open-source network protocol analyser widely used for network troubleshooting, analysis, software and protocol development, and education. Essentially, it's a tool that allows you to capture and examine data packets traveling through a network in real-time or from saved capture files.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/JBKG9AIy1Lo?si=VKeKe48_0p_B1f7X" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-## Lab Setup for Proof of Concept
+## **Lab Setup for Proof of Concept**
 
 In this proof of concept, Wireshark was installed on a Windows Virtual Machine (VM),  and malware traffic analysis was conducted using Wireshark. 
 
@@ -16,7 +16,7 @@ In this proof of concept, Wireshark was installed on a Windows Virtual Machine (
 
 ![Wireshark.drawio.png](Wireshark.drawio.png)
 
-## Install Wireshark on Windows
+## **Install Wireshark on Windows**
 
 If you are running Windows or macOS you can download an official release at [https://www.wireshark.org/download.html](https://www.wireshark.org/download.html). For Linux and other OS, download both source and binary distributions from the Wireshark download page. Select the package most appropriate for your system. In this demo, we will focus on installing and running Wireshark on Windows. 
 
@@ -54,7 +54,7 @@ To view Endpoints, select Statistics, Endpoints and click IPv4. This will tell u
 
 ![image.png](image%207.png)
 
-## Install Wireshark on Linux
+## **Install Wireshark on Linux**
 
 **Create a directory for the packages:**
 Open a terminal and create a directory to store the Wireshark package and its dependencies.
@@ -91,7 +91,7 @@ wireshark
 
 ![image.png](image%208.png)
 
-## Malware Traffic Analysis
+## **Malware Traffic Analysis**
 
 The pcaps used in this tutorial are contained in a password-protected ZIP archive located at our [**GitHub repository**](https://github.com/PaloAltoNetworks/Unit42-Wireshark-tutorials/blob/main/Wireshark-tutorial-extracting-objects-5-pcaps.zip). Download the file named Wireshark-tutorial-extracting-objects-5-pcaps.zip. Use *infected* as the password and extract the five pcaps, as shown below.
 
@@ -358,7 +358,7 @@ These five .exe files are all Windows executables, and they all have a high dete
 
 Wireshark does an excellent job of combining data from multiple IP packets and the associated TCP frames to show objects sent over unencrypted network traffic. Using the methods outlined in this tutorial, we can also use Wireshark to extract these objects from a pcap. This can be extremely helpful if you need to examine items during an investigation of suspicious activity.
 
-## TShark
+## **TShark**
 
 TShark is a terminal oriented version of Wireshark designed for capturing and displaying packets when an interactive user interface isn’t necessary or available.
 
@@ -376,7 +376,7 @@ PS C:\program files\wireshark> .\tshark.exe -r C:\Users\Administrator\Downloads\
 
 This produces a new PCAP file of manageable size, filtering on the IP address 23.63.254.163.
 
-## References
+## **References**
 
 - https://unit42.paloaltonetworks.com/using-wireshark-exporting-objects-from-a-pcap/
 - https://youtu.be/XZlasFStzqM?si=L0LHw4RODO8tgku8

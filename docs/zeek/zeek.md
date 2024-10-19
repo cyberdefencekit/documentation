@@ -1,10 +1,10 @@
-# Zeek
+# **Zeek**
 
 Zeek is an open-source network analysis framework and security monitoring tool. Zeek provides deep visibility into network traffic and enables organisations to detect and respond to security threats in real-time. Unlike traditional intrusion detection systems (IDS) that rely primarily on signature matching, Zeek offers a more flexible and comprehensive approach by analysing network behaviors and events.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/B1p_SGjQCzw?si=yhcOb56BBHp_sZxX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-## Lab Setup for Proof of Concept
+## **Lab Setup for Proof of Concept**
 
 In this proof of concept, the Ubuntu host simulated a compromised machine by visiting non-malicious websites, such as testmyids.org and Reddit, with Reddit being treated as malicious to trigger alerts in a safe and controlled environment. To demonstrate Zeek to Suricata integration via PCAP files, Zeek was installed on the same host as Suricata.
 
@@ -15,7 +15,7 @@ In this proof of concept, the Ubuntu host simulated a compromised machine by vis
 
 ![Zeek.drawio.png](Zeek.drawio.png)
 
-## Install Zeek offline
+## **Install Zeek offline**
 
 On an Ubuntu machine with internet connection:
 
@@ -74,7 +74,7 @@ cd zeek-offline
 sudo dpkg -i *
 ```
 
-## Introduction to Zeek
+## **Introduction to Zeek**
 
 ### **Managing Zeek with ZeekControl**
 
@@ -807,7 +807,7 @@ jq . intel.log
 }
 ```
 
-## References
+## **References**
 
 - https://youtu.be/WBid7AZ5w4A?si=YvWCA8kIJXT1jItY
 - https://docs.zeek.org/en/master/index.html
