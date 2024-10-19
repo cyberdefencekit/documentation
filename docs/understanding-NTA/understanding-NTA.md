@@ -1,4 +1,4 @@
-# Understanding NTA
+# **Understanding NTA**
 
 ## **Introduction**
 
