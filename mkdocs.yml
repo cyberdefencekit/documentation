@@ -27,7 +27,7 @@ nav:
   - DFIR:
     - Understanding DFIR: understanding-DFIR/understanding-DFIR.md
     - Velociraptor: velociraptor/velociraptor.md
-    - Test: 
+
 
 theme:
   name: material
