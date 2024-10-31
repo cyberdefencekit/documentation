@@ -26,7 +26,7 @@ nav:
     - Zui: zui/zui.md
   - DFIR:
     - Understanding DFIR: understanding-DFIR/understanding-DFIR.md
-    - Velociraptor: velociraptr/velociraptor.md
+    - Velociraptor: velociraptor/velociraptor.md
 
 theme:
   name: material
