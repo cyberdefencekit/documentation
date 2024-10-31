@@ -24,6 +24,9 @@ nav:
     - Wireshark: wireshark/wireshark.md
     - Zeek: zeek/zeek.md
     - Zui: zui/zui.md
+  - DFIR:
+    - Understanding DFIR: understanding-DFIR/understanding-DFIR.md
+    - Velociraptor: velociraptr/velociraptor.md
 
 theme:
   name: material
