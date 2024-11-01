@@ -2,6 +2,8 @@
 
 Velociraptor is an advanced digital forensic and incident response tool that enhances your visibility into your endpoints.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/T75Fo0NoqVE?si=CG5E2cO313LUBanb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## **Lab Setup for Proof of Concept**
 
 In this proof of concept, the Velociraptor server was configured on an Ubuntu virtual machine (VM), and the Velociraptor client was configured on a Windows VM. An attack simulation was conducted on the Windows hosts using a Kali machine in a safe and controlled setting.
