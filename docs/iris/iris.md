@@ -1,8 +1,10 @@
-# IRIS
+# **IRIS**
 
 IRIS is a digital platform built for collaboration among incident response analysts, enabling them to work together on detailed technical investigations. It can be set up on a standalone server or used as a portable application, making it suitable for on-the-go investigations in locations without internet access.
 
-## Lab Setup for Proof of Concept
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yOXxCxfta5I?si=TITtdpPUmNzxi4SA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+## **Lab Setup for Proof of Concept**
 
 In this proof of concept, an attack simulation was conducted on a Windows Virtual Machine (VM) using Kali Linux in a safe and controlled environment. Both IRIS and Splunk Enterprise were installed on an Ubuntu VM.
 
@@ -18,9 +20,9 @@ In this proof of concept, an attack simulation was conducted on a Windows Virtua
 
 ![IRIS PoC.drawio.png](IRIS_PoC.drawio.png)
 
-## Installing IRIS in an Air-gapped Environment
+## **Installing IRIS in an Air-gapped Environment**
 
-### Install Docker (Ubuntu)
+### **Install Docker (Ubuntu)**
 
 *All the required deb files for Docker Engine have been downloaded and put together in the folder called **docker**. For your reference, the steps for downloading the required deb files for Docker Engine are documented below.*
 
@@ -70,7 +72,7 @@ Check if you can run Docker commands without `sudo`:
 docker ps
 ```
 
-### Download IRIS GitHub Repository
+### **Download IRIS GitHub Repository**
 
 Clone the IRIS GitHub repository as a zip archive from the [Shuffle GitHub](https://github.com/Shuffle/Shuffle) page. 
 
@@ -166,7 +168,7 @@ iriswebapp_app  | 2024-12-23 07:15:05 :: WARNING :: post_init :: create_safe_adm
 
 If the password is not visible in the logs, try running `docker compose logs app | grep "WARNING :: post_init :: create_safe_admin"`. If the logs show that the user `administrator` has already been created, it indicates the instance has been started before, and the password is already set. In this case, refer to the recovery options.
 
-## Attack Simulation
+## **Attack Simulation**
 
 The smbclient tool on a Kali machine was used to connect to an SMB share hosted on **WS2019** at **10.0.0.140**. After logging in anonymously, the share’s contents were listed, a file (**user_credentials.xlsx**) was downloaded, and the session was exited.
 
@@ -237,9 +239,9 @@ C:\Windows\system32> whoami
 nt authority\system
 ```
 
-## Introduction to IRIS
+## **Introduction to IRIS**
 
-### Adding a Customer
+### **Adding a Customer**
 
 Upon entering the administrator credentials, the Dashboard highlights pending tasks and ongoing cases.
 
@@ -257,7 +259,7 @@ Click **Save** to create the customer. Once saved, the new customer will appear 
 
 ![image.png](image%208.png)
 
-### Creating a Case
+### **Creating a Case**
 
 Having logged into IRIS and created our customer, we can now begin the case management process. A case is the fundamental unit of an incident. It serves as a container for various elements used to organise information related to the incident.
 
@@ -285,7 +287,7 @@ By clicking on the case name, we are taken to the **Summary** tab for the case. 
 
 ![image.png](image%2012.png)
 
-### Adding Assets
+### **Adding Assets**
 
 During incident response, maintaining a list of assets that are known or suspected to be compromised is essential. To add an asset, go to the **Assets** tab on the case page. This will display the asset list, which is currently empty. To include a new asset, click the **Add Assets** button located in the top-right corner of the window.
 
@@ -465,7 +467,7 @@ After saving, the **Timeline** tab displays the newly added event, bringing the 
 
 ![image.png](image%2031.png)
 
-### Adding Evidence
+### **Adding Evidence**
 
 In incident response, evidence is crucial for verifying details such as the nature, origin, timing, and potential culprits behind an incident. In this instance, we’ll include the `.eml` file, which contains the original phishing email that delivered the `setup.exe` file laced with malware.
 The following is the content of our raw email:
@@ -539,7 +541,7 @@ As we selected *File is Evidence* for each uploaded file, they were all register
 
 ![image.png](image%2035.png)
 
-### Collaboration and Access Management
+### **Collaboration and Access Management**
 
 During incident response, we generally operate as part of a team, maintaining regular communication with our team members.
 
@@ -691,7 +693,7 @@ Before doing this, we need to set the `BACKUP_PATH` environment variable to spec
 
 ![image.png](image%2055.png)
 
-## References
+## **References**
 
 - [https://docs.dfir-iris.org/latest/](https://docs.dfir-iris.org/latest/)
 - [https://github.com/dfir-iris/iris-web](https://github.com/dfir-iris/iris-web)
