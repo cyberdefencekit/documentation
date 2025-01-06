@@ -1,4 +1,4 @@
-# Understanding EDR
+# **Understanding EDR**
 
 # **What is EDR?**
 

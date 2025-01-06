@@ -1,8 +1,8 @@
-# Aurora Lite
+# **Aurora Lite**
 
 Aurora Lite is a free Endpoint Detection and Response (EDR) tool that uses Sigma rules and Indicators of Compromise (IOCs) to detect and respond to threats in real time. It monitors system events through Windows Event Tracing (ETW) and can take automated actions, like suspending harmful processes. Though limited in advanced features, Aurora Lite is a powerful, cost-free solution for basic threat detection and response. Learn more at [Nextron Systems](https://www.nextron-systems.com/aurora).
 
-## Lab Setup for Proof of Concept
+## **Lab Setup for Proof of Concept**
 
 In this proof of concept, an attack simulation was conducted on a Windows Virtual Machine (VM) using live WannaCry ransomware within a secure and controlled environment. Aurora Lite was installed on the Windows VM to detect and respond to the attack.
 
@@ -15,7 +15,7 @@ In this proof of concept, an attack simulation was conducted on a Windows Virtua
 
 ![Aurora Lite.drawio.png](Aurora_Lite.drawio.png)
 
-## Download Aurora Lite
+## **Download Aurora Lite**
 
 Navigate to [https://www.nextron-systems.com/aurora/](https://www.nextron-systems.com/aurora/) and download Aurora Lite.
 
@@ -76,7 +76,7 @@ C:\aurora\aurora-agent-64.exe
 C:\aurora\aurora-agent.exe
 ```
 
-## Running Aurora
+## **Running Aurora**
 
 You can run Aurora from your terminal using default values for each flag without requiring a dedicated configuration file:
 
@@ -106,7 +106,7 @@ A typical command to run Aurora, which prints messages and matches to the termin
 aurora-agent-64.exe --minimum-level low  
 ```
 
-## Running Aurora as a Service
+## **Running Aurora as a Service**
 
 To install Aurora as a service, use the `--install` flag. An example installation on systems with limited hardware resources (i.e. installing Aurora with the reduced preset) looks like this:
 
@@ -402,7 +402,7 @@ rule-ids:
    - 'ae9c6a7c-9521-42a6-915e-5aaa8689d529'  # CobaltStrike Load by Rundll32  
 ```
 
-## Introduction to Aurora Lite
+## **Introduction to Aurora Lite**
 
 ## **Performing Function Tests**
 
@@ -546,7 +546,7 @@ This did not generate any alert on Windows Server 2019 despite using the Intense
 
 Note: The Aurora Lite version uses only a very limited set of IOCs.
 
-### Living Off the Land Binaries and Scripts (LOLBAS)
+### **Living Off the Land Binaries and Scripts (LOLBAS)**
 
 [LOLBAS](https://lolbas-project.github.io/#) (Living Off the Land Binaries and Scripts) refers to using legitimate, pre-installed tools and utilities on a system to perform potentially malicious actions while evading detection by security systems. 
 
@@ -562,9 +562,9 @@ This should create a `notice` level message for a Sigma rule with level `medi
 
 ![image.png](image%2016.png)
 
-## Activating Response Sets
+## **Activating Response Sets**
 
-### Suspending Notepad Process
+### **Suspending Notepad Process**
 
 The objective is to verify that Aurora Lite can suspend a simple process.
 
@@ -617,7 +617,7 @@ Next, open Task Manager and Notepad. Verify that Notepad (notepad.exe) is instan
 
 ![image.png](image%2018.png)
 
-### Detonating WannaCry Ransomware
+### **Detonating WannaCry Ransomware**
 
 The WannaCry Ransomware sample is available from [this GitHub repository](https://github.com/HuskyHacks/PMAT-labs), which hosts live malware samples designed for the Practical Malware Analysis & Triage (PMAT) course.
 
@@ -646,7 +646,7 @@ After completing your observations, revert the system to its pre-detonation snap
 
 ![image.png](image%2021.png)
 
-### Suspending WannaCry Processes
+### **Suspending WannaCry Processes**
 
 **Create a Sigma Rule and Response Set for WannaCry**
 
@@ -711,7 +711,7 @@ Verify that a Sigma rule match is identified for WannaCry ransomware activity in
 
 Revert the VM to its pre-detonation snapshot to remove any changes made by WannaCry ransomware.
 
-## References
+## **References**
 
 - https://aurora-agent-manual.nextron-systems.com/en/latest/index.html
 - https://youtu.be/R3fFzYXKn3c?si=ztsyE9ee99DWL0MQ
