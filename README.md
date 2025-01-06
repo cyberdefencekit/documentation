@@ -1,5 +1,3 @@
-# GitHub Readme
-
 # Cyber Defence Kit Documentation
 
 Welcome to the **Cyber Defence Kit Documentation** repository! This project provides comprehensive, well-structured documentation for the Cyber Defence Kit, designed to assist users in deploying and utilising various tools for security operations and incident response.
