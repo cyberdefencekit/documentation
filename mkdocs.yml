@@ -27,6 +27,9 @@ nav:
   - DFIR:
     - Understanding DFIR: understanding-DFIR/understanding-DFIR.md
     - Velociraptor: velociraptor/velociraptor.md
+  - EDR:
+    - Understanding EDR: understanding-EDR/understanding-EDR.md
+    - Aurora Lite: auroralite/auroralite.md
 
 
 theme:
