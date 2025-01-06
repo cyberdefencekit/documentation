@@ -1,3 +1,5 @@
+# GitHub Readme
+
 # Cyber Defence Kit Documentation
 
 Welcome to the **Cyber Defence Kit Documentation** repository! This project provides comprehensive, well-structured documentation for the Cyber Defence Kit, designed to assist users in deploying and utilising various tools for security operations and incident response.
@@ -48,6 +50,29 @@ To view the documentation locally, follow these steps:
     ```
     
 5. Open your browser and navigate to `http://127.0.0.1:8000`.
+
+### Installation Notes
+
+If the `mkdocs` command is not available after installing `mkdocs-material`, it’s likely due to the following reasons:
+
+1. The `mkdocs` executable is installed in the user's local `~/.local/bin/` directory, which may not be included in your system's `PATH` environment variable.
+2. Without the correct `PATH` configuration, the terminal cannot locate the `mkdocs` executable.
+
+To resolve this, you can either:
+
+- Add `~/.local/bin/` to your `PATH`:
+    
+    ```bash
+    echo 'export PATH=$PATH:~/.local/bin' >> ~/.bashrc
+    source ~/.bashrc
+    ```
+    
+- Install `mkdocs` system-wide using your package manager:
+    
+    ```bash
+    sudo apt install mkdocs
+    ```
+    
 
 ## Licence
 
