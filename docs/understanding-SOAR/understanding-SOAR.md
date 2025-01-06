@@ -88,15 +88,6 @@ Implementing SOAR solutions like Shuffle and StackStorm is a strategic move to e
 
 - **Yes**: Both Shuffle and StackStorm can be deployed in air-gapped networks. We will provide specific guidelines on implementing these solutions without internet connectivity to ensure your environment remains secure and isolated.
 
-### **5. What kind of training will be provided?**
-
-- **Introductory Training Sessions**: We will conduct training sessions to introduce you to SOAR concepts and tools.
-- **Educational Resources**: Access to tutorials, user manuals, and best practice guides will be provided for ongoing learning.
-
-### **6. Who do I contact if I have questions or encounter issues?**
-
-- **Cybersecurity Team**: Please reach out to our cybersecurity team through the internal support channels for assistance or to report any concerns.
-
-### **7. How customisable are the SOAR workflows?**
+### **5. How customisable are the SOAR workflows?**
 
 - **Highly Customisable**: Both Shuffle and StackStorm allow for extensive customization to tailor automation workflows to our specific security policies and procedures.
