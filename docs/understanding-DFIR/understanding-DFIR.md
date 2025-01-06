@@ -1,6 +1,6 @@
 # **Understanding DFIR**
 
-## **What is Digital Forensics and Incident Response (DFIR)?**
+## **What is DFIR?**
 
 **Digital Forensics and Incident Response (DFIR)** refers to the combined processes of gathering and analysing digital evidence to detect, investigate, and respond to cyber incidents.
 
@@ -42,7 +42,7 @@
 
 ![dfir_solutions.png](dfir_solutions.png)
 
-## **How DFIR Works with Velociraptor**
+## **How DFIR Works**
 
 1. **Detection**
     - **Monitoring and Alerts**: Detects suspicious activities and alerts the response team.

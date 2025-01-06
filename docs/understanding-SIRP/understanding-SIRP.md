@@ -1,6 +1,6 @@
 # **Understanding SIRP**
 
-## **What is a Security Incident Response Platform (SIRP)?**
+## **What is a SIRP?**
 
 A Security Incident Response Platform is an integrated suite of tools designed to streamline and automate the process of managing cybersecurity incidents from detection to resolution.
 
