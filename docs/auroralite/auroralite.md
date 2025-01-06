@@ -2,6 +2,8 @@
 
 Aurora Lite is a free Endpoint Detection and Response (EDR) tool that uses Sigma rules and Indicators of Compromise (IOCs) to detect and respond to threats in real time. It monitors system events through Windows Event Tracing (ETW) and can take automated actions, like suspending harmful processes. Though limited in advanced features, Aurora Lite is a powerful, cost-free solution for basic threat detection and response. Learn more at [Nextron Systems](https://www.nextron-systems.com/aurora).
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RWyqJ1ulxOM?si=iMVqr7s8a8ipIKKq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## **Lab Setup for Proof of Concept**
 
 In this proof of concept, an attack simulation was conducted on a Windows Virtual Machine (VM) using live WannaCry ransomware within a secure and controlled environment. Aurora Lite was installed on the Windows VM to detect and respond to the attack.
