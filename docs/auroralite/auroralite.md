@@ -690,6 +690,8 @@ rule-ids:
     - 'wannacry-detection-rule'
 ```
 
+**Note:** The suspend action temporarily halts the targeted process, while the kill action terminates it. For demonstration purposes, we used suspend since it allows you to visually verify the process status in Task Manager. In a real-world scenario, the kill action would typically be more appropriate to immediately neutralise the threat.
+
 Use the Aurora Lite agent to install and activate the response set with the following command:
 
 ```yaml
