@@ -97,13 +97,16 @@ Check out the latest non-beta tagged version:
 git checkout v2.4.18
 ```
 
+**Note:** If you are working in an air-gapped environment where Git is not installed, skip this step and ensure that the contents of the .env file match those of the .env.model file.
+
 Copy the environment file
 
 ```python
 cp .env.model .env
 ```
 
-***Note:** The default configuration is suitable for testing only. To configure IRIS for production, see the [configuration section](https://docs.dfir-iris.org/2.4.16/operations/configuration/).*
+**Note:** The default configuration is suitable for testing only. To configure IRIS for production, see the [configuration section](https://docs.dfir-iris.org/2.4.16/operations/configuration/).
+
 Pull all required Docker images on a system with internet access:
 
 ```python
