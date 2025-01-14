@@ -74,7 +74,7 @@ docker ps
 
 ### **Download IRIS GitHub Repository**
 
-Clone the IRIS GitHub repository as a zip archive from the [Shuffle GitHub](https://github.com/Shuffle/Shuffle) page. 
+Clone the IRIS GitHub repository as a zip archive from the [IRIS GitHub](https://github.com/dfir-iris/iris-web) page. 
 
 ```python
 sudo apt update
