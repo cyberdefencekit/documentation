@@ -158,6 +158,8 @@ IRIS should now be accessible on your host interface via the HTTPS protocol, wit
 
 When starting for the first time, an administrator account is automatically created. The password is displayed in the console output and can be located in the logs by searching for `WARNING :: post_init :: create_safe_admin`. Alternatively, you can set an admin password during the initial startup by specifying it in the `.env` file using the `IRIS_ADM_PASSWORD` environment variable. Please note that this option has no effect after the administrator account has been created.
 
+**Note: The username is "administrator" with a lowercase "a", not an uppercase "A".**
+
 ```python
 sudo docker compose logs app | grep "WARNING :: post_init :: create_safe_admin"
 ```
