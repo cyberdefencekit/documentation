@@ -2,7 +2,7 @@
 
 Splunk Enterprise is a Security Information and Event Management (SIEM) tool usually installed on the server. It is designed for searching, analysing, and visualising data. It allows users to collect and ingest data, and search across various data types. Splunk Universal Forwarders are usually installed on clients to provide reliable, secure data collection and forward that data into Splunk Enterprise for indexing. This part of documentation focuses on installing and configuring Splunk. For Splunk, the main focus will be installing Splunk Enterprise and Universal Forwarder. 
 
-[https://youtu.be/p4Ta4ZvWsnY](https://youtu.be/p4Ta4ZvWsnY)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/p4Ta4ZvWsnY?si=EnQvoiQ-Ip-pUXNt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## **Lab Setup for Proof of Concept**
 
