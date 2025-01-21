@@ -1025,13 +1025,6 @@ splunk@siem:/opt/splunk/bin# ./splunk reload deploy-server
 
 ## **Configure Windows and Sysmon apps and create windows server class**
 
-To avoid permission denied error, change ownership and adjust directory permissions for the `/opt/splunk/etc/deployment-apps` 
-
-```python
-sudo chown -R splunk:splunk /opt/splunk/etc/deployment-apps
-sudo chmod -R 755 /opt/splunk/etc/deployment-apps
-```
-
 On the Forwarder Management page of the web UI, click Edit under Actions for Splunk_TA_windows
 
 Select Restart Splunkd After Installation, add New Server Class called win, and click Save

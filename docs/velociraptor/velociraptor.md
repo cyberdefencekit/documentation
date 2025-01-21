@@ -174,7 +174,7 @@ Edit `GUI: bind address:` to point to your Velociraptor server IP address
 Client:
   server_urls:
    - https://10.0.0.20:8000/
-
+<SNIP>
 GUI:
   bind_address: 10.0.0.20
   bind_port: 8889
@@ -183,7 +183,7 @@ GUI:
 Create the Velociraptor server package for deb that included the generated configuration file:
 
 ```bash
-sudo ./velociraptor-v0.72.0-linux-amd64 --config /home/cyber/Downloads/server.config.yaml debian server --binary velociraptor-v0.72.0-linux-amd64 
+sudo ./velociraptor-v0.72.0-linux-amd64 --config /opt/velociraptor/server.config.yaml debian server --binary velociraptor-v0.72.0-linux-amd64 
 ```
 
 ```bash
