@@ -7,6 +7,8 @@ Built on the [**MITRE ATT&CK** **framework**](https://attack.mitre.org/), Calder
 1. **Core System** – The main framework, available in this repository, includes an asynchronous command-and-control (C2) server with a REST API and a web interface.
 2. **Plugins** – Extend the framework’s capabilities, adding functionality such as agents, reporting, and collections of TTPs.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TqJ1AQSl0P8?si=WEjBxbtizX3T3bc8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## **Lab Setup for Proof of Concept**
 
 In this proof of concept, an attack simulation was conducted on Ubuntu and Windows virtual machines (VMs) within a secure and controlled environment. Caldera was installed on the Ubuntu VM to automate adversary emulation.
