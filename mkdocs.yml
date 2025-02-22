@@ -32,6 +32,7 @@ nav:
     - Aurora Lite: auroralite/auroralite.md
   - Other:
     - Caldera: caldera/caldera.md
+    - MITRE ATT&CK Navigator: navigator/navigator.md
 
 
 theme:
