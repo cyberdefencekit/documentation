@@ -2,53 +2,230 @@
 
 Splunk Enterprise is a Security Information and Event Management (SIEM) tool usually installed on the server. It is designed for searching, analysing, and visualising data. It allows users to collect and ingest data, and search across various data types. Splunk Universal Forwarders are usually installed on clients to provide reliable, secure data collection and forward that data into Splunk Enterprise for indexing. This part of documentation focuses on installing and configuring Splunk. For Splunk, the main focus will be installing Splunk Enterprise and Universal Forwarder. 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/p4Ta4ZvWsnY?si=EnQvoiQ-Ip-pUXNt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tDib15f07zs?si=OTP0a6Fne4B5TdKq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## **Lab Setup for Proof of Concept**
 
-A virtual lab in an Unclassified environment is used as a proof of concept. Internet access was disabled during the installation to simulate an air-gapped environment. For a testing purpose, a free trial version was used for Splunk Enterprise and Universal Forwarder. Attack emulation was conducted on a FortiGate VM in a safe and controlled setting. 
+In this proof of concept, Splunk Enterprise was installed on an Ubuntu VM (Virtual Machine), and the Splunk Universal Forwarder was installed on both Ubuntu and Windows VMs. An attack emulation was conducted on the FortiGate VM in a safe and controlled environment.
 
 **Note: Do not attempt to replicate the attack emulation demonstrated here unless you are properly trained and it is safe to do so. Unauthorised attack emulation can lead to legal consequences and unintended damage to systems. Always ensure that such activities are conducted by qualified professionals in a secure, isolated environment.**
 
+**For Documentation:**
+
 | **Hostname** | **OS** | **Role** | **IP Address** |
 | --- | --- | --- | --- |
-| Fortigate | Fortios 7.6.0 | Firewall/Router | 192.168.1.111 (WAN) / 
+| Fortigate | Fortios 7.6.0 | Firewall/Router | 192.168.1.10 (WAN) / 
 10.0.0.1 (LAN) |
-| SplunkEnt | Centos Stream 9 | Splunk Enterprise (server), syslog server | 10.0.0.120 |
-| WS2019-2 | Windows Server 2019 | Splunk Universal Forwarder (client) | 10.0.0.140 |
-| Kali | Kali Linux 2024.2 | Attacker machine | 192.168.1.161, 10.0.0.29 |
+| Splunk | Ubuntu 24.04  | Splunk Enterprise (server), SC4S | 10.0.0.100 |
+| Ubuntu | Ubuntu 24.04  | Splunk Universal Forwarder (Linux client) | 10.0.0.200 |
+| WS2019 | Windows Server 2019 | Splunk Universal Forwarder (Windows client) | 10.0.0.50 |
+| Kali | Kali Linux 2025.1 | Attacker machine | 10.0.0.22 |
 
 ![Splunk PoC.drawio.png](Splunk_PoC.drawio.png)
 
-## **Splunk Enterprise**
+## **Installing Splunk Enterprise Offline**
 
-## **Installing Splunk Enterprise on Linux**
+This documentation explains how to install Splunk Enterprise offline on Ubuntu or CentOS virtual machines (VMs).
 
-Splunk Enterprise enables you to search, analyse and visualise your data to quickly act on insights from across your technology landscape. This step focuses on installing and configuring Splunk Enterprise. 
+![1.png](1.png)
 
-Note: Linux, 4.X, 5.10, 5.14,5.15 and 5.4.X kernels are ideal so Ubuntu 20.04 LTS or CentOS Stream 9 are recommended. As internet is required to register the system, RHEL is not recommended in an air-gapped environment. 
+### **On an Internet-Connected Machine (Ubuntu)**
 
-![splunk1.png](splunk1.png)
-
-Download [Splunk Enterprise](https://www.splunk.com/en_us/download/splunk-enterprise.html) for Linux (.tgz).
-
-Untar (unzip) the tar archive to /opt directory
+On an internet-connected **Ubuntu VM**, refresh the package lists from the repositories and create a structured directory for downloading dependencies:
 
 ```bash
-sudo tar xvzf splunk-<SNIP>.tgz -C /opt
+sudo apt-get update
+mkdir -p ~/splunk-offline/{vmtools,nettools,docker,sc4s,apps}
 ```
 
-Create user splunk and change ownership of /opt/splunk directory to the splunk user 
+Download and install VM tools and its dependencies (this will enable copy and pasting and dynamic resolution). After installing VM tools, reboot the VM. 
 
-On CentOS, after adding user, go to settings > Users. Unlock to Change Settings. Set password for the `splunk` user
+```bash
+cd ~/splunk-offline/vmtools
+apt-get download \
+  libatkmm-1.6-1v5 \
+  libcairomm-1.0-1v5 \
+  libglibmm-2.4-1t64 \
+  libgtkmm-3.0-1t64 \
+  libmspack0t64 \
+  libpangomm-1.4-1v5 \
+  libsigc++-2.0-0v5 \
+  libxmlsec1t64 \
+  libxmlsec1t64-openssl \
+  open-vm-tools \
+  open-vm-tools-desktop \
+  zerofree
+sudo dpkg -i *.deb
+```
 
-On Ubuntu, enter password and user information for the `splunk` user (use default values by pressing `enter` ). 
+Register on the Splunk website for a free trial and download [Splunk Enterprise](https://www.splunk.com/en_us/download/splunk-enterprise.html) for Linux. There are options for `.tgz`, `.deb`, and `.rpm`. Use `wget` and copy and paste the wget link in the `splunk-offline` directory. 
+
+```bash
+cd ~/splunk-offline
+wget -O splunk-9.4.1-linux-amd64.tgz "https://download.splunk.com/products/splunk/releases/9.4.1/linux/splunk-9.4.1-<SNIP>-linux-amd64.tgz"
+```
+
+Download Docker Engine and its dependencies. If you are using **CentOS**, skip this step as Podman is already installed.
+
+```bash
+#Ubuntu 22.04
+cd ~/splunk-offline/docker
+wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/containerd.io_1.7.25-1_amd64.deb
+wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-ce_28.0.0-1~ubuntu.22.04~jammy_amd64.deb
+wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-ce-cli_28.0.0-1~ubuntu.22.04~jammy_amd64.deb
+wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-buildx-plugin_0.21.0-1~ubuntu.22.04~jammy_amd64.deb
+wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-compose-plugin_2.33.0-1~ubuntu.22.04~jammy_amd64.deb
+```
+
+```bash
+#Ubuntu 24.04
+cd ~/splunk-offline/docker
+wget https://download.docker.com/linux/ubuntu/dists/noble/pool/stable/amd64/containerd.io_1.7.25-1_amd64.deb
+wget https://download.docker.com/linux/ubuntu/dists/noble/pool/stable/amd64/docker-ce_28.0.0-1~ubuntu.24.04~noble_amd64.deb
+wget https://download.docker.com/linux/ubuntu/dists/noble/pool/stable/amd64/docker-ce-cli_28.0.0-1~ubuntu.24.04~noble_amd64.deb
+wget https://download.docker.com/linux/ubuntu/dists/noble/pool/stable/amd64/docker-buildx-plugin_0.21.0-1~ubuntu.24.04~noble_amd64.deb
+wget https://download.docker.com/linux/ubuntu/dists/noble/pool/stable/amd64/docker-compose-plugin_2.33.0-1~ubuntu.24.04~noble_amd64.deb
+
+```
+
+Download net-tools. 
+
+```python
+cd ~/splunk-offline/nettools
+apt-get download net-tools
+```
+
+Download the latest SC4S container image `oci_container.tgz` from [SC4S GitHub](https://github.com/splunk/splunk-connect-for-syslog/releases) page.
+
+```bash
+cd ~/splunk-offline/sc4s
+wget https://github.com/splunk/splunk-connect-for-syslog/releases/download/v3.34.3/oci_container.tar.gz
+```
+
+Download the following Splunk Apps (tar archive files). You will need to login using the registered credential.
+
+- [Splunk Add-on for MS Windows](https://splunkbase.splunk.com/app/742)
+- [Splunk Add-on for Sysmon](https://splunkbase.splunk.com/app/5709)
+- [Fortinet FortiGate Add-On for Splunk](https://splunkbase.splunk.com/app/2846) (optional: required if ingesting FortiGate logs through this App)
+- [Splunk Add-on for Unix and Linux](https://splunkbase.splunk.com/app/833)
+
+Copy the Splunk Apps to `~/splunk-offline/apps/` directory. Verify that the apps have been copied.
+
+```bash
+cp ~/Downloads/*.tgz ~/splunk-offline/apps/
+cd ~/splunk-offline/apps/
+ls
+```
+
+Compress all dependencies with `sudo` privileges before transferring them. This process may take some time.
+
+```bash
+cd ~/splunk-offline
+sudo tar -czvf splunk-offline.tar.gz *
+```
+
+Change the ownership of `splunk-offline.tar.gz` to your standard user and group, then verify the change.
+
+```bash
+sudo chown $(whoami):$(id -g -n) splunk-offline.tar.gz
+ls -la
+```
+
+Transfer `splunk-offline.tar.gz` to the air-gapped Ubuntu VM using a USB drive.
+
+### **On the Air-Gapped Environment**
+
+On the air-gapped VM, make a directory called `splunk-offline` and extract the transferred archive. This process may take some time.
+
+```bash
+mkdir ~/splunk-offline && cd ~/splunk-offline
+tar -xzvf ~/splunk-offline.tar.gz
+```
+
+Install VM tools and its dependencies (this will enable copy and pasting and dynamic resolution). After installing VM tools, reboot the VM. 
+
+```bash
+cd ~/splunk-offline/vmtools
+sudo dpkg -i *deb
+```
+
+Install Docker and its dependencies. Verify Installation.
+
+```python
+cd ~/splunk-offline/docker
+sudo dpkg -i *
+docker --version
+```
+
+Run `sudo service docker start`
+
+```python
+sudo service docker start
+```
+
+Run the following command to add your user to the `docker` group:
+
+```python
+sudo usermod -aG docker $(whoami)
+```
+
+Reload the group membership for your current session with the following command:
+
+```python
+newgrp docker
+```
+
+Check if you can run Docker commands without `sudo`:
+
+```python
+docker ps
+```
+
+Install net-tools and verify installation.
+
+```python
+cd ~/splunk-offline/nettools
+sudo dpkg -i *.deb
+ifconfig
+```
+
+In a new tab as the standard user, set the host OS kernel to match the default receiver buffer of SC4S, which is set to 16MB. Add the following content to `/etc/sysctl.conf`:
+
+```python
+sudo nano /etc/sysctl.conf
+```
+
+```python
+net.core.rmem_default = 17039360
+net.core.rmem_max = 17039360
+```
+
+Apply to the kernel by running the command  `sysctl -p`
+
+```python
+sudo sysctl -p
+```
+
+Ensure the kernel is not dropping packets. Please note that you may see some packet receive errors due to the air-gapped environment. These errors can be ignored.
+
+```python
+netstat -su | grep "receive errors" 
+```
+
+Extract the `splunk-offline` tar archive to the `/opt` directory.
+
+```bash
+cd ~/splunk-offline
+sudo tar xvzf splunk*.tgz -C /opt
+```
+
+Create user `splunk` and change ownership of `/opt/splunk` directory to the `splunk` user. Enter password and user information for the `splunk` user (use default values by pressing `enter` ). 
 
 ```python
 sudo adduser splunk
 ```
 
-Make the splunk user the owner of the splunk directory. Change permissions and verify the ownership.
+If you are using **CentOS**, after adding user, go to settings > Users. Unlock to Change Settings. Set password for the `splunk` user. Make the `splunk` user the owner of the `/opt/splunk` directory and verify the ownership.
 
 ```bash
 sudo chown -R splunk:splunk /opt/splunk
@@ -64,11 +241,14 @@ drwxr-xr-x 20 root   root   4096 Sep 18 15:21 ..
 drwxr-xr-x 11 **splunk splunk** 4096 Sep  6 05:58 splunk
 ```
 
-Switch to splunk user and start splunk. When prompted, create admin credentials.
+Switch to `splunk` user and start Splunk Enterprise. When prompted, create admin credentials.
 
 ```bash
 su splunk
-cd splunk/bin
+```
+
+```bash
+cd /opt/splunk/bin
 ./splunk start --accept-license
 ```
 
@@ -86,45 +266,33 @@ Please enter a new password:
 Please confirm new password: 
 ```
 
-Wait for webser at `http://127.0.0.1:8000` to be available. Navigate to `http://<IP address>:8000`or `http://localhost:8000` on web browser.  
-
-Enter in splunk admin credentials you created when installing Splunk Enterprise
-
-In the `/opt/splunk/bin/` directory, setup Splunk to listen on port 9997
+In the `/opt/splunk/bin/` directory, configure Splunk to listen on port 9997
 
 ```bash
-splunk enable listen 9997
+./splunk enable listen 9997
 ```
 
 ```bash
-splunk@Splunk:/opt/splunk/bin$ ./splunk enable listen 9997
-<SNIP>
-Splunk username: splunk
-Password: 
+#Example Output
 Listening for Splunk data on TCP port 9997.
 ```
 
-Alternatively this can be done on the web UI
+Navigate to `http://<IP address>:8000`on a web browser. Enter Splunk admin credentials. Verify that you can navigate the Splunk web interface.
 
-Settings > Forwarding and Receiving > Add new under Receive Data > Listen on this port: 9997 > Save > Verify the listen on port 9997 is enabled under Receive Data and Configure receiving
+![image.png](image.png)
 
-![Untitled](Untitled.png)
+![image.png](image%201.png)
 
-![Untitled](Untitled%201.png)
+### **Configuring Firewall (Optional)**
 
-![Untitled](Untitled%202.png)
+On Ubuntu, run the following command as a standard user in a new tab. This will configure and enable Firewall. In this lab, however, we will disable the firewall.
 
-## **Configuring Firewall (Optional)**
-
-On Ubuntu, run the following command:
-
-```jsx
+```bash
 sudo ufw allow 514/tcp  # syslog TCP
 sudo ufw allow 514/udp  # syslog UDP
 sudo ufw allow 6514/tcp # syslog TLS
 sudo ufw allow 5425/tcp # syslog
 sudo ufw allow 601/tcp  # syslog
-
 sudo ufw allow 8000/tcp # Web UI Port
 sudo ufw allow 8080/tcp # HEC Port
 sudo ufw allow 8088/tcp # HEC Port
@@ -132,32 +300,19 @@ sudo ufw allow 8089/tcp # Management Port
 sudo ufw allow 9997/tcp # Data flow
 sudo ufw allow 8065/tcp # Appserver
 sudo ufw allow 8191/tcp # KVstore
-
-#Apply changes
+sudo ufw enable
 sudo ufw reload
-
-#Enable Firewall
-#sudo ufw enable
-
-#Apply changes
-sudo ufw status numbered
 ```
 
-Alternatively, if you are on CentOS, run the following command:
+Alternatively, if you are on CentOS, run the following command to configure and enable Firewall:
 
-```python
-#Show original state
-sudo firewall-cmd --list-all
-
-#Syslog ports
+```bash
 sudo firewall-cmd --zone=public --add-port=514/tcp --permanent # syslog TCP
 sudo firewall-cmd --zone=public --add-port=514/udp --permanent # syslog UDP
 sudo firewall-cmd --zone=public --add-port=5514/udp --permanent # syslog UDP
 sudo firewall-cmd --zone=public --add-port=6514/tcp --permanent # syslog TLS
 sudo firewall-cmd --zone=public --add-port=5425/tcp --permanent # syslog
 sudo firewall-cmd --zone=public --add-port=601/tcp --permanent # syslog
-
-#Splunk ports
 sudo firewall-cmd --zone=public --add-port=8000/tcp --permanent # Web UI Port
 sudo firewall-cmd --zone=public --add-port=8080/tcp --permanent # HEC port
 sudo firewall-cmd --zone=public --add-port=8088/tcp --permanent # HEC port
@@ -165,12 +320,131 @@ sudo firewall-cmd --zone=public --add-port=8089/tcp --permanent # Managment Port
 sudo firewall-cmd --zone=public --add-port=9997/tcp --permanent # Data flow
 sudo firewall-cmd --zone=public --add-port=8065/tcp --permanent # appserver
 sudo firewall-cmd --zone=public --add-port=8191/tcp --permanent # kvstore
-
-#Apply changes
 sudo firewall-cmd --reload
-
-#Check applied
 sudo firewall-cmd --list-all
+```
+
+## **Configuring FortiGate**
+
+Configure Port 1 as WAN interface and Port 2 as LAN interface. Set up DHCP to automatically assign IP addresses to clients connecting to the LAN.
+
+![image.png](image%202.png)
+
+Create a Firewall Policy to allow LAN to WAN. To simulate an air-gapped environment without internet access, the policy has been disabled.
+
+![image.png](image%203.png)
+
+![image.png](image%204.png)
+
+## **Configuring Syslog Logging on FortiGate**
+
+On FortiGate Command-Line Interface (CLI), run the following commands to configure Syslog Server Settings:
+
+```bash
+config log syslogd setting
+    set status enable
+    set server <syslog-ng IP>
+    set source-ip <FortiGate IP>
+    # set port <port number>  (Default port is 514)
+    # Verify settings by running "show"
+end
+```
+
+Configure Log Memory Filter:
+
+```bash
+config log memory filter
+    set forward-traffic enable
+    set local-traffic enable
+    set sniffer-traffic disable
+    set anomaly enable
+    set voip disable
+    set multicast-traffic enable
+    # Verify settings by running "show full-configuration"
+end
+```
+
+Configure Global System Settings:
+
+```bash
+config system global
+    set cli-audit-log enable
+    # Verify settings by running "show"
+    # Ensure the timezone is correct, e.g., "Pacific/Auckland"
+end
+```
+
+Enable Logging for Neighbour Events:
+
+```bash
+config log setting
+    set neighbor-event enable
+end
+```
+
+## **Configuring Syslog Logging on Cisco ISR (Optional)**
+
+On Cisco Integrated Services Router’s (ISR) CLI, run the following command to verify Clock and Configure NTP
+
+```bash
+show clock
+ntp server <FortiGate IP>
+```
+
+Enable Syslog Logging:
+
+```bash
+conf t
+logging on
+logging <Syslog Server IP>
+logging trap 6
+# Use "?" to see available options
+exit
+```
+
+Verify Logging:
+
+```bash
+show logging
+# Port 514/UDP is used by default
+```
+
+Check Current Logging Configuration:
+
+```bash
+sh run | inc logging
+# Multiple syslog servers can be configured
+```
+
+Set IP Address for VLAN 1 and Test Connectivity:
+
+```bash
+conf t
+interface vlan 1
+ip address <IP Address> <Subnet Mask>
+no shutdown
+exit
+
+# Test connectivity to the syslog server
+ping <Syslog Server IP>
+```
+
+Enable Log Sequence Numbers:
+
+```bash
+conf t
+service sequence-numbers
+# Assigns sequence numbers to syslog messages in the order events occur
+```
+
+Configure Console Logging:
+
+```bash
+conf t
+line console 0
+logging synchronous
+# Ensures syslog messages are displayed properly after configuration
+end
 ```
 
 ## **Ingesting FortiGate Logs**
@@ -180,7 +454,7 @@ To ingest FortiGate logs into Splunk, you have two options:
 Option 1: Ingest FortiGate logs through SC4S.
 Option 2: Ingest FortiGate logs through Splunk’s FortiGate App.
 
-Please select one option, as using both options simultaneously is not recommended.
+Please select one option, as using both options simultaneously is not recommended. However, for demonstration purposes, we will first go through Option 1, followed by Option 2.
 
 ![splunk2.png](splunk2.png)
 
@@ -188,9 +462,13 @@ Please select one option, as using both options simultaneously is not recommende
 
 SC4S is an open source packaged solution for getting data into Splunk. It is based on the syslog-ng Open Source Edition (Syslog-NG OSE) and transports data to Splunk via the Splunk HTTP event Collector (HEC) rather than writing events to disk for collection by a Universal Forwarder.
 
-### **Create indexes for SC4S**
+### **Creating Indexes for SC4S**
 
-Copy indexes.conf from here:
+On the **Splunk VM**, as the `splunk` user, create an `indexes.conf` in the `/opt/splunk/etc/system/local` directory. Copy and paste the following content. This step will create the default indexes that are used by SC4S. It is important that you **do not edit** `/opt/splunk/etc/system/default/indexes.conf`
+
+```python
+nano /opt/splunk/etc/system/local/indexes.conf
+```
 
 ```python
 [default]
@@ -211,20 +489,46 @@ homePath   = $SPLUNK_DB/epintel/db
 coldPath   = $SPLUNK_DB/epintel/colddb
 thawedPath = $SPLUNK_DB/epintel/thaweddb
 
-[fireeye]
-homePath   = $SPLUNK_DB/fireeye/db
-coldPath   = $SPLUNK_DB/fireeye/colddb
-thawedPath = $SPLUNK_DB/fireeye/thaweddb
+[_metrics]
+datatype=metric
+homePath   = $SPLUNK_DB/_metrics/db
+coldPath   = $SPLUNK_DB/_metrics/colddb
+thawedPath = $SPLUNK_DB/_metrics/thaweddb
 
-[gitops]
-homePath   = $SPLUNK_DB/gitops/db
-coldPath   = $SPLUNK_DB/gitops/colddb
-thawedPath = $SPLUNK_DB/gitops/thaweddb
+[syslogng_fallback]
+homePath   = $SPLUNK_DB/syslogng_fallback/db
+coldPath   = $SPLUNK_DB/syslogng_fallback/colddb
+thawedPath = $SPLUNK_DB/syslogng_fallback/thaweddb
+
+[test]
+homePath   = $SPLUNK_DB/test/db
+coldPath   = $SPLUNK_DB/test/colddb
+thawedPath = $SPLUNK_DB/test/thaweddb
+
+[test2]
+homePath   = $SPLUNK_DB/test2/db
+coldPath   = $SPLUNK_DB/test2/colddb
+thawedPath = $SPLUNK_DB/test2/thaweddb
 
 [infraops]
 homePath   = $SPLUNK_DB/infraops/db
 coldPath   = $SPLUNK_DB/infraops/colddb
 thawedPath = $SPLUNK_DB/infraops/thaweddb
+
+[osnix]
+homePath   = $SPLUNK_DB/osnix/db
+coldPath   = $SPLUNK_DB/osnix/colddb
+thawedPath = $SPLUNK_DB/osnix/thaweddb
+
+[oswin]
+homePath   = $SPLUNK_DB/oswin/db
+coldPath   = $SPLUNK_DB/oswin/colddb
+thawedPath = $SPLUNK_DB/oswin/thaweddb
+
+[oswinsec]
+homePath   = $SPLUNK_DB/oswinsec/db
+coldPath   = $SPLUNK_DB/oswinsec/colddb
+thawedPath = $SPLUNK_DB/oswinsec/thaweddb
 
 [netauth]
 homePath   = $SPLUNK_DB/netauth/db
@@ -251,245 +555,105 @@ homePath   = $SPLUNK_DB/netids/db
 coldPath   = $SPLUNK_DB/netids/colddb
 thawedPath = $SPLUNK_DB/netids/thaweddb
 
-[netlb]
-homePath   = $SPLUNK_DB/netlb/db
-coldPath   = $SPLUNK_DB/netlb/colddb
-thawedPath = $SPLUNK_DB/netlb/thaweddb
+[netipam]
+homePath   = $SPLUNK_DB/netipam/db
+coldPath   = $SPLUNK_DB/netipam/colddb
+thawedPath = $SPLUNK_DB/netipam/thaweddb
 
 [netops]
 homePath   = $SPLUNK_DB/netops/db
 coldPath   = $SPLUNK_DB/netops/colddb
 thawedPath = $SPLUNK_DB/netops/thaweddb
 
-[netwaf]
-homePath   = $SPLUNK_DB/netwaf/db
-coldPath   = $SPLUNK_DB/netwaf/colddb
-thawedPath = $SPLUNK_DB/netwaf/thaweddb
-
 [netproxy]
 homePath   = $SPLUNK_DB/netproxy/db
 coldPath   = $SPLUNK_DB/netproxy/colddb
 thawedPath = $SPLUNK_DB/netproxy/thaweddb
 
-[netipam]
-homePath   = $SPLUNK_DB/netipam/db
-coldPath   = $SPLUNK_DB/netipam/colddb
-thawedPath = $SPLUNK_DB/netipam/thaweddb
+[netwaf]
+homePath   = $SPLUNK_DB/netwaf/db
+coldPath   = $SPLUNK_DB/netwaf/colddb
+thawedPath = $SPLUNK_DB/netwaf/thaweddb
 
-[oswinsec]
-homePath   = $SPLUNK_DB/oswinsec/db
-coldPath   = $SPLUNK_DB/oswinsec/colddb
-thawedPath = $SPLUNK_DB/oswinsec/thaweddb
+[email]
+homePath   = $SPLUNK_DB/email/db
+coldPath   = $SPLUNK_DB/email/colddb
+thawedPath = $SPLUNK_DB/email/thaweddb
 
-[osnix]
-homePath   = $SPLUNK_DB/osnix/db
-coldPath   = $SPLUNK_DB/osnix/colddb
-thawedPath = $SPLUNK_DB/osnix/thaweddb
-
-[oswin]
-homePath   = $SPLUNK_DB/oswin/db
-coldPath   = $SPLUNK_DB/oswin/colddb
-thawedPath = $SPLUNK_DB/oswin/thaweddb
-
-[syslogng_fallback]
-homePath   = $SPLUNK_DB/syslogng_fallback/db
-coldPath   = $SPLUNK_DB/syslogng_fallback/colddb
-thawedPath = $SPLUNK_DB/syslogng_fallback/thaweddb
-
-[_metrics]
-datatype=metric
-homePath   = $SPLUNK_DB/_metrics/db
-coldPath   = $SPLUNK_DB/_metrics/colddb
-thawedPath = $SPLUNK_DB/_metrics/thaweddb
+[netlb]
+homePath   = $SPLUNK_DB/netlb/db
+coldPath   = $SPLUNK_DB/netlb/colddb
+thawedPath = $SPLUNK_DB/netlb/thaweddb
 ```
 
-Save indexes.conf to `/opt/splunk/etc/system/**local`** 
-
-Note: execute this command as root or your standard user (not `splunk`)
-
-```python
-sudo nano /opt/splunk/etc/system/local/indexes.conf
-```
-
-Change into `/opt/splunk/bin` and restart Splunk Enterprise as the `splunk` user.
+In the`/opt/splunk/bin` directory, restart Splunk Enterprise as the `splunk` user.
 
 ```bash
 ./splunk restart
 ```
 
-**Note**: **do not edit `/opt/splunk/etc/system/default/indexes.conf`**
-This step will create the following default indexes that are used by SC4S:
+On the Splunk web interface, navigate to Settings, then Indexes. Verify that the SC4S default indexes have been created. Use the filter search bar to find indexes if needed.
 
-- `email`
-- `epav`
-- `fireeye`
-- `gitops`
-- `infraops`
-- `netauth`
-- `netdlp`
-- `netdns`
-- `netfw`
-- `netids`
-- `netops`
-- `netwaf`
-- `netproxy`
-- `netipam`
-- `oswinsec`
-- `osnix`
-- `_metrics` (Optional opt-in for SC4S operational metrics; ensure this is created as a metrics index)
+![image.png](image%205.png)
 
-**Verify that the SC4S default indexes are created on web UI (Settings > Indexes).**
+### **Creating a HEC Token**
 
-### **Create a HTTP Event Collector (HEC) token for SC4S**
+On the Splunk Web UI, navigate to Settings > Data Inputs > HTTP Event Collector > Global Settings. Select Enabled for All Tokens. Set main as the Default Index. Uncheck Enable SSL. Leave the HTTP Port Number as 8088. Click Save.
 
-On Splunk Web UI, go to Settings > Data Inputs > HTTP Event Collector > Global Settings
+![image.png](image%206.png)
 
-Select Enabled for All Tokens
+Click New Token, name it 'sc4s_token', and click Next.
 
-Set Default Index as main
+![image.png](image%207.png)
 
-Uncheck Enable SSL 
+Leave Source Type as Automatic. Leave Selected Allowed Indexes blank. Select main as the Default Index. Click Review, then Submit.
 
-Leave HTTP Port Number as 8088
+![image.png](image%208.png)
 
-Save
+Copy your Token Value and save it in a notepad (you will need this later). You can also find your token value under Settings > Data Inputs > HTTP Event Collector.
 
-![image.png](image.png)
+![image.png](image%209.png)
 
-Click New Token. Name your token and click Next.
+![image.png](image%2010.png)
 
-![image.png](image%201.png)
+### Loading SC4S Container Image
 
-Leave Source type as Automatic. Click add all for Allowed Indexes. Select main for Default Index.
-
-Click Review and Submit.
-
-![image.png](image%202.png)
-
-Copy your Token Value and save it on a notepad (we will need this later)
-
-You can also find your token value on Settings > Data Inputs > HTTP Event Collector
-
-![image.png](image%203.png)
-
-![image.png](image%204.png)
-
-### **Configure Linux for SC4S**
-
-Set the host OS kernel to match the default receiver buffer of SC4S, which is set to 16MB.
-
-Add the following to `/etc/sysctl.conf`:
+In a tab, as a standard user, use Docker to load the SC4S container image. Make a note of the container ID and image name. If you are using CentOS, replace `docker` with `podman`
 
 ```python
-sudo nano /etc/sysctl.conf
-```
-
-```python
-net.core.rmem_default = 17039360
-net.core.rmem_max = 17039360
-```
-
-Apply to the kernel by running the command  `sysctl -p`
-
-```python
-sudo sysctl -p
-```
-
-Ensure the kernel is not dropping packets (optional)
-
-```python
-netstat -su | grep "receive errors" 
-```
-
-For Ubuntu, download net-tools on Ubuntu VM with internet connection. Transfer it over to Ubuntu VM without internet connection and install net-tools (optional)
-
-```python
-#On Ubuntu VM with internet connection
-mkdir net-tools-offline
-cd net-tools-offline
-sudo chmod -R 755 /home/cyber/net-tools-offline
-sudo apt-get download net-tools
-```
-
-```python
-#On Ubuntu VM without internet connection
-cd net-tools-offline
-sudo dpkg -i net-tools_1.60+git20181103.0eebece-1ubuntu5_amd64.deb
-```
-
-### **Install Podman offline on Ubuntu**
-
-By default, Podman is installed on CentOS Stream 9 but it is not installed on Ubuntu. 
-
-On a Ubuntu machine with internet connection:
-
-```jsx
-mkdir podman-offline
-cd podman-offline
-sudo chmod -R 755 /home/cyber/podman-offline
-sudo apt-get install --download-only podman -o Dir::Cache=/home/cyber/podman-offline
-```
-
-If you get permission denied error, run the `sudo apt-get install --download-only` command again.
-
-Transfer `podman-offline` to the Ubuntu host without internet connection.
-
-To install Podman (note archives directory should have been automatically created)
-
-```jsx
-cd podman-offline/archives
-sudo dpkg -i *.deb
-```
-
-### **Install SC4S container while offline**
-
-You can stage SC4S by downloading the image so that it can be loaded on a host machine, for example on an airgapped system, without internet connectivity.
-
-Download the latest container image `oci_container.tgz` from [SC4S GitHub](https://github.com/splunk/splunk-connect-for-syslog/releases) page.
-
-Transfer the container image to your host machine.
-
-Execute the following command using Podman.
-
-Make a note of the container ID for the resulting load
-
-```python
-sudo podman load < oci_container.tar.gz
+cd ~/splunk-offline/sc4s
+sudo docker load < oci_container.tar.gz
 ```
 
 ```python
 #Example output
-Loaded image: ghcr.io/splunk/splunk-connect-for-syslog/container3:3.30.1
+Loaded image: ghcr.io/splunk/splunk-connect-for-syslog/container3:3.34.3
 ```
 
-Use the container ID to create a local label: 
-
-`podman tag <container ID> sc4slocal:latest`
+Use the container ID to create a local label using docker. 
 
 ```python
-sudo podman tag ghcr.io/splunk/splunk-connect-for-syslog/container3:3.30.1 sc4slocal:latest
+sudo docker tag ghcr.io/splunk/splunk-connect-for-syslog/container3:3.34.3 sc4slocal:latest
 ```
 
-Create the systemd unit file `/lib/systemd/system/sc4s.service`
+Create the systemd unit file `/lib/systemd/system/sc4s.service` and copy and paste the following content:
 
 ```python
 sudo nano /lib/systemd/system/sc4s.service
 ```
 
-Copy and paste the following - note that this is the edited version of SC4S sample unit file for Podman
-
-```python
+```bash
 [Unit]
 Description=SC4S Container
-Wants=NetworkManager.service network-online.target
-After=NetworkManager.service network-online.target
+Wants=NetworkManager.service network-online.target docker.service
+After=NetworkManager.service network-online.target docker.service
+Requires=docker.service
 
 [Install]
 WantedBy=multi-user.target
 
 [Service]
-**# Select the locally loaded image
-Environment="SC4S_IMAGE=sc4slocal:latest"**
+Environment="SC4S_IMAGE=sc4slocal:latest"
 
 # Required mount point for syslog-ng persist data (including disk buffer)
 Environment="SC4S_PERSIST_MOUNT=splunk-sc4s-var:/var/lib/syslog-ng"
@@ -505,29 +669,29 @@ Environment="SC4S_TLS_MOUNT=/opt/sc4s/tls:/etc/syslog-ng/tls:z"
 
 TimeoutStartSec=0
 
-**#ExecStartPre=/usr/bin/podman pull $SC4S_IMAGE**
+#ExecStartPre=/usr/bin/docker pull $SC4S_IMAGE
 
 # Note: /usr/bin/bash will not be valid path for all OS
 # when startup fails on running bash check if the path is correct
 ExecStartPre=/usr/bin/bash -c "/usr/bin/systemctl set-environment SC4SHOST=$(hostname -s)"
 
-ExecStart=/usr/bin/podman run \
+# Note: Prevent the error 'The container name "/SC4S" is already in use by container <container_id>. You have to remove (or rename) that container to be able to reuse that name.'
+ExecStartPre=/usr/bin/bash -c "/usr/bin/docker rm SC4S > /dev/null 2>&1 || true"
+ExecStart=/usr/bin/docker run \
         -e "SC4S_CONTAINER_HOST=${SC4SHOST}" \
         -v "$SC4S_PERSIST_MOUNT" \
         -v "$SC4S_LOCAL_MOUNT" \
         -v "$SC4S_ARCHIVE_MOUNT" \
         -v "$SC4S_TLS_MOUNT" \
         --env-file=/opt/sc4s/env_file \
-        --health-cmd="/healthcheck.sh" \
-        --health-interval=10s --health-retries=6 --health-timeout=6s \
         --network host \
         --name SC4S \
         --rm $SC4S_IMAGE
 
-Restart=on-abnormal
+Restart=on-failure
 ```
 
-### **Configure IPv4 forwarding**
+### **Configuring IPv4 forwarding**
 
 IPv4 forwarding is not enabled by default. IPv4 forwarding must be enabled for container networking.
 
@@ -543,16 +707,26 @@ To enable IPv4 forwarding: 
 sudo sysctl net.ipv4.ip_forward=1
 ```
 
-To ensure your changes persist upon reboot:
+To ensure your changes persist upon reboot, define sysctl settings through files in `/usr/lib/sysctl.d/` and `/etc/sysctl.d/`. To override only specific settings, either add a file with a lexically later name in `/etc/sysctl.d/` and put following setting there or find this specific setting in one of the existing configuration files and set the value to `1`. 
 
-- Define sysctl settings through files in `/usr/lib/sysctl.d/`and `/etc/sysctl.d/`.
-- To override only specific settings, either add a file with a lexically later name in `/etc/sysctl.d/` and put following setting there or find this specific setting in one of the existing configuration files and set the value to `1`.
-
-```python
+```bash
 cd /usr/lib/sysctl.d/
+sudo nano 100-custom.conf
 ```
 
-```python
+```bash
+net.ipv4.ip_forward=1
+```
+
+```bash
+cyber@Splunk:/usr/lib/sysctl.d$ ls
+100-custom.conf  10-apparmor.conf  30-tracker.conf  50-bubblewrap.conf  50-pid-max.conf  99-protect-links.conf
+```
+
+Repeat the same steps for `/etc/sysctl.d/`.
+
+```bash
+cd /etc/sysctl.d/
 sudo nano 100-custom.conf
 ```
 
@@ -560,19 +734,16 @@ sudo nano 100-custom.conf
 net.ipv4.ip_forward=1
 ```
 
-- Repeat the same steps for `/etc/sysctl.d/`.
-- For example, in the `/usr/lib/sysctl.d/` directory, there are few config files. The naming convention is XX-name.conf with XX being a number. Create a custom.conf with a higher number e.g. `100-custom.conf` with the content `net.ipv4.ip_forward=1` .
-
 ```python
-cyber@SplunkEnt:/usr/lib/sysctl.d$ ls
-**100-custom.conf**  50-bubblewrap.conf  50-pid-max.conf
-30-tracker.conf  50-default.conf     99-protect-links.conf
+cyber@Splunk:/etc/sysctl.d$ ls
+100-custom.conf           10-ipv6-privacy.conf      10-magic-sysrq.conf  10-network-security.conf  10-zeropage.conf  README.sysctl
+10-console-messages.conf  10-kernel-hardening.conf  10-map-count.conf    10-ptrace.conf            99-sysctl.conf
 ```
 
-Create a Podman/Docker local volume that will contain the disk buffer files and other SC4S state files:
+Create a Docker volume for SC4S disk buffer and state files.
 
 ```python
-sudo podman volume create splunk-sc4s-var
+sudo docker volume create splunk-sc4s-var
 ```
 
 Create directories to be used as a mount point for local overrides and configurations:
@@ -590,22 +761,15 @@ sudo nano /opt/sc4s/env_file
 ```
 
 ```python
-SC4S_DEST_SPLUNK_HEC_DEFAULT_URL=https://your.splunk.instance:8088
-SC4S_DEST_SPLUNK_HEC_DEFAULT_TOKEN=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+SC4S_DEST_SPLUNK_HEC_DEFAULT_URL=http://10.0.0.100:8088
+SC4S_DEST_SPLUNK_HEC_DEFAULT_TOKEN=(HEC_Token_value)
 #Uncomment the following line if using untrusted SSL certificates
 SC4S_DEST_SPLUNK_HEC_DEFAULT_TLS_VERIFY=no
 ```
 
-For example:
+### **Testing SC4S**
 
-```python
-SC4S_DEST_SPLUNK_HEC_DEFAULT_URL=http://10.0.0.120:8088
-SC4S_DEST_SPLUNK_HEC_DEFAULT_TOKEN=8be8e3f3-49fc-4158-a20c-bcf82be93dda
-#Uncomment the following line if using untrusted SSL certificates
-SC4S_DEST_SPLUNK_HEC_DEFAULT_TLS_VERIFY=no
-```
-
-Configure SC4S for systemd and start SC4S. Verify sc4s is active and running (exit with `q`)
+Enable and start SC4S. Verify SC4S is active and running (exit with `q`).
 
 ```python
 sudo systemctl daemon-reload
@@ -614,10 +778,10 @@ sudo systemctl start sc4s
 sudo systemctl status sc4s
 ```
 
-Check podman/docker logs for errors:
+Check Docker logs for errors:
 
 ```python
-sudo podman logs SC4S
+sudo docker logs SC4S
 ```
 
 ```python
@@ -630,169 +794,115 @@ starting goss
 starting syslog-ng
 ```
 
-Search on Splunk for successful installation of SC4S:
+Search on Splunk for successful installation of SC4S. Make sure to select “All time.”
 
-```python
+```bash
 index=* sourcetype=sc4s:events "starting up"
 ```
 
-![image.png](image%205.png)
-
-Send sample data to default udp port 514 of SC4S host: `echo “Hello SC4S” > /dev/udp/<SC4S_ip>/514` 
-
-```python
-echo “Hello SC4S” > /dev/udp/10.0.0.120/514
-```
-
-Search for `index=* "Hello SC4S"`
-
-![image.png](image%206.png)
-
-Verify that SC4S is receiving Fortigate logs
-
-![image.png](image%207.png)
-
-## **Ingesting FortiGate Logs through FortiGate App (Option 2)**
-
-If SC4S does not work for your environment, another option to ingest FortiGate logs on Splunk is through FortiGate App.
-
-Install from file on Splunk web UI: Manage Apps->Install from file->Upload the .tgz file which is downloaded from [https://splunkbase.splunk.com/app/2846](https://splunkbase.splunk.com/app/2846) ->check the upgrade box-> click restart splunk service.
-
-![image.png](image%208.png)
-
-### **Add data input on Splunk server**
-
-Note: From version 1.2, the Splunk TA(Add-on) for fortigate no longer match wildcard source or sourcetype to extract fortigate log data, a default sourcetype fortigate_log is specified in default/props.conf instead, please follow the instruction below to configure your input and props.conf for the App and TA(Add-on).
-
-Navigate to Settings->Data Input->UDP on Splunk Web UI. Click New Local UDP.
-
-For Port, enter `514` and leave other parameters as is.
-
-![image.png](image%209.png)
-
-For Source type, select `fortigate_log` (search for `fortigate_log` in the search bar)
-
-![image.png](image%2010.png)
-
-Click Review and Submit. If you get the error `UDP 514 is not available` use other UDP port (e.g. `5514`). Restart Splunk service for the change to take effect.
-
-```python
-/opt/splunk/bin/splunk restart
-```
-
-Configure FortiGate to send syslog by following the steps below.
-
-Navigate to Search & Reporting on Splunk web UI. 
-
-Search for `fortigate` and verify that FortiGate logs are being ingested.  
-
 ![image.png](image%2011.png)
 
-## **Configuring FortiGate**
+Send sample data to UDP port 514: 
 
-Configure Port 1 as WAN interface 
+```bash
+echo "Hello SC4S" > /dev/udp/10.0.0.100/514
+```
 
-Configure Port 2 as LAN interface. 
+Search in Splunk to verify successful receipt of sample data on UDP port 514:
 
-Configure DHCP to automatically assign IP addresses to clients connecting to LAN
+```bash
+index=* "Hello SC4S"
+```
 
 ![image.png](image%2012.png)
 
-Create a new firewall policy to allow LAN to WAN
+Earlier, we configured FortiGate to send logs on UDP port 514. Since SC4S is configured to receive logs on UDP port 514, we should now see FortiGate logs. Verify that SC4S is receiving FortiGate event and traffic logs with source `sc4s`. It may take some time for the logs to appear.
 
-To simulate an air-gapped environment without internet access, disable the policy for now. 
+```bash
+index=* sourcetype=fgt_event
+```
 
 ![image.png](image%2013.png)
 
+```bash
+index=* sourcetype=fgt_traffic
+```
+
 ![image.png](image%2014.png)
 
-## **Configuring FortiGate to send Syslog**
+## **Ingesting FortiGate Logs through FortiGate App (Option 2)**
 
-Refer to the admin manual for specific details of configuration to send Reliable syslog using RFC 3195 format, a typical logging configuration will include the following features.
+If SC4S does not work for your environment, another option to ingest FortiGate logs on Splunk is through FortiGate App. On Splunk web UI, navigate to Manage Apps, then Install from file. Upload the FortiGate App (tar archive) from `~/splunk-offline/apps` directory. Check the upgrade box. 
 
-```python
-config log syslogd setting 
+![image.png](image%2015.png)
 
-set status enable
-set server (syslog-ng ip)
-set source-ip (fortigate ip)
-#set port (port number) (default port is 514)
-#Verify settings by running "show"
-end 
+### **Adding UDP Data Input**
 
-config log memory filter
-set forward-traffic enable
-set local-traffic enable
-set sniffer-traffic disable
-set anomaly enable
-set voip disable
-set multicast-traffic enable
-#Verify settings by running "show full-configuration"
-end
+Navigate to Settings, Data Inputs, then UDP on Splunk Web UI. Click New Local UDP. For Port, enter `5514` and leave other parameters as is. We are using port 5514 for demonstration purposes as port 514 is being used by SC4S. If you are not using SC4S, you can put port 514 here.
 
-config system global
-set cli-audit-log enable
-#Verify settings by running "show"
-#Make sure timezone is correct e.g. "Pacific/Auckland"
-end
+![image.png](image%2016.png)
 
-config log setting
-set neighbor-event enable
-end
+For Source type, search and select `fortigate_log` .
+
+![image.png](image%2017.png)
+
+Click Review and Submit. If you get the error `UDP 514 is not available` use other UDP port (e.g. `5514`). Restart Splunk Enterprise as the `splunk` user for the change to take effect.
+
+```bash
+cd /opt/splunk/bin
+./splunk restart
 ```
 
-## **Configuring Cisco ISR to send Syslog**
+### **Configuring Syslog Logging on FortiGate (UDP 5514)**
 
-Note: this step needs to be verified with a Cisco device in a testing environment. 
+Configure **FortiGate** to send syslog to port 5514 by running the following command. Ensure you enter the correct port number. When prompted, confirm the port number.
 
-```python
-show clock
-ntp server (IP address of Fortigate)
+```bash
+FGVMEVMBF57GNJF3 # config log syslogd setting
 
-conf f
-logging on
-logging (IP address of Syslog server)
-logging trap 6
-#Use "?" to see what options are available
-exit
+FGVMEVMBF57GNJF3 (setting) # set port 5514
 
-#Turn on interface by no shut
+FGVMEVMBF57GNJF3 (setting) # show
+config log syslogd setting
+    set status enable
+    set server "10.0.0.100"
+    set port 5514
+    set source-ip "10.0.0.1"
+end
 
-show logging
-#port 514 udp by default
+FGVMEVMBF57GNJF3 (setting) # end
+Port 5514 is different from default port 514.
+Confirm to use port 5514 instead?
+Do you want to continue? (y/n)y
 
-sh run | inc logging
-#we can set multiple syslog servers
+Port set to 5514
 
-#Set IP address for int vlan 1
-#Test ping to syslog server
-conf t
-
-service sequence-numbers
-#Assign sequence-numbers to syslogs in order that events occurred on
-
-conf t
-line console 0
-logging synchronous
-#Force Syslog messages to be displayed once configuration has been completed.
-
+FGVMEVMBF57GNJF3 # 
 ```
 
-*Note: in this scenario, we are sending syslogs from network devices to a containerised syslog-ng server using HTTP/HTTPS. This is Splunk team’s recommended method when using Splunk products. Alternatively, you can send syslogs from network devices to a rsyslog server and rotate the logs. This method is used by other SIEMs like Wazuh. For more details, refer to the Wazuh documentation.*  
+### **Testing FortiGate App**
+
+Navigate to Search & Reporting on Splunk web UI. Search for `index=*` and verify that you can see `fortigate_traffic` and `fortigate_event` as source type. Verify that most recent log’s source is `udp 5514`. If the source is still pointing to `sc4s`, restart the Splunk. 
+
+![image.png](image%2018.png)
+
+Search for `index=* sourcetype=fortigate_traffic` and `index=* sourcetype=fortigate_traffic`. Verify that most recent log’s source is `udp 5514` .
+
+![image.png](image%2019.png)
+
+![image.png](image%2020.png)
 
 ## **Installing Sysmon on Windows**
 
-Download [Sysmon](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon) and [sysmonconfig.xml](https://github.com/olafhartong/sysmon-modular/blob/master/sysmonconfig.xml)
-
-Extract Sysmon.zip and move sysmonconfig.xml into the Sysmon folder where Sysmon.exe is located.
-
-Run PowerShell as Administrator and change directory to path where extracted Sysmon is located
-
-Move sysmonconfig.xml to the same directory
-
-Install Symon by running `.\Sysmon64.exe -accepteula -i sysmonconfig.xml`
+Download [Sysmon](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon) and [sysmonconfig.xml](https://github.com/olafhartong/sysmon-modular/blob/master/sysmonconfig.xml). Extract Sysmon.zip and move sysmonconfig.xml into the Sysmon folder where Sysmon.exe is located. Run PowerShell as Administrator and change directory to path where extracted Sysmon is located. Install Symon by running the following command:
 
 ```bash
+.\Sysmon64.exe -accepteula -i sysmonconfig.xml
+```
+
+```bash
+#Example output
+
 PS C:\Users\Administrator\Downloads\Sysmon\Sysmon> ls
 
     Directory: C:\Users\Administrator\Downloads\Sysmon\Sysmon
@@ -824,13 +934,13 @@ Starting Sysmon64..
 Sysmon64 started.
 ```
 
-Verify that Sysmon is installed by checking Services (Sysmon64) and Windows EventViewer (Applications and Services Logs > Microsoft > Windows > Sysmon)
+Verify that Sysmon is installed by checking Services (Sysmon64) and Windows Event Viewer (Applications and Services Logs > Microsoft > Windows > Sysmon). 
 
-![image.png](image%2015.png)
+![image.png](image%2021.png)
 
-![image.png](image%2016.png)
+![image.png](image%2022.png)
 
-## **Installing Splunk Universal Forwarder on Windows**
+## **Installing Splunk UF on Windows**
 
 For installing the Splunk Universal Forwarder (UF) on Windows, there are three options:
 
@@ -846,19 +956,15 @@ This is Splunk’s recommended approach, but I encountered issues despite troubl
 
 While not a security best practice, this option works reliably without any issues.
 
-This documentation will cover **Options 1 and 2**, as Option 3 follows a similar process. Please choose the option that works best for your requirements.
+This documentation covers **Options 1 and 2**, as Option 3 follows a similar process. Please choose the option that works best for your requirements.
 
 ![splunk3.png](splunk3.png)
 
 ## **Installing Splunk UF with a Domain Account (Option 1)**
 
-### **Create a Domain Account**
+### **Creating a Domain Account**
 
-Note: in this lab, WS2019 host was joined to a domain called cyber.local and promoted as a domain controller. This step is applicable to a domain-joined environment. 
-
-Create a domain user called `splunk` and assign it as a member of `Event Log Readers Group`.
-
-This account will be used to run Splunk Forwarder. 
+In this lab, WS2019 host is joined to a domain called `cyber.local` and promoted as a domain controller. This step is applicable to a domain-joined environment. Create a domain user called `splunk` and assign it as a member of `Event Log Readers Group`. This account will be used to run Splunk Forwarder. 
 
 - Go to Active Directory Users and Computers > domain > Users
 - Right-click Users > New > User
@@ -866,308 +972,471 @@ This account will be used to run Splunk Forwarder.
 - Last name: (blank)
 - Full name: splunk
 - User logon name: splunk
-- Right-click splunk user > Properties > Member of > Add > Type Event Log Readers and click Check Names > OK > Apply and OK
-
-![image.png](image%2017.png)
-
-### **Configure RDP for domain user splunk (optional)**
-
-Note: in this lab, RDP configuration was required for the `splunk` user to login to WS2019 host. This step is optional. 
-
-If RDP needs to be configured and there is an error after configuring firewall and enabling RDP, edit group policy.
-
-Open Local Group Policy Editor by clicking Run > type `gpedit.msc`
-
-In the Local Group Policy Editor, navigate to Windows Settings > Security Settings > Local Policies > User Rights Assignment > Allow log on through Remote Desktop Services
-
-Add user splunk
-
-![image.png](image%2018.png)
-
-In the Local Group Policy Editor, navigate to Computer configuration > Windows Settings > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Connections > Allow users to connect remotely by using Remote Desktop Services >Enabled 
-
-![image.png](image%2019.png)
-
-Navigate to Remote Desktop Session Host > Security > Require user authentication for remote connections by using Network Level Authentication > Enabled
-
-![image.png](image%2020.png)
-
-In Server Manager, go to Local Server. Make sure Remote Desktop is Enabled. Click `Enabled` next to Remote Desktop.  Click Select Users. Add user `splunk`.
-
-![image.png](image%2021.png)
-
-Enable inbound firewall rules related to Remote Desktop
-
-![image.png](image%2022.png)
-
-RDP into WS2019 host as the splunk user from another internal host.
-
-### **Configuring Splunk UF for Domain Account**
-
-[Download](https://www.splunk.com/en_us/download/universal-forwarder.html) and transfer the Splunk Universal Forwarder msi for Windows.
-
-Run Universal Forwarder msi, accept license, select on-premise Splunk Enterprise instance, and click Customize Options
+- Right-click splunk user > Properties > Member of > Add > put `Event Log Readers` and click Check Names > OK > Apply and OK
 
 ![image.png](image%2023.png)
 
-Leave Path as default and click Next
+### **Configuring RDP (Optional)**
+
+In this lab, RDP configuration was required for the `splunk` user to login to WS2019 host. This step is optional. Open Local Group Policy Editor by clicking Run > type `gpedit.msc` . In the Local Group Policy Editor, navigate to Windows Settings > Security Settings > Local Policies > User Rights Assignment > Allow log on through Remote Desktop Services. Add user `splunk`.
 
 ![image.png](image%2024.png)
 
-Leave Certificate Password empty and click Next
+In the Local Group Policy Editor, navigate to Computer configuration > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Connections > Allow users to connect remotely by using Remote Desktop Services >Enabled.
 
 ![image.png](image%2025.png)
 
-Select Domain Account
-
-Note: using Virtual Account is recommended but you may encounter errors with the Virtual Account. Test your install with the Virtual Account before selecting Domain Account. 
-
-Refer to Annex 1. 
+Navigate to Remote Desktop Session Host > Security > Require user authentication for remote connections by using Network Level Authentication > Enabled.
 
 ![image.png](image%2026.png)
 
-Specify DOMAIN\splunk and password for the account
+In Server Manager, go to Local Server. Make sure Remote Desktop is Enabled. Click `Enabled` next to Remote Desktop.  Click Select Users. Add user `splunk`.
 
 ![image.png](image%2027.png)
 
-Leave permissions as default
+Enable inbound firewall rules related to Remote Desktop.
 
 ![image.png](image%2028.png)
 
-Leave everything unchecked and click Next
+RDP into `WS2019` host as the `splunk` user from another internal host.
+
+### **Configuring Splunk UF on Windows**
+
+Download and transfer the [Splunk Universal Forwarder (UF) (msi) for Windows](https://www.splunk.com/en_us/download/universal-forwarder.html). Run Universal Forwarder (msi), accept license, select on-premise Splunk Enterprise instance, and click Customize Options.
 
 ![image.png](image%2029.png)
 
-Create credentials for the administrator account.
-
-Note: in this lab, the administrator account for Splunk Universal Forwarder is also configured as splunk but this is different to the domain account splunk that has been created earlier.
+Leave Path as default and click Next
 
 ![image.png](image%2030.png)
 
-Enter IP address of your Deployment Server (Splunk server) and port 8089. Note the IP address in the screenshot points to the previous version of lab where Splunk server's IP address was 10.0.0.20.
+Leave Certificate Password empty and click Next
 
 ![image.png](image%2031.png)
 
-Enter IP address of your Receiving Indexer (Splunk server) and port 9997
+Select Domain Account.  
 
 ![image.png](image%2032.png)
 
-Click Install. Click Finish after install is complete.
+Specify domain\splunk and password for the account.
 
 ![image.png](image%2033.png)
 
-## **Creating a New Outbound Firewall Rule**
-
-Navigate to Windows Defender Firewall with Advanced Security 
-
-Right-click on Outbound Rules and select New Rule
-
-Select Program as Rule Type
+Leave permissions as default.
 
 ![image.png](image%2034.png)
 
-For program path, browse to C:\Program Files\SplunkUniversalForwarder\bin\splund.exe
+Leave everything unchecked and click Next.
 
 ![image.png](image%2035.png)
 
-Select Allow the Connection
+Create credentials for the administrator account. 
 
 ![image.png](image%2036.png)
 
-Check all boxes for Domain, Private and Public
+Enter IP address of Deployment Server (Splunk server) and port 8089. Note the IP address in the screenshot is different to the lab setup. 
 
 ![image.png](image%2037.png)
 
-Name the rule as Splunk outbound
+Enter IP address of Receiving Indexer (Splunk server) and port 9997.
 
 ![image.png](image%2038.png)
 
-Verify that yours Windows host is connected to the Deployment Server.
-
-On the Splunk Enterprise web UI (CentOS), go to Settings > Forwarder Management > Clients
-
-You should be able to see your Windows host
-
-**For Splunk v 9.4.0:**
+Click Install. Click Finish after install is complete.
 
 ![image.png](image%2039.png)
 
+### **Creating a New Outbound Firewall Rule**
+
+Navigate to Windows Defender Firewall with Advanced Security. Right-click on Outbound Rules and select New Rule. Select Program as Rule Type.
+
 ![image.png](image%2040.png)
 
-**For older versions:**
+For program path, browse to C:\Program Files\SplunkUniversalForwarder\bin\splunkd.exe
 
 ![image.png](image%2041.png)
 
-## **Installing Splunk Apps**
-
-Download the following Splunk Apps (tar archive files)
-
-- [Splunk Add-on for MS Windows](https://splunkbase.splunk.com/app/742)
-- [Splunk Add-on for Sysmon](https://splunkbase.splunk.com/app/5709)
-- [Splunk Add-on for Unix and Linux](https://splunkbase.splunk.com/app/833) (optional: applicable to Linux clients)
-
-![splunk4.png](splunk4.png)
-
-Install the add-ons (apps) on Splunk Enterprise web UI
-
-Go to Apps > Manage Apps > Install app from file > Upload the tar archive files. 
-
-Check Upgrade app. 
+Select Allow the Connection.
 
 ![image.png](image%2042.png)
 
+Check all boxes for Domain, Private and Public.
+
 ![image.png](image%2043.png)
+
+Name the rule as Splunk outbound
 
 ![image.png](image%2044.png)
 
+### **Verifying Agent Connection on Windows**
+
+Verify that yours Windows host is connected to the Deployment Server. On the Splunk Enterprise web UI, go to Settings > Forwarder Management. You should be able to see your Windows client. 
+
 ![image.png](image%2045.png)
-
-If there is an error while uploading the file, try uploading it again. 
-
-If prompted to set up the apps, click set up later.
 
 ![image.png](image%2046.png)
 
-Make sure Splunk Add-ons for Microsoft Windows and Sysmon are enabled.
+## **Installing Splunk UF on Linux**
 
-On terminal of the host where **Splunk Enterprise** is installed, verify that there are `Splunk_TA_microsoft_sysmon` and `Splunk_TA_windows` in `/opt/splunk/etc/apps` directory
+Download and transfer [Splunk UF (tar archive) for Linux](https://www.splunk.com/en_us/download/universal-forwarder.html). Unpack the tar archive to /opt directory as a standard user.
 
-Copy the apps to `/opt/splunk/etc/deployment-apps` directory
+```bash
+sudo tar xvzf splunkforwarder*.tgz -C /opt
+```
+
+Create a user called `splunk` and change the ownership of `/opt/splunkforwarder` to the `splunk` user.
+
+```bash
+sudo adduser splunk
+```
+
+```bash
+sudo chown -R splunk:splunk /opt/splunkforwarder/
+cd /opt
+ls -la
+```
+
+```bash
+#Example output
+total 12
+drwxr-xr-x  3 root   root   4096 Feb 27 11:00 .
+drwxr-xr-x 23 root   root   4096 Feb  1 03:42 ..
+drwxr-xr-x  9 splunk splunk 4096 Feb 21 07:30 splunkforwarder
+```
+
+### **Configuring Splunk UF on Linux**
+
+Switch to `splunk` user and start Splunk UF. When prompted, create admin credentials.
+
+```bash
+su splunk
+```
+
+```bash
+cd /opt/splunkforwarder/bin
+./splunk start --accept-license
+```
+
+In the `/opt/splunkforwarder/bin` directory, as the `splunk` user, run the following command to connect to Linux client (UF) the deployment server (Splunk Enterprise). 
+
+```bash
+./splunk set deploy-poll 10.0.0.100:8089
+```
+
+Verify that the deployment server's IP address in `deploymentclient.conf` (located in `/opt/splunkforwarder/etc/system/local/`) is correct.
+
+```bash
+cat /opt/splunkforwarder/etc/system/local/deploymentclient.conf
+```
+
+```bash
+#Example output
+[target-broker:deploymentServer]
+targetUri = 10.0.0.100:8089
+```
+
+Run the following command to add the forward-server as the Splunk Enterprise. We are essentially configuring UF to send logs to the listening port of Splunk Enterprise.
+
+```bash
+./splunk add forward-server 10.0.0.100:9997
+```
+
+Verify that the tcpout server’s IP address in `outputs.conf` (located in `/opt/splunkforwarder/etc/system/local`) is correct.
+
+```bash
+cat /opt/splunkforwarder/etc/system/local/outputs.conf
+```
+
+```bash
+#Example output
+[tcpout]
+defaultGroup = default-autolb-group
+
+[tcpout:default-autolb-group]
+server = 10.0.0.100:9997
+
+[tcpout-server://10.0.0.100:9997]
+```
+
+Restart Splunk Forwarder for changes to take effect.
+
+```bash
+./splunk restart
+```
+
+### **Verifying Agent Connection on Linux**
+
+On web UI of Splunk Enterprise, go to settings, forwarder management. We should be able to see our Linux client (UF). If Linux client doesn’t appear, try refreshing the web browser or restart Splunk Enterprise.
+
+![image.png](image%2047.png)
+
+![image.png](image%2048.png)
+
+## **Installing Splunk Apps**
+
+Earlier, we downloaded the following Splunk Apps (tar archive files)
+
+- [Splunk Add-on for MS Windows](https://splunkbase.splunk.com/app/742)
+- [Splunk Add-on for Sysmon](https://splunkbase.splunk.com/app/5709)
+- [Fortinet FortiGate Add-on for Splunk](https://splunkbase.splunk.com/app/2846) (optional: required if ingesting FortiGate logs through this app)
+- [Splunk Add-on for Unix and Linux](https://splunkbase.splunk.com/app/833)
+
+![4.png](4.png)
+
+Install the add-ons (apps) on Splunk Enterprise web UI. Go to Apps > Manage Apps > Install app from file > Upload the tar archive files. Check Upgrade app. 
+
+![image.png](image%2049.png)
+
+![image.png](image%2050.png)
+
+![image.png](image%2051.png)
+
+![image.png](image%2052.png)
+
+If prompted to set up the apps, click set up later.
+
+![image.png](image%2053.png)
+
+On terminal of the **Splunk VM** where **Splunk Enterprise** is installed, verify that there are Windows, Sysmon, Linux and FortiGate Apps in the `/opt/splunk/etc/apps` directory. Copy the apps to `/opt/splunk/etc/deployment-apps` directory.
 
 ```bash
 cd /opt/splunk/etc/apps
 cp -r Splunk_TA_* /opt/splunk/etc/deployment-apps/
 ```
 
-Verify that the apps are shown in the Splunk Enterprise web UI
-
-Go to Settings > Forwarder Management > Configurations
-
-![image.png](image%2047.png)
-
-## **Configuring Unix and Linux App (optional)**
-
-**Note: this step is applicable if you installed Splunk_TA_nix app.**
-
-On the same page, next to the apps, click Edit under Actions for Splunk_TA_nix.
-
-Select Restart Splunkd After Installation, create a New Server Class called nix, and click Save
-
-![Untitled](Untitled%203.png)
-
-![Untitled](Untitled%204.png)
-
-Add Apps
-
-![Untitled](Untitled%205.png)
-
-Select Splunk_TA_nix and click Save
-
-![Untitled](Untitled%206.png)
-
-Add Clients
-
-![Untitled](Untitled%207.png)
-
-In the Include, put *, and in filter by Machine Type, add linux-x86_64
-
-Click Preview
-
-You should see a tick next to your Linux host and your Linux host should appear under Matched
-
-Click Save
-
-![image.png](image%2048.png)
-
-Go to Forwarder Management and verify that your Linux host is connected to Splunk_TA_nix Apps and nix Server Class
-
-![image.png](image%2049.png)
-
-If the settings are not applied try reloading the deployment server 
-
-On the terminal of the host where Splunk Enterprise is installed, run the command
-
-```bash
-
-splunk@siem:/opt/splunk/bin# ./splunk reload deploy-server
-```
-
-## **Configuring Windows and Sysmon Apps**
-
-### **For Splunk v 9.4.0:**
-
-Navigate to Groups / Server Classes > New server class. 
-
-Add a new server class called win and click Save.
-
-![image.png](image%2050.png)
-
-Click the win server class. Navigate to Agents > Edit agent assignment.
-
-![image.png](image%2051.png)
-
-Put * in Include, and filter by windows-x64. Click Preview and make sure you can see a tick next to the hostname of the client. Click Save.
-
-![image.png](image%2052.png)
-
-Navigate to win server class configurations > Edit configurations.
-
-![image.png](image%2053.png)
-
-Add Apps and select Splunk_TA_windows and Splunk_TA_micorsoft_sysmon. Click Save
+Verify that the apps are shown in the Splunk Enterprise web UI. Go to Settings > Forwarder Management > Configurations.
 
 ![image.png](image%2054.png)
 
-On the win server class configurations page, click Splunk_TA_windows.
+## **Creating Indexes for Apps**
+
+Create indexes on the web UI. Your index name must match with index name in `inputs.conf` in each app. Go to settings > indexes > New Index. 
+
+| **Index Name** | wineventlog | sysmonlog | unixlog (optional) |
+| --- | --- | --- | --- |
+| **Index Data Type** | Events | Events | Events |
+| **Max Size of entire Index** | 1 GB (Default is 500 GB so adjust accordingly) | 1 GB (Default is 500 GB so adjust accordingly) | 1 GB (Default is 500 GB so adjust accordingly) |
+| **Enable Reduction** | Enable (optional) | Enable (optional) | Enable (optional) |
+| **Reduce tisdx files older than** |  90 days |  90 days |  90 days |
+
+Verify that indexes have been created and enabled.
 
 ![image.png](image%2055.png)
 
-Click on the toggle switch for Restart Agent.
+![Untitled](Untitled.png)
 
 ![image.png](image%2056.png)
 
-Navigate back to the win server class configurations page and repeat the same process for Splunk_TA_micorsoft_sysmon. 
+## **Configuring Linux App**
+
+### **For Splunk UF v9.4.0 and above:**
+
+Navigate to Groups / Server Classes > New server class. Add a new server class called nix and click Save.
 
 ![image.png](image%2057.png)
 
-Navigate back to the **Win Server Class Configurations** page. Verify that the **Deployment Status** for both the **Windows** and **Sysmon** apps shows as successful. This process may take some time, so try refreshing the page periodically.
+Click the nix server class. Navigate to Agents > Edit agent assignment.
 
 ![image.png](image%2058.png)
 
-### **For older versions of Splunk:**
-
-On the Forwarder Management page of the web UI, click Edit under Actions for Splunk_TA_windows
-
-Select Restart Splunkd After Installation, add New Server Class called win, and click Save
-
-![Untitled](Untitled%208.png)
-
-Click Add Apps and select Splunk_TA_windows and Splunk_TA_micorsoft_sysmon. Click Save
+Put * in Include, and filter by linux-x86_64. Click Preview and make sure you can see a tick next to the hostname of the client. Click Save.
 
 ![image.png](image%2059.png)
 
-Click Add Clients. Put * in Include, and filter by windows-x64. Click Preview and Save.
+Navigate to nix server class configurations > Edit configurations.
 
 ![image.png](image%2060.png)
 
-You should see Restart Splunkd in the After installation column. 
-
-If only Enable App is shown, Edit each app and select Restart Splunkd.
+Select Splunk_TA_nix, add to Assigned Applications, then click Save.
 
 ![image.png](image%2061.png)
 
+On the nix server class configurations page, click Splunk_TA_nix.
+
 ![image.png](image%2062.png)
 
-Verify the configuration in the Forwarder Management
+Click on the toggle switch for Restart Agent.
 
 ![image.png](image%2063.png)
 
+Navigate back to the nix server class configurations page. Verify that the Deployment Status for Linux app shows as successful. This process may take some time, so try refreshing the page periodically.
+
 ![image.png](image%2064.png)
+
+### **For older versions of Splunk UF:**
+
+On the Forwarder Management page of the web UI, click Edit under Actions for Splunk_TA_nix. Select Restart Splunkd After Installation, create a New Server Class called nix, and click Save
+
+![Untitled](Untitled%201.png)
+
+![Untitled](Untitled%202.png)
+
+Click Add Apps and select Splunk_TA_nix. Click Save.
+
+![Untitled](Untitled%203.png)
+
+Click Add Clients. Put * in include, and filter by linux-x86_64. Click Preview and Save. 
+
+![image.png](image%2065.png)
+
+You should see Restart Splunkd in the After installation column. If only Enable App is shown, Edit each app and select Restart Splunkd. Verify the configuration in the Forwarder Management.
+
+![image.png](image%2066.png)
+
+If the settings are not applied try reloading the deployment server.
+
+```bash
+
+./splunk reload deploy-server
+```
+
+## **Editing Config Files for Linux App**
+
+On the Splunk VM where **Splunk Enterprise** is installed, change into `/opt/splunk/etc/deployment-apps/Splunk_TA_nix/local` ****directory. Copy `app.conf`, `inputs.conf` and `props.conf` from `/opt/splunk/etc/deployment-apps/Splunk_TA_nix/default` ****directory.
+
+```bash
+cd /opt/splunk/etc/deployment-apps/Splunk_TA_nix/local
+cp /opt/splunk/etc/deployment-apps/Splunk_TA_nix/default/app.conf .
+cp /opt/splunk/etc/deployment-apps/Splunk_TA_nix/default/inputs.conf .
+cp /opt/splunk/etc/deployment-apps/Splunk_TA_nix/default/props.conf .
+```
+
+Make the following changes to inputs.conf: 
+
+```bash
+nano inputs.conf
+```
+
+```bash
+[default]
+index = unixlog
+...
+[monitor:///var/log]
+whitelist=(\.log|log$|messages|secure|auth|mesg$|cron$|acpid$|\.out)
+blacklist=(lastlog|anaconda\.syslog)
+disabled = 0
+...
+```
+
+On the **Ubuntu VM** where **Splunk UF** is installed, navigate to `/opt/splunkforwarder/etc/apps/Splunk_TA_nix/local` directory. Copy app.conf, inputs.conf and props.conf from `/opt/splunkforwarder/etc/apps/Splunk_TA_nix/default` directory.
+
+```bash
+cd /opt/splunkforwarder/etc/apps/Splunk_TA_nix/local
+cp /opt/splunkforwarder/etc/apps/Splunk_TA_nix/default/app.conf .
+cp /opt/splunkforwarder/etc/apps/Splunk_TA_nix/default/inputs.conf .
+cp /opt/splunkforwarder/etc/apps/Splunk_TA_nix/default/props.conf .
+```
+
+Edit inputs.conf (same as above). Make the following changes to inputs.conf: 
+
+```bash
+nano inputs.conf
+```
+
+```bash
+[default]
+index = unixlog
+...
+[monitor:///var/log]
+whitelist=(\.log|log$|messages|secure|auth|mesg$|cron$|acpid$|\.out)
+blacklist=(lastlog|anaconda\.syslog)
+disabled = 0
+...
+```
+
+Restart Splunk Universal Forwarder.
+
+```bash
+cd /opt/splunkforwarder/bin
+./splunk restart
+```
+
+On the **Ubuntu VM** where **Splunk UF** is installed, recursively change the ownership of `/var/log` directory to `splunk:splunk` 
+
+```bash
+sudo chown -R splunk:splunk /var/log
+```
+
+On the Splunk Enterprise web interface, verify that data is being indexed on **unixlog**.
+
+```bash
+index="unixlog"
+```
+
+![image.png](image%2067.png)
+
+![image.png](image%2068.png)
+
+## **Configuring Windows and Sysmon Apps**
+
+### **For Splunk v 9.4.0 and above:**
+
+Navigate to Groups / Server Classes > New server class. Add a new server class called win and click Save.
+
+![image.png](image%2069.png)
+
+Click the win server class. Navigate to Agents > Edit agent assignment.
+
+![image.png](image%2070.png)
+
+Put * in Include, and filter by windows-x64. Click Preview and make sure you can see a tick next to the hostname of the client. Click Save.
+
+![image.png](image%2071.png)
+
+Navigate to win server class configurations > Edit configurations.
+
+![image.png](image%2072.png)
+
+Add Apps and select Splunk_TA_windows and Splunk_TA_micorsoft_sysmon. Click Save.
+
+![image.png](image%2073.png)
+
+On the win server class configurations page, click Splunk_TA_windows.
+
+![image.png](image%2074.png)
+
+Click on the toggle switch for Restart Agent.
+
+![image.png](image%2075.png)
+
+Navigate back to the win server class configurations page and repeat the same process for Splunk_TA_micorsoft_sysmon. 
+
+![image.png](image%2076.png)
+
+Navigate back to the win server class Configurations page. Verify that the Deployment Status for both the Windows and Sysmon apps shows as successful. This process may take some time, so try refreshing the page periodically.
+
+![image.png](image%2077.png)
+
+### **For older versions of Splunk:**
+
+On the Forwarder Management page of the web UI, click Edit under Actions for Splunk_TA_windows. Select Restart Splunkd After Installation, add New Server Class called win, and click Save
+
+![Untitled](Untitled%204.png)
+
+Click Add Apps and select Splunk_TA_windows and Splunk_TA_micorsoft_sysmon. Click Save.
+
+![image.png](image%2078.png)
+
+Click Add Clients. Put * in Include, and filter by windows-x64. Click Preview and Save.
+
+![image.png](image%2079.png)
+
+You should see Restart Splunkd in the After installation column. If only Enable App is shown, Edit each app and select Restart Splunkd.
+
+![image.png](image%2080.png)
+
+![image.png](image%2081.png)
+
+Verify the configuration in the Forwarder Management.
+
+![image.png](image%2082.png)
+
+![image.png](image%2083.png)
 
 If the configuration is not applied, try reloading the deployment-server
 
 ```bash
-splunk@siem:/opt/splunk/bin# ./splunk reload deploy-server
+./splunk reload deploy-server
 ```
 
 Verify that `/opt/splunk/etc/system/local/serverclass.conf` aligns with our configuration so far
@@ -1192,32 +1461,9 @@ machineTypesFilter = windows-x64
 whitelist.0 = *
 ```
 
-## **Creating Indexes**
+## **Editing Config Files for Windows App**
 
-Create indexes on the web UI.
-
-Note: your index name must match with index name in inputs.conf in each app.
-
-Go to settings > indexes > New Index
-
-| **Index Name** | wineventlog | sysmonlog | unixlog (optional) |
-| --- | --- | --- | --- |
-| **Index Data Type** | Events | Events | Events |
-| **Max Size of entire Index** | 1 GB (Default is 500 GB so adjust accordingly) | 1 GB (Default is 500 GB so adjust accordingly) | 1 GB (Default is 500 GB so adjust accordingly) |
-| **Enable Reduction** | Enable (optional) | Enable (optional) | Enable (optional) |
-| **Reduce tisdx files older than** |  90 days |  90 days |  90 days |
-
-Verify that indexes have been created and enabled
-
-![image.png](image%2065.png)
-
-![Untitled](Untitled%209.png)
-
-![image.png](image%2066.png)
-
-## **Edit config files for Windows app**
-
-On the Linux host where Splunk Enterprise is installed, change into `opt/splunk/etc/deployment-apps/Splunk_TA_windows/local` directory
+On the **Splunk VM** where **Splunk Enterprise** is installed, change into `opt/splunk/etc/deployment-apps/Splunk_TA_windows/local` directory
 
 Copy `app.conf` ****and `inputs.conf` from `/opt/splunk/etc/deployment-apps/Splunk_TA_windows/default` ****directory
 
@@ -1234,52 +1480,48 @@ nano inputs.conf
 ```
 
 ```bash
-**[default]
-index = wineventlog**
+[default]
+index = wineventlog
 
 ###### OS Logs ######
 [WinEventLog://Application]
-**disabled = 0**
+disabled = 0
 start_from = oldest
 current_only = 0
 checkpointInterval = 5
-**renderXml=false** 
+renderXml=false 
 
 [WinEventLog://Security]
-**disabled = 0**
+disabled = 0
 start_from = oldest
 current_only = 0
 evt_resolve_ad_obj = 1
 checkpointInterval = 5
 blacklist1 = EventCode="4662" Message="Object Type:(?!\s*groupPolicyContainer)"
 blacklist2 = EventCode="566" Message="Object Type:(?!\s*groupPolicyContainer)"
-**renderXml=false** 
+renderXml=false 
 
 [WinEventLog://System]
-**disabled = 0**
+disabled = 0
 start_from = oldest
 current_only = 0
 checkpointInterval = 5
-**renderXml=false**
+renderXml=false
 ```
 
-On WS2019 host where Splunk Universal Forwarder is configured, navigate to 
+On WS2019 host where Splunk Universal Forwarder is configured, navigate to `C:\Program Files\SplunkUniversalForwarder\etc\apps\Splunk_TA_windows\local` . Copy `app.conf` and `inputs.conf` from `C:\Program Files\SplunkUniversalForwarder\etc\apps\Splunk_TA_windows\default` . Edit `inputs.conf` (same as above). Open the Notepad or Wordpad as administrator and edit the inputs.conf file.
 
-`C:\Program Files\SplunkUniversalForwarder\etc\apps\Splunk_TA_windows\local`
+![image.png](image%2084.png)
 
-Copy `app.conf` and `inputs.conf` from `C:\Program Files\SplunkUniversalForwarder\etc\apps\Splunk_TA_windows\default`
+Restart Splunk Universal Forwarder. On PowerShell, change directory into `C:\program files\SplunkUniversalForwarder\bin` . Run `./splunk restart`
 
-Edit `inputs.conf` (same as above)
+```powershell
+cd "C:\program files\SplunkUniversalForwarder\bin"
+./splunk restart
+```
 
-![image.png](image%2067.png)
-
-Restart Splunk Universal Forwarder
-
-On PowerShell, change directory into `C:\program files\SplunkUniversalForwarder\bin`
-
-Run `./splunk restart`
-
-```python
+```powershell
+#Example output
 PS C:\Users\Administrator> cd "C:\program files\SplunkUniversalForwarder\bin"
 PS C:\program files\SplunkUniversalForwarder\bin> ./splunk restart
 SplunkForwarder: Stopped
@@ -1302,25 +1544,21 @@ SplunkForwarder: Starting (pid 2328)
 Done
 ```
 
-Verify that data is being forwarded on wineventlog index
+Verify that data is being forwarded on **wineventlog** index. On web UI, navigate to Settings > Indexes and refresh the page. Go to Apps > Search & Reporting > Search for `index=wineventlog` .
 
-On web UI, navigate to Settings > Indexes and refresh the page
+```bash
+index="wineventlog"
+```
 
-Go to Apps > Search & Reporting > Search for index=wineventlog
+![image.png](image%2085.png)
 
-![image.png](image%2068.png)
-
-![image.png](image%2069.png)
+![image.png](image%2086.png)
 
 If the logs are not being indexed, try refreshing the web UI. 
 
-If searching for `index=wineventlog` does not return any result, try searching All time instead of Last 24 hours.
+## **Editing Config Files for Sysmon App**
 
-## **Edit config files for Sysmon app**
-
-On CentOS host where Splunk Enterprise is installed, change into `/opt/splunk/etc/deployment-apps/Splunk_TA_microsoft_sysmon/local` ****directory
-
-Copy `app.conf` and `inputs.conf` from `/opt/splunk/etc/deployment-apps/Splunk_TA_microsoft_sysmon/default` directory
+On the **Splunk VM** where **Splunk Enterprise** is installed, change into `/opt/splunk/etc/deployment-apps/Splunk_TA_microsoft_sysmon/local` ****directory. Copy `app.conf` and `inputs.conf` from `/opt/splunk/etc/deployment-apps/Splunk_TA_microsoft_sysmon/default` directory.
 
 ```bash
 cd /opt/splunk/etc/deployment-apps/Splunk_TA_microsoft_sysmon/local
@@ -1328,17 +1566,15 @@ cp /opt/splunk/etc/deployment-apps/Splunk_TA_microsoft_sysmon/default/app.conf .
 cp /opt/splunk/etc/deployment-apps/Splunk_TA_microsoft_sysmon/default/inputs.conf .
 ```
 
-Make the following changes to `inputs.conf`
+Make the following changes to `inputs.conf` . Your index name must match with the index name you created earlier
 
 ```python
 nano inputs.conf
 ```
 
-Note: your index name must match with the index name you created earlier
-
 ```bash
-**[default]
-index = sysmonlog**
+[default]
+index = sysmonlog
 
 [WinEventLog://Microsoft-Windows-Sysmon/Operational]
 disabled = false
@@ -1355,21 +1591,19 @@ host = WinEventLogForwardHost
 
 On WS2019 host where Splunk Universal Forwarder is configured, navigate to 
 
-`C:\Program Files\SplunkUniversalForwarder\etc\apps\Splunk_TA_microsoft_sysmon\local`
+`C:\Program Files\SplunkUniversalForwarder\etc\apps\Splunk_TA_microsoft_sysmon\local` . Copy `app.conf` and `inputs.conf` from `C:\Program Files\SplunkUniversalForwarder\etc\apps\Splunk_TA_microsoft_sysmon\default` . Edit `inputs.conf` (same as above) 
 
-Copy `app.conf` and `inputs.conf` from `C:\Program Files\SplunkUniversalForwarder\etc\apps\Splunk_TA_microsoft_sysmon\default`
+![image.png](image%2087.png)
 
-Edit `inputs.conf` (same as above) 
+Restart Splunk Universal Forwarder. On PowerShell, change directory into `C:\program files\SplunkUniversalForwarder\bin` . Run `./splunk restart` .
 
-![image.png](image%2070.png)
+```powershell
+cd "C:\program files\SplunkUniversalForwarder\bin"
+./splunk restart
+```
 
-Restart Splunk Universal Forwarder
-
-On PowerShell, change directory into `C:\program files\SplunkUniversalForwarder\bin`
-
-Run `./splunk restart`
-
-```python
+```powershell
+#Example output
 PS C:\program files\SplunkUniversalForwarder\bin> ./splunk restart
 SplunkForwarder: Stopped
 
@@ -1393,144 +1627,88 @@ Done
 PS C:\program files\SplunkUniversalForwarder\bin>
 ```
 
-Verify that Sysmon logs are being indexed
+Verify that Sysmon logs are being indexed. 
 
-![image.png](image%2071.png)
+![image.png](image%2088.png)
 
 Search for `index=sysmonlog source=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational`
 
-![image.png](image%2072.png)
-
-## **Edit config files for Unix app (optional)**
-
-On a Linux host where Splunk Enterprise is installed, change into `/opt/splunk/etc/deployment-apps/Splunk_TA_nix/local` ****directory
-
-Copy app.conf, inputs.conf and props.conf from `/opt/splunk/etc/deployment-apps/Splunk_TA_nix/default` ****directory
-
 ```bash
-splunk@siem:/opt/splunk/etc/deployment-apps/Splunk_TA_nix/local$ cp /opt/splunk/etc/deployment-apps/Splunk_TA_nix/default/app.conf .
-splunk@siem:/opt/splunk/etc/deployment-apps/Splunk_TA_nix/local$ cp /opt/splunk/etc/deployment-apps/Splunk_TA_nix/default/inputs.conf .
-splunk@siem:/opt/splunk/etc/deployment-apps/Splunk_TA_nix/local$ cp /opt/splunk/etc/deployment-apps/Splunk_TA_nix/default/props.conf .
-
+index=sysmonlog source=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
 ```
 
-Make the following changes to inputs.conf
+![image.png](image%2089.png)
 
-Add your index name
+## **Annex: Installing Splunk UF on Windows with a Virtual Account**
 
-```bash
-**[default]
-index = unixlog**
-...
-[monitor:///var/log]
-whitelist=(\.log|log$|messages|secure|auth|mesg$|cron$|acpid$|\.out)
-blacklist=(lastlog|anaconda\.syslog)
-**disabled = 0**
-...
-```
+Selecting Virtual Account will create a service account called `NT SERVICE\SplunkForwarder`. For Sysmon Log Forwarding to work, `NT SERVCIE\SplunkForwarder` must be assigned as a member of Event Log Readers group through Group Policy. If your Windows host is not joined to a domain and you have technical issues with the Virtual Account, use Local System but note that this is not best security practice. 
 
-On CentOShost where UF is configured, navigate to `/opt/splunkforwarder/etc/apps/Splunk_TA_nix/local` directory
-
-Copy app.conf, inputs.conf and props.conf from `/opt/splunkforwarder/etc/apps/Splunk_TA_nix/default` directory
-
-```python
-splunk@siem3:/opt/splunkforwarder/etc/apps/Splunk_TA_nix/local$ cp /opt/splunkforwarder/etc/apps/Splunk_TA_nix/default/app.conf .
-splunk@siem3:/opt/splunkforwarder/etc/apps/Splunk_TA_nix/local$ cp /opt/splunkforwarder/etc/apps/Splunk_TA_nix/default/inputs.conf .
-splunk@siem3:/opt/splunkforwarder/etc/apps/Splunk_TA_nix/local$ cp /opt/splunkforwarder/etc/apps/Splunk_TA_nix/default/props.conf .
-```
-
-Edit inputs.conf (same as above)
-
-Restart Splunk Universal Forwarder
-
-```bash
-cd /opt/splunkuniversalforwarder/bin
-./splunk restart
-```
-
-Verify data being indexed
-
-![image.png](image%2073.png)
-
-![image.png](image%2074.png)
-
-## **Annex 1: Installing Splunk UF with a Virtual Account (Option 2)**
-
-Selecting Virtual Account will create a service account called NT SERVICE\SplunkForwarder. For Sysmon Log Forwarding to work, NT SERVCIE\SplunkForwarder must be assigned as a member of Event Log Readers group through Group Policy. If your Windows host is not joined to a domain and you have technical issues with the Virtual Account, use Local System but note that this is not best security practice. 
-
-![image.png](image%2075.png)
+![image.png](image%2090.png)
 
 Leave the values as default and click Next
 
-![image.png](image%2076.png)
+![image.png](image%2091.png)
 
-Leave the values as default and click Next (Windows Event Logs forwarding will be configured later)
+Leave the values as default and click Next (Windows Event Logs forwarding will be configured later).
 
-![image.png](image%2077.png)
+![image.png](image%2092.png)
 
-Create admin credentials
+Create admin credentials.
 
-![image.png](image%2030.png)
+![image.png](image%2036.png)
 
-Enter IP address of your Deployment Server (Splunk server) and port 8089
+Enter IP address of your Deployment Server (Splunk server) and port 8089.
 
-![image.png](image%2031.png)
+![image.png](image%2037.png)
 
-Enter IP address of your Receiving Indexer (Splunk server) and port 9997
+Enter IP address of your Receiving Indexer (Splunk server) and port 9997.
 
-![image.png](image%2032.png)
+![image.png](image%2038.png)
 
-Click Next and finish install. 
+Click Next and finish install. Navigate to C:\Program Files\SplunkUniversalForwarder. Right-click and select properties. Verify that Splunk Universal Forwarder is configured to run by virtual account SplunkForwarder.
 
-Navigate to C:\Program Files\SplunkUniversalForwarder
+![image.png](image%2093.png)
 
-Right-click and select properties
+Open Group Policy Management. Right click on domain name and select Create a GPO in this domain and link it here.
 
-Verify that Splunk Universal Forwarder is configured to run by virtual account SplunkForwarder
+![image.png](image%2094.png)
 
-![image.png](image%2078.png)
+Name it as Restricted Groups.
 
-Open Group Policy Management
+![image.png](image%2095.png)
 
-Right click on domain name and select Create a GPO in this domain and link it here
+Right click on Restricted Groups and click Edit.
 
-![image.png](image%2079.png)
+![image.png](image%2096.png)
 
-Name it as Restricted Groups
+Navigate to Restricted Groups and Add Group.
 
-![image.png](image%2080.png)
+![image.png](image%2097.png)
 
-Right click on Restricted Groups and click Edit
+Click Browse.
 
-![image.png](image%2081.png)
+![image.png](image%2098.png)
 
-Navigate to Restricted Groups and Add Group
+Type event log readers and click Check Names. Make sure that the names is underlined. Click OK.
 
-![image.png](image%2082.png)
+![image.png](image%2099.png)
 
-Click Browse
+Add NT SERVICE\SplunkForwarder as a member of this group. Click OK. Click Apply and OK.
 
-![image.png](image%2083.png)
+![image.png](image%20100.png)
 
-Type event log readers and click Check Names
+Verify the configuration.
 
-Make sure that the names is underlined. Click OK
+![image.png](image%20101.png)
 
-![image.png](image%2084.png)
+On Command Prompt as Administrator run the following command to update Group Policy:
 
-Add NT SERVICE\SplunkForwarder as a member of this group
+```powershell
+gpupdate /force
+```
 
-Click OK. Click Apply and OK
-
-![image.png](image%2085.png)
-
-Verify the configuration
-
-![image.png](image%2086.png)
-
-On Command Prompt as Administrator run gpupdate /force
-
-```python
+```powershell
+#Example output
 C:\Users\Administrator>gpupdate /force
 Updating policy...
 
@@ -1538,214 +1716,198 @@ Computer Policy update has completed successfully.
 User Policy update has completed successfully.
 ```
 
-Restart SplunkForwarder service. 
+Restart Splunk UF. If Sysmon logs are not being ingested by Splunk, check Channel Access setting for Sysmon. It is likely that SplunkForwarder is not added to the Channel Access.
 
-Go to Services > SplunkForwarder > Right-click and select restart
-
-![image.png](image%2087.png)
-
-If Sysmon logs are not being ingested by Splunk, check Channel Access setting for Sysmon.
-
-It is likely that SplunkForwarder is not added to the Channel Access.
-
-```python
+```powershell
 wevtutil gl "Microsoft-Windows-Sysmon/Operational"
 ```
 
-Get SecurityIdentifier(sid) of SplunkForwarder by running this PowerShell script
+Get SecurityIdentifier(sid) of SplunkForwarder by running this PowerShell script.
 
-```python
+```powershell
 $user = [System.Security.Principal.NTAccount]"NT SERVICE\SplunkForwarder"
 $sid = $user.Translate([System.Security.Principal.SecurityIdentifier])
 Write-Output $sid.Value
 ```
 
-Add SplunkForwarder to Channel Access bu running the command below
-
-*Note: add your sid of SplunkForwarder
+Add SplunkForwarder to Channel Access by running the command below. Add your sid of SplunkForwarder
 
 ```python
-wevtutil sl "Microsoft-Windows-Sysmon/Operational" /ca:"O:BAG:SYD:(A;;0x2;;;S-1-15-2-1)(A;;0x2;;;**S-1-5-80-972488765-139171986-783781252-3188962990-3730692313**)(A;;0xf0007;;;SY)(A;;0x7;;;BA)(A;;0x1;;;BO)(A;;0x1;;;SO)(A;;0x1;;;S-1-5-32-573)"
+wevtutil sl "Microsoft-Windows-Sysmon/Operational" /ca:"O:BAG:SYD:(A;;0x2;;;S-1-15-2-1)(A;;0x2;;;S-1-5-80-972488765-139171986-783781252-3188962990-3730692313)(A;;0xf0007;;;SY)(A;;0x7;;;BA)(A;;0x1;;;BO)(A;;0x1;;;SO)(A;;0x1;;;S-1-5-32-573)"
 ```
 
-Restart SplunkForwarder Service
-
-## **Annex 2: Configure Splunk UF on Linux (optional)**
-
-Note: this step is optional and is only applicable to Linux host. In this demonstration, Ubuntu was used for two hosts. Splunk Enterprise was configured in one host and Splunk Universal Forwarder was configured in another host. 
-
-**Demonstration Setup**
-
-| **Hostname** | **OS** | **Role** | **IP Address** |
-| --- | --- | --- | --- |
-| siem | Ubuntu 22.04 LTS | Splunk Enterprise (server) | 192.168.1.217 |
-| siem3 | Ubuntu 22.04 LTS | Splunk Universal Forwarder (client) | 192.168.1.117 |
-
-Download or transfer Splunk Universal Forwarder (tar archive)
-
-Unpack the tar archive to /opt directory as a non-root user
-
-```bash
-sudo tar xvzf Splunk_UF_package_name.tgz -C /opt
-```
-
-Create a user called splunk and change the ownership of /opt/splunkforwarder/bin to splunk user
-
-```bash
-#Create user splunk 
-sudo su -
-root@siem3:~# adduser splunk
-Adding user `splunk' ...
-Adding new group `splunk' (1001) ...
-Adding new user `splunk' (1001) with group `splunk' ...
-Creating home directory `/home/splunk' ...
-Copying files from `/etc/skel' ...
-New password: 
-Retype new password: 
-passwd: password updated successfully
-Changing the user information for splunk
-Enter the new value, or press ENTER for the default
-	Full Name []: 
-	Room Number []: 
-	Work Phone []: 
-	Home Phone []: 
-	Other []: 
-Is the information correct? [Y/n] Y 
-
-#make the splunk user the owner of the splunk directory and verify
-siem@siem3:~$ sudo chown -R splunk:splunk /opt/splunkforwarder/
-siem@siem3:~$ cd /opt
-siem@siem3:/opt$ ls -la
-total 12
-drwxr-xr-x  3 root   root   4096 Aug 13 10:05 .
-drwxr-xr-x 20 root   root   4096 Aug 13 07:48 ..
-drwxr-xr-x  9 splunk splunk 4096 Jul 20 10:23 splunkforwarder
-
-siem@siem3:/opt$ **su splunk**
-Password: 
-splunk@siem3:/opt$ cd splunkforwarder/bin
-splunk@siem3:/opt/splunkforwarder/bin$ ./splunk start --accept-license
-#Create admin credentials (i.e. user account for UF, e.g. splunk:password)
-
-#At some point after the setup, enable boot-start by running
-siem@siem3:/opt/splunkforwarder/bin$ sudo ./splunk enable boot-start
-```
-
-**Connect to the deployment server**
-
-Deployment server allows engineers/system admins to push out apps to multiple splunk instances and apps is easier way to handle changes (e.g. changes in config)
-
-```bash
-splunk@siem3:/opt/splunkforwarder/bin$ ./splunk set deploy-poll 192.168.1.217:8089
-#Enter admin credentials
-```
-
-Verify that there is deploymentclient.conf in /opt/splunkforwarder/etc/system/local
-
-```bash
-cat /opt/splunkforwarder/etc/system/local/deploymentclient.conf
-...
-targetUri = 192.168.1.217:8089
-```
-
-Setup Splunk to send logs to another location by adding forward server
-
-```bash
-splunk@siem3:/opt/splunkforwarder/bin$ ./splunk add forward-server 192.168.1.217:9997
-```
-
-Verify that there is outputs.conf in /opt/splunkforwarder/etc/system/local
-
-```bash
-cat /opt/splunkforwarder/etc/system/local/outputs.conf
-...
-server = 192.168.1.217:9997
-```
-
-Restart Splunk Forwarder for changes to take effect
-
-```bash
-splunk@siem3:/opt/splunkforwarder/bin$ ./splunk restart
-```
-
-On web UI of Splunk Enterprise, go to settings, forwarder management.
-
-You should be able to see your host machine that has been connected to your deployment server.
-
-Try refreshing the web browser or restart Splunk Enterprise
-
-```bash
-splunk@siem:/opt/splunk/bin$ ./splunk restart
-```
-
-![image.png](image%2088.png)
-
-## **Annex 3: Manual configuration of data input on Linux host**
-
-Note: this step is optional and is only applicable to Linux host. In this demonstration, apache2 have been started on siem3 host and apache logs are being forwarded.
-
-**Demonstration Setup**
-
-| **Hostname** | **OS** | **Role** | **IP Address** |
-| --- | --- | --- | --- |
-| siem | Ubuntu 22.04 LTS | Splunk Enterprise (server) | 192.168.1.217 |
-| siem3 | Ubuntu 22.04 LTS | Splunk Universal Forwarder (client) | 192.168.1.117 |
-
-Add data that you want to forward to the UF using add monitor command
-
-```bash
-./splunk add monitor -auth splunk:password /var/log/apache2
-```
-
-Verify that data is being indexed (i.e. forwarded) on Splunk Enterprise
-
-Navigate to Splunk Enterprise web UI > Search & Reporting > Data Summary
+Restart Splunk UF.
 
 ## **Introduction to Splunk**
 
 Splunk offers free training. You will need to create a user account to access [free training materials](https://www.splunk.com/en_us/training/course-catalog.html?sort=Newest&filters=filterGroup1FreeCourses). The following content is available from the free course “Introduction to Splunk.” Alternatively, same contents are available from [SplunkHowTo YouTube channel](https://www.youtube.com/@SplunkHowTo).
 
-## **Creating Reports**
+**Refer to Ingesting FortiGate Logs through SC4S and configure Syslog Logging on FortiGate on port 514.** 
 
-For demonstration, SSH Brute Force attack was simulated from Kali machine to FortiGate. Also SSH login attempts were made from other internal hosts to FortiGate. 
+### **Attack Simulation**
 
-On Splunk Enterprise web UI, search for Admin login failed on FortiGate
+Run nmap scan against FortiGate VM’s internal IP address. From the nmap scan result, we can see that port 22 for ssh is open and belongs to FortiGate. 
 
-```python
-index=* sourcetype=fgt_event “Admin login failed”
+```bash
+nmap -sC -sV 10.0.0.1 -v
 ```
 
-Select srcip form Interesting Fields, then select Top values
+```bash
+#Example output
+PORT    STATE  SERVICE   VERSION
+22/tcp  open   ssh       FortiSSH (protocol 2.0)
+| ssh-hostkey: 
+|   256 63:3a:d1:25:e2:97:c3:52:e8:00:77:b5:0f:db:2d:9a (ECDSA)
+|   384 41:0d:b6:d0:af:43:08:fe:5b:64:e3:de:7f:80:6c:82 (ECDSA)
+|   521 1f:ac:5e:96:a2:70:a5:ea:f2:3f:e4:12:fd:23:aa:94 (ECDSA)
+|_  256 45:77:22:18:b8:13:bb:6d:60:bf:87:91:95:f3:d9:02 (ED25519)
+113/tcp closed ident
+443/tcp open   ssl/https
+| ssl-cert: Subject: commonName=FortiGate/organizationName=Fortinet Ltd./stateOrProvinceName=California/countryName=US
+| Subject Alternative Name: IP Address:192.168.1.10, IP Address:10.0.0.1
+| Issuer: commonName=FGVMEVMBF57GNJF3/organizationName=Fortinet/stateOrProvinceName=California/countryName=US
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2025-02-25T22:28:01
+| Not valid after:  2027-05-31T22:28:01
+| MD5:   1757:d25d:ec8e:5eae:92ef:1b01:91a6:9fb1
+|_SHA-1: 9246:9b61:fbab:1a64:aeac:da55:7ebf:277f:05e5:65ec
+<SNIP>
+```
 
-![image.png](image%2089.png)
+Create a usernames text file containing default usernames for FortiGate. Create a passwords text file containing passwords.
 
-This will visualise data as a bar chart. Save As Report
+```bash
+nano usernames.txt
+```
 
-![image.png](image%2090.png)
+```bash
+admin
+administrator
+adm
+fortigate
+```
 
-Set Title as Security_Report_Failed_SSH_Login_Attempts
+```bash
+nano passwords.txt
+```
 
-Set Content as Bar Chart
+```bash
+P@ssw0rd
+password
+password123
+qwerty
+admin
+```
 
-Select Yes for Time Range Picker
+Using the usernames and passwords text file, run Hydra to perform a brute-force attack on FortiGate's SSH service.
 
-Save
+```bash
+hydra -L usernames.txt -P passwords.txt ssh://10.0.0.1 
+```
 
-![image.png](image%2091.png)
+```bash
+#Example output
+└─$ hydra -L usernames.txt -P passwords.txt ssh://10.0.0.1 
+
+Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-02-27 14:25:56
+[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 24 login tries (l:4/p:6), ~2 tries per task
+[DATA] attacking ssh://10.0.0.1:22/
+[22][ssh] host: 10.0.0.1   login: admin   password: admin
+[ERROR] ssh target does not support password auth
+[ERROR] ssh target does not support password auth
+[ERROR] ssh target does not support password auth
+[ERROR] ssh target does not support password auth
+[ERROR] ssh target does not support password auth
+[ERROR] ssh target does not support password auth
+[ERROR] ssh target does not support password auth
+[ERROR] ssh target does not support password auth
+[ERROR] ssh target does not support password auth
+[ERROR] ssh target does not support password auth
+[ERROR] all children were disabled due too many connection errors
+0 of 1 target successfully completed, 1 valid password found
+[INFO] Writing restore file because 2 server scans could not be completed
+[ERROR] 1 target was disabled because of too many errors
+[ERROR] 1 targets did not complete
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2025-02-27 14:25:57
+```
+
+To generate failed login events from multiple different hosts, SSH into the FortiGate using a valid username but a random password. 
+
+From Splunk and Ubuntu VM:
+
+```bash
+ssh admin@10.0.0.1
+```
+
+```bash
+#Example output
+The authenticity of host '10.0.0.1 (10.0.0.1)' can't be established.
+ED25519 key fingerprint is SHA256:zuocT3kebXHrIVyokxu2EKQTKhuxG/ikAQb2K+uZY54.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.0.0.1' (ED25519) to the list of known hosts.
+admin@10.0.0.1's password: 
+Permission denied, please try again.
+admin@10.0.0.1's password: 
+Permission denied, please try again.
+admin@10.0.0.1's password: 
+Received disconnect from 10.0.0.1 port 22:2: Too many authentication failures
+Disconnected from 10.0.0.1 port 22
+```
+
+To generate login successful events, SSH into FortiGate using a valid credentials. You will need to wait until the connection is reset by FortiGate.
+
+From Splunk and Ubuntu VM:
+
+```bash
+ssh admin@10.0.0.1
+```
+
+```bash
+WARNING: File System Check Recommended! An unsafe reboot may have caused an inconsistency in the disk drive.
+It is strongly recommended that you check the file system consistency before proceeding.
+Please run 'execute disk list' and then 'execute disk scan <ref#>'.
+Note: The device will reboot and scan the disk during startup. This may take up to an hour.
+FGVMEVMBF57GNJF3 # exit
+Connection to 10.0.0.1 closed.
+```
+
+### **Creating Reports**
+
+On Splunk Enterprise web UI, search for login failed events on FortiGate.
+
+```python
+index=* sourcetype="fortigate_event" login failed
+```
+
+Select **srcip** from Interesting Fields, then select Top values.
+
+![image.png](image%20102.png)
+
+This will visualise data as a bar chart. Save As Report.
+
+![image.png](image%20103.png)
+
+Set Title as **Security_Report_Failed_SSH_Login_Attempts.** Set Content as Bar Chart. Select Yes for Time Range Picker. Click Save.
+
+![image.png](image%20104.png)
 
 Select View
 
-![image.png](image%2092.png)
+![image.png](image%20105.png)
 
-Note Time Range Picker can be adjusted to your preference (e.g. All time or Last 24 hours)
+Select Time Range as All time and click Reports.
 
-Select Reports
+![image.png](image%20106.png)
 
-![image.png](image%2093.png)
+Edit Permissions for Security_Report_Failed_SSH_Login_Attempts.
 
-Navigate to Reports tab. Edit Permissions for Security_Report_Failed_SSH_Login_Attempts.
-
-![image.png](image%2094.png)
+![image.png](image%20107.png)
 
 Select following options:
 
@@ -1755,231 +1917,175 @@ Select following options:
 
 Click Save
 
-![image.png](image%2095.png)
+![image.png](image%20108.png)
 
-Edit Schedule (optional)
+Edit Schedule (optional). Scheduling Report can reduce strain on your environment caused by repeatedly running new ad-hoc searches. Select Schedule and Time Range of your preference (leave as default). Click Save.
 
-Scheduling Report can reduce strain on your environment caused by repeatedly running new ad-hoc searches
+![image.png](image%20109.png)
 
-Select Schedule and Time Range of your preference
+![image.png](image%20110.png)
 
-click Save
+### **Creating Alerts**
 
-![image.png](image%2096.png)
+On Splunk Enterprise web UI, search for Admin login failed events on FortiGate.
 
-![image.png](image%2097.png)
-
-## **Creating Alerts**
-
-On Splunk Enterprise web UI, search for Admin login failed on FortiGate.
-
-```python
-index=* sourcetype=fgt_event "Admin login failed"
+```bash
+index=* sourcetype="fortigate_event" login failed
 ```
 
 Save As Alert
 
-![image.png](image%2098.png)
-
-Set Title as FortiGate Login Failures
-
-Set Permissions to Private
-
-Set Alert type as Schedules to Run every hours and Expire after 24 hours
-
-Set Trigger Conditions to trigger alert when Number of Results is greater than 10 and trigger Once.
-
-Select Throttle (after an alert is triggered, subsequent alerts will not be triggered until after the throttle period).
-
-Suppress trigger for 60 seconds
-
-Set Trigger Actions to Add to Trigger Alerts with High Severity.
-
-Click Save. 
-
-![image.png](image%2099.png)
-
-![image.png](image%20100.png)
-
-Click Permissions
-
-![image.png](image%20101.png)
-
-Select Display For App
-
-Assign Read access to Everyone
-
-Click Save
-
-![image.png](image%20102.png)
-
-Select Edit Alert again
-
-![image.png](image%20103.png)
-
-Change Alert type to Real-time
-
-Suppress all fields containing field value by entering a wildcard
-
-![image.png](image%20104.png)
-
-Click Save
-
-View Triggered Alerts
-
-![image.png](image%20105.png)
-
-Alternatively, Triggered Alerts can be viewed on the Activity tab
-
-![image.png](image%20106.png)
-
-Alerts and Reports can be viewed from Setting > Searches, reports, and alerts
-
-![image.png](image%20107.png)
-
-Alerts can also be viewed from the Alerts tab
-
-![image.png](image%20108.png)
-
-## **Creating Dashboards**
-
-On Splunk Enterprise web UI, search for Admin login failed events are generated on FortiGate
-
-```python
-index=* sourcetype=fgt_event "Admin login failed"
-```
-
-![image.png](image%20109.png)
-
-From the Interesting Fields panel, Select user and Top values. Alternatively, you can filter on srcip Top values if there are multiple source IP addresses.
-
-![image.png](image%20110.png)
-
-This will generate a Visualisation that is most suitable for our data
-
 ![image.png](image%20111.png)
 
-Select Bar Chart and select Pie Chart
+Set Title as FortiGate Login Failures. Set Permissions to Private. Set Alert type as Schedules to Run every hours and Expire after 24 hours. Set Trigger Conditions to trigger alert when Number of Results is greater than 10 and trigger Once. Select Throttle (after an alert is triggered, subsequent alerts will not be triggered until after the throttle period). Suppress trigger for 60 seconds. Set Trigger Actions to Add to Trigger Alerts with High Severity. Click Save. 
 
 ![image.png](image%20112.png)
 
-Click Save As and select New Dashboard
-
 ![image.png](image%20113.png)
 
-Set Dashboard Title and Permissions.
-
-Select Classic Dashboards (we will explore Dashboard Studio later)
-
-Set Panel Title 
-
-Set Visualization Type as Pie Chart
-
-Save to Dashboard
+Click Permissions
 
 ![image.png](image%20114.png)
 
-View Dashboard
+Select Display For App. Assign Read access to Everyone. Click Save.
 
 ![image.png](image%20115.png)
 
+Select Edit Alert again
+
 ![image.png](image%20116.png)
 
-Go back to Search and search for `index=* sourcetype=fgt_event “Admin login”`
-
-In the Interesting Fields panel, select logdesc, then Top values by time
+Change Alert type to Real-time. Suppress all fields containing field value by entering a asterisk. Click Save.
 
 ![image.png](image%20117.png)
 
-This allows us to see login trends over time as a line chart (select Last 24 hours)
+Click Triggered Alerts.
 
 ![image.png](image%20118.png)
 
-Select Format
-
-Select Legend, then Legend Position as Left
+Alternatively, Triggered Alerts can be viewed on the Activity tab (Activity > Triggered Alerts). If you don’t see your alerts, manually trigger alerts by running Hydra on Kali VM. 
 
 ![image.png](image%20119.png)
 
-Select General
-
-Select Min/Max in Show Data Values
+Alerts and Reports can also be viewed from Setting > Searches, reports, and alerts
 
 ![image.png](image%20120.png)
 
-Save As Existing Dashboard
+### **Creating Dashboards**
 
-Select FortiGate Logins
+On Splunk Enterprise web UI, search for login failed events on FortiGate.
 
-Save to Dashboard
+```python
+index=* sourcetype="fortigate_event" login failed
+```
 
 ![image.png](image%20121.png)
 
-View Dashboard
+From the Interesting Fields panel, Select more fields. 
 
 ![image.png](image%20122.png)
 
+Search for user and select user_name, then close the window.
+
 ![image.png](image%20123.png)
 
-Click Edit on top right
-
-Add Panel
-
-Select New from Report 
-
-Select Security_Report_Failed_SSH_Login_Attempts
+The selected **user_name** field should now appear in the selected fields. Select **user_name** then top values. 
 
 ![image.png](image%20124.png)
 
-Select Add to Dashboard
+This will generate a Visualisation that is most suitable for our data.
 
 ![image.png](image%20125.png)
 
-Drag and Drop Bar Chart next to the Pie Chart
-
-Edit Drilldown on the Pie Chart
+Select Bar Chart and select Pie Chart.
 
 ![image.png](image%20126.png)
 
-Set Drilldown Action On click to Link to Search 
-
-click Apply
+Select Save As, then New Dashboard.
 
 ![image.png](image%20127.png)
 
-Save the Dashboard
+Set Dashboard Title as “FortiGate Logins” and leave Permissions as Private. Select Classic Dashboards (we will explore Dashboard Studio later). Set Panel Title as “Failed Logins by User.” Set Visualization Type as Pie Chart. Save to Dashboard. 
 
 ![image.png](image%20128.png)
 
-## **Dashboard Studio**
-
-Make sure FortiGate Logins Dashboard is opened
-
-Select Clone in Dashboard Studio
+View Dashboard
 
 ![image.png](image%20129.png)
 
-Set Title as FortiGate Logins - Dashboard Studio
-
-Select Grid layout
-
-Click Convert & Save
-
 ![image.png](image%20130.png)
 
-Click Save
+Go back to Search and search for FortiGate login events (not login failed). 
 
-If Save button is greyed out, toggle Add submit button then click Save.
+```bash
+index=* sourcetype="fortigate_event" login
+```
 
-Revert the changes then click Save. 
-
-Click View
+In the Interesting Fields panel, select logdesc, then Top values by time
 
 ![image.png](image%20131.png)
 
+This shows the login trends over time as a line chart.
+
 ![image.png](image%20132.png)
 
-## **References**
+Select Format, then Legend. Select Legend Position as Left. This positions the legend to the left. 
+
+![image.png](image%20133.png)
+
+![image.png](image%20134.png)
+
+Select General. Select Min/Max in Show Data Values. This shows data values on the peak of the graph.
+
+![image.png](image%20135.png)
+
+Save As Existing Dashboard. Select FortiGate Logins. Save to Dashboard.
+
+![image.png](image%20136.png)
+
+View Dashboard
+
+![image.png](image%20137.png)
+
+![image.png](image%20138.png)
+
+Click Edit on top right. Add Panel. Select New from Report. Select Security_Report_Failed_SSH_Login_Attempts. Select Add to Dashboard
+
+![image.png](image%20139.png)
+
+Drag and Drop Bar Chart next to the Pie Chart. Edit Drilldown on the Pie Chart.
+
+![image.png](image%20140.png)
+
+Set Drilldown Action On click to Link to Search. Click Apply.
+
+![image.png](image%20141.png)
+
+Save the Dashboard.
+
+![image.png](image%20142.png)
+
+Since we configured Link to Search, clicking 'admin' on the pie chart will redirect you to the Search and Reporting page with the search query automatically populated.
+
+![image.png](image%20143.png)
+
+### **Cloning in Dashboard Studio**
+
+While the FortiGate Logins Dashboard is open, select Clone in Dashboard Studio.
+
+![image.png](image%20144.png)
+
+Set Title as FortiGate Logins - Dashboard Studio. Select Grid layout. Click Convert & Save.
+
+![image.png](image%20145.png)
+
+Click Save. If Save button is greyed out, toggle Add submit button then click Save. Click View. We have successfully cloned the dashboard in dashboard studio.
+
+![image.png](image%20146.png)
+
+![image.png](image%20147.png)
+
+# References
 
 - https://youtu.be/gNeF_mT6Eng?si=No3aBK1EDt_LuK80
 - https://youtu.be/Wze0yXsMKVM?si=N6Y4iW3m5ewxD1Hv
