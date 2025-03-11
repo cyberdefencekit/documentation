@@ -2,7 +2,7 @@
 
 Wazuh is the open source security platform that unifies XDR and SIEM protection for endpoints and cloud workloads. It is designed to help organisations detect threats, monitor integrity, and ensure compliance across their infrastructure, including physical, virtual, containerised, and cloud environments.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/yuwhqNPKO0M?si=KtjQ4D0GHXYorAno" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yuwhqNPKO0M?si=2PDVAquSS2iC6Ico" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## **Lab Setup for Proof of Concept**
 
@@ -20,21 +20,25 @@ In this proof of concept, attack emulation was conducted on the FortiGate VM, Wi
 
 ![Wazuh PoC.drawio.png](Wazuh_PoC.drawio.png)
 
-## **Wazuh**
-
 ## **Install Wazuh Server offline**
 
-You can install Wazuh even when there is no connection to the Internet. Installing the solution offline involves downloading the Wazuh central components to later install them on a system with no Internet connection. The Wazuh server, the Wazuh indexer, and the Wazuh dashboard can be installed and configured on the same host in an all-in-one deployment, or each component can be installed on a separate host as a distributed deployment, depending on your environment needs. Check [requirements for Wazuh Server](https://documentation.wazuh.com/current/installation-guide/wazuh-server/index.html).
+To install Wazuh offline, first download its core components for later installation on a system without Internet access. You can set up the Wazuh server, indexer, and dashboard on a single host (all-in-one deployment) or install them separately across multiple hosts (distributed deployment), depending on your requirements. See the [Wazuh Server requirements](https://documentation.wazuh.com/current/installation-guide/wazuh-server/index.html) for details.
 
-**Note:** You need root user privileges to run all the commands described below.
+**Note:** Root user privileges are required to run the following commands.
 
-### **Configure Firewall rule**
+### **Prerequisites**
+
+Ensure that `curl`, `tar`, and `setcap` are installed on the target system for the offline installation. On some Debian-based systems, `gnupg` may also be required.
+
+Additionally, some systems have `cp` set as an alias for `cp -i`, which prompts for confirmation before overwriting files. To prevent this, run `unalias cp`.
+
+### **Configuring Firewall (Optional)**
 
 Configure Firewall rule to allow access on required ports
 
-CentOS:
+**CentOS:**
 
-```python
+```bash
 firewall-cmd --zone=public --add-port=9200/tcp --permanent #Wazuh-indexer
 firewall-cmd --zone=public --add-port=55000/tcp --permanent #enrollment service
 firewall-cmd --zone=public --add-port=1514/tcp --permanent #agent communication
@@ -47,7 +51,7 @@ firewall-cmd --reload
 firewall-cmd --list-all
 ```
 
-Ubuntu:
+**Ubuntu:**
 
 ```bash
 ufw allow 9200/tcp
@@ -56,35 +60,38 @@ ufw allow 1514/tcp
 ufw allow 1515/tcp
 ```
 
-### **Download the packages and configuration files**
+### **Downloading the Packages and Configuration Files**
 
-Run the following commands from any Linux system with Internet connection. This action executes a script that downloads all required files for the offline installation on x86_64 architectures. Select the package format to download.
+From any Linux system with Internet access, run the following commands to execute a script that downloads all necessary files for offline installation on x86_64 architectures. Choose the appropriate package format to download.
 
-For rpm:
+**RPM:**
 
-```python
-curl -sO https://packages.wazuh.com/4.9/wazuh-install.sh
+```bash
+curl -sO https://packages.wazuh.com/4.11/wazuh-install.sh
 chmod 744 wazuh-install.sh
 ./wazuh-install.sh -dw rpm
 ```
 
-For deb:
+**DEB:**
 
-```jsx
-curl -sO https://packages.wazuh.com/4.9/wazuh-install.sh
+```bash
+curl -sO https://packages.wazuh.com/4.11/wazuh-install.sh
 chmod 744 wazuh-install.sh
 ./wazuh-install.sh -dw deb
 ```
 
 Download the certificates configuration file.
 
-```python
-curl -sO https://packages.wazuh.com/4.9/config.yml
+```bash
+curl -sO https://packages.wazuh.com/4.11/config.yml
 ```
 
-Edit `config.yml` to prepare the certificates creation. As we are performing an all-in-one deployment, replace `"<indexer-node-ip>"`, `"<wazuh-manager-ip>"`, and `"<dashboard-node-ip>"` with `127.0.0.1` or your preferred IP address.
+Modify `config.yml` to set up certificate creation.
 
-```python
+- For an **all-in-one deployment**, replace `"<indexer-node-ip>"`, `"<wazuh-manager-ip>"`, and `"<dashboard-node-ip>"` with `127.0.0.1`.
+- For a **distributed deployment**, update the node names and IP addresses with the correct values for the Wazuh server, indexer, and dashboard. Add extra node fields as required.
+
+```bash
 nodes:
   # Wazuh indexer nodes
   indexer:
@@ -113,24 +120,21 @@ nodes:
   dashboard:
     - name: dashboard
       ip: 10.0.0.20
-
 ```
 
-Run the ./wazuh-install.sh -g to create the certificates. For a multi-node cluster, these certificates need to be later deployed to all Wazuh instances in your cluster.
+Run the `./wazuh-install.sh -g` to generate the certificates. For a multi-node cluster, these certificates need to be later deployed to all Wazuh instances in your cluster.
 
-```python
+```bash
 ./wazuh-install.sh -g
 ```
 
-Copy or move the following files to a directory on the host(s) from where the offline installation will be carried out. You can use `scp` for this.
+Transfer the following files to a directory on the host(s) where the offline installation will be performed. You can use `scp` for this:
 
 - `wazuh-install.sh`
 - `wazuh-offline.tar.gz`
 - `wazuh-install-files.tar`
 
-### **Install Wazuh components from local files**
-
-Note: Internet access was disabled at this point for offline installation.
+### **Installing Wazuh Components**
 
 In the working directory where you placed `wazuh-offline.tar.gz` and `wazuh-install-files.tar`, execute the following command to decompress the installation files:
 
@@ -139,18 +143,26 @@ tar xf wazuh-offline.tar.gz
 tar xf wazuh-install-files.tar
 ```
 
-### **Install the Wazuh indexer**
+### **Installing the Wazuh Indexer**
 
-Run the following commands to install the Wazuh indexer.
+**RPM:**
 
-For rpm:
+The following dependencies must be installed on the Wazuh indexer nodes.
 
-```python
+- coreutils
+
+```bash
 rpm --import ./wazuh-offline/wazuh-files/GPG-KEY-WAZUH
 rpm -ivh ./wazuh-offline/wazuh-packages/wazuh-indexer*.rpm
 ```
 
-For deb:
+**DEB:**
+
+The following dependencies must be installed on the Wazuh indexer nodes.
+
+- debconf
+- adduser
+- procps
 
 ```jsx
 dpkg -i ./wazuh-offline/wazuh-packages/wazuh-indexer*.deb
@@ -158,13 +170,19 @@ dpkg -i ./wazuh-offline/wazuh-packages/wazuh-indexer*.deb
 
 Run the following commands replacing `<indexer-node-name>` with the name of the Wazuh indexer node you are configuring as defined in `config.yml`. For example, `node-1`. This deploys the SSL certificates to encrypt communications between the Wazuh central components.
 
-Note: On CentOS, if you encounter the error chmod: cannot access '/etc/wazuh-indexer/certs/*': No such file or directort, cd /etc/wazuh-indexer/certs/ and run chmod 400 * as a root user
+On CentOS, if you encounter the error:
 
-```python
-NODE_NAME=node-1
+```bash
+chmod: cannot access '/etc/wazuh-indexer/certs/*': No such file or directorty
 ```
 
-```python
+Navigate to `/etc/wazuh-indexer/certs/` and run `chmod 400 *` as the root user.
+
+```bash
+NODE_NAME=<INDEXER_NODE_NAME>
+```
+
+```bash
 mkdir /etc/wazuh-indexer/certs
 mv -n wazuh-install-files/$NODE_NAME.pem /etc/wazuh-indexer/certs/indexer.pem
 mv -n wazuh-install-files/$NODE_NAME-key.pem /etc/wazuh-indexer/certs/indexer-key.pem
@@ -176,18 +194,15 @@ chmod 400 /etc/wazuh-indexer/certs/*
 chown -R wazuh-indexer:wazuh-indexer /etc/wazuh-indexer/certs
 ```
 
-*Here you move the node certificate and key files, such as node-1.pem and node-1-key.pem, to their corresponding certs folder. They are specific to the node and are not required on the other nodes. However, note that the root-ca.pem certificate isn't moved but copied to the certs folder. This way, you can continue deploying it to other component folders in the next steps.*
+Move each node’s certificate and key files (e.g., `node-1.pem` and `node-1-key.pem`) to their respective `certs` folder. These files are specific to each node and shouldn’t be shared with others. However, **do not move** the `root-ca.pem` certificate—**copy** it instead, so it can be deployed to other component folders later.
 
-Edit `/etc/wazuh-indexer/opensearch.yml` and replace the following values:
+Edit `/etc/wazuh-indexer/opensearch.yml` and modify the following settings:
 
-1. `network.host`: Sets the address of this node for both HTTP and transport traffic. The node will bind to this address and will also use it as its publish address. Accepts an IP address or a hostname.
-    
-    Use the same node address set in `config.yml` to create the SSL certificates.
-    
-2. `node.name`: Name of the Wazuh indexer node as defined in the `config.yml` file. For example, `node-1`.
-3. `cluster.initial_master_nodes`: List of the names of the master-eligible nodes. These names are defined in the `config.yml` file. 
+1. **`network.host`** – Defines the node’s address for HTTP and transport traffic. It should match the address used in `config.yml` when generating SSL certificates.
+2. **`node.name`** – Set this to the Wazuh indexer node name as defined in `config.yml` (e.g., `node-1`).
+3. **`cluster.initial_master_nodes`** – List the names of master-eligible nodes, as specified in `config.yml`.
 
-```python
+```bash
 network.host: "10.0.0.20"
 node.name: "node-1"
 cluster.initial_master_nodes:
@@ -196,29 +211,47 @@ cluster.initial_master_nodes:
 #- "node-3"
 ```
 
+1. **`discovery.seed_hosts`** – Contains the addresses of master-eligible nodes. Leave it commented for a single-node setup, but for multi-node configurations, uncomment it and specify the node addresses.
+
+```bash
+discovery.seed_hosts:
+  - "10.0.0.1"
+  - "10.0.0.2"
+  - "10.0.0.3"
+```
+
+1. **`plugins.security.nodes_dn`** – Lists the Distinguished Names (DNs) of certificates for all Wazuh indexer cluster nodes. Uncomment and modify these based on your settings and `config.yml`.
+
+```bash
+plugins.security.nodes_dn:
+- "CN=node-1,OU=Wazuh,O=Wazuh,L=California,C=US"
+- "CN=node-2,OU=Wazuh,O=Wazuh,L=California,C=US"
+- "CN=node-3,OU=Wazuh,O=Wazuh,L=California,C=US"
+```
+
 Enable and start the Wazuh indexer service. Verify Wazuh indexer is active and running (exit with `q`)
 
-```python
+```bash
 systemctl daemon-reload
 systemctl enable wazuh-indexer
 systemctl start wazuh-indexer
-sys
+systemctl status wazuh-indexer
 ```
 
-When all Wazuh indexer nodes are running, run the Wazuh indexer `indexer-security-init.sh` script on *any Wazuh indexer node* to load the new certificates information and start the cluster.
+Once all Wazuh indexer nodes are running, execute the `indexer-security-init.sh` script on **any** Wazuh indexer node. This updates the certificate information and initiates the cluster.
 
-```python
+```bash
 /usr/share/wazuh-indexer/bin/indexer-security-init.sh
 ```
 
 Run the following command to check that the installation is successful. 
 
-```python
+```bash
 curl -XGET https://10.0.0.20:9200 -u admin:admin -k
 ```
 
-```python
-#Example response
+```bash
+#Example output
 {
   "name" : "node-1",
   "cluster_name" : "wazuh-cluster",
@@ -239,28 +272,33 @@ curl -XGET https://10.0.0.20:9200 -u admin:admin -k
 
 ### **Installing the Wazuh server**
 
-### **Installing the Wazuh manager**
-
 Run the following commands to import the Wazuh key and install the Wazuh manager.
 
-For rpm:
+**RPM:**
 
-```python
+```bash
 rpm --import ./wazuh-offline/wazuh-files/GPG-KEY-WAZUH
 rpm -ivh ./wazuh-offline/wazuh-packages/wazuh-manager*.rpm
 ```
 
-For deb:
+**DEB:**
 
-```jsx
+On systems with *apt* as package manager, the following dependencies must be installed on the Wazuh server nodes.
+
+- gnupg
+- apt-transport-https
+
+```bash
 dpkg -i ./wazuh-offline/wazuh-packages/wazuh-manager*.deb
 ```
 
-Save the Wazuh indexer username and password into the Wazuh manager keystore using the wazuh-keystore tool. The default offline-installation credentials are `admin`:`admin`
+Store the Wazuh indexer username and password in the Wazuh manager keystore using the `wazuh-keystore` tool.
 
-```python
-/var/ossec/bin/wazuh-keystore -f indexer -k username -v admin
-/var/ossec/bin/wazuh-keystore -f indexer -k password -v admin
+**Note:** The default credentials for an offline installation are **admin:admin**.
+
+```bash
+echo '<INDEXER_USERNAME>' | /var/ossec/bin/wazuh-keystore -f indexer -k username
+echo '<INDEXER_PASSWORD>' | /var/ossec/bin/wazuh-keystore -f indexer -k password
 ```
 
 Enable and start the Wazuh manager service. Verify Wazuh manager is active and running (exit with `q`)
@@ -274,39 +312,40 @@ systemctl status wazuh-manager
 
 ### **Installing Filebeat**
 
-Filebeat must be installed and configured on the same server as the Wazuh manager.
+Filebeat must be installed and configured on the same server as the Wazuh manager. Run the following command to install Filebeat.
 
-Run the following command to install Filebeat.
-
-For rpm:
+**RPM:**
 
 ```python
 rpm -ivh ./wazuh-offline/wazuh-packages/filebeat*.rpm
 ```
 
-For deb:
+**DEB:**
 
 ```jsx
 dpkg -i ./wazuh-offline/wazuh-packages/filebeat*.deb
 ```
 
-Move a copy of the configuration files to the appropriate location. Ensure to type “yes” at the prompt to overwrite `/etc/filebeat/filebeat.yml`.
+Copy the configuration files to the correct location. When prompted, type **"yes"** to overwrite `/etc/filebeat/filebeat.yml`.
 
-Note for CentOS, remove `&&\`
+**Note for CentOS:** Remove `&&\` from the command.
 
-```python
+```bash
 cp ./wazuh-offline/wazuh-files/filebeat.yml /etc/filebeat/ &&\
 cp ./wazuh-offline/wazuh-files/wazuh-template.json /etc/filebeat/ &&\
 chmod go+r /etc/filebeat/wazuh-template.json
 ```
 
 Edit the `/etc/filebeat/filebeat.yml` configuration file and replace the following value:
-`hosts`: The list of Wazuh indexer nodes to connect to. You can use either IP addresses or hostnames. By default, the host is set to localhost `hosts: ["127.0.0.1:9200"]`. Replace it with your Wazuh indexer address accordingly.
 
-```python
+`hosts`: The list of Wazuh indexer nodes to connect to. You can use either IP addresses or hostnames. By default, the host is set to localhost `hosts: ["127.0.0.1:9200"]`. Replace it with your Wazuh indexer address accordingly. 
+
+If you have more than one Wazuh indexer node, you can separate the addresses using commas. For example, `hosts: ["10.0.0.1:9200", "10.0.0.2:9200", "10.0.0.3:9200"]`
+
+```bash
 # Wazuh - Filebeat configuration file
  output.elasticsearch:
- **hosts: ["10.0.0.20:9200"]**
+ hosts: ["10.0.0.20:9200"]
  protocol: https
  username: ${username}
  password: ${password}
@@ -314,32 +353,38 @@ Edit the `/etc/filebeat/filebeat.yml` configuration file and replace the follo
 
 Create a Filebeat keystore to securely store authentication credentials.
 
-```python
+```bash
 filebeat keystore create
 ```
 
 Add the username and password `admin`:`admin` to the secrets keystore.
 
-```python
+```bash
 echo admin | filebeat keystore add username --stdin --force
 echo admin | filebeat keystore add password --stdin --force
 ```
 
 Install the Wazuh module for Filebeat.
 
-```python
+```bash
 tar -xzf ./wazuh-offline/wazuh-files/wazuh-filebeat-0.4.tar.gz -C /usr/share/filebeat/module
 ```
 
 Replace `<SERVER_NODE_NAME>` with your Wazuh server node certificate name, the same used in `config.yml` when creating the certificates. For example, `wazuh-1`. Then, move the certificates to their corresponding location.
 
-Note: On CentOS, if you encounter the error chmod: cannot access '/etc/filebeat/certs/*': No such file or directort, cd /etc/filebeat/certs/ and run chmod 400 * as a root user
+On CentOS, if you encounter the error:
 
-```python
-NODE_NAME=wazuh-1
+```bash
+chmod: cannot access '/etc/filebeat/certs/*': No such file or directorty
 ```
 
-```python
+Navigate to `/etc/filebeat/certs/` and run `chmod 400 *` as a root user
+
+```bash
+NODE_NAME=<SERVER_NODE_NAME>
+```
+
+```bash
 mkdir /etc/filebeat/certs
 mv -n wazuh-install-files/$NODE_NAME.pem /etc/filebeat/certs/filebeat.pem
 mv -n wazuh-install-files/$NODE_NAME-key.pem /etc/filebeat/certs/filebeat-key.pem
@@ -351,7 +396,7 @@ chown -R root:root /etc/filebeat/certs
 
 Enable and start the Filebeat service. Verify Filebeat is active and running (exit with `q`)
 
-```python
+```bash
 systemctl daemon-reload
 systemctl enable filebeat
 systemctl start filebeat
@@ -360,11 +405,11 @@ systemctl status filebeat
 
 Run the following command to make sure Filebeat is successfully installed.
 
-```python
+```bash
 filebeat test output
 ```
 
-```python
+```bash
 #Example output
 elasticsearch: https://10.0.0.20:9200...
   parse url... OK
@@ -384,32 +429,47 @@ elasticsearch: https://10.0.0.20:9200...
 
 Wazuh server node is now successfully installed.
 
-### **Install the Wazuh dashboard**
+### **Installing the Wazuh Dashboard**
 
-Run the following commands to install the Wazuh dashboard.
+**RPM:**
 
-For rpm:
+The following dependencies must be installed on the Wazuh dashboard node.
 
-```python
+- libcap
+
+```bash
 rpm --import ./wazuh-offline/wazuh-files/GPG-KEY-WAZUH
 rpm -ivh ./wazuh-offline/wazuh-packages/wazuh-dashboard*.rpm
 ```
 
-For deb:
+**DEB:**
 
-```jsx
+The following dependencies must be installed on the Wazuh dashboard node.
+
+- debhelper version 9 or later
+- tar
+- curl
+- libcap2-bin
+
+```bash
 dpkg -i ./wazuh-offline/wazuh-packages/wazuh-dashboard*.deb
 ```
 
 Replace `<DASHBOARD_NODE_NAME>` with your Wazuh dashboard node name, the same used in `config.yml` to create the certificates. For example, `dashboard`. Then, move the certificates to their corresponding location.
 
-Note: On CentOS, if you encounter the error chmod: cannot access '/etc/wazuh-dashboard/certs/*': No such file or directort, cd /etc/wazuh-dashboard/certs/ and run chmod 400 * as a root user
+On CentOS, if you encounter the error:
 
-```python
-NODE_NAME=dashboard
+```bash
+chmod: cannot access '/etc/wazuh-dashboard/certs/*': No such file or directorty
 ```
 
-```python
+Navigate to `/etc/wazuh-dashboard/certs/` and run `chmod 400 *` as a root user
+
+```bash
+NODE_NAME=<DASHBOARD_NODE_NAME>
+```
+
+```bash
 mkdir /etc/wazuh-dashboard/certs
 mv -n wazuh-install-files/$NODE_NAME.pem /etc/wazuh-dashboard/certs/dashboard.pem
 mv -n wazuh-install-files/$NODE_NAME-key.pem /etc/wazuh-dashboard/certs/dashboard-key.pem
@@ -422,18 +482,18 @@ chown -R wazuh-dashboard:wazuh-dashboard /etc/wazuh-dashboard/certs
 Edit the `/etc/wazuh-dashboard/opensearch_dashboards.yml` file and replace the following values:
 
 1. `server.host`: This setting specifies the host of the back end server. To allow remote users to connect, set the value to the IP address or DNS name of the Wazuh dashboard. The value `0.0.0.0` will accept all the available IP addresses of the host.
-2. `opensearch.hosts`: The URLs of the Wazuh indexer instances to use for all your queries. The Wazuh dashboard can be configured to connect to multiple Wazuh indexer nodes in the same cluster. The addresses of the nodes can be separated by commas. 
+2. `opensearch.hosts`: The URLs of the Wazuh indexer instances to use for all your queries. The Wazuh dashboard can be configured to connect to multiple Wazuh indexer nodes in the same cluster. The addresses of the nodes can be separated by commas. For example, `["https://10.0.0.2:9200", "https://10.0.0.3:9200","https://10.0.0.4:9200"]`
 
-```python
-**server.host: 10.0.0.20**
+```bash
+server.host: 10.0.0.20
 server.port: 443
-**opensearch.hosts: https://10.0.0.20:9200**
+opensearch.hosts: https://10.0.0.20:9200
 opensearch.ssl.verificationMode: certificate
 ```
 
 Enable and start the Wazuh dashboard. Verify Wazuh dashboard is active and running (exit with `q`)
 
-```python
+```bash
 systemctl daemon-reload
 systemctl enable wazuh-dashboard
 systemctl start wazuh-dashboard
@@ -442,7 +502,7 @@ systemctl status wazuh-dashboard
 
 Edit the file `/usr/share/wazuh-dashboard/data/wazuh/config/wazuh.yml` and replace the `url` value with the IP address or hostname of the Wazuh server master node.
 
-```python
+```bash
 hosts:
   - default:
       url: https://10.0.0.20
@@ -460,89 +520,59 @@ Access the web interface.
 
 ![image.png](image.png)
 
-### **Import Certificate (optional)**
+### **Importing Certificate (Optional)**
 
 Upon the first access to the Wazuh dashboard, the browser shows a warning message stating that the certificate was not issued by a trusted authority. An exception can be added in the advanced options of the web browser or, for increased security, the `root-ca.pem` file previously generated can be imported to the certificate manager of the browser. 
 
 Copy /etc/wazuh-dashboard/certs/root-ca.pem to user’s home directory
 
-Change ownership of user's home directory to the non-root user to enable read access to root-ca.pem
-
-```python
-cp /etc/wazuh-dashboard/certs/root-ca.pem /home/siem/root-ca.pem
-#Example
-chown -R siem:siem /home/siem
--r--------.  1 siem siem       1204 Aug 30 16:32 root-ca.pem
+```bash
+cp /etc/wazuh-dashboard/certs/root-ca.pem ~/
 ```
 
-On Firefox, go to Settings, Privacy & Security and Certificates
+Change ownership of user's home directory to the non-root user to enable read access to `root-ca.pem`
 
-Click View Certificates
+On Firefox, go to Settings, Privacy & Security and Certificates. Click View Certificates.
 
 ![image.png](image%201.png)
 
-Click Import, select root-ca.pem in user’s home directory
-
-Select Trust this CA to identify website and email users
-
-Click OK
+Click Import, select `root-ca.pem` in user’s home directory. Select Trust this CA to identify website and email users. Click OK.
 
 ![image.png](image%202.png)
 
-Delete root-ca.pem from **user’s home directory**
+Delete root-ca.pem from user’s home directory.
 
 ```python
 sudo rm root-ca.pem
 ```
 
-### **Securing Wazuh installation (optional)**
+### **Securing Wazuh Installation (Optional)**
 
 You have now installed and configured all the Wazuh central components. We recommend changing the default credentials to protect your infrastructure from possible attacks.
 
 Use the Wazuh passwords tool to change all the internal users passwords.
 
-```python
+```bash
 /usr/share/wazuh-indexer/plugins/opensearch-security/tools/wazuh-passwords-tool.sh --api --change-all --admin-user wazuh --admin-password wazuh
-
-#Example output
-30/08/2024 23:39:52 INFO: Updating the internal users.
-30/08/2024 23:40:05 INFO: A backup of the internal users has been saved in the /etc/wazuh-indexer/internalusers-backup folder.
-30/08/2024 23:40:51 INFO: The password for user admin is o98ak572UvBhYPf*ldKNFHIbI9.t0ujk
-30/08/2024 23:40:51 INFO: The password for user kibanaserver is GcmzTyUluY?pVq2QsRd3g3Ih4STHj7J6
-30/08/2024 23:40:51 INFO: The password for user kibanaro is U9KOXTQ?T4cojg3inXW6rBjc+l5*PB+p
-30/08/2024 23:40:51 INFO: The password for user logstash is lB6.1iiU1hlJ2XhfL0i0MKuFmbKiiBkV
-30/08/2024 23:40:51 INFO: The password for user readall is BA+9wz*49.KUUPAapEJ8OXon+nQJ9v8a
-30/08/2024 23:40:51 INFO: The password for user snapshotrestore is v?IivWKPCSNrY?V0bp*r25pH?KYd3PMg
-30/08/2024 23:40:51 WARNING: Wazuh indexer passwords changed. Remember to update the password in the Wazuh dashboard, Wazuh server, and Filebeat nodes if necessary, and restart the services.
-30/08/2024 23:40:53 INFO: The password for Wazuh API user wazuh is fpuT5X8qkj3g6Nc64*UZiX8mkeE9atld
-30/08/2024 23:40:54 INFO: The password for Wazuh API user wazuh-wui is c2TDtq34XHGeH?TMkLLE2?Mr6K+W5oKe
-30/08/2024 23:40:54 INFO: Updated wazuh-wui user password in wazuh dashboard. Remember to restart the service.
-
 ```
 
-Save the new Wazuh indexer password into the Wazuh manager keystore
+Save the new Wazuh indexer password into the Wazuh manager keystore. Restart Wazuh manager service.
 
-Restart Wazuh manager service
-
-```python
-/var/ossec/bin/wazuh-keystore -f indexer -k password -v o98ak572UvBhYPf*ldKNFHIbI9.t0ujk
+```bash
+/var/ossec/bin/wazuh-keystore -f indexer -k password -v <SNIP>
 systemctl start wazuh-manager
 systemctl status wazuh-manager
 ```
 
-Add the new password to the Filebeat secrets keystore
-
-Restart the Filebeat service
+Add the new password to the Filebeat secrets keystore. Restart the Filebeat service
 
 ```python
-echo "o98ak572UvBhYPf*ldKNFHIbI9.t0ujk" | filebeat keystore add password --stdin --force
+echo "<SNIP>" | filebeat keystore add password --stdin --force
 systemctl restart filebeat
 filebeat test output
 ```
 
-Verify that new password has been added to /usr/share/wazuh-dashboard/data/wazuh/config/wazuh.yml
-
-Restart the Wazuh dashboard
+Verify that new password has been added to /usr/share/wazuh-dashboard/data/wazuh/config/wazuh.yml. Restart the Wazuh dashboard.
 
 ```python
 nano /usr/share/wazuh-dashboard/data/wazuh/config/wazuh.yml
@@ -550,9 +580,9 @@ systemctl restart wazuh-dashboard
 systemctl status wazuh-dashboard
 ```
 
-## **Install Wazuh agents on endpoints**
+## **Installing Wazuh Agents on Endpoints**
 
-### **Configure Firewall on Windows endpoints**
+### **Configuring Firewall on Windows**
 
 For Wazuh agent to communicate with the Wazuh manager services, the following ports needs to be allowed for outbound connection:
 
@@ -560,53 +590,43 @@ For Wazuh agent to communicate with the Wazuh manager services, the following po
 - 1515/TCP for enrollment via automatic agent request.
 - 55000/TCP for enrollment via manager API.
 
-Open Windows Defender Firewall with Advanced Security.
-
-Right-click Outbound Rules and create new rule.
-
-Select Port.
+Open Windows Defender Firewall with Advanced Security. Right-click Outbound Rules and create new rule. Select Port.
 
 ![image.png](image%203.png)
 
-Select TCP and Specific remote ports.
-
-Put 1514, 1515, 55000
-
-Click Next
+Select TCP and Specific remote ports. Put 1514, 1515, 55000. Click Next.
 
 ![image.png](image%204.png)
 
-Select Allow the connection
+Select Allow the connection.
 
 ![image.png](image%205.png)
 
-Select Domain, Private and Public
+Select Domain, Private and Public.
 
 ![image.png](image%206.png)
 
-Name the New Outbound Rule as Wazuh outbound and click Finish
+Name the New Outbound Rule as Wazuh outbound and click Finish.
 
 ![image.png](image%207.png)
 
-### **Install Wazuh agent on Windows endpoint**
+### **Installing Wazuh agent on Windows**
 
 The agent runs on the endpoint you want to monitor and communicates with the Wazuh server, sending data in near real-time through an encrypted and authenticated channel.
 
 Note To perform the installation, administrator privileges are required.
 
-To start the installation process, download the Windows installer from [https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi](https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi)
+To start the installation process, download the [Windows installer](https://packages.wazuh.com/4.x/windows/wazuh-agent-4.11.0-1.msi).
 
-Open PowerShell as Administrator and change directory to where Windows installer is located.
+Open PowerShell as Administrator and change directory to where Windows installer is located. Run the following command:
 
-Run the following command
-
-```python
-.\wazuh-agent-4.9.0-1.msi /q WAZUH_MANAGER="10.0.0.20"
+```powershell
+.\wazuh-agent-4.11.0-1.msi /q WAZUH_MANAGER="10.0.0.20"
 ```
 
 The installation process is now complete, and the Wazuh agent is successfully installed and configured. You can start the Wazuh agent from the GUI or by running:
 
-```python
+```powershell
 NET START Wazuh
 ```
 
@@ -626,7 +646,7 @@ You should be able to see Authentication key. The Authentication key is used to 
 
 If issues still persist, refer to the log file located at `C:\Program Files (x86)\ossec-agent\ossec.log`
 
-Alternatively, refer to the Troubleshooting guide from [https://documentation.wazuh.com/current/user-manual/agent/agent-enrollment/troubleshooting.html](https://documentation.wazuh.com/current/user-manual/agent/agent-enrollment/troubleshooting.html)
+Alternatively, refer to the [Troubleshooting guide](https://documentation.wazuh.com/current/user-manual/agent/agent-enrollment/troubleshooting.html).
 
 ![image.png](image%209.png)
 
@@ -667,43 +687,55 @@ Restart the Wazuh agent to apply the changes by running the following PowerShell
 Restart-Service -Name Wazuh
 ```
 
-## **Monitoring network devices with Wazuh**
+## **Monitoring Network Devices with Wazuh**
 
-### **Configure FortiGate to send syslog**
+### **Configuring Syslog Logging on FortiGate**
 
-Refer to the admin manual for specific details of configuration to send Reliable syslog using RFC 3195 format, a typical logging configuration will include the following features.
+On FortiGate Command-Line Interface (CLI), run the following commands to configure Syslog Server Settings:
 
-```python
-config log syslogd setting 
-
-set status enable
-set server (syslog ip)
-set source-ip (fortigate ip)
-#Verify settings by running "show"
-end 
-
-config log memory filter
-set forward-traffic enable
-set local-traffic enable
-set sniffer-traffic disable
-set anomaly enable
-set voip disable
-set multicast-traffic enable
-#Verify settings by running "show full-configuration"
-end
-
-config system global
-set cli-audit-log enable
-#Verify settings by running "show"
-#Make sure timezone is correct e.g. "Pacific/Auckland"
-end
-
-config log setting
-set neighbor-event enable
+```bash
+config log syslogd setting
+    set status enable
+    set server <syslog-ng IP>
+    set source-ip <FortiGate IP>
+    # set port <port number>  (Default port is 514)
+    # Verify settings by running "show"
 end
 ```
 
-### **Configure log rotation**
+Configure Log Memory Filter:
+
+```bash
+config log memory filter
+    set forward-traffic enable
+    set local-traffic enable
+    set sniffer-traffic disable
+    set anomaly enable
+    set voip disable
+    set multicast-traffic enable
+    # Verify settings by running "show full-configuration"
+end
+```
+
+Configure Global System Settings:
+
+```bash
+config system global
+    set cli-audit-log enable
+    # Verify settings by running "show"
+    # Ensure the timezone is correct, e.g., "Pacific/Auckland"
+end
+```
+
+Enable Logging for Neighbour Events:
+
+```bash
+config log setting
+    set neighbor-event enable
+end
+```
+
+### **Configuring Log Rotation**
 
 By default, the `logrotate` service is configured to rotate logs in directories like `/var/log/`
 
@@ -718,19 +750,19 @@ Add the path to your `fortigate.log` file under the existing log files.
 
 ```bash
 /var/log/syslog
-**/var/log/fortigate.log**
+/var/log/fortigate.log
 ...
 {
-  rotate 4
-  weekly
-  missingok
-  notifempty
-  compress
-  delaycompress
-  sharedscripts
-  postrotate
-    /usr/lib/rsyslog/rsyslog-rotate
-  endscript
+	rotate 4
+	weekly
+	missingok
+	notifempty
+	compress
+	delaycompress
+	sharedscripts
+	postrotate
+		/usr/lib/rsyslog/rsyslog-rotate
+	endscript
 }
 ```
 
@@ -745,27 +777,25 @@ Add the path to your `fortigate.log` file under the existing log files.
 - **sharedscripts**: Runs the `postrotate` script only once, even if multiple logs are rotated.
 - **postrotate**: After log rotation, it runs `/usr/lib/rsyslog/rsyslog-rotate` to ensure that `rsyslog` reopens its log files (so it doesn't keep writing to the old rotated file).
 
-### **Configuring syslog on the Wazuh server (optional)**
+### **Configuring Syslog on Wazuh Server (Optional)**
 
 The **Wazuh server** can collect logs via syslog from endpoints such as firewalls, switches, routers, and other devices that don’t support the installation of Wazuh agents. More details can be found [here](https://documentation.wazuh.com/current/user-manual/capabilities/log-data-collection/syslog.html).
 
 If you have a central logging server like Syslog or Logstash in place, you can install the Wazuh agent on that server to streamline log collection. This setup enables seamless forwarding of logs from multiple sources to the Wazuh server, facilitating comprehensive analysis.
 
-### **Configure Rsyslog on Ubuntu endpoint (recommended)**
+### **Configure Rsyslog on Ubuntu endpoint (Recommended)**
 
 **Rsyslog** is a preinstalled utility in Ubuntu 22.04 for receiving syslog events. The following section shows the steps for enabling Rsyslog on the Ubuntu endpoint and configuring the Wazuh agent to send the syslog log data to the Wazuh server.
 
 Edit /etc/rsyslog.conf. 
 
-```jsx
+```bash
 nano /etc/rsyslog.conf
 ```
 
-Uncomment udp/514. Add allowed sender and configure log file format.
+Uncomment udp/514. Add allowed sender and configure log file format. Save changes.
 
-Save changes.
-
-```python
+```bash
 #provides UDP syslog reception
 module(load=”imudp”)
 input(type=”imudp” port=”514")
@@ -776,51 +806,51 @@ $template remote-incoming-logs, "/var/log/%HOSTNAME%.log"
 *.* ?remote-incoming-logs
 ```
 
-Permit udp/514 through the firewall.
+Permit udp/514 through the firewall (if firewall is configured and enabled).
 
 ```python
 sudo ufw allow 514/udp
 ```
 
-Edit permissions on /var/log as Rsyslog may encounter permission error on relaunch. 
+Edit permissions on `/var/log` as Rsyslog may encounter permission error on relaunch. 
 
-```python
+```bash
 sudo chmod 775 /var/log
 ```
 
-Add any hosts you are receiving logs from to /etc/hosts
+Add any hosts you are receiving logs from to `/etc/hosts`
 
-```python
+```bash
 sudo nano /etc/hosts
-#Example
+```
+
+```bash
+#Example output
 10.0.0.1    Fortigate
 ```
 
 Restart and check status of rsyslog.
 
-```python
+```bash
 sudo systemctl restart rsyslog
 systemctl status rsyslog
 ```
 
-Configure the syslog clients (network devices) to send logs to our syslog server
+Configure the syslog clients (network devices) to send logs to our syslog server. Check `/var/log` to see that new log files are updating.
 
-Check /var/log to see that new log files are updating.
-
-```python
+```bash
 ls /var/log
 cat fortigate.log
 ```
 
-Example output
-
 ```bash
+#Example output
 2024-09-13T08:13:46.806479+12:00 fortigate date=2024-09-12 time=15:44:50 devname="Fortigate" devid="FGVMEVUEOETC5XC8" eventtime=1726112689938988753 tz="+1200" logid="0001000014" type="traffic" subtype="local" level="notice" vd="root" srcip=192.168.1.64 srcport=14712 srcintf="root" srcintfrole="undefined" dstip=38.21.192.5 dstport=443 dstintf="port1" dstintfrole="wan" srccountry="Reserved" dstcountry="United States" sessionid=44992 proto=6 action="close" policyid=0 service="HTTPS" trandisp="noop" app="HTTPS" duration=1 sentbyte=441 rcvdbyte=223 sentpkt=5 rcvdpkt=4
 ```
 
-### **Install Wazuh agent on Ubuntu endpoint**
+### **Installing Wazuh agent on Linux (Ubuntu)**
 
-Configure Firewall:
+Configure firewall:
 
 ```bash
 ufw allow 55000/tcp
@@ -830,31 +860,27 @@ ufw allow 1515/tcp
 
 Download Wazuh agent from the [packages list](https://documentation.wazuh.com/current/installation-guide/packages-list.html).
 
-```jsx
-wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.9.0-1_amd64.deb
+```bash
+https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-indexer/wazuh-indexer_4.11.0-1_amd64.deb
 ```
 
-Transfer the Wazuh agent to Ubuntu endpoint.
-
-Install the package using `dpkg`
+Transfer the Wazuh agent to Ubuntu endpoint. Install the package using `dpkg`
 
 ```python
-dpkg -i wazuh-agent_4.9.0-1_amd64.deb
+dpkg -i wazuh-agent_4.11.0-1_amd64.deb
 ```
 
-After installing, set the Wazuh manager's IP address by editing the configuration file:
+After installing, set the Wazuh manager's IP address by editing the configuration file. Look for the `<server>` section and update it with the Wazuh manager's IP address.
 
-Look for the `<server>` section and update it with the Wazuh manager's IP address
-
-```python
+```bash
 nano /var/ossec/etc/ossec.conf
 ```
 
-```python
+```bash
 <ossec_config>
   <client>
     <server>
-      **<address>10.0.0.20</address>**
+      <address>10.0.0.20</address>
       <port>1514</port>
       <protocol>tcp</protocol>
     </server>
@@ -868,7 +894,7 @@ nano /var/ossec/etc/ossec.conf
 
 Start and enable the Wazuh agent. Verify Wazuh agent is active and running.
 
-```python
+```bash
 systemctl start wazuh-agent
 systemctl enable wazuh-agent
 systemctl status wazuh-agent
@@ -878,11 +904,11 @@ On Wazuh server UI, verify Ubuntu agent is active
 
 ![image.png](image%2011.png)
 
-### **Configure Wazuh to monitor Fortigate log**
+### **Configuring Wazuh to Monitor Fortigate Log**
 
-Add the following to /var/ossec/etc/ossec.conf file on Wazuh manager and agent
+Add the following to `/var/ossec/etc/ossec.conf` file on Wazuh manager and agent.
 
-```python
+```bash
 #On both Wazuh manager and agent
 <localfile>
   <log_format>syslog</log_format>
@@ -892,28 +918,20 @@ Add the following to /var/ossec/etc/ossec.conf file on Wazuh manager and agent
 
 Restart the manager and agent after adding this setting:
 
-```python
+```bash
 systemctl restart wazuh-manager
 systemctl restart wazuh-agent
 ```
 
-Verify fortigate logs are being ingested.
-
-**Follow the steps below to enable archiving and set up wazuh-archives-* index.**
-
-Search wazuh-alerts-* and wazuh-archives-* index.
-
-Add filter for location is /var/log/fortigate.log
+Verify fortigate logs are being ingested. **Follow the steps below to enable archiving and set up wazuh-archives-* index.** Search wazuh-alerts-* and wazuh-archives-* index. Add filter for location is `/var/log/fortigate.log`.
 
 ![image.png](image%2012.png)
 
 ![image.png](image%2013.png)
 
-### **Default decoders and rules for FortiGate**
+### **Default Decoders and Rules for FortiGate**
 
-By default, Wazuh has pre-installed decoders and rules for FortiGate. 
-
-This can be checked in Wazuh server UI under Rules and Decoders
+By default, Wazuh has pre-installed decoders and rules for FortiGate. This can be checked in Wazuh server UI under Rules and Decoders
 
 ![image.png](image%2014.png)
 
@@ -929,13 +947,13 @@ This can be verified in Threat Intelligent, Events section on the web UI.
 
 ## **Event Logging**
 
-### **Log compression and rotation**
+### **Log Compression and Rotation**
 
 Log files can quickly accumulate and consume significant disk space in a system. To prevent this, the Wazuh manager compresses logs during its rotation process, helping to manage disk usage efficiently and maintain system performance. The Wazuh manager compresses log files daily or when they reach a certain threshold (file size, age, time, and more) and archives them. In the log rotation process, Wazuh creates a new log file with the original name to continuously write new events.
 
 Log files are compressed daily and digitally signed using MD5, SHA1, and SHA256 hashing algorithms. The compressed log files are stored in the `/var/ossec/logs/` directory
 
-### **Archiving event logs**
+### **Archiving Event Logs**
 
 Events are logs generated by applications, endpoints, and network devices. The Wazuh server stores all events it receives, whether or not they trigger a rule. These events are stored in the Wazuh archives located at `/var/ossec/logs/archives/archives.log` and `/var/ossec/logs/archives/archives.json`. Security teams use archived logs to review historical data of security incidents, analyze trends, and generate reports to hunt threats.
 
@@ -947,7 +965,7 @@ By default, the Wazuh archives are disabled because it stores logs indefinitely 
 
 Edit the **Wazuh manager** configuration file `/var/ossec/etc/ossec.conf` and set the value of the highlighted fields below to `yes`:
 
-```python
+```bash
 <ossec_config>
   <global>
     <jsonout_output>yes</jsonout_output>
@@ -969,22 +987,22 @@ systemctl restart wazuh-manager
 
 Depending on your chosen format, the file `archives.log`, `archives.json`, or both will be created in the `/var/ossec/logs/archives/` directory on the Wazuh server. Wazuh uses a default log rotation policy. It ensures that available disk space is conserved by rotating and compressing logs on a daily, monthly, and yearly basis.
 
-### **Visualising the events on the dashboard**
+### **Visualising Events on Dashboard**
 
 Edit the Filebeat configuration file `/etc/filebeat/filebeat.yml` and change the value of `archives: enabled` from `false` to `true`:
 
-```python
+```bash
 archives:
  enabled: true
 ```
 
 Restart Filebeat to apply the configuration changes:
 
-```python
+```bash
 systemctl restart filebeat
 ```
 
-### **Wazuh dashboard**
+### **Configuring Wazuh Dashboard**
 
 Click the upper-left menu icon and navigate to **Dashboard** **management** > **Index patterns** > **Create index pattern**. Use `wazuh-archives-*` as the index pattern name, and set `timestamp` in the **Time field** drop-down list.
 
@@ -996,47 +1014,43 @@ To view the events on the dashboard, click the upper-left menu icon and navigate
 
 ![image.png](image%2019.png)
 
+## **Introduction to Wazuh**
+
 ### **Use case: Detecting Signed Binary Proxy Execution**
 
 Signed binary proxy execution is a technique threat actors use to bypass application whitelisting by using trusted binaries to run malicious code. This technique is identified as `T1218.010` based on the MITRE ATT&CK framework.
 
-In this use case, we show how to abuse the Windows utility, `regsvr32.exe`, to bypass application controls. We then analyze events in the Wazuh archives to detect suspicious activity related to this technique.
+In this use case, we show how to abuse the Windows utility, `regsvr32.exe`, to bypass application controls. We then analyse events in the Wazuh archives to detect suspicious activity related to this technique.
 
-### **Atomic Red Team installation**
+### **Atomic Red Team Installation**
 
-Note: this has been tested in an isolated Unclassified environment. 
+Note: this has been tested in an isolated Unclassified environment. Perform the following steps to install the Atomic Red Team PowerShell module on a Windows endpoint using PowerShell as an administrator. By default, PowerShell restricts the execution of running scripts. Run the command below to change the default execution policy to `RemoteSigned`:
 
-Perform the following steps to install the Atomic Red Team PowerShell module on a Windows endpoint using PowerShell as an administrator.
-
-By default, PowerShell restricts the execution of running scripts. Run the command below to change the default execution policy to `RemoteSigned`:
-
-```python
+```powershell
 Set-ExecutionPolicy RemoteSigned
 ```
 
 Install the ART execution framework:
 
-Internet access has been enabled at this point
-
-```python
+```powershell
 IEX (IWR 'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing);
 Install-AtomicRedTeam -getAtomics
 ```
 
 Import the ART module to use `Invoke-AtomicTest` function
 
-```python
+```powershell
 Import-Module "C:\AtomicRedTeam\invoke-atomicredteam\Invoke-AtomicRedTeam.psd1" -Force
 ```
 
 Use `Invoke-AtomicTest` function to show details of the technique `T1218.010`
 
-```python
+```powershell
 Invoke-AtomicTest T1218.010 -ShowDetailsBrief
 ```
 
-```python
-#Output
+```powershell
+#Example output
 PathToAtomicsFolder = C:\AtomicRedTeam\atomics
 
 T1218.010-1 Regsvr32 local COM scriptlet execution
@@ -1046,18 +1060,16 @@ T1218.010-4 Regsvr32 Registering Non DLL
 T1218.010-5 Regsvr32 Silent DLL Install Call DllRegisterServer
 ```
 
-### **Attack emulation**
+### **Attack Emulation**
 
-Emulate the signed binary proxy execution technique on the Windows endpoint.
+Emulate the signed binary proxy execution technique on the Windows endpoint. Run the command below with Powershell as an administrator to perform the `T1218.010` test.
 
-Run the command below with Powershell as an administrator to perform the `T1218.010` test
-
-```python
+```powershell
 Invoke-AtomicTest T1218.010
 ```
 
-```python
-#Output
+```powershell
+#Example output
 PathToAtomicsFolder = C:\AtomicRedTeam\atomics
 
 Executing test: T1218.010-1 Regsvr32 local COM scriptlet execution
@@ -1076,7 +1088,7 @@ Several calculator instances will pop up after a successful execution of the exp
 
 ![image.png](image%2020.png)
 
-### **Wazuh dashboard**
+### **Wazuh Dashboard**
 
 Use the Wazuh archives to query and display events related to the technique being hunted. It's important to note that while consulting the archives, some events might already be captured as alerts on the Wazuh dashboard. You can use information from the Wazuh archives, including alerts and events that have no detection to create custom rules based on your specific requirements.
 
@@ -1140,7 +1152,7 @@ Take the following steps on the Ubuntu endpoint to enable the Wazuh rootcheck mo
 
 By default, the Wazuh rootcheck module is enabled in the Wazuh agent configuration file. Check the `<rootcheck>` block in the `/var/ossec/etc/ossec.conf` configuration file of the monitored endpoint and make sure that it has the configuration below:
 
-```python
+```bash
 <rootcheck>
     <disabled>no</disabled>
     <check_files>yes</check_files>
@@ -1162,17 +1174,17 @@ By default, the Wazuh rootcheck module is enabled in the Wazuh agent configurati
 </rootcheck>
 ```
 
-### **Attack emulation**
+### **Attack Emulation**
 
 Create a copy of the original system binary:
 
-```python
+```bash
 sudo cp -p /usr/bin/w /usr/bin/w.copy
 ```
 
 Replace the original system binary `/usr/bin/w` with the following shell script:
 
-```python
+```bash
 sudo tee /usr/bin/w << EOF
 !/bin/bash
 echo "`date` this is evil" > /tmp/trojan_created_file
@@ -1184,11 +1196,11 @@ EOF
 
 The rootcheck scan runs every 12 hours by default. Force a scan by restarting the Wazuh agent to see the relevant alert:
 
-```python
+```bash
 sudo systemctl restart wazuh-agent
 ```
 
-### **Visualise the alerts**
+### **Visualising Alerts**
 
 You can visualise the alert data in the Wazuh dashboard. To do this, go to the **Threat Hunting** module and add the filters in the search bar to query the alerts.
 `location:rootcheck AND rule.id:510`
@@ -1199,27 +1211,27 @@ You can visualise the alert data in the Wazuh dashboard. To do this, go to the 
 
 File Integrity Monitoring (FIM) helps in auditing sensitive files and meeting regulatory compliance requirements. Wazuh has an inbuilt FIM module that monitors file system changes to detect the creation, modification, and deletion of files.
 
-### **Configuration on Ubuntu endpoint**
+### **Configuring Ubuntu Endpoint**
 
 Edit the Wazuh agent `/var/ossec/etc/ossec.conf` configuration file. Add the directories for monitoring within the `<syscheck>` block. For this use case, you configure Wazuh to monitor the `/root` directory. 
 
-```python
+```bash
 <directories check_all="yes" report_changes="yes" realtime="yes">/root</directories>
 ```
 
 Restart the Wazuh agent to apply the configuration changes:
 
-```python
+```bash
 sudo systemctl restart wazuh-agent
 ```
 
-### **Test the configuration**
+### **Testing Configuration**
 
 1. Create a text file in the monitored directory then wait for 5 seconds.
 2. Add content to the text file and save it. Wait for 5 seconds.
 3. Delete the text file from the monitored directory.
 
-### **Visualise the alerts**
+### **Visualising Alerts**
 
 You can visualise the alert data in the Wazuh dashboard. To do this, go to the **File Integrity Monitoring** module and add the filters in the search bar to query the alerts:`rule.id: is one of 550,553,554`
 
@@ -1238,7 +1250,7 @@ The Vulnerability Detection module is enabled by default. You can perform the fo
 Open the `/var/ossec/etc/ossec.conf` file on the Wazuh server. Check the following settings.
 Vulnerability Detection is enabled:
 
-```python
+```bash
 <vulnerability-detection>
    <enabled>yes</enabled>
    <index-status>yes</index-status>
@@ -1246,11 +1258,9 @@ Vulnerability Detection is enabled:
 </vulnerability-detection>
 ```
 
-The indexer connection is properly configured.
+The indexer connection is properly configured. By default, the indexer settings have one host configured. It's set to `0.0.0.0` as highlighted below.
 
-By default, the indexer settings have one host configured. It's set to `0.0.0.0` as highlighted below.
-
-```python
+```bash
 <indexer>
   <enabled>yes</enabled>
   <hosts>
@@ -1266,17 +1276,13 @@ By default, the indexer settings have one host configured. It's set to `0.0.0.0
 </indexer>
 ```
 
-Replace `0.0.0.0` with your Wazuh indexer node IP address or hostname. You can find this value in the Filebeat config file `/etc/filebeat/filebeat.yml`.
+Replace `0.0.0.0` with your Wazuh indexer node IP address or hostname. You can find this value in the Filebeat config file `/etc/filebeat/filebeat.yml`. Ensure the Filebeat certificate and key name match the certificate files in `/etc/filebeat/certs`. If you made changes to the configuration, restart the Wazuh manager.
 
-Ensure the Filebeat certificate and key name match the certificate files in `/etc/filebeat/certs`.
-
-If you made changes to the configuration, restart the Wazuh manager.
-
-```python
+```bash
 sudo systemctl restart wazuh-manager
 ```
 
-### **Visualise the alerts**
+### **Visualising Alerts**
 
 You can visualise the detected vulnerabilities in the Wazuh dashboard. To see a list of active vulnerabilities, go to **Vulnerability Detection** and select **Inventory**.
 
@@ -1284,7 +1290,7 @@ You can visualise the detected vulnerabilities in the Wazuh dashboard. To see a 
 
 ![image.png](image%2035.png)
 
-## **Incident response**
+## **Incident Response**
 
 The goal of incident response is to effectively handle a security incident and restore normal business operations as quickly as possible. As organizations’ digital assets continuously grow, managing incidents manually becomes increasingly challenging, hence the need for automation.
 
@@ -1292,7 +1298,7 @@ The goal of incident response is to effectively handle a security incident and r
 
 The Wazuh Active Response module allows users to run automated actions when incidents are detected on endpoints. This improves an organization's incident response processes, enabling security teams to take immediate and automated actions to counter detected threats.
 
-### **Default active response actions**
+### **Default Active Response Actions**
 
 Out-of-the-box scripts are available on every operating system that runs the Wazuh agents. Some of the default active response scripts include
 
@@ -1304,7 +1310,7 @@ Out-of-the-box scripts are available on every operating system that runs the Waz
 | restart.sh | Restarts the Wazuh agent or server. |
 | netsh.exe | Blocks an IP address using netsh. |
 
-### **Custom active response actions**
+### **Custom Active Response Actions**
 
 One of the benefits of the Wazuh Active Response module is its adaptability. Wazuh allows security teams to create custom active response actions in any programming language, tailoring them to their specific needs.
 
@@ -1322,18 +1328,18 @@ After SSH Brute Force attack was launched from Kali machine, the login was disab
 
 In this use case, we demonstrate how to block malicious IP addresses from accessing web resources on a web server. 
 
-### **Configure Ubuntu endpoint**
+### **Configuring Ubuntu endpoint**
 
 Update local packages and install the Apache web server:
 
-```python
+```bash
 sudo apt update
 sudo apt install apache2
 ```
 
 If the firewall is enabled, modify the firewall to allow external access to web ports. Skip this step if the firewall is disabled:
 
-```python
+```bash
 sudo ufw status
 sudo ufw app list
 sudo ufw allow 'Apache'
@@ -1341,19 +1347,19 @@ sudo ufw allow 'Apache'
 
 Check the status of the Apache service to verify that the web server is running:
 
-```python
+```bash
 sudo systemctl status apache2
 ```
 
 Use the `curl` command or open `http://<UBUNTU_IP>` in a browser to view the Apache landing page and verify the installation:
 
-```python
+```bash
 curl http://<UBUNTU_IP>
 ```
 
 Add the following to `/var/ossec/etc/ossec.conf` file to configure the Wazuh agent and monitor the Apache access logs:
 
-```python
+```bash
 <localfile>
   <log_format>syslog</log_format>
   <location>/var/log/apache2/access.log</location>
@@ -1362,41 +1368,39 @@ Add the following to `/var/ossec/etc/ossec.conf` file to configure the Wazuh a
 
 Restart the Wazuh agent to apply the changes:
 
-```python
+```bash
 sudo systemctl restart wazuh-agent
 ```
 
-### **Configure the Wazuh server**
+### **Configuring the Wazuh server**
 
-Download the utilities and configure the CDB list.
+Download the utilities and configure the CDB list. Download the Alienvault IP reputation database:
 
-Download the Alienvault IP reputation database:
-
-```python
+```bash
 sudo wget https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/alienvault_reputation.ipset -O /var/ossec/etc/lists/alienvault_reputation.ipset
 ```
 
 Append the IP address of the attacker endpoint to the IP reputation database. Replace `<ATTACKER_IP>` with the Kali IP address in the command below:
 
-```python
+```bash
 sudo echo "<ATTACKER_IP>" >> /var/ossec/etc/lists/alienvault_reputation.ipset
 ```
 
 Download a script to convert from the `.ipset` format to the `.cdb` list format:
 
-```python
+```bash
 sudo wget https://wazuh.com/resources/iplist-to-cdblist.py -O /tmp/iplist-to-cdblist.py
 ```
 
 Convert the `alienvault_reputation.ipset` file to a `.cdb` format using the previously downloaded script:
 
-```python
+```bash
 sudo /var/ossec/framework/python/bin/python3 /tmp/iplist-to-cdblist.py /var/ossec/etc/lists/alienvault_reputation.ipset /var/ossec/etc/lists/blacklist-alienvault
 ```
 
 Assign the right permissions and ownership to the generated file:
 
-```python
+```bash
 sudo chown wazuh:wazuh /var/ossec/etc/lists/blacklist-alienvault
 ```
 
@@ -1404,7 +1408,7 @@ sudo chown wazuh:wazuh /var/ossec/etc/lists/blacklist-alienvault
 
 Add a custom rule to trigger a Wazuh active response script. Do this in the Wazuh server `/var/ossec/etc/rules/local_rules.xml` custom ruleset file:
 
-```python
+```bash
 <group name="attack,">
   <rule id="100100" level="10">
     <if_group>web|attack|attacks</if_group>
@@ -1416,7 +1420,7 @@ Add a custom rule to trigger a Wazuh active response script. Do this in the Wa
 
 Edit the Wazuh server `/var/ossec/etc/ossec.conf` configuration file and add the `etc/lists/blacklist-alienvault` list to the `<ruleset>` section:
 
-```python
+```bash
 <ossec_config>
   <ruleset>
     <!-- Default ruleset -->
@@ -1426,7 +1430,7 @@ Edit the Wazuh server `/var/ossec/etc/ossec.conf` configuration file and add t
     <list>etc/lists/audit-keys</list>
     <list>etc/lists/amazon/aws-eventnames</list>
     <list>etc/lists/security-eventchannel</list>
-    **<list>etc/lists/blacklist-alienvault</list>**
+    <list>etc/lists/blacklist-alienvault</list>
 
     <!-- User-defined ruleset -->
     <decoder_dir>etc/decoders</decoder_dir>
@@ -1441,7 +1445,7 @@ Add the active response block to the Wazuh server `/var/ossec/etc/ossec.conf` 
 The `firewall-drop` command integrates with the Ubuntu local iptables firewall and drops incoming network connection from the attacker endpoint for 60 seconds:
 Remember to uncomment the code block (remove `<!--` and `-->` )
 
-```python
+```bash
 <ossec_config>
   <active-response>
     <command>firewall-drop</command>
@@ -1454,15 +1458,15 @@ Remember to uncomment the code block (remove `<!--` and `-->` )
 
 Restart the Wazuh manager to apply the changes:
 
-```python
+```bash
 sudo systemctl restart wazuh-manager
 ```
 
-### **Attack emulation**
+### **Attack Emulation**
 
 Access any of the web servers from the Kali endpoint using the corresponding IP address. Replace `<WEBSERVER_IP>` with the appropriate value and execute the following command from the attacker endpoint:
 
-```python
+```bash
 curl http://<WEBSERVER_IP>
 ```
 
@@ -1470,7 +1474,7 @@ The attacker endpoint connects to the victim's web servers the first time. After
 
 ![image.png](image%2037.png)
 
-### **Visualise the alerts**
+### **Visualising Alerts**
 
 You can visualize the alert data in the Wazuh dashboard. To do this, go to the **Threat Hunting** module and add the filters in the search bar to query the alerts: `rule.id is one of 651, 100100`
 
@@ -1480,17 +1484,15 @@ You can visualize the alert data in the Wazuh dashboard. To do this, go to the 
 
 ### **Snort3**
 
-Install Wazuh agent on a Linux host where Snort3 is installed.
+Install Wazuh agent on a Linux host where Snort3 is installed. Edit Snort’s configuration:
 
-Edit Snort’s configuration 
-
-```python
+```bash
 sudo nano /usr/local/etc/snort/snort.lua
 ```
 
 Uncomment alert_full and add file=true
 
-```python
+```bash
 ---------------------------------------------------------------------------
 -- 7. configure outputs
 ---------------------------------------------------------------------------
@@ -1509,32 +1511,31 @@ alert_full = {file=true}
 Edit the `/var/ossec/etc/ossec.conf` file of Wazuh agent and add the new `localfile` entry:
 Make sure indentation is correct.
 
-```python
+```bash
 <localfile>
   <log_format>snort-full</log_format>
   <location>/var/log/snort/alert_full.txt</location>
 </localfile>
 ```
 
-Restart the Wazuh agent
+Restart the Wazuh agent.
 
-```python
+```bash
 systemctl restart wazuh-agent
 ```
 
-Run Snort3 with the following parameter
+Run Snort3 with the following parameters:
 
-```python
+```bash
 sudo snort -c /usr/local/etc/snort/snort.lua -i ens32 -A alert_full -l /var/log/snort
 ```
 
-Note: Snort3 is currently configured to read local.rules for demonstration purposes.
+Note: Snort3 is currently configured to read local.rules for demonstration purposes. 
 
-Execute ping to 10.0.0.22 (Snort3 VM) from another host.
+Execute ping to 10.0.0.22 (Snort3 VM) from another host. Verify alert_full.txt is generated
 
-Verify alert_full.txt is generated
-
-```python
+```bash
+#Example output
 root@Snort:/var/log/snort# ls
 alert_fast.txt  alert_full.txt
 ```
@@ -1547,9 +1548,7 @@ On Wazuh dashboard, verify IDS Event alerts are generated and it points to alert
 
 ### **Suricata**
 
-Install Wazuh agent on a Linux host where Suricata is installed.
-
-Changes the permissions of all files in the Suricata’s `/rules/` directories
+Install Wazuh agent on a Linux host where Suricata is installed. Changes the permissions of all files in the Suricata’s `/rules/` directories:
 
 ```bash
 sudo chmod 640 /var/lib/suricata/rules/*.rules
@@ -1603,9 +1602,9 @@ Restart the Wazuh agent to apply the changes:
 sudo systemctl restart wazuh-agent
 ```
 
-### **Attack emulation**
+### **Attack Emulation**
 
-Wazuh automatically parses data from `/var/log/suricata/eve.json` and generates related alerts on the Wazuh dashboard. From the Ubuntu host, run 
+Wazuh automatically parses data from `/var/log/suricata/eve.json` and generates related alerts on the Wazuh dashboard. From the Ubuntu host, run:
 
 ```bash
 curl http://testmynids.org/uid/index.html
@@ -1613,7 +1612,7 @@ curl http://testmynids.org/uid/index.html
 
 Expected response should be similar to:
 
-```python
+```bash
 09/12/2024-13:51:32.520238  [**] [1:2100498:7] GPL ATTACK_RESPONSE id check returned root [**] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} 65.9.141.53:80 -> 10.0.0.25:34606Alerts:
 ```
 
