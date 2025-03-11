@@ -35,12 +35,12 @@ mkdir -p ~/iris-offline/{docker,docker-images}
 Navigate to `~/iris-offline/docker` and download Docker Engine and dependencies.
 
 ```bash
-mkdir ~/iris-offline/docker cd ~/iris-offline/docker
-wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/containerd.io_1.7.24-1_amd64.deb 
-wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-ce_27.4.0-1~ubuntu.24.04~noble_amd64.deb 
-wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-ce-cli_27.4.0-1~ubuntu.24.04~noble_amd64.deb 
-wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-buildx-plugin_0.19.2-1~ubuntu.24.04~noble_amd64.deb 
-wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-compose-plugin_2.31.0-1~ubuntu.24.04~noble_amd64.deb
+cd ~/iris-offline/docker
+wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/containerd.io_1.7.25-1_amd64.deb
+wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-ce_28.0.0-1~ubuntu.22.04~jammy_amd64.deb
+wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-ce-cli_28.0.0-1~ubuntu.22.04~jammy_amd64.deb
+wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-buildx-plugin_0.21.0-1~ubuntu.22.04~jammy_amd64.deb
+wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-compose-plugin_2.33.0-1~ubuntu.22.04~jammy_amd64.deb
 ```
 
 Install the `.deb` packages. Change directory into the docker folder and run:
