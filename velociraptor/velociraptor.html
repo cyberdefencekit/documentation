@@ -1,0 +1,2189 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../understanding-DFIR/understanding-DFIR.html">
+      
+      
+        <link rel="next" href="../understanding-EDR/understanding-EDR.html">
+      
+      
+      <link rel="icon" href="../images/Cyber Defence Kit logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>Velociraptor - Cyber Defence Kit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Velociraptor - Cyber Defence Kit" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="./assets/images/social/velociraptor/velociraptor.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="None" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Velociraptor - Cyber Defence Kit" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="./assets/images/social/velociraptor/velociraptor.png" >
+      
+    
+    
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#velociraptor" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-header__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cyber Defence Kit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Velociraptor
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../CDK-explained/CDK-explained.html" class="md-tabs__link">
+          
+  
+    
+  
+  About CDK
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SIEM/understanding-SIEM.html" class="md-tabs__link">
+          
+  
+    
+  
+  SIEM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-tabs__link">
+          
+  
+    
+  
+  IDS/IPS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SIRP/understanding-SIRP.html" class="md-tabs__link">
+          
+  
+    
+  
+  SIRP
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SOAR/understanding-SOAR.html" class="md-tabs__link">
+          
+  
+    
+  
+  SOAR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-NTA/understanding-NTA.html" class="md-tabs__link">
+          
+  
+    
+  
+  NTA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../understanding-DFIR/understanding-DFIR.html" class="md-tabs__link">
+          
+  
+    
+  
+  DFIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-EDR/understanding-EDR.html" class="md-tabs__link">
+          
+  
+    
+  
+  EDR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../caldera/caldera.html" class="md-tabs__link">
+          
+  
+    
+  
+  Other
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-nav__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    Cyber Defence Kit
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    About CDK
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            About CDK
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CDK-explained/CDK-explained.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cyber Defence Kit Explained
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SIEM
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SIEM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIEM/understanding-SIEM.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understanding SIEM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../splunk/splunk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Splunk
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wazuh/wazuh.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Wazuh
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    IDS/IPS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            IDS/IPS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understanding IDS/IPS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snort/snort.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Snort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../suricata/suricata.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Suricata
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SIRP
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            SIRP
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIRP/understanding-SIRP.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understanding SIRP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../thehive/thehive.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TheHive
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iris/iris.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IRIS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SOAR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            SOAR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SOAR/understanding-SOAR.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understanding SOAR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shuffle/shuffle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shuffle
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    NTA
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            NTA
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-NTA/understanding-NTA.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understanding NTA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wireshark/wireshark.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Wireshark
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zeek/zeek.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Zeek
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zui/zui.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Zui
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    DFIR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            DFIR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-DFIR/understanding-DFIR.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understanding DFIR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Velociraptor
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="velociraptor.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Velociraptor
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lab-setup-for-proof-of-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lab Setup for Proof of Concept
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-velociraptor-server-using-self-signed-ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy Velociraptor Server using Self-Signed SSL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy Velociraptor Server using Self-Signed SSL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#self-signed-ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Self-Signed SSL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-this-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      When to use this method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-signed-certificates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Self-Signed Certificates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-config-files-for-the-server-and-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generate config files for the server and client
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Firewall
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-velociraptor-client-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Velociraptor Client (Windows)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Velociraptor Client (Windows)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-official-release-msi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 1: Official release MSI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-configure-msi-package-via-velociraptor-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 2: Configure MSI package via Velociraptor Server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-client-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify client connection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-velociraptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction to Velociraptor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction to Velociraptor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-process-hunt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a Process Hunt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-client-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding Client Labels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-filename-search-hunt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a Filename Search Hunt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-hash-hunt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a Hash Hunt
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    EDR
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            EDR
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-EDR/understanding-EDR.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understanding EDR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auroralite/auroralite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aurora Lite
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Other
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Other
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../caldera/caldera.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Caldera
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigator/navigator.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MITRE ATT&CK Navigator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="velociraptor"><strong>Velociraptor</strong></h1>
+<p>Velociraptor is an advanced digital forensic and incident response tool that enhances your visibility into your endpoints.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/T75Fo0NoqVE?si=CG5E2cO313LUBanb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h2 id="lab-setup-for-proof-of-concept"><strong>Lab Setup for Proof of Concept</strong></h2>
+<p>In this proof of concept, the Velociraptor server was configured on an Ubuntu virtual machine (VM), and the Velociraptor client was configured on a Windows VM. An attack simulation was conducted on the Windows hosts using a Kali machine in a safe and controlled setting.</p>
+<p><strong>Note: Do not attempt to replicate the attack emulation demonstrated here unless you are properly trained and it is safe to do so. Unauthorised attack emulation can lead to legal consequences and unintended damage to systems. Always ensure that such activities are conducted by qualified professionals in a secure, isolated environment.</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Host</strong></th>
+<th><strong>OS</strong></th>
+<th><strong>Role</strong></th>
+<th><strong>IP Address</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fortigate</td>
+<td>Fortios 7.6.0</td>
+<td>Firewall/Router</td>
+<td>192.168.1.111 (WAN) / 10.0.0.1 (LAN)</td>
+</tr>
+<tr>
+<td>WazuhServer</td>
+<td>Ubuntu 22.04 LTS</td>
+<td>Velociraptor Server</td>
+<td>10.0.0.20</td>
+</tr>
+<tr>
+<td>WS2019</td>
+<td>Windows Server 2019</td>
+<td>Velociraptor Client</td>
+<td>10.0.0.40</td>
+</tr>
+<tr>
+<td>Kali</td>
+<td>Kali Linux 2024.2</td>
+<td>Attacker machine</td>
+<td>10.0.0.22</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" href="Velociraptor.drawio.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Velociraptor.drawio.png" src="Velociraptor.drawio.png" /></a></p>
+<h2 id="deploy-velociraptor-server-using-self-signed-ssl"><strong>Deploy Velociraptor Server using Self-Signed SSL</strong></h2>
+<h3 id="self-signed-ssl"><strong>Self-Signed SSL</strong></h3>
+<p>Velociraptor deployments are secured using a self-signed Certificate Authority (CA) that is generated during the initial configuration generation step. The client’s configuration contains the signed CA, which is used to verify all certificates needed during communications.</p>
+<p>In <code>self-signed SSL</code> mode, Velociraptor issues its own server certificate using its internal CA. This means the Admin GUI and front end also use a self-signed server certificate.</p>
+<h3 id="when-to-use-this-method"><strong>When to use this method</strong></h3>
+<p>This type of deployment is most appropriate for on-premises scenarios where internet access is not available or egress is blocked.</p>
+<h3 id="self-signed-certificates"><strong>Self-Signed Certificates</strong></h3>
+<p>Self-signed SSL certificates trigger SSL warnings in all web browsers. When accessing the Admin GUI you will receive a certificate warning about the possibility of a MITM attack.</p>
+<p>As a precaution, Velociraptor only exports the GUI port on the loopback interface. You may change the <code>GUI.bind_address</code> setting to “0.0.0.0” to receive external connections on this port, but this is not recommended. Instead, you should use SSH tunneling to connect to the local loopback interface.</p>
+<p>Velociraptor doesn’t support other self-signed SSL certificates, and we don’t recommend attempting to create and upload your own internal self-signed certificate to Velociraptor.</p>
+<h3 id="generate-config-files-for-the-server-and-client"><strong>Generate config files for the server and client</strong></h3>
+<p>Download the latest Velociraptor binary that is compatible for your host architecture from <a href="https://github.com/Velocidex/velociraptor/releases">https://github.com/Velocidex/velociraptor/releases</a>.</p>
+<p>Change the permission of the Velociraptor binary.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">764</span><span class="w"> </span>velociraptor-v0.72.0-linux-amd64
+</code></pre></div>
+<p>Make the directory <code>/opt/velociraptor</code> </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>/opt/velociraptor
+</code></pre></div>
+<p>Generate a new config file by running velociraptor in interactive mode</p>
+<p>Select <code>linux</code> for OS</p>
+<p>Set Path to the datastore directory as default <code>/opt/velociraptor</code> (hit <code>enter</code>)</p>
+<p>Select <code>Self Signed SSL</code></p>
+<p>For the public DNS name of the Master Frontend, enter your IP address (e.g. <code>10.0.0.20</code>)</p>
+<p>For the frontend port, select default port of <code>8000</code> (hit <code>enter</code>)</p>
+<p><strong>Note:</strong> If you are installing Velociraptor server on same machine as where the Splunk Enterprise is installed, set your frontend port to something else (e.g. <code>7000</code>) to avoid conflict.</p>
+<p>For the GUI port, select default port of <code>8889</code> (hit <code>enter</code>)</p>
+<p>For WebSocket, answer <code>N</code> (hit <code>enter</code>)</p>
+<p>For the registry to store the writeback files, answer <code>N</code> (hit <code>enter</code>)</p>
+<p>For DynDns provider, answer <code>none</code> (hit <code>enter</code>)</p>
+<p>Create GUI username and password</p>
+<p>When prompted to create GUI username again, hit <code>enter</code> to end</p>
+<p>Set Path to the logs directory as default <code>/opt/velociraptor/logs</code> (hit <code>enter</code>)</p>
+<p>For restricting VQL functionality on the server, answer <code>N</code> (hit <code>enter</code>)</p>
+<p>For where should I write the server config file, hit <code>enter</code> to set it to <code>server.config.yaml</code></p>
+<p>For where should I write the client config file, hit <code>enter</code> to set it to <code>client.config.yaml</code></p>
+<p>Note the question is actually asking for file name instead of file path. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>./velociraptor-v0.72.0-linux-amd64<span class="w"> </span>config<span class="w"> </span>generate<span class="w"> </span>-i
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">#Example output</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Welcome<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>Velociraptor<span class="w"> </span>configuration<span class="w"> </span>generator
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>---------------------------------------------------
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>I<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>creating<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>deployment<span class="w"> </span>configuration<span class="w"> </span><span class="k">for</span><span class="w"> </span>you.<span class="w"> </span>I<span class="w"> </span>will
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>begin<span class="w"> </span>by<span class="w"> </span>identifying<span class="w"> </span>what<span class="w"> </span><span class="nb">type</span><span class="w"> </span>of<span class="w"> </span>deployment<span class="w"> </span>you<span class="w"> </span>need.
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>What<span class="w"> </span>OS<span class="w"> </span>will<span class="w"> </span>the<span class="w"> </span>server<span class="w"> </span>be<span class="w"> </span>deployed<span class="w"> </span>on?
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w"> </span>linux
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>?<span class="w"> </span>Path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>datastore<span class="w"> </span>directory.<span class="w"> </span>/opt/velociraptor
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>?<span class="w">  </span>Self<span class="w"> </span>Signed<span class="w"> </span>SSL
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>?<span class="w"> </span>What<span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>public<span class="w"> </span>DNS<span class="w"> </span>name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>Master<span class="w"> </span>Frontend<span class="w"> </span><span class="o">(</span>e.g.<span class="w"> </span>www.example.com<span class="o">)</span>:<span class="w"> </span><span class="m">10</span>.0.0.20
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>?<span class="w"> </span>Enter<span class="w"> </span>the<span class="w"> </span>frontend<span class="w"> </span>port<span class="w"> </span>to<span class="w"> </span>listen<span class="w"> </span>on.<span class="w"> </span><span class="m">8000</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>?<span class="w"> </span>Enter<span class="w"> </span>the<span class="w"> </span>port<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>GUI<span class="w"> </span>to<span class="w"> </span>listen<span class="w"> </span>on.<span class="w"> </span><span class="m">8889</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>?<span class="w"> </span>Would<span class="w"> </span>you<span class="w"> </span>like<span class="w"> </span>to<span class="w"> </span>try<span class="w"> </span>the<span class="w"> </span>new<span class="w"> </span>experimental<span class="w"> </span>websocket<span class="w"> </span>comms?
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>Websocket<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>bidirectional<span class="w"> </span>low<span class="w"> </span>latency<span class="w"> </span>communication<span class="w"> </span>protocol<span class="w"> </span>supported<span class="w"> </span>by
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>most<span class="w"> </span>modern<span class="w"> </span>proxies<span class="w"> </span>and<span class="w"> </span>load<span class="w"> </span>balancers.<span class="w"> </span>This<span class="w"> </span>method<span class="w"> </span>is<span class="w"> </span>more<span class="w"> </span>efficient<span class="w"> </span>and
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>portable<span class="w"> </span>than<span class="w"> </span>plain<span class="w"> </span>HTTP.<span class="w"> </span>Be<span class="w"> </span>sure<span class="w"> </span>to<span class="w"> </span><span class="nb">test</span><span class="w"> </span>this<span class="w"> </span><span class="k">in</span><span class="w"> </span>your<span class="w"> </span>environment.
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w"> </span>No
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>?<span class="w"> </span>Would<span class="w"> </span>you<span class="w"> </span>like<span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span>the<span class="w"> </span>registry<span class="w"> </span>to<span class="w"> </span>store<span class="w"> </span>the<span class="w"> </span>writeback<span class="w"> </span>files?<span class="w"> </span><span class="o">(</span>Experimental<span class="o">)</span><span class="w"> </span>No
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>?<span class="w"> </span>Which<span class="w"> </span>DynDns<span class="w"> </span>provider<span class="w"> </span><span class="k">do</span><span class="w"> </span>you<span class="w"> </span>use?<span class="w"> </span>none
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>?<span class="w"> </span>GUI<span class="w"> </span>Username<span class="w"> </span>or<span class="w"> </span>email<span class="w"> </span>address<span class="w"> </span>to<span class="w"> </span>authorize<span class="w"> </span><span class="o">(</span>empty<span class="w"> </span>to<span class="w"> </span>end<span class="o">)</span>:<span class="w"> </span>cyber
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>?<span class="w"> </span>GUI<span class="w"> </span>Username<span class="w"> </span>or<span class="w"> </span>email<span class="w"> </span>address<span class="w"> </span>to<span class="w"> </span>authorize<span class="w"> </span><span class="o">(</span>empty<span class="w"> </span>to<span class="w"> </span>end<span class="o">)</span>:<span class="w"> </span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-09-18T20:53:27Z<span class="w">  </span>_<span class="w">    </span>__<span class="w">     </span>__<span class="w">           </span>_<span class="w">                  </span>__<span class="w"> </span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-09-18T20:53:27Z<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w">  </span>/<span class="w"> </span>/__<span class="w">  </span>/<span class="w"> </span>/___<span class="w">  </span>_____<span class="o">(</span>_<span class="o">)</span>________<span class="w"> </span>_____<span class="w">  </span>/<span class="w"> </span>/_____<span class="w">  </span>_____<span class="w"> </span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-09-18T20:53:27Z<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>_<span class="w"> </span><span class="se">\/</span><span class="w"> </span>/<span class="w"> </span>__<span class="w"> </span><span class="se">\/</span><span class="w"> </span>___/<span class="w"> </span>/<span class="w"> </span>___/<span class="w"> </span>__<span class="w"> </span><span class="sb">`</span>/<span class="w"> </span>__<span class="w"> </span><span class="se">\/</span><span class="w"> </span>__/<span class="w"> </span>__<span class="w"> </span><span class="se">\/</span><span class="w"> </span>___/<span class="w"> </span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-09-18T20:53:27Z<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span>/<span class="w"> </span>/<span class="w">  </span>__/<span class="w"> </span>/<span class="w"> </span>/_/<span class="w"> </span>/<span class="w"> </span>/__/<span class="w"> </span>/<span class="w"> </span>/<span class="w">  </span>/<span class="w"> </span>/_/<span class="w"> </span>/<span class="w"> </span>/_/<span class="w"> </span>/<span class="w"> </span>/_/<span class="w"> </span>/_/<span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-09-18T20:53:27Z<span class="w"> </span><span class="p">|</span>___/<span class="se">\_</span>__/_/<span class="se">\_</span>___/<span class="se">\_</span>__/_/_/<span class="w">   </span><span class="se">\_</span>_,_/<span class="w"> </span>.___/<span class="se">\_</span>_/<span class="se">\_</span>___/_/<span class="w"> </span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-09-18T20:53:27Z<span class="w">                                   </span>/_/<span class="w"> </span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-09-18T20:53:27Z<span class="w"> </span>Digging<span class="w"> </span>deeper!<span class="w">                  </span>https://www.velocidex.com<span class="w"> </span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-09-18T20:53:27Z<span class="w"> </span>This<span class="w"> </span>is<span class="w"> </span>Velociraptor<span class="w"> </span><span class="m">0</span>.72.0<span class="w"> </span>built<span class="w"> </span>on<span class="w"> </span><span class="m">2024</span>-04-25T16:09:17Z<span class="w"> </span><span class="o">(</span>7e4da7a<span class="o">)</span><span class="w"> </span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-09-18T20:53:27Z<span class="w"> </span>Generating<span class="w"> </span>keys<span class="w"> </span>please<span class="w"> </span>wait....<span class="w"> </span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>?<span class="w"> </span>Path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>logs<span class="w"> </span>directory.<span class="w"> </span>/opt/velociraptor/logs
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>?<span class="w"> </span>Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>restrict<span class="w"> </span>VQL<span class="w"> </span>functionality<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>server?
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>This<span class="w"> </span>is<span class="w"> </span>useful<span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>shared<span class="w"> </span>server<span class="w"> </span>where<span class="w"> </span>users<span class="w"> </span>are<span class="w"> </span>not<span class="w"> </span>fully<span class="w"> </span>trusted.
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>It<span class="w"> </span>removes<span class="w"> </span>potentially<span class="w"> </span>dangerous<span class="w"> </span>plugins<span class="w"> </span>like<span class="w"> </span>execve<span class="o">()</span>,<span class="w"> </span>filesystem<span class="w"> </span>access<span class="w"> </span>etc.
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>NOTE:<span class="w"> </span>This<span class="w"> </span>is<span class="w"> </span>an<span class="w"> </span>experimental<span class="w"> </span>feature<span class="w"> </span>only<span class="w"> </span>useful<span class="w"> </span><span class="k">in</span><span class="w"> </span>limited<span class="w"> </span>situations.<span class="w"> </span>If<span class="w"> </span>you
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="k">do</span><span class="w"> </span>not<span class="w"> </span>know<span class="w"> </span>you<span class="w"> </span>need<span class="w"> </span>it<span class="w"> </span><span class="k">select</span><span class="w"> </span>N<span class="w"> </span>here!
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="w"> </span>No
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>?<span class="w"> </span>Where<span class="w"> </span>should<span class="w"> </span>I<span class="w"> </span>write<span class="w"> </span>the<span class="w"> </span>server<span class="w"> </span>config<span class="w"> </span>file?<span class="w"> </span>server.config.yaml
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>?<span class="w"> </span>Where<span class="w"> </span>should<span class="w"> </span>I<span class="w"> </span>write<span class="w"> </span>the<span class="w"> </span>client<span class="w"> </span>config<span class="w"> </span>file?<span class="w"> </span>client.config.yaml
+</code></pre></div>
+<p>Verify that both server and client config files are generated in the present working directory</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ls
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">#Example output</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>client.config.yaml<span class="w">  </span>server.config.yaml<span class="w">  </span>velociraptor-v0.72.0-linux-amd64
+</code></pre></div>
+<p>Copy the config files to <code>/opt/velociraptor</code>  directory</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>cp<span class="w"> </span>client.config.yaml<span class="w"> </span>/opt/velociraptor
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>cp<span class="w"> </span>server.config.yaml<span class="w"> </span>/opt/velociraptor
+</code></pre></div>
+<p>Edit <code>server.config.yaml</code> in the <code>/opt/velociraptor</code>  directory</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>server.config.yaml
+</code></pre></div>
+<p>Verify that <code>Client: server_urls:</code> is set to <code>https://&lt;IP address&gt;:8000/</code></p>
+<p>Edit <code>GUI: bind address:</code> to point to your Velociraptor server IP address </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Client:
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>server_urls:
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">   </span>-<span class="w"> </span>https://10.0.0.20:8000/
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>&lt;SNIP&gt;
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>GUI:
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span>bind_address:<span class="w"> </span><span class="m">10</span>.0.0.20
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span>bind_port:<span class="w"> </span><span class="m">8889</span>
+</code></pre></div>
+<p>Create the Velociraptor server package for deb that included the generated configuration file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>./velociraptor-v0.72.0-linux-amd64<span class="w"> </span>--config<span class="w"> </span>/opt/velociraptor/server.config.yaml<span class="w"> </span>debian<span class="w"> </span>server<span class="w"> </span>--binary<span class="w"> </span>velociraptor-v0.72.0-linux-amd64<span class="w"> </span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">#Example output</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Creating<span class="w"> </span>amd64<span class="w"> </span>server<span class="w"> </span>package<span class="w"> </span>at<span class="w"> </span>velociraptor_server_0.72.0_amd64.deb
+</code></pre></div>
+<p>Install the server package</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>velociraptor_server_0.72.0_amd64.deb
+</code></pre></div>
+<p>This process creates a new user, system user and group called velociraptor</p>
+<p>A service is created to automatically start Velociraptor anytime the server is restarted</p>
+<p>Verify the /opt/velociraptor is accessible by user and group velociraptor</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>ls<span class="w"> </span>-la<span class="w"> </span>/opt/velociraptor/
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>total<span class="w"> </span><span class="m">24</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>drwxr-xr-x.<span class="w"> </span><span class="m">9</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w">   </span><span class="m">175</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">09</span>:03<span class="w"> </span>.
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>drwxr-xr-x.<span class="w"> </span><span class="m">5</span><span class="w"> </span>root<span class="w">         </span>root<span class="w">            </span><span class="m">52</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">07</span>:09<span class="w"> </span>..
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>drwx------.<span class="w"> </span><span class="m">2</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w">    </span><span class="m">68</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">09</span>:03<span class="w"> </span>acl
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>-rw-------.<span class="w"> </span><span class="m">1</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w">  </span><span class="m">2725</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">07</span>:19<span class="w"> </span>client.config.yaml
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>drwx------.<span class="w"> </span><span class="m">3</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w">    </span><span class="m">20</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">09</span>:03<span class="w"> </span>clients
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>drwxr-xr-x.<span class="w"> </span><span class="m">3</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w">   </span><span class="m">168</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">09</span>:03<span class="w"> </span>config
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>drwx------.<span class="w"> </span><span class="m">2</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w">  </span><span class="m">4096</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">09</span>:03<span class="w"> </span>logs
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>drwx------.<span class="w"> </span><span class="m">3</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w">    </span><span class="m">35</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">09</span>:03<span class="w"> </span>server_artifact_logs
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>drwx------.<span class="w"> </span><span class="m">5</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w">   </span><span class="m">104</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">09</span>:03<span class="w"> </span>server_artifacts
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>-rw-------.<span class="w"> </span><span class="m">1</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w"> </span><span class="m">13172</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">08</span>:54<span class="w"> </span>server.config.yaml
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>drwx------.<span class="w"> </span><span class="m">2</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w">    </span><span class="m">29</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">09</span>:03<span class="w"> </span>users
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>---
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>total<span class="w"> </span><span class="m">36</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>drwxr-xr-x<span class="w"> </span><span class="m">9</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w"> </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">09</span>:06<span class="w"> </span>.
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>drwxr-xr-x<span class="w"> </span><span class="m">5</span><span class="w"> </span>root<span class="w">         </span>root<span class="w">         </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">08</span>:13<span class="w"> </span>..
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>drwx------<span class="w"> </span><span class="m">2</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w"> </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">09</span>:06<span class="w"> </span>acl
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>drwx------<span class="w"> </span><span class="m">3</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w"> </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">09</span>:06<span class="w"> </span>clients
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>drwxr-xr-x<span class="w"> </span><span class="m">3</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w"> </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">09</span>:06<span class="w"> </span>config
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>drwx------<span class="w"> </span><span class="m">2</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w"> </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">09</span>:06<span class="w"> </span>logs
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>drwx------<span class="w"> </span><span class="m">3</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w"> </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">09</span>:06<span class="w"> </span>server_artifact_logs
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a>drwx------<span class="w"> </span><span class="m">5</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w"> </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">09</span>:06<span class="w"> </span>server_artifacts
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>drwx------<span class="w"> </span><span class="m">2</span><span class="w"> </span>velociraptor<span class="w"> </span>velociraptor<span class="w"> </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">09</span>:06<span class="w"> </span>users
+</code></pre></div>
+<p>Verify <code>velocirpator_server.service</code> is active and running</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>velociraptor_server.service<span class="w"> </span>
+</code></pre></div>
+<p>Access the Velociraptor by typing <code>https://&lt;IP address&gt;:8889</code></p>
+<p>Sign in with the user you created</p>
+<p><a class="glightbox" href="image.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image.png" /></a></p>
+<p><a class="glightbox" href="image%201.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%201.png" /></a></p>
+<h3 id="configure-firewall"><strong>Configure Firewall</strong></h3>
+<p>On CentOS host, run the following command</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1">#Show original state</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="nb">list</span><span class="o">-</span><span class="nb">all</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1">#Velociraptor ports</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">zone</span><span class="o">=</span><span class="n">public</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="o">/</span><span class="n">tcp</span> <span class="o">--</span><span class="n">permanent</span> <span class="c1"># Frontend</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">zone</span><span class="o">=</span><span class="n">public</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">port</span><span class="o">=</span><span class="mi">8889</span><span class="o">/</span><span class="n">tcp</span> <span class="o">--</span><span class="n">permanent</span> <span class="c1"># Web GUI</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">reload</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="c1">#Check applied</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="nb">list</span><span class="o">-</span><span class="nb">all</span>
+</code></pre></div>
+<p>On Ubuntu, run the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nx">sudo</span><span class="w"> </span><span class="nx">ufw</span><span class="w"> </span><span class="nx">allow</span><span class="w"> </span><span class="mf">8000</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nx">syslog</span><span class="w"> </span><span class="nx">TCP</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nx">sudo</span><span class="w"> </span><span class="nx">ufw</span><span class="w"> </span><span class="nx">allow</span><span class="w"> </span><span class="mf">8889</span><span class="o">/</span><span class="nx">udp</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nx">syslog</span><span class="w"> </span><span class="nx">UDP</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">#Apply</span><span class="w"> </span><span class="nx">changes</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="nx">sudo</span><span class="w"> </span><span class="nx">ufw</span><span class="w"> </span><span class="nx">reload</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="n">#Enable</span><span class="w"> </span><span class="nx">Firewall</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="n">#sudo</span><span class="w"> </span><span class="nx">ufw</span><span class="w"> </span><span class="nx">enable</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="n">#Apply</span><span class="w"> </span><span class="nx">changes</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="nx">sudo</span><span class="w"> </span><span class="nx">ufw</span><span class="w"> </span><span class="nx">status</span><span class="w"> </span><span class="nx">numbered</span>
+</code></pre></div>
+<h2 id="configure-velociraptor-client-windows"><strong>Configure Velociraptor Client (Windows)</strong></h2>
+<h3 id="option-1-official-release-msi"><strong>Option 1: Official release MSI</strong></h3>
+<p>The recommended way to install Velociraptor as a client on Windows is via the release MSI on the <a href="https://github.com/Velocidex/velociraptor/releases">Github releases</a> page. Download the Velociraptor MSI (<a href="https://github.com/Velocidex/velociraptor/releases/download/v0.72/velociraptor-v0.72.0-windows-amd64.msi">velociraptor-v0.72.0-windows-amd64.msi</a>) . On your Windows host, double-click the <code>msi</code> or run the following command on Command Prompt:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>msiexec<span class="w"> </span>/i<span class="w"> </span><span class="o">[</span>velociraptor-v0.72.0-windows-amd64.msi<span class="o">](</span>https://github.com/Velocidex/velociraptor/releases/download/v0.72/velociraptor-v0.72.0-windows-amd64.msi<span class="o">)</span>
+</code></pre></div>
+<p>Navigate to <code>C:\Program Files\Velociraptor</code> and delete the existing <code>client.config.yaml</code></p>
+<p>Transfer <code>client.config.yaml</code> from Linux host to Windows client using your preferred method. </p>
+<p>From the Linux host in the <code>/opt/velociraptor</code> folder, host a HTTP server by running:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>sudo<span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">9999</span>
+</code></pre></div>
+<p>From Windows client, open PowerShell as Administrator. Change directory into <code>C:\Program Files\Velociraptor</code> and run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>iwr<span class="w"> </span>-uri<span class="w"> </span>http://10.0.0.20:9999/client.config.yaml<span class="w"> </span>-Outfile<span class="w"> </span>client.config.yaml
+</code></pre></div>
+<p>You will see <code>velociraptor.writeback.yaml</code> appear. If the writeback YAML file does not appear, restart the computer.</p>
+<h3 id="option-2-configure-msi-package-via-velociraptor-server"><strong>Option 2: Configure MSI package via Velociraptor Server</strong></h3>
+<p>Since the Velociraptor client requires a unique configuration file to identify the location of the server, we can’t package the configuration file in the official release. Therefore, the official MSI does not include a valid configuration file. You will need to modify the MSI to pack your configuration file (that was generated earlier) into it.</p>
+<p>Navigate to Velociraptor web GUI. Click on the server icon. Add new collection by clicking <code>+</code> button.</p>
+<p><a class="glightbox" href="image%202.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%202.png" /></a></p>
+<p>Search for <code>Server.Utils.CreateMSI</code> and click launch. The produced MSI will be available in the <code>Uploaded Files</code> tab.</p>
+<p><a class="glightbox" href="image%203.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%203.png" /></a></p>
+<p>Click on the filename to download the MSI</p>
+<p><a class="glightbox" href="image%204.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%204.png" /></a></p>
+<p>Rename the file as <code>velociraptor-v0.72.0-windows-amd64.msi</code> </p>
+<p>Transfer the file to your Windows client using your preferred method. </p>
+<p>From the Linux host in the downloads folder, host a HTTP server by running:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>sudo<span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">9999</span>
+</code></pre></div>
+<p>From Windows client, open PowerShell as Administrator and run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>iwr<span class="w"> </span>-uri<span class="w"> </span>http://10.0.0.20:9999/velociraptor-v0.72.0-windows-amd64.msi<span class="w"> </span>-Outfile<span class="w"> </span>velociraptor-v0.72.0-windows-amd64.msi
+</code></pre></div>
+<p>If required, create a new rule in Firewall to temporarily allow access on port 9999. Remember to delete the rule after the file transfer. </p>
+<p>On your Windows client, double-click the <code>msi</code> or run the following command on Command Prompt:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>msiexec<span class="w"> </span>/i<span class="w"> </span><span class="o">[</span>velociraptor-v0.72.0-windows-amd64.msi<span class="o">](</span>https://github.com/Velocidex/velociraptor/releases/download/v0.72/velociraptor-v0.72.0-windows-amd64.msi<span class="o">)</span>
+</code></pre></div>
+<h2 id="verify-client-connection"><strong>Verify client connection</strong></h2>
+<p>On the Velociraptor Server web GUI, click on the magnifying glass icon and verify that your client is connected.</p>
+<p>Any client that has successfully enrolled will show a green light</p>
+<p><a class="glightbox" href="image%205.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%205.png" /></a></p>
+<h2 id="introduction-to-velociraptor"><strong>Introduction to Velociraptor</strong></h2>
+<h3 id="creating-a-process-hunt"><strong>Creating a Process Hunt</strong></h3>
+<p>A Windows reverse shell named <code>1.exe</code> was generated and executed on the Windows Server 2019 host, connecting to the Kali machine. The session was then switched from Command Prompt to PowerShell.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="o">[</span>*<span class="o">]</span><span class="w"> </span>Started<span class="w"> </span>reverse<span class="w"> </span>TCP<span class="w"> </span>handler<span class="w"> </span>on<span class="w"> </span><span class="m">10</span>.0.0.22:4444<span class="w"> </span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="o">[</span>*<span class="o">]</span><span class="w"> </span>Command<span class="w"> </span>shell<span class="w"> </span>session<span class="w"> </span><span class="m">1</span><span class="w"> </span>opened<span class="w"> </span><span class="o">(</span><span class="m">10</span>.0.0.22:4444<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">10</span>.0.0.40:49886<span class="o">)</span><span class="w"> </span>at<span class="w"> </span><span class="m">2024</span>-09-18<span class="w"> </span><span class="m">19</span>:56:51<span class="w"> </span>-0400
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>Shell<span class="w"> </span>Banner:
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>Microsoft<span class="w"> </span>Windows<span class="w"> </span><span class="o">[</span>Version<span class="w"> </span><span class="m">10</span>.0.17763.3650<span class="o">]</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>-----<span class="w">       </span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>C:<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\D</span>ownloads&gt;whoami
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>whoami
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>ws2019<span class="se">\a</span>dministrator
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>
+<a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a>C:<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\D</span>ownloads&gt;powershell
+<a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>powershell
+<a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>Windows<span class="w"> </span>PowerShell<span class="w"> </span>
+<a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a>Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span>Microsoft<span class="w"> </span>Corporation.<span class="w"> </span>All<span class="w"> </span>rights<span class="w"> </span>reserved.
+</code></pre></div>
+<p>Create New Hunt by clicking Hunt icon and + icon</p>
+<p>In the Configure Hunt tab, add the description Process Hunt</p>
+<p><a class="glightbox" href="image%206.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%206.png" /></a></p>
+<p>In the Select Artifacts tab, search for pstree. Select <code>Generic.System.Pstree</code></p>
+<p>This artifact displays the call chain for every process on the system by traversing the process’s parent ID.</p>
+<p><a class="glightbox" href="image%207.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%207.png" /></a></p>
+<p>In the same tab, search for pslist and select <code>Windows.System.Pslist</code></p>
+<p>This artifact list processes and their running binaries</p>
+<p><a class="glightbox" href="image%208.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%208.png" /></a></p>
+<p>In the Configure Parameters tab, Edit <code>Generic.system.Pstree</code></p>
+<p>Select IncludePstree</p>
+<p><a class="glightbox" href="image%209.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%209.png" /></a></p>
+<p>Select Review then Launch. Select the Hunt and click Play button to launch it.</p>
+<p><a class="glightbox" href="image%2010.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%2010.png" /></a></p>
+<p>Once the Hunt is complete (indicated by Total schedules and Finished clients), click the stop button to stop the Hunt.</p>
+<p>Check the results on the Notebook tab on web GUI.</p>
+<p>As shown in the screenshot below, the suspicious activity is detected. </p>
+<p><a class="glightbox" href="image%2011.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%2011.png" /></a></p>
+<p>Alternatively, if you prefer to Download Results as a CSV file and view it in an Excel, this can be done in the Results Section &gt; Download Results</p>
+<h3 id="adding-client-labels"><strong>Adding Client Labels</strong></h3>
+<p>To create a label, click the magnifying glass icon, select the target host, then click the label icon. Name the new label (e.g., <code>windows</code>).</p>
+<p><a class="glightbox" href="image%2012.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%2012.png" /></a></p>
+<p>Verify that the label has been created.</p>
+<p><a class="glightbox" href="image%2013.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%2013.png" /></a></p>
+<h3 id="creating-a-filename-search-hunt"><strong>Creating a Filename Search Hunt</strong></h3>
+<p>A malicious PowerShell script called <code>justascript.ps1</code> was created then removed on Windows client. </p>
+<p>Create a new hunt with the description <code>Filename search</code></p>
+<p>For Include Condition, select <code>Match by label</code></p>
+<p>For Include Labels, select <code>windows</code></p>
+<p><a class="glightbox" href="image%2014.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%2014.png" /></a></p>
+<p>On the Select Artifacts tab, type <code>filename</code> and select <code>Windows.Forensics.FilenameSearch</code></p>
+<p><a class="glightbox" href="image%2015.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%2015.png" /></a></p>
+<p>On the Configure Parameters tab, click spanner icon to configure.</p>
+<p>In the yaraRule, replace <code>my secret fie.txt</code> with <code>justascript.ps1</code> </p>
+<p><a class="glightbox" href="image%2016.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%2016.png" /></a></p>
+<p>Select Review then Launch. Run hunt by clicking the play icon. Once the hunt is finished, stop the hunt by clicking the stop icon. View results in the Notebook tab. Velociraptor detects that the script is in the Recycle bin. </p>
+<p><a class="glightbox" href="image%2017.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%2017.png" /></a></p>
+<h3 id="creating-a-hash-hunt"><strong>Creating a Hash Hunt</strong></h3>
+<p>Mimikatz is a tool used to find and steal passwords from Windows computers. The <code>mimikatz.exe</code> was copied over to Windows client and have been renamed as <code>justanexe.exe</code>.</p>
+<p>Create a new hunt with the description <code>Hash Hunt</code></p>
+<p>For Include Condition, select <code>Match by label</code></p>
+<p>For Include Labels, select <code>windows</code></p>
+<p><a class="glightbox" href="image%2018.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%2018.png" /></a></p>
+<p>On the Select Artifacts tab, type <code>hash</code> and select <code>Generic.Detection.HashHunter</code></p>
+<p><a class="glightbox" href="image%2019.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%2019.png" /></a></p>
+<p>On the Configure Parameters tab, click spanner icon to configure.</p>
+<p>On SHA256List, copy and paste sha256 hash of mimikatz.exe <code>61c0810a23580cf492a6ba4f7654566108331e7a4134c968c2d6a05261b2d8a1</code></p>
+<p><a class="glightbox" href="image%2020.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%2020.png" /></a></p>
+<p>Select Launch. Run hunt by clicking the play icon. Once the hunt is finished, stop the hunt by clicking the stop icon. View results in the Notebook tab. Velociraptor matches the SHA256 hash with <code>justanexe.exe</code></p>
+<p><a class="glightbox" href="image%2021.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="image%2021.png" /></a></p>
+<h2 id="references"><strong>References</strong></h2>
+<ul>
+<li>https://docs.velociraptor.app/</li>
+<li>https://www.youtube.com/watch?v=p9pQ2g-18o4&amp;t=590s</li>
+<li>https://youtu.be/-bj0c158Wlo?si=Gms_VnVyWe-LufOZ</li>
+<li>https://www.youtube.com/watch?v=S8POUZv7pT8</li>
+<li>https://www.youtube.com/watch?v=M7bMfdmWR7A</li>
+<li>https://github.com/Velocidex/velociraptor/releases/tag/v0.72</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../understanding-DFIR/understanding-DFIR.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Understanding DFIR">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Understanding DFIR
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../understanding-EDR/understanding-EDR.html" class="md-footer__link md-footer__link--next" aria-label="Next: Understanding EDR">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Understanding EDR
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2024–2025 <a href="https://github.com/cyberdefencekit" target="_blank" rel="noopener">Cyber Defence Kit by Joseph Jee</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/cyberdefencekit" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "header.autohide", "announce.dismiss", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.integrate"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
