@@ -74,4 +74,7 @@ To resolve this, you can either:
 
 ## Licence
 
-This project is licensed under the MIT Licence.
+Cyber Defence Kit documentation is created by **Joseph Jee** and licensed under the **Creative Commons Attribution 4.0 International (CC BY 4.0) License**.  
+You are free to share and adapt the content with proper attribution.  
+[Read more about this license](https://creativecommons.org/licenses/by/4.0/).
+[Visit my website](https://josephjee.com)
