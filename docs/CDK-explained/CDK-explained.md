@@ -1,75 +1,77 @@
-# **Cyber Defence Kit Explained**
+# Cyber Defence Kit Explained
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JOZXcnP1PLU?si=SRe7Ys2aeZN-kuIk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+## Why is Cybersecurity Important?
 
-## **Why is Cybersecurity Important to Us?**
+In today’s digital world, protecting information and systems from cyber threats is more important than ever. Cyber attacks can lead to:
 
-In our increasingly digital world, protecting our organisation's information and systems from cyber threats is crucial. Cyber attacks can lead to:
+- **Loss of sensitive data** – Private or confidential information could be stolen
+- **Operational disruptions** – Day-to-day activities might be interrupted
+- **Damage to reputation** – Trust from others could be affected
 
-- **Loss of Sensitive Data:** Confidential information could be stolen.
-- **perational Disruptions:** Our daily activities might be halted.
-- **Damage to Reputation:** Trust from our clients and partners could diminish.
+### Real-World Context
 
-**Real-World Examples:**
+New Zealand’s **National Cyber Security Centre (NCSC)** has reported a steady increase in cyber incidents, including attempts to access sensitive information across both public and private sectors.
 
-- **Increased Cyber Threats:** New Zealand's National Cyber Security Centre (NCSC) has reported a rise in cyber incidents targeting both public and private sectors, including attempts to access sensitive government information.
+## What is the Cyber Defence Kit?
 
-## **What is Cyber Defence Kit?**
+The **Cyber Defence Kit** is a personal project focused on exploring how open-source tools can help improve cybersecurity. The aim is to:
 
-The **Cyber Defence Kit** is our initiative to strengthen our defences against cyber threats. We aim to:
+- Strengthen protection using practical and accessible tools
+- Improve threat detection through better visibility
+- Automate responses to reduce the impact of incidents
+- Encourage proactive security practices
+- Share learning in a clear, easy-to-understand way
 
-- **Enhance Protection:** Implement advanced tools to better safeguard our systems.
-- **Improve Detection:** Quickly identify potential security issues.
-- **Automate Responses:** Speed up how we react to threats to minimise impact.
-- **Ensure Compliance:** Meet all necessary cybersecurity standards and regulations.
-- **Promote Proactive Security:** Stay ahead of threats before they become problems.
+## What Tools and Practices Are Involved?
 
-![1.png](1.png)
+This project involves setting up and experimenting with tools that support stronger cyber defences. These include:
 
-## **How Will We Achieve This?**
+### 🔍 Advanced Monitoring
 
-We plan to introduce several tools and practices:
+Tools that observe network activity and raise alerts for anything unusual.
 
-1. **Advanced Monitoring Systems:**
-    - Tools that watch over our network to spot unusual activities.
-    - They alert us immediately if something suspicious happens.
-2. **Automated Response Mechanisms:**
-    - Systems that can automatically take action against certain threats.
-    - This speeds up our response time and reduces manual effort.
-3. **Improved Incident Management:**
-    - A structured way to handle any security incidents.
-    - Ensures we address issues efficiently and learn from them.
-4. **Enhanced Endpoint Protection:**
-    - Better security for individual devices like computers and servers.
-    - Protects against malware and unauthorized access.
-5. **Staff Awareness and Support:**
-    - Providing resources and assistance to help everyone understand these new tools.
-    - Encouraging a culture where cybersecurity is everyone's responsibility.
+### ⚙️ Automated Responses
 
-## **What Does This Mean for You?**
+Systems that carry out predefined actions to contain specific threats, reducing the need for manual input.
 
-- **Safer Work Environment:** Reduced risk of cyber attacks affecting your work.
-- **Better Tools and Support:** Access to improved systems that protect your daily activities.
-- **Peace of Mind:** Confidence that our organization's information is secure.
-- **Compliance Assurance:** Knowing we meet industry standards protects us legally and ethically.
+### 🚨 Incident Management
 
-## **Using Plain Language**
+A structured approach to investigating and responding to security events.
 
-- **Cyber Threats:** Bad activities that try to harm our computer systems or steal information.
-- **Monitoring Tools:** Programs that keep an eye on our systems to ensure everything is normal.
-- **Automated Responses:** Actions taken by our systems without needing manual input when a threat is detected.
-- **Incident Management:** The process we follow when dealing with security problems.
-- **Endpoint Protection:** Security measures for devices like laptops and smartphones.
+### 💻 Endpoint Protection
 
-## **Why This Matters**
+Improved security for individual devices like laptops and servers, guarding against malware or unauthorised access.
 
-By implementing the Cyber Defence Kit, we are taking important steps to:
+### 🧠 Awareness and Learning
 
-- **Protect Our Assets:** Keeping our information and systems secure.
-- **Support Our Mission:** Ensuring we can carry out our work without disruptions.
-- **Maintain Trust:** Showing our clients and partners that we take security seriously.
-- **Stay Ahead:** Being proactive rather than reactive to cyber threats.
+Resources and walkthroughs to help others understand these tools and how they can be used in real-world scenarios.
 
-## **Summary**
+## What Does This Mean for You?
 
-Our goal is to create a secure and efficient environment where everyone can perform their best work without worrying about cyber threats. The Cyber Defence Kit project is our commitment to safeguarding our organisation now and in the future.
+If you’re learning about cybersecurity or running your own lab, this project might be helpful by:
+
+- Providing practical examples of how to detect and respond to threats
+- Demonstrating how to use open-source tools effectively
+- Sharing beginner-friendly notes, queries, and use cases
+- Encouraging a hands-on, exploratory approach to learning
+
+## Using Plain Language
+
+- **Cyber threats** – Malicious activity that targets computer systems or data
+- **Monitoring tools** – Software that watches for anything unusual
+- **Automated responses** – Pre-set actions that happen when a threat is detected
+- **Incident management** – How security problems are addressed
+- **Endpoint protection** – Security for devices like laptops, desktops, and smartphones
+
+## Why This Matters
+
+The Cyber Defence Kit is about taking simple but effective steps to:
+
+- Protect information and systems
+- Support learning and hands-on experience
+- Promote responsible cybersecurity habits
+- Stay one step ahead of potential threats
+
+## Summary
+
+The **Cyber Defence Kit** is a personal initiative to explore, learn, and share practical cybersecurity techniques. It’s designed to make powerful tools and concepts more accessible and help others build confidence in defending against cyber threats.

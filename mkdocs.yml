@@ -30,9 +30,12 @@ nav:
   - EDR:
     - Understanding EDR: understanding-EDR/understanding-EDR.md
     - Aurora Lite: auroralite/auroralite.md
-  - Other:
+  - MITRE:
     - Caldera: caldera/caldera.md
     - MITRE ATT&CK Navigator: navigator/navigator.md
+  - Cheat Sheets:
+    - Splunk: splunk-cheat-sheet/splunk-cheat-sheet.md
+    - Velociraptor: velociraptor-cheat-sheet/velociraptor-cheat-sheet.md
 
 
 theme:

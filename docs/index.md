@@ -13,7 +13,7 @@ To begin leveraging the Cyber Defence Kit:
 1. **Understand the Toolkit:**
     - Familiarise yourself with the components of the kit.
 2. **Set Up Your Environment:**
-    - EPrepare your system by checking the hardware and software requirements before installation.
+    - Prepare your system by checking the hardware and software requirements before installation.
     - Prepare your systems for installation (e.g., air-gapped environment considerations).
 3. **Learn and Explore:**
     - Explore proof of concept videos and documentation on attack simulation.
