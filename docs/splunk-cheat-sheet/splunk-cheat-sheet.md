@@ -1,4 +1,4 @@
-# Splunk Cheat Sheet
+# **Splunk Cheat Sheet**
 
 ## **About this Cheat Sheet**
 
@@ -16,7 +16,7 @@ index=*
 
 This will search across all indexes and help you identify the correct one. Once confirmed, update your queries accordingly.
 
-## Authentication & Access
+## **Authentication & Access**
 
 ### **Successful RDP Login**
 
@@ -57,7 +57,7 @@ index=windows sourcetype="WinEventLog:Security" EventCode=4624
 | table _time, user, Logon_Type, src_ip, host
 ```
 
-## Execution
+## **Execution**
 
 ### **Suspicious Process Creation (cmd, powershell)**
 
@@ -97,7 +97,7 @@ index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" Event
 | table _time, host, Image, CommandLine
 ```
 
-## File Activity
+## **File Activity**
 
 ### **File Drop Detection**
 
@@ -122,7 +122,7 @@ index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" Event
 | table _time, Image, CommandLine, user, host
 ```
 
-## Network Connections
+## **Network Connections**
 
 ### **Network Connections (Sysmon)**
 
@@ -135,7 +135,7 @@ index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" Event
 | stats count by _time, SourceIp, DestinationIp, DestinationPort, host, Image
 ```
 
-## Privilege Escalation & Persistence
+## **Privilege Escalation & Persistence**
 
 ### **Privilege Escalation - SeDebugPrivilege**
 
@@ -184,7 +184,7 @@ index=windows sourcetype="WinEventLog:Security" EventCode=4698
 | table _time, user, host, TaskName, Command
 ```
 
-## Lateral Movement & LOLBAS
+## **Lateral Movement & LOLBAS**
 
 ### **PsExec or Remote Admin Tool Usage**
 
@@ -210,7 +210,7 @@ index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" Event
 | table _time, Image, CommandLine, user, host
 ```
 
-## Anomaly Detection
+## **Anomaly Detection**
 
 ### **Rare Parent-Child Process Pair**
 
@@ -226,7 +226,7 @@ index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" Event
 | where count < 3
 ```
 
-## Credential Access
+## **Credential Access**
 
 ### **Cleartext Passwords in Command Line**
 
@@ -251,7 +251,7 @@ index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" Event
 | search TargetImage="*lsass.exe"
 ```
 
-## Defense Evasion
+## **Defense Evasion**
 
 ### **Suspicious DLL or Image Loaded**
 
@@ -264,7 +264,7 @@ index=windows source="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" Event
 | search ImageLoaded="*\\temp\\*" OR ImageLoaded="*\\AppData\\*"
 ```
 
-## Exfiltration
+## **Exfiltration**
 
 ### **Unusual Data Transfer Tools in Use**
 
@@ -277,7 +277,7 @@ index=windows EventCode=4104
 | search CommandLine="*certutil*" OR CommandLine="*upload*"
 ```
 
-## Phishing or Document-Based Attacks
+## **Phishing or Document-Based Attacks**
 
 ### **Microsoft Word Launching PowerShell**
 

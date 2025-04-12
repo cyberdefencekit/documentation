@@ -1,4 +1,4 @@
-# Velociraptor Cheat Sheet
+# **Velociraptor Cheat Sheet**
 
 ## **About this Cheat Sheet**
 
@@ -14,7 +14,7 @@ TargetGlob: C:/Users/**/*.exe
 
 This pattern tells Velociraptor to search for any `.exe` files inside all user folders. Be sure to update paths and filters based on what you're looking for.
 
-## Endpoint Visibility and Forensics
+## **Endpoint Visibility and Forensics**
 
 ### **List Running Processes**
 
@@ -50,7 +50,7 @@ Artifact: Windows.Executables.Prefetch
 Parameters: None
 ```
 
-## File and IOC Hunting
+## **File and IOC Hunting**
 
 ### **Search for a File by Name**
 
@@ -90,7 +90,7 @@ Parameters:
 - Upload or select a YARA rule
 ```
 
-## Registry and Persistence
+## **Registry and Persistence**
 
 ### **Check Registry Autoruns**
 
@@ -104,7 +104,7 @@ Parameters:
 - KeyGlob: HKEY_USERS\*\Software\Microsoft\Windows\CurrentVersion\Run
 ```
 
-## Network and DNS
+## **Network and DNS**
 
 ### **List Active Network Connections**
 
@@ -128,7 +128,7 @@ Artifact: Windows.DNS.ClientCache
 Parameters: None
 ```
 
-## User and Browser Activity
+## **User and Browser Activity**
 
 ### **Collect Browser History**
 
@@ -155,7 +155,7 @@ Parameters:
 - Time Range: e.g. Last 24 hours
 ```
 
-## Memory and Credential Access
+## **Memory and Credential Access**
 
 ### **Collect LSASS Memory Dump**
 
@@ -170,7 +170,7 @@ Parameters:
 - OutputFile: C:\Temp\lsass.dmp
 ```
 
-## Process and Execution Monitoring
+## **Process and Execution Monitoring**
 
 ### **List Injected Threads**
 
@@ -206,7 +206,7 @@ Parameters:
 - IncludeProcessList: powershell.exe, cmd.exe, wscript.exe
 ```
 
-## Scheduled Task Monitoring
+## **Scheduled Task Monitoring**
 
 ### **List Scheduled Tasks**
 
