@@ -6,7 +6,7 @@
 
 ## **Lab Setup for Proof of Concept**
 
-In this proof of concept, Security Onion was installed in Standalone mode, and the Elastic Agent was installed on the Windows virtual machine (VM). Test data was ingested, and threat hunting was carried out in a safe, controlled environment. Test
+In this proof of concept, Security Onion was installed in Standalone mode, and the Elastic Agent was installed on the Windows virtual machine (VM). Test data was ingested, and threat hunting was carried out in a safe, controlled environment.
 
 | **Hostname** | **OS** | **Role** | **IP Address** |
 | --- | --- | --- | --- |
