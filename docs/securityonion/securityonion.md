@@ -4,7 +4,7 @@
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_sEu-xQg1lM?si=PU6iLcL8zjgcQvtP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-## Lab Setup for Proof of Concept
+## **Lab Setup for Proof of Concept**
 
 In this proof of concept, Security Onion was installed in Standalone mode, and the Elastic Agent was installed on the Windows virtual machine (VM). Test data was ingested, and threat hunting was carried out in a safe, controlled environment.
 
