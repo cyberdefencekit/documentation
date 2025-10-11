@@ -8,6 +8,7 @@ nav:
     - Understanding SIEM: understanding-SIEM/understanding-SIEM.md
     - Splunk: splunk/splunk.md
     - Wazuh: wazuh/wazuh.md
+    - Security Onion: securityonion/securityonion.md
   - IDS/IPS:
     - Understanding IDS/IPS: understanding-IDS-IPS/understanding-IDS-IPS.md 
     - Snort: snort/snort.md
