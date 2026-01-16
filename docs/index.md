@@ -2,7 +2,7 @@
 
 ## **Introduction**
 
-The Cyber Defence Kit started as a personal exploration of open-source cybersecurity tools and evolved into a shared learning resource. Every step was documented—proof-of-concept videos, detailed notes, lessons learned, and practical tips—all shared online to make these tools more accessible and encourage learning. This project aims to inspire others to explore, implement, and understand the potential of open-source cybersecurity solutions.
+The Cyber Defence Kit began as a personal exploration of open-source cybersecurity tools and grew into a shared learning resource. Each step was documented through proof-of-concept videos, notes, lessons learned, and practical tips, all shared openly to make these tools more accessible. The goal is to encourage others to explore, implement, and understand open-source cybersecurity solutions.
 
 ![CDK intro visual.png](CDK_intro_visual.png)
 
