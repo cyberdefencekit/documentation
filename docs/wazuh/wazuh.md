@@ -67,7 +67,7 @@ From any Linux system with Internet access, run the following commands to execut
 **RPM:**
 
 ```bash
-curl -sO https://packages.wazuh.com/4.11/wazuh-install.sh
+curl -sO https://packages.wazuh.com/4.14/wazuh-install.sh
 chmod 744 wazuh-install.sh
 ./wazuh-install.sh -dw rpm
 ```
@@ -75,7 +75,7 @@ chmod 744 wazuh-install.sh
 **DEB:**
 
 ```bash
-curl -sO https://packages.wazuh.com/4.11/wazuh-install.sh
+curl -sO https://packages.wazuh.com/4.14/wazuh-install.sh
 chmod 744 wazuh-install.sh
 ./wazuh-install.sh -dw deb
 ```
@@ -83,7 +83,7 @@ chmod 744 wazuh-install.sh
 Download the certificates configuration file.
 
 ```bash
-curl -sO https://packages.wazuh.com/4.11/config.yml
+curl -sO https://packages.wazuh.com/4.14/config.yml
 ```
 
 Modify `config.yml` to set up certificate creation.
