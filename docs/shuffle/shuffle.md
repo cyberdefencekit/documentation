@@ -60,6 +60,16 @@ sudo docker run hello-world
 
 **On Ubuntu host with internet connection:**
 
+**Option 1**
+
+Run the following command:
+
+```python
+curl -L https://get.docker.com | sh
+```
+
+**Option 2**
+
 You will need to [download](https://download.docker.com/linux/ubuntu/dists/) a new file each time you want to upgrade Docker Engine.
 Select your Ubuntu version in the list.
 
@@ -181,18 +191,6 @@ Shuffle need a few base images to work:
 - shuffle:app_sdk
 - opensearch
 - shuffle-subflow
-
-```python
-docker pull ghcr.io/frikky/shuffle-backend
-docker pull ghcr.io/frikky/shuffle-frontend 
-docker pull ghcr.io/frikky/shuffle-orborus
-docker pull frikky/shuffle:app_sdk 
-docker pull ghcr.io/frikky/shuffle-worker 
-docker pull opensearchproject/opensearch:2.5.0 
-docker pull registry.hub.docker.com/frikky/shuffle:shuffle-subflow_1.0.0
-docker pull frikky/shuffle:wazuh_1.0.0
-docker pull frikky/shuffle:thehive_1.1.3
-```
 
 ```python
 docker pull ghcr.io/shuffle/shuffle-backend
