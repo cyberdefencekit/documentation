@@ -19,7 +19,7 @@ In this proof of concept, the Velociraptor server was configured on an Ubuntu vi
 
 ![Velociraptor.drawio.png](Velociraptor.drawio.png)
 
-## **Deploy Velociraptor Server (Linux)**
+## Deploy Velociraptor Server (Linux)
 
 The Velociraptor server will be set up to use self-signed SSL certificates and Basic authentication, which is a fairly straightforward configuration option.
 
@@ -271,7 +271,7 @@ Navigate to `C:\Program Files\Velociraptor`. After a successful installation, yo
 
 ![image.png](image%2010.png)
 
-### **Option 2: Download official release MSI**
+### **Option 2: Official release MSI**
 
 Download the latest Velociraptor MSI from the [Velociraptor GitHub releases page](https://github.com/Velocidex/velociraptor/releases/tag/v0.75). On your Windows host, double-click the MSI to install it.
 
@@ -287,7 +287,7 @@ After this, you should see `velociraptor.writeback.yaml` appear in the same dire
 
 ![image.png](image%2010.png)
 
-## **Verify client connection**
+## **Verify Client Connection**
 
 On the Velociraptor Server web GUI, click on the magnifying glass icon and verify that your client is connected.
 
