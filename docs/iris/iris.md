@@ -1,10 +1,10 @@
-# **IRIS**
+# IRIS
 
 IRIS is a digital platform built for collaboration among incident response analysts, enabling them to work together on detailed technical investigations. It can be set up on a standalone server or used as a portable application, making it suitable for on-the-go investigations in locations without internet access.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/yOXxCxfta5I?si=_F5YnEkgGZ2baVld" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[https://youtu.be/yOXxCxfta5I?si=EHdpJZlzQ38KWILC](https://youtu.be/yOXxCxfta5I?si=EHdpJZlzQ38KWILC)
 
-## **Lab Setup for Proof of Concept**
+## Lab Setup for Proof of Concept
 
 In this proof of concept, an attack simulation was conducted on a Windows Virtual Machine (VM) using Kali Linux in a safe and controlled environment. Both IRIS and Splunk Enterprise were installed on an Ubuntu VM.
 
@@ -20,7 +20,7 @@ In this proof of concept, an attack simulation was conducted on a Windows Virtua
 
 ![IRIS PoC.drawio.png](IRIS_PoC.drawio.png)
 
-## **Installing IRIS in an Air-gapped Environment (Ubuntu)**
+## Installing IRIS in an Air-gapped Environment (Ubuntu)
 
 These instructions cover downloading, transferring, and installing Docker Engine and IRIS in an air-gapped environment for Ubuntu 22.04.4 LTS. 
 
@@ -33,6 +33,12 @@ mkdir -p ~/iris-offline/{docker,docker-images}
 ```
 
 Navigate to `~/iris-offline/docker` and download Docker Engine and dependencies.
+
+```yaml
+curl -L https://get.docker.com | sh
+```
+
+Alternatively, you can run the following commands:
 
 ```bash
 cd ~/iris-offline/docker
@@ -58,7 +64,7 @@ sudo service docker start
 Run the following command to add your user to the `docker` group:
 
 ```python
-sudo usermod -aG docker $USER
+sudo usermod -aG docker $(whoami)
 ```
 
 Reload the group membership for your current session with the following command:
@@ -86,7 +92,7 @@ cd iris-web
 Check out the latest non-beta tagged version:
 
 ```python
-git checkout v2.4.18
+git checkout v2.4.20
 ```
 
 **Note:** If you are working in an air-gapped environment where Git is not installed, skip this step and ensure that the contents of the `.env` file match those of the `.env.model` file.
@@ -118,7 +124,7 @@ ghcr.io/dfir-iris/iriswebapp_db      latest                9795f95185ef   4 days
 rabbitmq                             3-management-alpine   e9a8d679cd6f   2 months ago   178MB
 ```
 
-After pulling the images, save them as `.tar` files in the `~/docker/images` folder.
+After pulling the images, save them as `.tar` files in the `~/docker-images` folder.
 
 ```python
 cd ~/iris-offline/docker-images
@@ -135,7 +141,7 @@ cd ~/iris-offline
 tar -czvf iris-offline.tar.gz *
 ```
 
-Transfer `caldera-offline.tar.gz` to the air-gapped Ubuntu VM using a USB drive.
+Transfer `iris-offline.tar.gz` to the air-gapped Ubuntu VM using a USB drive.
 
 **Installing IRIS in the Air-Gapped Environment**
 
@@ -144,6 +150,37 @@ Extract the transferred archive.
 ```bash
 cd ~
 tar -xzvf iris-offline.tar.gz
+```
+
+Install Docker.
+
+```bash
+cd ~/iris-offline/docker
+sudo dpkg -i *.deb
+```
+
+Run `sudo service docker start`
+
+```python
+sudo service docker start
+```
+
+Run the following command to add your user to the `docker` group:
+
+```python
+sudo usermod -aG docker $USER
+```
+
+Reload the group membership for your current session with the following command:
+
+```python
+newgrp docker
+```
+
+Check if you can run Docker commands without `sudo`:
+
+```python
+docker ps
 ```
 
 Load transferred docker images.
@@ -183,7 +220,7 @@ iriswebapp_app  | 2024-12-23 07:15:05 :: WARNING :: post_init :: create_safe_adm
 
 If the password is not visible in the logs, try running `docker compose logs app | grep "WARNING :: post_init :: create_safe_admin"`. If the logs show that the user `administrator` has already been created, it indicates the instance has been started before, and the password is already set. In this case, refer to the recovery options.
 
-## **Attack Simulation**
+## Attack Simulation
 
 The smbclient tool on a Kali machine was used to connect to an SMB share hosted on **WS2019** at **10.0.0.140**. After logging in anonymously, the share’s contents were listed, a file (**user_credentials.xlsx**) was downloaded, and the session was exited.
 
@@ -254,9 +291,9 @@ C:\Windows\system32> whoami
 nt authority\system
 ```
 
-## **Introduction to IRIS**
+## Introduction to IRIS
 
-### **Adding a Customer**
+### Adding a Customer
 
 Upon entering the administrator credentials, the Dashboard highlights pending tasks and ongoing cases.
 
@@ -274,7 +311,7 @@ Click **Save** to create the customer. Once saved, the new customer will appear 
 
 ![image.png](image%207.png)
 
-### **Creating a Case**
+### Creating a Case
 
 Having logged into IRIS and created our customer, we can now begin the case management process. A case is the fundamental unit of an incident. It serves as a container for various elements used to organise information related to the incident.
 
@@ -302,7 +339,7 @@ By clicking on the case name, we are taken to the **Summary** tab for the case. 
 
 ![image.png](image%2011.png)
 
-### **Adding Assets**
+### Adding Assets
 
 During incident response, maintaining a list of assets that are known or suspected to be compromised is essential. To add an asset, go to the **Assets** tab on the case page. This will display the asset list, which is currently empty. To include a new asset, click the **Add Assets** button located in the top-right corner of the window.
 
@@ -482,7 +519,7 @@ After saving, the **Timeline** tab displays the newly added event, bringing the 
 
 ![image.png](image%2030.png)
 
-### **Adding Evidence**
+### Adding Evidence
 
 In incident response, evidence is crucial for verifying details such as the nature, origin, timing, and potential culprits behind an incident. In this instance, we’ll include the `.eml` file, which contains the original phishing email that delivered the `setup.exe` file laced with malware.
 The following is the content of our raw email:
@@ -556,7 +593,7 @@ As we selected *File is Evidence* for each uploaded file, they were all register
 
 ![image.png](image%2034.png)
 
-### **Collaboration and Access Management**
+### Collaboration and Access Management
 
 During incident response, we generally operate as part of a team, maintaining regular communication with our team members.
 
@@ -646,7 +683,7 @@ A similar update occurred on page 3 with the asset list. The for loop populated 
 
 ![image.png](image%2049.png)
 
-### **Case Closure and Database Backup**
+### Case Closure and Database Backup
 
 Once incident response concludes and all tasks are completed, the case can be closed. To do this, navigate to the *Summary* tab and click the *Manage* button, identified by the gear icon.
 
@@ -708,7 +745,7 @@ Before doing this, we need to set the `BACKUP_PATH` environment variable to spec
 
 ![image.png](image%2054.png)
 
-## **References**
+## References
 
 - [https://docs.dfir-iris.org/latest/](https://docs.dfir-iris.org/latest/)
 - [https://github.com/dfir-iris/iris-web](https://github.com/dfir-iris/iris-web)
