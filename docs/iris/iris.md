@@ -34,7 +34,7 @@ mkdir -p ~/iris-offline/{docker,docker-images}
 
 Navigate to `~/iris-offline/docker` and download Docker Engine and dependencies.
 
-```yaml
+```bash
 curl -L https://get.docker.com | sh
 ```
 
