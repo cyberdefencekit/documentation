@@ -25,7 +25,7 @@ nav:
     - Zui: zui/zui.md
   - DFIR:
     - Understanding DFIR: understanding-DFIR/understanding-DFIR.md
-    - Velociraptor: velociraptor/velociraptor.md
+    - Velociraptor: velo/velo.md
   - EDR:
     - Understanding EDR: understanding-EDR/understanding-EDR.md
     - Aurora Lite: auroralite/auroralite.md
