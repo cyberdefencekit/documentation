@@ -2,8 +2,6 @@ site_name: Cyber Defence Kit
 
 nav:
   - Home: index.md
-  - About CDK:
-    - Cyber Defence Kit Explained: CDK-explained/CDK-explained.md
   - SIEM:
     - Understanding SIEM: understanding-SIEM/understanding-SIEM.md
     - Splunk: splunk/splunk.md
