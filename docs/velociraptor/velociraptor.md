@@ -2,7 +2,7 @@
 
 Velociraptor is an advanced digital forensic and incident response tool that enhances your visibility into your endpoints.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/T75Fo0NoqVE?si=CG5E2cO313LUBanb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/T75Fo0NoqVE?si=KptUGLEzR25iua1b" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## **Lab Setup for Proof of Concept**
 
@@ -19,345 +19,281 @@ In this proof of concept, the Velociraptor server was configured on an Ubuntu vi
 
 ![Velociraptor.drawio.png](Velociraptor.drawio.png)
 
-## **Deploy Velociraptor Server using Self-Signed SSL**
+## **Deploy Velociraptor Server (Linux)**
 
-### **Self-Signed SSL**
-
-Velociraptor deployments are secured using a self-signed Certificate Authority (CA) that is generated during the initial configuration generation step. The client’s configuration contains the signed CA, which is used to verify all certificates needed during communications.
+The Velociraptor server will be set up to use self-signed SSL certificates and Basic authentication, which is a fairly straightforward configuration option.
 
 In `self-signed SSL` mode, Velociraptor issues its own server certificate using its internal CA. This means the Admin GUI and front end also use a self-signed server certificate.
 
-### **When to use this method**
-
-This type of deployment is most appropriate for on-premises scenarios where internet access is not available or egress is blocked.
-
-### **Self-Signed Certificates**
-
-Self-signed SSL certificates trigger SSL warnings in all web browsers. When accessing the Admin GUI you will receive a certificate warning about the possibility of a MITM attack.
-
-As a precaution, Velociraptor only exports the GUI port on the loopback interface. You may change the `GUI.bind_address` setting to “0.0.0.0” to receive external connections on this port, but this is not recommended. Instead, you should use SSH tunneling to connect to the local loopback interface.
-
-Velociraptor doesn’t support other self-signed SSL certificates, and we don’t recommend attempting to create and upload your own internal self-signed certificate to Velociraptor.
-
-### **Generate config files for the server and client**
+### **Download the Velociraptor binaries**
 
 Download the latest Velociraptor binary that is compatible for your host architecture from [https://github.com/Velocidex/velociraptor/releases](https://github.com/Velocidex/velociraptor/releases).
 
-Change the permission of the Velociraptor binary.
+Before starting the setup, it’s a good idea to create a fresh working directory to use for the pre-installation tasks.
 
 ```bash
-sudo chmod 764 velociraptor-v0.72.0-linux-amd64
+mkdir ~/velociraptor_setup && cd ~/velociraptor_setup
 ```
 
-Make the directory `/opt/velociraptor` 
+Copy the download link for the latest release that matches your server’s platform and architecture, then use it in the `wget` command below. This will download the binary and save it as **velociraptor**.
 
 ```bash
-sudo mkdir /opt/velociraptor
+wget -O velociraptor https://github.com/Velocidex/velociraptor/releases/download/v0.75/velociraptor-v0.75.6-linux-amd64
 ```
 
-Generate a new config file by running velociraptor in interactive mode
-
-Select `linux` for OS
-
-Set Path to the datastore directory as default `/opt/velociraptor` (hit `enter`)
-
-Select `Self Signed SSL`
-
-For the public DNS name of the Master Frontend, enter your IP address (e.g. `10.0.0.20`)
-
-For the frontend port, select default port of `8000` (hit `enter`)
-
-**Note:** If you are installing Velociraptor server on same machine as where the Splunk Enterprise is installed, set your frontend port to something else (e.g. `7000`) to avoid conflict.
-
-For the GUI port, select default port of `8889` (hit `enter`)
-
-For WebSocket, answer `N` (hit `enter`)
-
-For the registry to store the writeback files, answer `N` (hit `enter`)
-
-For DynDns provider, answer `none` (hit `enter`)
-
-Create GUI username and password
-
-When prompted to create GUI username again, hit `enter` to end
-
-Set Path to the logs directory as default `/opt/velociraptor/logs` (hit `enter`)
-
-For restricting VQL functionality on the server, answer `N` (hit `enter`)
-
-For where should I write the server config file, hit `enter` to set it to `server.config.yaml`
-
-For where should I write the client config file, hit `enter` to set it to `client.config.yaml`
-
-Note the question is actually asking for file name instead of file path. 
+Next, make the downloaded file executable:
 
 ```bash
-sudo ./velociraptor-v0.72.0-linux-amd64 config generate -i
+chmod +x velociraptor
 ```
 
+### **Create the server configuration file**
+
+To create a new configuration file, we use the `config generate` command. The `-i` flag runs the process in interactive mode, launching a question-and-answer style wizard that collects the key details needed to build your configuration.
+
 ```bash
-#Example output
-Welcome to the Velociraptor configuration generator
----------------------------------------------------
-
-I will be creating a new deployment configuration for you. I will
-begin by identifying what type of deployment you need.
-
-What OS will the server be deployed on?
- linux
-? Path to the datastore directory. /opt/velociraptor
-?  Self Signed SSL
-? What is the public DNS name of the Master Frontend (e.g. www.example.com): 10.0.0.20
-? Enter the frontend port to listen on. 8000
-? Enter the port for the GUI to listen on. 8889
-? Would you like to try the new experimental websocket comms?
-
-Websocket is a bidirectional low latency communication protocol supported by
-most modern proxies and load balancers. This method is more efficient and
-portable than plain HTTP. Be sure to test this in your environment.
- No
-? Would you like to use the registry to store the writeback files? (Experimental) No
-? Which DynDns provider do you use? none
-? GUI Username or email address to authorize (empty to end): cyber
-? GUI Username or email address to authorize (empty to end): 
-[INFO] 2024-09-18T20:53:27Z  _    __     __           _                  __ 
-[INFO] 2024-09-18T20:53:27Z | |  / /__  / /___  _____(_)________ _____  / /_____  _____ 
-[INFO] 2024-09-18T20:53:27Z | | / / _ \/ / __ \/ ___/ / ___/ __ `/ __ \/ __/ __ \/ ___/ 
-[INFO] 2024-09-18T20:53:27Z | |/ /  __/ / /_/ / /__/ / /  / /_/ / /_/ / /_/ /_/ / / 
-[INFO] 2024-09-18T20:53:27Z |___/\___/_/\____/\___/_/_/   \__,_/ .___/\__/\____/_/ 
-[INFO] 2024-09-18T20:53:27Z                                   /_/ 
-[INFO] 2024-09-18T20:53:27Z Digging deeper!                  https://www.velocidex.com 
-[INFO] 2024-09-18T20:53:27Z This is Velociraptor 0.72.0 built on 2024-04-25T16:09:17Z (7e4da7a) 
-[INFO] 2024-09-18T20:53:27Z Generating keys please wait.... 
-? Path to the logs directory. /opt/velociraptor/logs
-? Do you want to restrict VQL functionality on the server?
-
-This is useful for a shared server where users are not fully trusted.
-It removes potentially dangerous plugins like execve(), filesystem access etc.
-
-NOTE: This is an experimental feature only useful in limited situations. If you
-do not know you need it select N here!
- No
-? Where should I write the server config file? server.config.yaml
-? Where should I write the client config file? client.config.yaml
+./velociraptor config generate -i
 ```
 
-Verify that both server and client config files are generated in the present working directory
+In the configuration wizard, select the options outlined below. For any other prompts, just accept the default settings.
+
+**Deployment Type:** Self-signed SSL
+
+**Public DNS name of the Master Frontend:** Enter the server’s IP address (or a DNS name, if you’ve set one up) that clients will use to connect to the server.
+
+On the fourth screen of the configuration wizard, you’ll be asked to create an admin user. Enter a username and password for the initial admin account, which will be used to access the web interface. You only need one admin at this stage, as additional users can be added later. After creating the first admin user, leave the next username and password blank to continue.
+
+In the last step of the configuration wizard, you’ll be asked to save the config file to your working directory. You can stick with the default filename and the wizard will then close.
+**Name of file to write:** server.config.yaml
+
+By default, the configuration binds the GUI and Frontend services to the loopback address (127.0.0.1), meaning they’re only accessible from the local machine. To allow access from other hosts on the network, you’ll need to update the configuration file.
+
+Open the config file in a text editor and change:
 
 ```bash
-ls
+Frontend:
+  bind_address: 127.0.0.1
 ```
 
+to:
+
 ```bash
-#Example output
-client.config.yaml  server.config.yaml  velociraptor-v0.72.0-linux-amd64
+Frontend:
+  bind_address: 0.0.0.0
 ```
 
-Copy the config files to `/opt/velociraptor`  directory
+If you need to access the GUI from a different network host then also change:
 
 ```bash
-sudo cp client.config.yaml /opt/velociraptor
-sudo cp server.config.yaml /opt/velociraptor
-```
-
-Edit `server.config.yaml` in the `/opt/velociraptor`  directory
-
-```bash
-sudo nano server.config.yaml
-```
-
-Verify that `Client: server_urls:` is set to `https://<IP address>:8000/`
-
-Edit `GUI: bind address:` to point to your Velociraptor server IP address 
-
-```bash
-Client:
-  server_urls:
-   - https://10.0.0.20:8000/
-<SNIP>
 GUI:
-  bind_address: 10.0.0.20
-  bind_port: 8889
+  bind_address: 127.0.0.1
 ```
 
-Create the Velociraptor server package for deb that included the generated configuration file:
+to:
 
 ```bash
-sudo ./velociraptor-v0.72.0-linux-amd64 --config /opt/velociraptor/server.config.yaml debian server --binary velociraptor-v0.72.0-linux-amd64 
+GUI:
+  bind_address: 0.0.0.0
 ```
 
-```bash
-#Example output
-Creating amd64 server package at velociraptor_server_0.72.0_amd64.deb
-```
+When using self-signed SSL, which only supports Basic authentication, you should avoid exposing the GUI to untrusted networks such as the public internet. If the server must be reachable from the internet, keep `GUI.bind_address` set to the loopback interface and access the GUI via SSH local port forwarding, which can be protected with stronger authentication.
 
-Install the server package
+### **Create the server installation package**
 
-```bash
-sudo dpkg -i velociraptor_server_0.72.0_amd64.deb
-```
+To create the server installation package, run the appropriate command below in your working directory.
 
-This process creates a new user, system user and group called velociraptor
-
-A service is created to automatically start Velociraptor anytime the server is restarted
-
-Verify the /opt/velociraptor is accessible by user and group velociraptor
+**Debian-based server:**
 
 ```bash
-ls -la /opt/velociraptor/
+./velociraptor debian server --config ./server.config.yaml
 ```
 
 ```bash
-
-total 24
-drwxr-xr-x. 9 velociraptor velociraptor   175 Aug 28 09:03 .
-drwxr-xr-x. 5 root         root            52 Aug 28 07:09 ..
-drwx------. 2 velociraptor velociraptor    68 Aug 28 09:03 acl
--rw-------. 1 velociraptor velociraptor  2725 Aug 28 07:19 client.config.yaml
-drwx------. 3 velociraptor velociraptor    20 Aug 28 09:03 clients
-drwxr-xr-x. 3 velociraptor velociraptor   168 Aug 28 09:03 config
-drwx------. 2 velociraptor velociraptor  4096 Aug 28 09:03 logs
-drwx------. 3 velociraptor velociraptor    35 Aug 28 09:03 server_artifact_logs
-drwx------. 5 velociraptor velociraptor   104 Aug 28 09:03 server_artifacts
--rw-------. 1 velociraptor velociraptor 13172 Aug 28 08:54 server.config.yaml
-drwx------. 2 velociraptor velociraptor    29 Aug 28 09:03 users
----
-
-total 36
-drwxr-xr-x 9 velociraptor velociraptor 4096 Sep 19 09:06 .
-drwxr-xr-x 5 root         root         4096 Sep 19 08:13 ..
-drwx------ 2 velociraptor velociraptor 4096 Sep 19 09:06 acl
-drwx------ 3 velociraptor velociraptor 4096 Sep 19 09:06 clients
-drwxr-xr-x 3 velociraptor velociraptor 4096 Sep 19 09:06 config
-drwx------ 2 velociraptor velociraptor 4096 Sep 19 09:06 logs
-drwx------ 3 velociraptor velociraptor 4096 Sep 19 09:06 server_artifact_logs
-drwx------ 5 velociraptor velociraptor 4096 Sep 19 09:06 server_artifacts
-drwx------ 2 velociraptor velociraptor 4096 Sep 19 09:06 users
-
+#Example Output
+velouser@Velociraptor:~/velociraptor_setup$ ./velociraptor debian server --config ./server.config.yaml
+[
+ {
+  "OSPath": "/home/velouser/velociraptor_setup/velociraptor-server-0.75.6.amd64.deb"
+ }
 ```
 
-Verify `velocirpator_server.service` is active and running
+**RPM-based server:**
 
 ```bash
-sudo systemctl status velociraptor_server.service 
+./velociraptor rpm server --config ./server.config.yaml
 ```
 
-Access the Velociraptor by typing `https://<IP address>:8889`
+The output file is automatically named to include the version and architecture, but you can use any filename you like by specifying it with the `--output <your_file_name>` option.
 
-Sign in with the user you created
+### **Install the server component**
+
+Install the server package using the command below according to your server’s packaging system.
+
+**Debian-based server installation:**
+
+```bash
+sudo dpkg -i velociraptor-server-0.75.6.amd64.deb
+```
+
+```bash
+#Example Output
+velouser@Velociraptor:~/velociraptor_setup$ sudo dpkg -i velociraptor-server-0.75.6.amd64.deb
+Selecting previously unselected package velociraptor-server.
+(Reading database ... 150772 files and directories currently installed.)
+Preparing to unpack velociraptor-server-0.75.6.amd64.deb ...
+Unpacking velociraptor-server (0.75.6) ...
+Setting up velociraptor-server (0.75.6) ...
+info: Selecting GID from range 100 to 999 ...
+info: Adding group `velociraptor' (GID 124) ...
+info: Selecting UID from range 100 to 999 ...
+
+info: Adding system user `velociraptor' (UID 122) ...
+info: Adding new user `velociraptor' (UID 122) with group `velociraptor' ...
+info: Not creating home directory `/etc/velociraptor'.
+Created symlink /etc/systemd/system/multi-user.target.wants/velociraptor_server.service → /etc/systemd/system/velociraptor_server.service.
+```
+
+**RPM-based server installation:**
+
+```bash
+sudo rpm -Uvh velociraptor-server-0.75.6.x86_64.rpm
+```
+
+Now that the service is installed, there are a few ways you can check its status.
+
+**Check the service status:**
+
+```bash
+systemctl status velociraptor_server.service
+```
+
+```bash
+#Example Output
+● velociraptor_server.service - Velociraptor server
+     Loaded: loaded (/etc/systemd/system/velociraptor_server.service; enabled; preset: enabled)
+     Active: active (running) since Fri 2026-01-16 22:42:21 NZDT; 58s ago
+   Main PID: 4399 (velociraptor)
+      Tasks: 15 (limit: 4545)
+     Memory: 86.6M (peak: 88.0M)
+        CPU: 3.036s
+     CGroup: /system.slice/velociraptor_server.service
+             ├─4399 /usr/local/bin/velociraptor --config /etc/velociraptor/server.config.yaml frontend
+             └─4407 /usr/local/bin/velociraptor --config /etc/velociraptor/server.config.yaml frontend
+
+Jan 16 22:42:21 Velociraptor systemd[1]: Started velociraptor_server.service - Velociraptor server.
+```
+
+**Check that the GUI is listening:**
+
+```bash
+nc -vz 127.0.0.1 8889
+```
+
+```bash
+#Example Output
+velouser@Velociraptor:~/velociraptor_setup$ nc -vz 127.0.0.1 8889
+Connection to 127.0.0.1 8889 port [tcp/*] succeeded!
+```
+
+**Check that the Frontend is listening:**
+
+```bash
+nc -vz 127.0.0.1 8000
+```
+
+```bash
+#Example Output
+velouser@Velociraptor:~/velociraptor_setup$ nc -vz 127.0.0.1 8000
+Connection to 127.0.0.1 8000 port [tcp/*] succeeded!
+```
+
+### **Log in to the Admin GUI**
+
+The Admin GUI should now be reachable in a web browser at `https://127.0.0.1:8889`, or via the server’s IP address if you updated the `GUI.bind_address` setting earlier. Log in using the admin account you created during the configuration wizard, and you’ll be taken to the Welcome screen.
 
 ![image.png](image.png)
 
 ![image.png](image%201.png)
 
-### **Configure Firewall**
+### **Import artifacts from external projects**
 
-On CentOS host, run the following command
+This step only applies if you are using version 0.75 or above. For older versions you can skip to the next step .
+Over time, Velociraptor has grown a number of separate sub-projects to handle larger and more complex artifacts. As these artifacts became more advanced, they were split out from the main project so they could be developed and maintained independently, allowing faster updates and innovation.
 
-```python
-#Show original state
-firewall-cmd --list-all
+While Velociraptor includes hundreds of built-in artifacts, it’s recommended that you also use these external projects. Built-in artifacts usually focus on very specific tasks, whereas the larger projects are designed for broader investigations, such as wide-scale registry or indicator hunting.
 
-#Velociraptor ports
-firewall-cmd --zone=public --add-port=8000/tcp --permanent # Frontend
-firewall-cmd --zone=public --add-port=8889/tcp --permanent # Web GUI
-firewall-cmd --reload
+| **Project** | **Description** |
+| --- | --- |
+| [Velociraptor Sigma Project](https://sigma.velocidex.com/) | Artifacts that implement Sigma-based triage and monitoring rules. Includes curated Sigma Rules (Hayabusa/Hayabusa Live/ChopChopGo) |
+| [Velociraptor Triage Project](https://triage.velocidex.com/) | This project intends to develop a set of rules that are used for specifying the collection of files from the endpoint. |
+| [Rapid7Labs](https://github.com/rapid7/Rapid7-Labs/tree/main/Vql) | Artifacts developed and shared by [Rapid7 Labs](https://www.rapid7.com/blog/tag/research/) . |
+| [Velociraptor Registry Hunter Project](https://registry-hunter.velocidex.com/) | Velociraptor project to develop sophisticated registry analysis modules. |
+| [Velociraptor SQLite Hunter Project](https://sqlitehunter.velocidex.com/) | This project aims to be a one-stop shop for `SQLite`, `ESE` and many other database-oriented forensic artifacts. |
+| [The Velociraptor Artifact Exchange](https://docs.velociraptor.app/exchange/) | Velociraptor repository of community-contributed artifacts. |
 
-#Check applied
-firewall-cmd --list-all
-```
-
-On Ubuntu, run the following command:
-
-```jsx
-sudo ufw allow 8000/tcp  # syslog TCP
-sudo ufw allow 8889/udp  # syslog UDP
-
-#Apply changes
-sudo ufw reload
-
-#Enable Firewall
-#sudo ufw enable
-
-#Apply changes
-sudo ufw status numbered
-```
-
-## **Configure Velociraptor Client (Windows)**
-
-### **Option 1: Official release MSI**
-
-The recommended way to install Velociraptor as a client on Windows is via the release MSI on the [Github releases](https://github.com/Velocidex/velociraptor/releases) page. Download the Velociraptor MSI ([velociraptor-v0.72.0-windows-amd64.msi](https://github.com/Velocidex/velociraptor/releases/download/v0.72/velociraptor-v0.72.0-windows-amd64.msi)) . On your Windows host, double-click the `msi` or run the following command on Command Prompt:
-
-```bash
-msiexec /i [velociraptor-v0.72.0-windows-amd64.msi](https://github.com/Velocidex/velociraptor/releases/download/v0.72/velociraptor-v0.72.0-windows-amd64.msi)
-```
-
-Navigate to `C:\Program Files\Velociraptor` and delete the existing `client.config.yaml`
-
-Transfer `client.config.yaml` from Linux host to Windows client using your preferred method. 
-
-From the Linux host in the `/opt/velociraptor` folder, host a HTTP server by running:
-
-```bash
-sudo python3 -m http.server 9999
-```
-
-From Windows client, open PowerShell as Administrator. Change directory into `C:\Program Files\Velociraptor` and run:
-
-```bash
-iwr -uri http://10.0.0.20:9999/client.config.yaml -Outfile client.config.yaml
-```
-
-You will see `velociraptor.writeback.yaml` appear. If the writeback YAML file does not appear, restart the computer.
-
-### **Option 2: Configure MSI package via Velociraptor Server**
-
-Since the Velociraptor client requires a unique configuration file to identify the location of the server, we can’t package the configuration file in the official release. Therefore, the official MSI does not include a valid configuration file. You will need to modify the MSI to pack your configuration file (that was generated earlier) into it.
-
-Navigate to Velociraptor web GUI. Click on the server icon. Add new collection by clicking `+` button.
+From the Welcome screen, click **Import Extra Artifacts**. This will launch the artifact collection wizard for the server artifact `Server.Import.Extras`. Click **Configure Parameters** to move to that section of the wizard.
 
 ![image.png](image%202.png)
 
-Search for `Server.Utils.CreateMSI` and click launch. The produced MSI will be available in the `Uploaded Files` tab.
+By default, `Server.Import.Extras` will import artifacts from all sub-projects. You don’t have to import everything straight away though, as you can run this process again later to add or update specific artifacts. To remove an item, click the bin icon next to it. Once you’re happy with your selection, click **Launch** to start the import.
 
 ![image.png](image%203.png)
 
-Click on the filename to download the MSI
+Once the collection finishes, you can view the outcome in the **Results** tab. If the import fails for any reason, check the **Log** tab for more details.
 
 ![image.png](image%204.png)
 
-Rename the file as `velociraptor-v0.72.0-windows-amd64.msi` 
+## **Deploying Velociraptor Clients (Windows)**
 
-Transfer the file to your Windows client using your preferred method. 
+### **Option 1: Create an installation package for Windows clients**
 
-From the Linux host in the downloads folder, host a HTTP server by running:
+In the Velociraptor web GUI select **Server Artifacts** from the sidebar on the left side of the page.
 
-```bash
-sudo python3 -m http.server 9999
-```
+![image.png](image%205.png)
 
-From Windows client, open PowerShell as Administrator and run:
+Add a new collection (”+” icon). Search for `Server.Utils.CreateMSI`, select it, and then click “Launch”.
 
-```bash
-iwr -uri http://10.0.0.20:9999/velociraptor-v0.72.0-windows-amd64.msi -Outfile velociraptor-v0.72.0-windows-amd64.msi
-```
+![image.png](image%206.png)
 
-If required, create a new rule in Firewall to temporarily allow access on port 9999. Remember to delete the rule after the file transfer. 
+It may take a short while to download the latest MSI releases from GitHub (64-bit and, if selected, 32-bit) and repackage them with your client configuration. Once complete, the rebuilt MSI files will be available in the **Uploaded Files** tab of the collection.
 
-On your Windows client, double-click the `msi` or run the following command on Command Prompt:
+![image.png](image%207.png)
 
-```bash
-msiexec /i [velociraptor-v0.72.0-windows-amd64.msi](https://github.com/Velocidex/velociraptor/releases/download/v0.72/velociraptor-v0.72.0-windows-amd64.msi)
-```
+Download the MSI files, then double-click the installer to install the client.
+
+![image.png](image%208.png)
+
+If prompted by Windows SmartScreen, click **More info**, then select **Run anyway**.
+
+![image.png](image%209.png)
+
+Navigate to `C:\Program Files\Velociraptor`. After a successful installation, you should see `velociraptor.writeback.yaml` in that directory.
+
+![image.png](image%2010.png)
+
+### **Option 2: Download official release MSI**
+
+Download the latest Velociraptor MSI from the [Velociraptor GitHub releases page](https://github.com/Velocidex/velociraptor/releases/tag/v0.75). On your Windows host, double-click the MSI to install it.
+
+Once installed, navigate to `C:\Program Files\Velociraptor` and delete the existing default `client.config.yaml` file.
+
+The easiest way to obtain the correct client config file is to download it directly from the GUI. From the Home screen, go to **Current Orgs** and click the filename to download the YAML file.
+
+![image.png](image%2011.png)
+
+Copy the downloaded `client.config.yaml` into `C:\Program Files\Velociraptor`.
+
+After this, you should see `velociraptor.writeback.yaml` appear in the same directory. If it doesn’t appear, restart the computer.
+
+![image.png](image%2010.png)
 
 ## **Verify client connection**
 
 On the Velociraptor Server web GUI, click on the magnifying glass icon and verify that your client is connected.
 
-Any client that has successfully enrolled will show a green light
+Any client that has successfully enrolled will show a green light.
 
-![image.png](image%205.png)
+![image.png](image%2012.png)
 
 ## **Introduction to Velociraptor**
 
@@ -388,29 +324,29 @@ Create New Hunt by clicking Hunt icon and + icon
 
 In the Configure Hunt tab, add the description Process Hunt
 
-![image.png](image%206.png)
+![image.png](image%2013.png)
 
 In the Select Artifacts tab, search for pstree. Select `Generic.System.Pstree`
 
 This artifact displays the call chain for every process on the system by traversing the process’s parent ID.
 
-![image.png](image%207.png)
+![image.png](image%2014.png)
 
 In the same tab, search for pslist and select `Windows.System.Pslist`
 
 This artifact list processes and their running binaries
 
-![image.png](image%208.png)
+![image.png](image%2015.png)
 
 In the Configure Parameters tab, Edit `Generic.system.Pstree`
 
 Select IncludePstree
 
-![image.png](image%209.png)
+![image.png](image%2016.png)
 
 Select Review then Launch. Select the Hunt and click Play button to launch it.
 
-![image.png](image%2010.png)
+![image.png](image%2017.png)
 
 Once the Hunt is complete (indicated by Total schedules and Finished clients), click the stop button to stop the Hunt.
 
@@ -418,7 +354,7 @@ Check the results on the Notebook tab on web GUI.
 
 As shown in the screenshot below, the suspicious activity is detected. 
 
-![image.png](image%2011.png)
+![image.png](image%2018.png)
 
 Alternatively, if you prefer to Download Results as a CSV file and view it in an Excel, this can be done in the Results Section > Download Results
 
@@ -426,11 +362,11 @@ Alternatively, if you prefer to Download Results as a CSV file and view it in an
 
 To create a label, click the magnifying glass icon, select the target host, then click the label icon. Name the new label (e.g., `windows`).
 
-![image.png](image%2012.png)
+![image.png](image%2019.png)
 
 Verify that the label has been created.
 
-![image.png](image%2013.png)
+![image.png](image%2020.png)
 
 ### **Creating a Filename Search Hunt**
 
@@ -442,21 +378,21 @@ For Include Condition, select `Match by label`
 
 For Include Labels, select `windows`
 
-![image.png](image%2014.png)
+![image.png](image%2021.png)
 
 On the Select Artifacts tab, type `filename` and select `Windows.Forensics.FilenameSearch`
 
-![image.png](image%2015.png)
+![image.png](image%2022.png)
 
 On the Configure Parameters tab, click spanner icon to configure.
 
 In the yaraRule, replace `my secret fie.txt` with `justascript.ps1` 
 
-![image.png](image%2016.png)
+![image.png](image%2023.png)
 
 Select Review then Launch. Run hunt by clicking the play icon. Once the hunt is finished, stop the hunt by clicking the stop icon. View results in the Notebook tab. Velociraptor detects that the script is in the Recycle bin. 
 
-![image.png](image%2017.png)
+![image.png](image%2024.png)
 
 ### **Creating a Hash Hunt**
 
@@ -468,21 +404,21 @@ For Include Condition, select `Match by label`
 
 For Include Labels, select `windows`
 
-![image.png](image%2018.png)
+![image.png](image%2025.png)
 
 On the Select Artifacts tab, type `hash` and select `Generic.Detection.HashHunter`
 
-![image.png](image%2019.png)
+![image.png](image%2026.png)
 
 On the Configure Parameters tab, click spanner icon to configure.
 
 On SHA256List, copy and paste sha256 hash of mimikatz.exe `61c0810a23580cf492a6ba4f7654566108331e7a4134c968c2d6a05261b2d8a1`
 
-![image.png](image%2020.png)
+![image.png](image%2027.png)
 
 Select Launch. Run hunt by clicking the play icon. Once the hunt is finished, stop the hunt by clicking the stop icon. View results in the Notebook tab. Velociraptor matches the SHA256 hash with `justanexe.exe`
 
-![image.png](image%2021.png)
+![image.png](image%2028.png)
 
 ## **References**
 
