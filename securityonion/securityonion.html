@@ -1,0 +1,3102 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../wazuh/wazuh.html">
+      
+      
+        <link rel="next" href="../understanding-IDS-IPS/understanding-IDS-IPS.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/Cyber Defence Kit logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Security Onion - Cyber Defence Kit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#security-onion" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-header__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cyber Defence Kit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Security Onion
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="light-blue" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../understanding-SIEM/understanding-SIEM.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SIEM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IDS/IPS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SIRP/understanding-SIRP.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SIRP
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SOAR/understanding-SOAR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOAR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-NTA/understanding-NTA.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NTA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-DFIR/understanding-DFIR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  DFIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-EDR/understanding-EDR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  EDR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../caldera/caldera.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MITRE
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-nav__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    Cyber Defence Kit
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIEM
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SIEM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIEM/understanding-SIEM.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SIEM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../splunk/splunk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Splunk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wazuh/wazuh.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wazuh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Onion
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="securityonion.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Onion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lab-setup-for-proof-of-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Setup for Proof of Concept
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-security-onion-manager-standalone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing Security Onion Manager (Standalone)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-soc-web-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessing SOC Web Interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-security-onion-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Security Onion Firewall
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploying-elastic-agent-on-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deploying Elastic Agent on Windows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-host-logs-in-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking Host Logs in Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-security-onion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction to Security Onion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analyst-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analyst Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analyst Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grid
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alerts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hunt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hunt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dashboards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pcap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PCAP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#downloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Downloads
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#administration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Administration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kibana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kibana
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elastic-fleet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elastic Fleet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#osquery-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Osquery Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#influxdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        InfluxDB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cyberchef" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CyberChef
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-security-onion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updating Security Onion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Updating Security Onion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#updating-security-onion-with-internet-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updating Security Onion with Internet Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-security-onion-in-an-air-gapped-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updating Security Onion in an Air-Gapped Environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alert-triage-and-case-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alert Triage and Case Creation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threat-hunting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Threat Hunting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detection-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detection Engineering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDS/IPS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDS/IPS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding IDS/IPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snort/snort.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Snort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../suricata/suricata.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Suricata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIRP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SIRP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIRP/understanding-SIRP.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SIRP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../thehive/thehive.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TheHive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iris/iris.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IRIS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOAR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOAR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SOAR/understanding-SOAR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SOAR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shuffle/shuffle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shuffle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NTA
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NTA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-NTA/understanding-NTA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding NTA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wireshark/wireshark.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wireshark
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zeek/zeek.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zeek
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zui/zui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zui
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7">
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFIR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DFIR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-DFIR/understanding-DFIR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding DFIR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../velociraptor/velociraptor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Velociraptor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8">
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EDR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EDR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-EDR/understanding-EDR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding EDR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auroralite/auroralite.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aurora Lite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9">
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MITRE
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MITRE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../caldera/caldera.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caldera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigator/navigator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MITRE ATT&amp;CK Navigator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="security-onion"><strong>Security Onion</strong></h1>
+<p><strong>Security Onion</strong> is a free and open-source platform developed to help defenders monitor and investigate both network and host activity. It includes tools for packet capture, intrusion detection, log management, and case tracking.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_sEu-xQg1lM?si=PU6iLcL8zjgcQvtP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h2 id="lab-setup-for-proof-of-concept"><strong>Lab Setup for Proof of Concept</strong></h2>
+<p>In this proof of concept, Security Onion was installed in Standalone mode, and the Elastic Agent was installed on the Windows virtual machine (VM). Test data was ingested, and threat hunting was carried out in a safe, controlled environment.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Hostname</strong></th>
+<th><strong>OS</strong></th>
+<th><strong>Role</strong></th>
+<th><strong>IP Address</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fortigate</td>
+<td>Fortios 7.6.0</td>
+<td>Firewall/Router</td>
+<td>192.168.1.18 (WAN) /</td>
+</tr>
+<tr>
+<td>10.0.0.1 (LAN)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>so-standalone</td>
+<td>Oracle Linux Server 9.6</td>
+<td>Security Onion Manager (Standalone)</td>
+<td>10.0.0.100</td>
+</tr>
+<tr>
+<td>WS2019</td>
+<td>Windows Server 2019</td>
+<td>Elastic Agent (Security Onion Client)</td>
+<td>10.0.0.35</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="Security_Onion_PoC.drawio.png" data-desc-position="bottom"><img alt="Security Onion PoC.drawio.png" src="Security_Onion_PoC.drawio.png"></a></p>
+<h2 id="installing-security-onion-manager-standalone"><strong>Installing Security Onion Manager (Standalone)</strong></h2>
+<p>This section explains how to set up the Security Onion Manager in Standalone mode using VMware Workstation.</p>
+<p>Head over to the official <a href="https://github.com/Security-Onion-Solutions/securityonion/releases">Security Onion download page</a> and download the ISO file for the latest release.</p>
+<p>Open VMware Workstation and select <strong>Create New Virtual Machine.</strong> Choose <strong>Typical</strong> and click <strong>Next</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image.png" data-desc-position="bottom"><img alt="image.png" src="image.png"></a></p>
+<p>Select <strong>I will install the Operating System (OS) later.</strong></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%201.png" data-desc-position="bottom"><img alt="image.png" src="image%201.png"></a></p>
+<p>For Guest operating system, select <strong>Linux</strong> and <strong>Oracle Linux 9 (64-bit)</strong>. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%202.png" data-desc-position="bottom"><img alt="image.png" src="image%202.png"></a></p>
+<p>Enter the Virtual machine name (e.g., SecOnion) and choose where to save it.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%203.png" data-desc-position="bottom"><img alt="image.png" src="image%203.png"></a></p>
+<p>Set the disk size to <strong>at least 200 GB</strong>. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%204.png" data-desc-position="bottom"><img alt="image.png" src="image%204.png"></a></p>
+<p>Click <strong>Customise Hardware:</strong></p>
+<ul>
+<li><strong>Memory</strong>: Set to <strong>16 GB</strong></li>
+<li><strong>Processors</strong>: Set to <strong>4</strong></li>
+<li>Under <strong>CD/DVD</strong>, choose <strong>Use ISO image file</strong> and browse to the Security Onion ISO you downloaded.</li>
+<li>Add two <strong>network adapters</strong>:<ul>
+<li>One connected to your FortiGate VM or LAN (e.g., LAN Segment)</li>
+<li>One for NAT or Bridged (this gives access to Internet to download required packages)</li>
+</ul>
+</li>
+<li>Click <strong>Close</strong> and then <strong>Finish</strong> to create the VM.</li>
+</ul>
+<p>Refer to the <a href="https://docs.securityonion.net/en/2.4/hardware.html">Hardware Requirements</a> page and select network adapters appropriate for your setup. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%205.png" data-desc-position="bottom"><img alt="image.png" src="image%205.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%206.png" data-desc-position="bottom"><img alt="image.png" src="image%206.png"></a></p>
+<p>Power on the VM. When the menu appears, select <strong>Install Security Onion (top option)</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%207.png" data-desc-position="bottom"><img alt="image.png" src="image%207.png"></a></p>
+<p>The VM will go through initialisation process (automated script). </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%208.png" data-desc-position="bottom"><img alt="image.png" src="image%208.png"></a></p>
+<p>When prompted for warning, type <strong>yes</strong> to proceed. When prompted to create administrator account, create a username and password. For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>administrator:<span class="w"> </span>soc-admin
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>password:<span class="w"> </span>password
+</code></pre></div>
+<p>Security Onion will continue with the installation.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%209.png" data-desc-position="bottom"><img alt="image.png" src="image%209.png"></a></p>
+<p>If Security Onion install is stuck at <strong>Downloading packages</strong>, it may be due to a network issue. To check, navigate to the shell:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Alt<span class="w"> </span>+<span class="w"> </span>F2
+</code></pre></div>
+<p>Check your network interface (e.g., ens160). If it has no IP, it is not connected. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ip<span class="w"> </span>a
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2010.png" data-desc-position="bottom"><img alt="image.png" src="image%2010.png"></a></p>
+<p>In this case:</p>
+<ul>
+<li>My VM interface <code>ens160</code> is <strong>detected and up</strong>, but it has <strong>no IP address assigned</strong>.</li>
+<li><code>dhclient</code> is <strong>not available</strong> (missing in this minimal Oracle Linux install).</li>
+<li>The <code>nmcli</code> output shows <code>ens160</code> is not attached to any connection profile, which means <strong>no network configuration is active</strong>.</li>
+</ul>
+<p>To manually set up networking:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>nmcli<span class="w"> </span>con<span class="w"> </span>add<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ethernet<span class="w"> </span>ifname<span class="w"> </span>ens160<span class="w"> </span>con-name<span class="w"> </span>ens160<span class="w"> </span>autoconnect<span class="w"> </span>yes<span class="w"> </span>ipv4.method<span class="w"> </span>auto
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>nmcli<span class="w"> </span>con<span class="w"> </span>up<span class="w"> </span>ens160
+</code></pre></div>
+<p>Then check IP and test internet connectivity:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ip<span class="w"> </span>a
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>ping<span class="w"> </span><span class="m">8</span>.8.8.8
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2011.png" data-desc-position="bottom"><img alt="image.png" src="image%2011.png"></a></p>
+<p>To return to the installer screen, switch back to the main screen</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Alt<span class="w"> </span>+<span class="w"> </span>F1
+</code></pre></div>
+<p>Once network access is working, the installer will proceed with downloading necessary packages. This part can take a while depending on your connection.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2012.png" data-desc-position="bottom"><img alt="image.png" src="image%2012.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2013.png" data-desc-position="bottom"><img alt="image.png" src="image%2013.png"></a></p>
+<p>When prompted, press <strong>Enter</strong> to reboot.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2014.png" data-desc-position="bottom"><img alt="image.png" src="image%2014.png"></a></p>
+<p>After reboot, login using the administrator credentials you created earlier.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2015.png" data-desc-position="bottom"><img alt="image.png" src="image%2015.png"></a></p>
+<p>After logging in, you will see a prompt asking if you want to proceed. Select <strong>Yes</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2016.png" data-desc-position="bottom"><img alt="image.png" src="image%2016.png"></a></p>
+<p>Choose <strong>Install</strong> to begin the configuration process.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2017.png" data-desc-position="bottom"><img alt="image.png" src="image%2017.png"></a></p>
+<p>Select <strong>Standalone</strong> when asked for deployment type. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2018.png" data-desc-position="bottom"><img alt="image.png" src="image%2018.png"></a></p>
+<p>Type <strong>AGREE</strong> to accept the Elastic Licence version 2.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2019.png" data-desc-position="bottom"><img alt="image.png" src="image%2019.png"></a></p>
+<p>If your VM can access the internet, choose <strong>Standard</strong>. If you are installing in an offline or air-gapped environment, choose <strong>Airgap</strong> (as used in this guide).</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2020.png" data-desc-position="bottom"><img alt="image.png" src="image%2020.png"></a></p>
+<p>Give your system a hostname. This will identify your Security Onion node. For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>so-standalone
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2021.png" data-desc-position="bottom"><img alt="image.png" src="image%2021.png"></a></p>
+<p>You can add a short description for this node, but it is not required. Feel free to leave it blank.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2022.png" data-desc-position="bottom"><img alt="image.png" src="image%2022.png"></a></p>
+<p>Choose the <strong>network adapter</strong> that connects to your LAN or firewall. In this example, it is <strong>ens160</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2023.png" data-desc-position="bottom"><img alt="image.png" src="image%2023.png"></a></p>
+<p>Select Static IP address for your management interface.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2024.png" data-desc-position="bottom"><img alt="image.png" src="image%2024.png"></a></p>
+<p>Note that this is the static IP address for your network interface not the VM itself. Earlier, the VM was assigned DHCP IP address of <strong>10.0.0.21</strong>. <strong>The static IP address must be in the same subnet but the last octet can be different.</strong> </p>
+<p>Assign <strong>10.0.0.100/24</strong> to the network interface.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2025.png" data-desc-position="bottom"><img alt="image.png" src="image%2025.png"></a></p>
+<p>Enter your gateway’s IP address. Note this will be different in your setup. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2026.png" data-desc-position="bottom"><img alt="image.png" src="image%2026.png"></a></p>
+<p>Enter your DNS servers. This will be automatically populated.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2027.png" data-desc-position="bottom"><img alt="image.png" src="image%2027.png"></a></p>
+<p>Enter a generic value like <strong>so.lab</strong> for your DNS search domain.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2028.png" data-desc-position="bottom"><img alt="image.png" src="image%2028.png"></a></p>
+<p>When asked whether to keep the default Docker IP range, select <strong>Yes</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2029.png" data-desc-position="bottom"><img alt="image.png" src="image%2029.png"></a></p>
+<p>Choose the second network adapter for packet monitoring. In this case, <strong>ens192</strong> (NAT network).</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2030.png" data-desc-position="bottom"><img alt="image.png" src="image%2030.png"></a></p>
+<p>Create an administrator account in email address format for the Security Onion Console (SOC) web interface. It can be a made up email address. Take a note of this email address.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2031.png" data-desc-position="bottom"><img alt="image.png" src="image%2031.png"></a></p>
+<p>Enter a password for the administrator account.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2032.png" data-desc-position="bottom"><img alt="image.png" src="image%2032.png"></a></p>
+<p>Re-enter the password.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2033.png" data-desc-position="bottom"><img alt="image.png" src="image%2033.png"></a></p>
+<p>Select IP to access the web interface. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2034.png" data-desc-position="bottom"><img alt="image.png" src="image%2034.png"></a></p>
+<p>Select <strong>Yes</strong> to allow access to this Security Onion installation via the web interface. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2035.png" data-desc-position="bottom"><img alt="image.png" src="image%2035.png"></a></p>
+<p>Enter the <strong>10.0.0.0/24</strong> to allow access from this subnet. Note your network setup may be different so verify your subnet. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2036.png" data-desc-position="bottom"><img alt="image.png" src="image%2036.png"></a></p>
+<p>Review your settings. If everything looks right, select <strong>Yes</strong> to proceed.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2037.png" data-desc-position="bottom"><img alt="image.png" src="image%2037.png"></a></p>
+<p>Security Onion will now run an automated configuration script. This may take 10–30 minutes depending on your system.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2038.png" data-desc-position="bottom"><img alt="image.png" src="image%2038.png"></a></p>
+<p>After installation is complete, you can access the SOC web interface by navigating to <code>https://10.0.0.100</code>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2039.png" data-desc-position="bottom"><img alt="image.png" src="image%2039.png"></a></p>
+<p>Verify that all containers are running by entering the following command on the terminal of the Security Onion VM:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>so-status
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2040.png" data-desc-position="bottom"><img alt="image.png" src="image%2040.png"></a></p>
+<h2 id="accessing-soc-web-interface"><strong>Accessing SOC Web Interface</strong></h2>
+<p>From the WS2019 VM, open a web browser and navigate to <code>https://10.0.0.100</code>. When prompted for a warning, click <strong>Advanced</strong> then select <strong>Accept the Risk and Continue</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2041.png" data-desc-position="bottom"><img alt="image.png" src="image%2041.png"></a></p>
+<p>Login to SOC web interface using the administrator credentials.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2042.png" data-desc-position="bottom"><img alt="image.png" src="image%2042.png"></a></p>
+<p>Navigate to Grid page and verify that all containers are running on the Security Onion Manager. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2043.png" data-desc-position="bottom"><img alt="image.png" src="image%2043.png"></a></p>
+<h2 id="configuring-security-onion-firewall"><strong>Configuring Security Onion Firewall</strong></h2>
+<p>To allow the agent to connect through the firewall, navigate to <strong>Administration →</strong> <strong>Configuration.</strong></p>
+<p>Select the quick link <strong>Allow Elastic Agent endpoints to send logs.</strong> This will automatically select <strong>firewall → hostgroups → elastic_agent_endpoint</strong>. Add <strong><em>*the agent’s subnet. Click the </em>*green checkmark</strong> to apply changes.  Note that the changes typically apply within 15 minutes.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2044.png" data-desc-position="bottom"><img alt="image.png" src="image%2044.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2045.png" data-desc-position="bottom"><img alt="image.png" src="image%2045.png"></a></p>
+<p>Click on <strong>Options</strong> and <strong>Synchronize Grid</strong> to push out changes. Please note that this can take several minutes to complete.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2046.png" data-desc-position="bottom"><img alt="image.png" src="image%2046.png"></a></p>
+<h2 id="deploying-elastic-agent-on-windows"><strong>Deploying Elastic Agent on Windows</strong></h2>
+<p>After waiting for several minutes, verify connection to 10.0.0.100 on port 8220 by running the following command in PowerShell from your Windows VM. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Test-NetConnection 10.0.0.100 -Port 8220
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2047.png" data-desc-position="bottom"><img alt="image.png" src="image%2047.png"></a></p>
+<p>You should see True for TcpTestSucceeded.</p>
+<p>Navigate to the <strong>Downloads</strong> page and download the <strong>Windows Elastic agent (exe)</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2048.png" data-desc-position="bottom"><img alt="image.png" src="image%2048.png"></a></p>
+<p>Note Sysmon has been installed and configured on the WS2019 VM. If you would like to ingest Sysmon logs, install and configure Sysmon on yours Windows VM before proceeding to the next step. </p>
+<p>Right-click on the elastic agent and click <strong>Run as administrator</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2049.png" data-desc-position="bottom"><img alt="image.png" src="image%2049.png"></a></p>
+<p>If Microsoft Defender SmartScreen prevents you from running the agent, click <strong>More info</strong> → <strong>Run anyway.</strong></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2050.png" data-desc-position="bottom"><img alt="image.png" src="image%2050.png"></a></p>
+<p>Installation will be initiated. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2051.png" data-desc-position="bottom"><img alt="image.png" src="image%2051.png"></a></p>
+<p>After installation is complete, check the Elastic agent installer log. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2052.png" data-desc-position="bottom"><img alt="image.png" src="image%2052.png"></a></p>
+<p>You should see <strong>Elastic Agent has been successfully installed</strong> and <strong>Elastic Agent Installation completed</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2053.png" data-desc-position="bottom"><img alt="image.png" src="image%2053.png"></a></p>
+<p>If you encounter an error, try installing the Elastic agent again. If the error persists, refer to the Security Onion documentation for troubleshooting.</p>
+<p>By default, Security Onion’s Fleet agent policies include integrations that collect Windows event logs from key channels such as PowerShell, ForwardedEvents, and Sysmon Operational.</p>
+<p>You can check agent policies by navigating to <strong>Elastic Fleet</strong> → <strong>Agent policies</strong> → <strong>endpoints-initial</strong> → <strong>windows-endpoints.</strong></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2054.png" data-desc-position="bottom"><img alt="image.png" src="image%2054.png"></a></p>
+<h2 id="checking-host-logs-in-dashboard"><strong>Checking Host Logs in Dashboard</strong></h2>
+<p>To verify that host logs are being ingested, navigate to the <strong>Dashboards</strong> page and select <strong>Host Overview</strong> on SOC web interface. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2055.png" data-desc-position="bottom"><img alt="image.png" src="image%2055.png"></a></p>
+<p>This gives us high-level view of host logs that are being ingested via Elastic agent. We see Sysmon logs and Windows event logs being ingested from the host WS2019.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2056.png" data-desc-position="bottom"><img alt="image.png" src="image%2056.png"></a></p>
+<h2 id="introduction-to-security-onion"><strong>Introduction to Security Onion</strong></h2>
+<p>This documentation is based on content from the <em>Security Onion Essentials</em> course by Security Onion Solutions. Some examples have been adapted to reflect my lab setup, which uses Standalone mode instead of Evaluation mode. </p>
+<h2 id="analyst-tools"><strong>Analyst Tools</strong></h2>
+<h3 id="overview"><strong>Overview</strong></h3>
+<p>On the <strong>Overview</strong> page, you’ll find a <strong>silhouette icon</strong> in the top-right corner of the SOC interface. Clicking this opens up options like <strong>Dark Mode</strong>, the <strong>Cheat Sheet</strong>, the <strong>Blog</strong>, and your <strong>Account Settings</strong>.</p>
+<blockquote>
+<p>Tip: Both the Cheat Sheet and the Security Onion documentation are available offline, so you can still access them even without an internet connection.
+</p>
+</blockquote>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2057.png" data-desc-position="bottom"><img alt="image.png" src="image%2057.png"></a></p>
+<p>The <strong>Cheat Sheet</strong> is a handy reference that lists commonly used commands for day-to-day tasks in Security Onion.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2058.png" data-desc-position="bottom"><img alt="image.png" src="image%2058.png"></a></p>
+<p>In the <strong>Account Settings</strong> menu, go to the <strong>Security</strong> tab to update your password or set up <strong>Multi-Factor Authentication (MFA)</strong> using <strong>Time-based One-Time Passwords (TOTP)</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2059.png" data-desc-position="bottom"><img alt="image.png" src="image%2059.png"></a></p>
+<h3 id="grid"><strong>Grid</strong></h3>
+<p>The Grid displays all the nodes that have been deployed in your Security Onion setup. In this example, there is only one node (<strong>so-standalone</strong>) listed. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2060.png" data-desc-position="bottom"><img alt="image.png" src="image%2060.png"></a></p>
+<p>Clicking on the node will reveal more information, including the status of the node itself and the containers running on it.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2061.png" data-desc-position="bottom"><img alt="image.png" src="image%2061.png"></a></p>
+<p>At the bottom of the <strong>Node Status</strong> panel, you’ll see <strong>five icons</strong>. From right to left:</p>
+<ul>
+<li>The <strong>help</strong> icon opens documentation for the Grid interface.</li>
+<li>The <strong>power</strong> button lets you reboot the node.</li>
+<li>The <strong>upload</strong> icon allows you to manually import files such as PCAPs or EVTX logs.</li>
+<li>The <strong>test data</strong> icon lets you simulate sample alerts and logs.</li>
+<li>The <strong>node status</strong> icon gives a detailed overview of the node’s current state.</li>
+</ul>
+<p>Click the <strong>test data</strong> icon to load example data into Security Onion for testing.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2062.png" data-desc-position="bottom"><img alt="image.png" src="image%2062.png"></a></p>
+<p>This will load sample test data into Security Onion for demonstration purposes. When prompted, click <strong>Yes</strong> to proceed. Please note that this can take several minutes to complete.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2063.png" data-desc-position="bottom"><img alt="image.png" src="image%2063.png"></a></p>
+<p>If you would like to import your own PCAP, download a sample, for example, <a href="https://www.malware-traffic-analysis.net/2025/01/28/2025-01-28-web-inject-and-malware-infection.pcap.zip">**2025-01-28-web-inject-and-malware-infection.pcap</a>.<strong> Then click the </strong>upload** icon and select the PCAP file to upload it into Security Onion.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2064.png" data-desc-position="bottom"><img alt="image.png" src="image%2064.png"></a></p>
+<h3 id="alerts"><strong>Alerts</strong></h3>
+<p>Go to the <strong>Alerts</strong> tab in the SOC interface. This is where you will find alerts for suspicious or potentially malicious activities in your environment.</p>
+<p>It does not matter whether the alert comes from a Suricata, Sigma, or Yara rule. If the alert is triggered, it will show up here. By default, alerts are grouped by rule name. For example, you might see <strong>11 alerts</strong> under the rule <strong>ET P2P BitTorrent Peer Sync</strong>.</p>
+<blockquote>
+<p><strong>Emerging Threats (ET)</strong> is a well-known set of intrusion detection rules. It is developed and maintained by the community (and by Proofpoint for the commercial version) and helps detect a wide variety of network-based threats.
+</p>
+</blockquote>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2065.png" data-desc-position="bottom"><img alt="image.png" src="image%2065.png"></a></p>
+<p>To look more closely at individual alerts, click on the <strong>number</strong> next to the rule name.</p>
+<p>You will also see a few icons next to each alert:</p>
+<ul>
+<li>The <strong>bell icon</strong> is used to <strong>acknowledge</strong> the alert - this hides it from the main view but does not delete it.</li>
+<li>The <strong>triangle icon</strong> is used to <strong>escalate</strong> the alert into a <strong>case</strong> for further investigation.</li>
+</ul>
+<p>To escalate, simply click the triangle and choose <strong>Escalate to new case</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2066.png" data-desc-position="bottom"><img alt="image.png" src="image%2066.png"></a></p>
+<p>You can also fine-tune how a rule behaves by clicking on the <strong>rule name</strong> and selecting <strong>Tune Detection</strong> from the menu.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2067.png" data-desc-position="bottom"><img alt="image.png" src="image%2067.png"></a></p>
+<p>This opens the <strong>Tune Detection</strong> page, where you can enable or disable the rule, or adjust its settings to better suit your environment.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2068.png" data-desc-position="bottom"><img alt="image.png" src="image%2068.png"></a></p>
+<h3 id="cases"><strong>Cases</strong></h3>
+<p>Go to the <strong>Cases</strong> tab in the SOC interface. You will see any cases that have been created, usually named after the alert that was escalated.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2069.png" data-desc-position="bottom"><img alt="image.png" src="image%2069.png"></a></p>
+<p>As you investigate, you can record notes and observations to track what triggered the alert. Click on the <strong>binoculars icon</strong> to open the case and add your comments or findings.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2070.png" data-desc-position="bottom"><img alt="image.png" src="image%2070.png"></a></p>
+<h3 id="hunt"><strong>Hunt</strong></h3>
+<p>Head over to the <strong>Hunt</strong> tab in the SOC interface. The Hunt tool is built to be a fast, flexible workspace for analysts to dig into data during investigations.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2071.png" data-desc-position="bottom"><img alt="image.png" src="image%2071.png"></a></p>
+<p>At the top of the Hunt page, you will find a <strong>query box</strong>, along with a list of <strong>prebuilt queries</strong> you can use straight away. You can also create your own custom queries tailored to your environment and use cases.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2072.png" data-desc-position="bottom"><img alt="image.png" src="image%2072.png"></a></p>
+<p>For example, the <strong>Log Type</strong> query shows all the different types of logs that Security Onion has collected. These logs are grouped into datasets based on the type of data and its source.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2073.png" data-desc-position="bottom"><img alt="image.png" src="image%2073.png"></a></p>
+<p>If you want to focus your hunt on <strong>Sysmon logs</strong>, click on <strong>windows</strong> and select <strong>Include</strong> to add it to your search query.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2074.png" data-desc-position="bottom"><img alt="image.png" src="image%2074.png"></a></p>
+<p>You will now notice that the <strong>Group Metrics</strong> pane is filtered to show only records from the <strong>windows</strong> dataset.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2075.png" data-desc-position="bottom"><img alt="image.png" src="image%2075.png"></a></p>
+<p>To narrow it down even more, you can select <strong>windows.sysmon_operational</strong> and click <strong>Include</strong> to filter specifically for Sysmon operational logs.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2076.png" data-desc-position="bottom"><img alt="image.png" src="image%2076.png"></a></p>
+<p>Now, the <strong>Group Metrics</strong> pane shows only data from the <strong>windows.sysmon_operational</strong> dataset.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2077.png" data-desc-position="bottom"><img alt="image.png" src="image%2077.png"></a></p>
+<p>Scrolling down, you will see a list of individual <strong>Sysmon events</strong> that have been captured.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2078.png" data-desc-position="bottom"><img alt="image.png" src="image%2078.png"></a></p>
+<p>You can click to <strong>expand</strong> any event to view detailed information about what was captured in that specific log entry.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2079.png" data-desc-position="bottom"><img alt="image.png" src="image%2079.png"></a></p>
+<p>To refine the results even further and focus on <strong>FileCreate</strong> events, click on <strong>FileCreate</strong> and select <strong>Include</strong> to filter for those specific logs.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2080.png" data-desc-position="bottom"><img alt="image.png" src="image%2080.png"></a></p>
+<h3 id="dashboards"><strong>Dashboards</strong></h3>
+<p>Go to the <strong>Dashboards</strong> tab in the SOC interface. Dashboards include a range of <strong>prebuilt visualisations</strong>, organised by different data sets to help you quickly interpret and analyse incoming logs.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2081.png" data-desc-position="bottom"><img alt="image.png" src="image%2081.png"></a></p>
+<p>For example, if you want to analyse <strong>HTTP traffic</strong>, you can select <strong>HTTP</strong> from the drop-down menu to load the relevant dashboard.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2082.png" data-desc-position="bottom"><img alt="image.png" src="image%2082.png"></a></p>
+<p>This will load a prebuilt <strong>HTTP dashboard</strong> that provides visual insights and metrics related to HTTP traffic observed in your environment.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2083.png" data-desc-position="bottom"><img alt="image.png" src="image%2083.png"></a></p>
+<p>You can refine your view by filtering based on <strong>destination port</strong>. For instance, if you want to focus on non-standard HTTP traffic, you can <strong>Exclude</strong> destination port <strong>80</strong> from the results.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2084.png" data-desc-position="bottom"><img alt="image.png" src="image%2084.png"></a></p>
+<p>You will now see <strong>HTTP traffic</strong> that is using <strong>non-standard ports</strong>, which could indicate unusual or suspicious behaviour.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2085.png" data-desc-position="bottom"><img alt="image.png" src="image%2085.png"></a></p>
+<p>Security Onion also captures full network traffic using <strong>packet capture (PCAP)</strong>. To view a packet capture:</p>
+<ul>
+<li>Scroll down to the event list</li>
+<li>Click on the <strong>first record</strong></li>
+<li>Select <strong>Actions</strong>, then click on <strong>PCAP</strong> to open the capture for that specific network flow.</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2086.png" data-desc-position="bottom"><img alt="image.png" src="image%2086.png"></a></p>
+<p>This opens a web-based PCAP viewer, similar to Wireshark, but accessible through your browser. Here, you can inspect details like the <strong>source and destination IPs</strong>, <strong>port numbers</strong>, and <strong>TCP flags</strong> involved in the connection.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2087.png" data-desc-position="bottom"><img alt="image.png" src="image%2087.png"></a></p>
+<p>To view the <strong>raw packet data</strong>, click on the <strong>list icon</strong> at the top of the PCAP interface.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2088.png" data-desc-position="bottom"><img alt="image.png" src="image%2088.png"></a></p>
+<p>To hide the hex dump and switch to a plain-text view of the TCP session, click on the <strong>HEX icon</strong> at the top of the interface.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2089.png" data-desc-position="bottom"><img alt="image.png" src="image%2089.png"></a></p>
+<p>If you need to dig deeper, you can either <strong>download the PCAP</strong> using the <strong>Download PCAP</strong> button at the top right, or send it directly to <strong>CyberChef</strong> by clicking the <strong>CyberChef icon</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2090.png" data-desc-position="bottom"><img alt="image.png" src="image%2090.png"></a></p>
+<h3 id="pcap"><strong>PCAP</strong></h3>
+<p>As well as pivoting into a PCAP from a specific alert or event, you can also pull <strong>custom PCAPs</strong> from your sensors based on your own search criteria.</p>
+<p>To do this:</p>
+<ol>
+<li>Go to the <strong>PCAP</strong> tab in the SOC interface.</li>
+<li>Click the <strong>+ icon</strong> to create a new request.</li>
+<li>Enter the <strong>parameters</strong> you want to filter by (e.g. IP address, port, time range).</li>
+<li>Specify the <strong>sensor ID</strong> you want to collect from.</li>
+</ol>
+<p>Security Onion will then retrieve the matching packets and display them in the PCAP web interface for review.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2091.png" data-desc-position="bottom"><img alt="image.png" src="image%2091.png"></a></p>
+<h3 id="downloads"><strong>Downloads</strong></h3>
+<p>Go to the <strong>Downloads</strong> tab in the SOC interface. Here, you can download the <strong>Elastic Agent</strong> that matches the operating system of your endpoint.</p>
+<p>These agents are designed to collect telemetry data from the host and send it to Security Onion. They are <strong>prebuilt and automatically configured</strong> for your environment as part of the installation process.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2092.png" data-desc-position="bottom"><img alt="image.png" src="image%2092.png"></a></p>
+<h3 id="administration"><strong>Administration</strong></h3>
+<p>Head to the <strong>Administration</strong> tab in the SOC interface. This section lets you manage and configure your <strong>Security Onion Grid</strong>.</p>
+<p>Under <strong>Users</strong>, you can <strong>create</strong>, <strong>disable</strong>, or <strong>edit</strong> user accounts for accessing the SOC web interface.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2093.png" data-desc-position="bottom"><img alt="image.png" src="image%2093.png"></a></p>
+<p>The <strong>Grid Members</strong> section is used to <strong>add</strong> or <strong>remove nodes</strong> from your Security Onion deployment, allowing you to scale or manage your environment as needed</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2094.png" data-desc-position="bottom"><img alt="image.png" src="image%2094.png"></a></p>
+<p>The <strong>Configuration</strong> section provides access to various platform settings, including options for updating <strong>firewall rules</strong> and adjusting <strong>log retention periods</strong> to suit your environment.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2095.png" data-desc-position="bottom"><img alt="image.png" src="image%2095.png"></a></p>
+<p>The <strong>License Key</strong> section is used to activate certain <strong>advanced enterprise features</strong> (also known as Pro features) that aren’t available in the free version.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2096.png" data-desc-position="bottom"><img alt="image.png" src="image%2096.png"></a></p>
+<h3 id="kibana"><strong>Kibana</strong></h3>
+<p><strong>Kibana</strong> is Elastic’s web-based interface for exploring and visualising data stored in <strong>Elasticsearch</strong>. Security Onion includes a range of ready-to-use Kibana dashboards to help you analyse this data in more depth.</p>
+<p>Clicking on <strong>Kibana</strong> from the SOC interface will open it in a new browser tab.</p>
+<p>To focus on specific data, for example, <strong>HTTP logs,</strong> click <strong>Network</strong> under the <strong>Event Category</strong>, then choose <strong>HTTP</strong> under <strong>Datasets</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2097.png" data-desc-position="bottom"><img alt="image.png" src="image%2097.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2098.png" data-desc-position="bottom"><img alt="image.png" src="image%2098.png"></a></p>
+<p>You will now see detailed tables and visualisations specifically related to <strong>HTTP data</strong>, similar to what you would find in the SOC Dashboards.</p>
+<p>Individual events appear at the bottom of the page.</p>
+<blockquote>
+<p>Whether you are using SOC or Kibana, you are viewing data from the same underlying Elasticsearch database. It is just presented through different interfaces.
+</p>
+</blockquote>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2099.png" data-desc-position="bottom"><img alt="image.png" src="image%2099.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20100.png" data-desc-position="bottom"><img alt="image.png" src="image%20100.png"></a></p>
+<h3 id="elastic-fleet"><strong>Elastic Fleet</strong></h3>
+<p><strong>Elastic Fleet</strong> is where you manage and configure your Elastic Agents.</p>
+<p>Clicking on <strong>Elastic Fleet</strong> in the SOC interface opens it in a new tab. You’ll see a list of registered agents, for example, <code>WS2019</code>, <code>so-standalone</code>, and <code>FleetServer-so-standalone</code>. These represent the hosts currently enrolled and reporting data to Security Onion.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20101.png" data-desc-position="bottom"><img alt="image.png" src="image%20101.png"></a></p>
+<h3 id="osquery-manager"><strong>Osquery Manager</strong></h3>
+<p>The <strong>Osquery Manager</strong> lets you send live Osquery to endpoints where Elastic Agents are installed. Originally developed by Facebook, Osquery treats endpoints like databases, allowing you to run structured queries against them.</p>
+<p>Clicking on <strong>Osquery Manager</strong> in SOC opens it in a new tab. To get started, click <strong>New live query</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20102.png" data-desc-position="bottom"><img alt="image.png" src="image%20102.png"></a></p>
+<p>For example, if you want to gather a list of all user accounts across the machines in your network, you can run this Osquery across all agents:</p>
+<p>For <strong>Query type</strong>, select <strong>Single query</strong>. For <strong>Agents</strong>, select <strong>All agents</strong>. For <strong>Query</strong>, enter the following query and click <strong>Submit</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">select</span><span class="w"> </span>*<span class="w"> </span>from<span class="w"> </span>users<span class="p">;</span>
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20103.png" data-desc-position="bottom"><img alt="image.png" src="image%20103.png"></a></p>
+<p>Security Onion will then contact all selected agents and request user account information regardless of what operating system each endpoint is running.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20104.png" data-desc-position="bottom"><img alt="image.png" src="image%20104.png"></a></p>
+<h3 id="influxdb"><strong>InfluxDB</strong></h3>
+<p><strong>InfluxDB</strong> shows similar information to what you see on the <strong>Grid</strong> screen, but with one key difference - it provides <strong>historical telemetry</strong>, not just real-time status. This is especially useful for spotting trends, such as changes in <strong>CPU usage over time</strong>.</p>
+<p>You can open InfluxDB by clicking <strong>InfluxDB</strong> in the SOC menu, or by clicking the <strong>node status icon</strong> at the bottom of the <strong>Node Status</strong> pane in the Grid view. Both will open it in a new tab.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20105.png" data-desc-position="bottom"><img alt="image.png" src="image%20105.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20106.png" data-desc-position="bottom"><img alt="image.png" src="image%20106.png"></a></p>
+<h3 id="cyberchef"><strong>CyberChef</strong></h3>
+<p><strong>CyberChef</strong> is a browser-based tool used for <strong>encoding, decoding, and analysing data</strong>. It is especially useful for tasks like decoding Base64, converting binary, or analysing encoded payloads in threat investigations.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20107.png" data-desc-position="bottom"><img alt="image.png" src="image%20107.png"></a></p>
+<p>Copy and paste the following string into the <strong>Input</strong> box:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>bgBlAHQAIAB1AHMAZQByACAAaABhAGMAawBlAHIAIABQAGEAcwBzAHcAMAByAGQAIQAgAC8AYQBkAGQAOwAgAG4AZQB0ACAAbABvAGMAYQBsAGcAcgBvAHUAcAAgAGEAZABtAGkAbgBpAHMAdAByAGEAdABvAHIAcwAgAGgAYQBjAGsAZQByACAA
+</code></pre></div>
+<p>Drag and drop <strong>From Base64</strong> and <strong>Decode text</strong> into the <strong>Recipe</strong> panel from the <strong>Operations</strong> list. For <strong>Decode text</strong>, select the <strong>UTF-16LE</strong> encoding. You should now see the decoded command in the <strong>Output</strong>. The command appears to show the attacker adding themselves to the local administrators group.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>net<span class="w"> </span>user<span class="w"> </span>hacker<span class="w"> </span>Passw0rd!<span class="w"> </span>/add<span class="p">;</span><span class="w"> </span>net<span class="w"> </span>localgroup<span class="w"> </span>administrators<span class="w"> </span>hacker
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20108.png" data-desc-position="bottom"><img alt="image.png" src="image%20108.png"></a></p>
+<h3 id="navigator"><strong>Navigator</strong></h3>
+<p>The <strong>Navigator</strong> in Security Onion is a visual tool built on the <strong>MITRE ATT&amp;CK framework</strong>, showing which attacker techniques your environment is currently able to detect.</p>
+<p>It does this by mapping your <strong>enabled Sigma rules</strong> to specific ATT&amp;CK techniques, with <strong>colour coding</strong> used to indicate which areas are covered. </p>
+<p>As you enable more rules, the chart updates automatically helping you spot any gaps in your detection coverage at a glance.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20109.png" data-desc-position="bottom"><img alt="image.png" src="image%20109.png"></a></p>
+<h2 id="updating-security-onion"><strong>Updating Security Onion</strong></h2>
+<p>The easiest way to check for Security Onion updates is by visiting the <strong>Security Onion Blog</strong>, which you can access from the <strong>Overview</strong> tab in the SOC interface.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20110.png" data-desc-position="bottom"><img alt="image.png" src="image%20110.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20111.png" data-desc-position="bottom"><img alt="image.png" src="image%20111.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20112.png" data-desc-position="bottom"><img alt="image.png" src="image%20112.png"></a></p>
+<p>You can also keep an eye on <strong>Security Onion’s social media channels</strong> for update announcements. These usually include a direct <strong>link to the Release Notes</strong>.</p>
+<p>To install updates, Security Onion provides a built-in tool called <strong>Security Onion Updater</strong>, or <strong>soup</strong> for short.</p>
+<h3 id="updating-security-onion-with-internet-access"><strong>Updating Security Onion with Internet Access</strong></h3>
+<p>If you chose the <strong>standard install</strong> from the Security Onion ISO and your system has <strong>internet access</strong>, the underlying <strong>Oracle Linux OS</strong> will automatically check for and apply updates <strong>every eight hours</strong> by default.</p>
+<p>If you would like to change this schedule, you can do so in the SOC interface by navigating to:</p>
+<p><strong>Administration → Configuration → patch → os → schedules → auto → schedule → hours</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20113.png" data-desc-position="bottom"><img alt="image.png" src="image%20113.png"></a></p>
+<p>Open the <strong>local console</strong> for your <strong>Standalone Security Onion VM</strong> and log in with your administrator credentials. To check the current status of the platform, run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>so-status
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20114.png" data-desc-position="bottom"><img alt="image.png" src="image%20114.png"></a></p>
+<p>If any of the containers are showing as <strong>missing</strong> or <strong>failed</strong>, you will need to <strong>resolve those issues</strong> before continuing with the update.</p>
+<p>To check the current version of Security Onion, run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cat<span class="w"> </span>/etc/soversion
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20115.png" data-desc-position="bottom"><img alt="image.png" src="image%20115.png"></a></p>
+<p>In this example, the current version is <strong>2.4.141</strong>.</p>
+<p>To start the update process, run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>soup
+</code></pre></div>
+<p>You will likely need to run <code>soup</code> <strong>twice</strong>:</p>
+<ul>
+<li>The <strong>first run</strong> updates the soup script itself.</li>
+<li>The <strong>second run</strong> executes the new script and downloads the updated Docker images and Salt files needed for the upgrade.</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20116.png" data-desc-position="bottom"><img alt="image.png" src="image%20116.png"></a></p>
+<h3 id="updating-security-onion-in-an-air-gapped-environment"><strong>Updating Security Onion in an Air-Gapped Environment</strong></h3>
+<p>If your Security Onion deployment is running in an <strong>air-gapped environment</strong> (i.e. no internet access), updates need to be applied using a <strong>local copy of the ISO</strong>.</p>
+<p>First, <a href="https://github.com/Security-Onion-Solutions/securityonion/blob/2a7365c7d76355e81ca8cb1dc08a0c873fee86d9/DOWNLOAD_AND_VERIFY_ISO.md">download the latest ISO</a> from another internet-connected machine.</p>
+<p>In <strong>VMware Workstation</strong>, go to your <strong>VM’s settings</strong> and navigate to <strong>Shared Folders</strong>.</p>
+<p>Select the folder where your new ISO is stored, tick <strong>Always enabled</strong>, and click <strong>OK</strong> to save.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20117.png" data-desc-position="bottom"><img alt="image.png" src="image%20117.png"></a></p>
+<p>Next, open the <strong>local console</strong> for your <strong>Standalone Security Onion VM</strong> and log in with your administrator credentials.</p>
+<p>To confirm that the shared folder and ISO are accessible, run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ls<span class="w"> </span>/mnt/hgfs/Images
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20118.png" data-desc-position="bottom"><img alt="image.png" src="image%20118.png"></a></p>
+<p>As shown above, the updated ISO file <strong><code>securityonion-2.4.150-20250512.iso</code></strong> is available in the shared folder.</p>
+<p>If you <strong>cannot access the shared folder</strong>, try the following:</p>
+<ol>
+<li>Disable the shared folder in VMware settings.</li>
+<li>Re-enable it and try again.</li>
+</ol>
+<p>If it still does not work, temporarily connect the VM to the internet and install VMware Tools:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>open-vm-tools<span class="w"> </span>open-vm-tools-desktop<span class="w"> </span>-y
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>vmtoolsd
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>sudo<span class="w"> </span>reboot
+</code></pre></div>
+<p>To check the system’s global configuration, run the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo<span class="w"> </span>salt-call<span class="w"> </span>pillar.get<span class="w"> </span>global
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20119.png" data-desc-position="bottom"><img alt="image.png" src="image%20119.png"></a></p>
+<p>As shown in the output, the global configuration confirms that <code>airgap: True</code>, which means the system is set up for <strong>offline updates only</strong>.
+To begin the update process, run <code>sudo soup</code> and this will request location for the new ISO file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>sudo<span class="w"> </span>soup
+</code></pre></div>
+<p>Press Enter and then enter the full path to the new Security Onion ISO.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>/mnt/hgfs/Images/securityonion-2.4.150-20250512.iso
+</code></pre></div>
+<p>The first run completes the update of the soup script.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20120.png" data-desc-position="bottom"><img alt="image.png" src="image%20120.png"></a></p>
+<p>Now run <code>sudo soup</code> <strong>again</strong> to begin the full update process:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>sudo<span class="w"> </span>soup
+</code></pre></div>
+<p>Since this is an <strong>air-gapped installation</strong>, the updater will also include <strong>operating system patches</strong> bundled with the ISO.</p>
+<p>When prompted, press <strong><code>U</code></strong> to confirm the OS updates. The system will now install both <strong>Oracle Linux updates</strong> and the latest <strong>Security Onion components</strong>. Note that this process can take a while. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20121.png" data-desc-position="bottom"><img alt="image.png" src="image%20121.png"></a></p>
+<p>When the update is complete, we will see the message <strong>soup has been served</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20122.png" data-desc-position="bottom"><img alt="image.png" src="image%20122.png"></a></p>
+<p>Verify the version by running:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>cat<span class="w"> </span>/etc/soversion
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20123.png" data-desc-position="bottom"><img alt="image.png" src="image%20123.png"></a></p>
+<p>We can now see that the version is <strong>2.4.150</strong>.</p>
+<p>Verify the node and container status by running:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>sudo<span class="w"> </span>so-status
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20124.png" data-desc-position="bottom"><img alt="image.png" src="image%20124.png"></a></p>
+<p>Typically after kernel update, the Security Onion VM needs to be rebooted. </p>
+<h2 id="alert-triage-and-case-creation"><strong>Alert Triage and Case Creation</strong></h2>
+<p>To begin reviewing security alerts, go to the <strong>Alerts</strong> tab in the SOC web interface. This is where all triggered alerts are displayed, helping you identify suspicious or potentially malicious activity in your environment.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20125.png" data-desc-position="bottom"><img alt="image.png" src="image%20125.png"></a></p>
+<p>At the top of the Alerts page, there is an <strong>Options</strong> drop-down menu that lets you customise how alerts are displayed:</p>
+<ul>
+<li><strong>Enable advanced interface features</strong> makes the alert view work more like the Hunt interface.</li>
+<li><strong>Acknowledged</strong> shows alerts you have marked as false positives.</li>
+<li><strong>Escalated</strong> shows alerts that have been turned into cases for further investigation.</li>
+<li>You can also set an <strong>auto-refresh interval</strong> to check for new alerts regularly.</li>
+<li>The <strong>time zone</strong> setting adjusts how timestamps appear. Logs are stored in UTC, but the web console converts them to your local time zone for easier viewing.</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20126.png" data-desc-position="bottom"><img alt="image.png" src="image%20126.png"></a></p>
+<p><strong>Total Found</strong> shows the number of alerts triggered during the selected time period. It counts every alert, not just the number of different rules that were matched.</p>
+<p>By default, the <strong>Time Selector</strong> is set to <strong>relative time</strong>, so we are looking at alerts from the past 24 hours. If needed, you can switch to a specific date and time by clicking the <strong>clock icon</strong>, but for now we will stick with the relative view.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20127.png" data-desc-position="bottom"><img alt="image.png" src="image%20127.png"></a></p>
+<p>In the upper left corner, there is a <strong>query drop-down menu</strong>. By default, alerts are grouped by the <strong>rule name</strong> and the <strong>module</strong> that generated them typically from tools like <strong>Suricata</strong>, <strong>Strelka</strong>, or <strong>Sigma-based detections</strong>.</p>
+<p>Each rule also has a <strong>severity level</strong>, which is defined in the rule itself. You can adjust this if it does not suit your environment.</p>
+<p>To focus on <strong>high severity</strong> alerts, simply click on <strong>high</strong>, then choose <strong>Include</strong> to filter your results.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20128.png" data-desc-position="bottom"><img alt="image.png" src="image%20128.png"></a></p>
+<p>This adds the severity filter to your search query, shown as a blue tag labelled <code>event.severity_label:"high"</code>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20129.png" data-desc-position="bottom"><img alt="image.png" src="image%20129.png"></a></p>
+<p>You can also sort the alerts by severity level by clicking on the <strong><code>event.severity_level</code></strong> column heading.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20130.png" data-desc-position="bottom"><img alt="image.png" src="image%20130.png"></a></p>
+<p>The <strong>Count</strong> column shows how many times a particular alert has been triggered.</p>
+<p>By default, alerts are grouped by <strong>rule name</strong>. If you want to see the individual alert events, click on the <strong>Count number</strong> or the <strong>rule name</strong>, then choose <strong>Drilldown</strong>.</p>
+<p>For example, click on <strong>GPL NETBIOS SMB IPC$ unicode share access</strong> and select <strong>Drilldown</strong>.</p>
+<p>Note: Clicking the <strong>info icon</strong> next to the rule will turn it into a <strong>green pin</strong> and display a summary of what the rule is designed to detect in the side panel.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20131.png" data-desc-position="bottom"><img alt="image.png" src="image%20131.png"></a></p>
+<p>This reveals <strong>10 individual alerts</strong> triggered by <strong>three different source IPs</strong> connecting over <strong>SMB</strong> to <strong>two different destination IPs</strong>.</p>
+<p>When you see activity like this, it’s worth investigating further to determine whether the traffic is legitimate or potentially malicious.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20132.png" data-desc-position="bottom"><img alt="image.png" src="image%20132.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20133.png" data-desc-position="bottom"><img alt="image.png" src="image%20133.png"></a></p>
+<p>If the traffic is <strong>known to be safe</strong> (i.e. a false positive), you can make a note of it for future <strong>alert tuning</strong>, and then <strong>acknowledge</strong> the alerts by clicking the <strong>bell icon</strong>.</p>
+<p>This will remove the alerts from the main queue but they are not deleted, just marked as reviewed.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20134.png" data-desc-position="bottom"><img alt="image.png" src="image%20134.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20135.png" data-desc-position="bottom"><img alt="image.png" src="image%20135.png"></a></p>
+<p>You can also fine-tune how the rule behaves by clicking on the <strong>rule name</strong> and selecting <strong>Tune Detection</strong> from the menu.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20136.png" data-desc-position="bottom"><img alt="image.png" src="image%20136.png"></a></p>
+<p>This opens the <strong>Tune Detection</strong> page, where you can either <strong>enable or disable the rule</strong>, or adjust it to better fit your environment.</p>
+<p>For example, to suppress alerts from a trusted source:</p>
+<ul>
+<li>Click the <strong>+ icon</strong></li>
+<li>Set <strong>Type</strong> to <strong>Suppress</strong></li>
+<li>Set <strong>Track</strong> to <strong>by_src</strong></li>
+<li>Enter the IP in CIDR format: <code>192.168.10.124/24</code></li>
+<li>Add a note like <strong>known good traffic</strong></li>
+</ul>
+<p>This helps reduce noise from alerts you’ve already verified as safe.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20137.png" data-desc-position="bottom"><img alt="image.png" src="image%20137.png"></a></p>
+<p>You can also edit the rule directly by going to the <strong>Detection Source</strong> section. This gives you access to the full rule definition, allowing for more advanced customisation if needed.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20138.png" data-desc-position="bottom"><img alt="image.png" src="image%20138.png"></a></p>
+<p>To view alerts you’ve previously acknowledged, return to the <strong>Alerts</strong> tab, click on <strong>Options</strong>, then select <strong>Acknowledged</strong>. This will display alerts you have marked as reviewed or false positives.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20139.png" data-desc-position="bottom"><img alt="image.png" src="image%20139.png"></a></p>
+<p>Now let’s focus on alerts that are more likely to indicate real threats. For example, <strong>drill down</strong> into the rule <strong>ET MALWARE Zbot POST Request to C2</strong> to investigate activity that may involve communication with a command-and-control server.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20140.png" data-desc-position="bottom"><img alt="image.png" src="image%20140.png"></a></p>
+<p>This reveals <strong>nine alerts</strong> involving <strong>three separate source IPs</strong> making connections to <strong>three different destination IPs</strong> over <strong>port 80</strong> which is a common port for HTTP traffic. This pattern could suggest coordinated or suspicious activity worth further investigation.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20141.png" data-desc-position="bottom"><img alt="image.png" src="image%20141.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20142.png" data-desc-position="bottom"><img alt="image.png" src="image%20142.png"></a></p>
+<p>You can click to <strong>expand</strong> an individual alert for a closer look.</p>
+<p>If you scroll down to the <strong>Suricata rule</strong> section (<code>rule.rule</code>), you will see that this alert is triggered by <strong>HTTP traffic</strong> flowing from your <strong>internal network</strong> to an <strong>external server</strong>. The rule is checking for specific HTTP headers within an established connection which is a common indicator of command-and-control activity or data exfiltration.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20143.png" data-desc-position="bottom"><img alt="image.png" src="image%20143.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20144.png" data-desc-position="bottom"><img alt="image.png" src="image%20144.png"></a></p>
+<p>If you scroll up to the <strong><code>network.data.decoded</code></strong> section, you will see the client is making a <strong>POST request</strong> to a <strong>PHP page</strong>, using <strong>MSIE 6.0</strong> as the <strong>User-Agent</strong> which is an outdated browser version often associated with malicious traffic.</p>
+<p>The destination host is <strong><code>ishi-bati.com</code></strong>, which appears suspicious and may warrant further investigation.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20145.png" data-desc-position="bottom"><img alt="image.png" src="image%20145.png"></a></p>
+<p>To get more context on the alert, you can <strong>pivot into a packet capture (PCAP)</strong> from any relevant field.</p>
+<p>For example, click on <strong><code>network.data.decoded</code></strong>, then go to <strong>Actions → PCAP</strong>. This will open the full packet capture related to the alert, letting you analyse the actual network traffic involved.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20146.png" data-desc-position="bottom"><img alt="image.png" src="image%20146.png"></a></p>
+<p>Reviewing the PCAP, we can see a clear connection between the <strong>internal host</strong> and an <strong>external web server</strong>, with what appears to be <strong>encoded data</strong> being exchanged.</p>
+<p>This kind of traffic is unusual and could indicate <strong>command-and-control (C2)</strong> communication. This definitely looks like something that needs more investigation. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20147.png" data-desc-position="bottom"><img alt="image.png" src="image%20147.png"></a></p>
+<p>Head back to the <strong>Alerts</strong> tab, locate the alert, <strong>select it</strong>, and then click the <strong>triangle icon</strong> to <strong>escalate it to a new case</strong>. This begins formal tracking of your investigation within the SOC’s case management system.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20148.png" data-desc-position="bottom"><img alt="image.png" src="image%20148.png"></a></p>
+<p>Go to the <strong>Cases</strong> tab in the SOC web interface. You will see a new case has been created, named after the alert you escalated.</p>
+<p>This case acts as a central place to <strong>track your investigation</strong>, <strong>record notes</strong>, and link to other evidence found during your threat hunting.</p>
+<p>Click the <strong>binoculars icon</strong> to open the case and view its details.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20149.png" data-desc-position="bottom"><img alt="image.png" src="image%20149.png"></a></p>
+<p>On the right-hand side of the case view, you will find <strong>metadata fields</strong> to help manage the investigation.</p>
+<p>If you are working in a team, use the <strong>Assignee</strong> drop-down to allocate the case to a specific analyst. Change the <strong>Status</strong> from <strong>New</strong> to <strong>In Progress</strong> to reflect that the investigation has started.</p>
+<p>You can also set the case’s <strong>Severity</strong> and <strong>Priority</strong>, apply a <strong>TLP (Traffic Light Protocol)</strong> or <strong>PAP (Permissible Action Protocol)</strong> level for information sharing, and use <strong>Category</strong> and <strong>Tags</strong> to group related cases or highlight key findings.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20150.png" data-desc-position="bottom"><img alt="image.png" src="image%20150.png"></a></p>
+<p>At the top of the case window, you will see several tabs. The <strong>Comments</strong> tab lets you add notes using <strong>Markdown formatting</strong>. Each comment is automatically tagged with the <strong>author’s username</strong> and a <strong>timestamp</strong>.</p>
+<p>For example, you might add the following note:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="gh"># Findings</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="gu">## Host</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="gs">**ishi-bati.com**</span> is not flagged as malicious in VirusTotal.
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20151.png" data-desc-position="bottom"><img alt="image.png" src="image%20151.png"></a></p>
+<p>The <strong>Attachments</strong> tab lets you upload files or artefacts related to the investigation. For instance, you can attach relevant <strong>Sysmon logs</strong>, <strong>Windows Event Logs (EVTX files)</strong>, or any other evidence that supports your analysis of the alert.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20152.png" data-desc-position="bottom"><img alt="image.png" src="image%20152.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20153.png" data-desc-position="bottom"><img alt="image.png" src="image%20153.png"></a></p>
+<p><strong>Observables</strong> are specific indicators such as IP addresses, hashes, or domains that you identify during an investigation.</p>
+<p>In Security Onion, some observables like <strong>source and destination IPs</strong> are <strong>automatically extracted</strong> from alerts and added to the case for easier tracking and correlation.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20154.png" data-desc-position="bottom"><img alt="image.png" src="image%20154.png"></a></p>
+<p>Under the <strong>Actions</strong> column for each observable, you will find a few icons.</p>
+<p>Clicking the <strong>crosshair icon</strong> will launch a <strong>new Hunt session</strong> focused on that specific observable. For example, selecting the crosshair next to the first entry will open a hunt centred around the IP address <strong>192.168.3.65</strong>, allowing you to dig deeper into related activity.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20155.png" data-desc-position="bottom"><img alt="image.png" src="image%20155.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20156.png" data-desc-position="bottom"><img alt="image.png" src="image%20156.png"></a></p>
+<p>The <strong>lightning bolt icon</strong> runs any <strong>analysers</strong> you have set up for that type of data.</p>
+<p>For example, clicking the lightning bolt next to the first observable will trigger analysis on that item. You can then expand the observable to view the results.</p>
+<p>Note: This feature requires internal analysers to be properly configured in your Security Onion setup.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20157.png" data-desc-position="bottom"><img alt="image.png" src="image%20157.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20158.png" data-desc-position="bottom"><img alt="image.png" src="image%20158.png"></a></p>
+<p>The <strong>Events</strong> tab displays all events that have been <strong>escalated</strong> and formally <strong>linked to the case</strong>. This helps you keep track of the specific alerts and logs you are investigating as part of that case.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20159.png" data-desc-position="bottom"><img alt="image.png" src="image%20159.png"></a></p>
+<p>The <strong>History</strong> tab acts as an <strong>audit log</strong> for the case. It records every action taken such as items being added, changed, or deleted along with the <strong>username</strong> of the person who made the change and a <strong>timestamp</strong> for accountability.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20160.png" data-desc-position="bottom"><img alt="image.png" src="image%20160.png"></a></p>
+<p>Let’s revisit the <strong>ET MALWARE Zbot POST Request to C2</strong> alerts and narrow our focus to a specific host.</p>
+<p>Click on the source IP <strong><code>192.168.3.65</code></strong> and select <strong>Only</strong>. This will filter the alerts to show <strong>only those involving that IP address</strong>, helping us investigate its activity in more detail.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20161.png" data-desc-position="bottom"><img alt="image.png" src="image%20161.png"></a></p>
+<p>Click on the <strong>Timestamp</strong> column to sort the alerts chronologically.</p>
+<p>From the timeline, it appears there was <strong>Zbot download activity</strong>, followed by a <strong>C2 POST request</strong>, and then an <strong>EXE file download over HTTP</strong>. This ****sequence strongly suggests malware infection and command-and-control behaviour.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20162.png" data-desc-position="bottom"><img alt="image.png" src="image%20162.png"></a></p>
+<p>Expand the alert titled <strong>ET INFO PE EXE or DLL Windows file download HTTP</strong> to view the full details.</p>
+<p>This rule is triggered when a <strong>Windows executable (.exe) or DLL file</strong> is downloaded over <strong>HTTP</strong>, which is often a red flag especially when it happens outside normal software update mechanisms.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20163.png" data-desc-position="bottom"><img alt="image.png" src="image%20163.png"></a></p>
+<p>Scrolling down to the <strong><code>network.data.decoded</code></strong> field, we can see clear signs that a <strong>Windows executable</strong> is being downloaded. The presence of the <strong><code>MZ</code> header</strong> and the string <strong>“This program cannot be run in DOS mode”</strong> are strong indicators of a PE (Portable Executable) file.</p>
+<p>This confirms that a <code>.exe</code> file was likely transferred over HTTP.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20164.png" data-desc-position="bottom"><img alt="image.png" src="image%20164.png"></a></p>
+<p>To view all logs associated with this specific network flow, you can <strong>pivot using the <code>community_id</code></strong> which is a unique hash that Security Onion assigns to each flow, based on the source/destination IPs, ports, and protocol (e.g. TCP or UDP). This makes it easy to group and investigate related activity across different log types.</p>
+<p>Click on <strong><code>network.data.decoded</code></strong>, then choose <strong>Correlate</strong>. This will open a <strong>Hunt view</strong> showing all logs linked to that same network flow.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20165.png" data-desc-position="bottom"><img alt="image.png" src="image%20165.png"></a></p>
+<p>This opens a <strong>dashboard view</strong> containing all available information about the network flow.</p>
+<p>You will see <strong>network metadata from Zeek</strong>, along with any <strong>Suricata alerts</strong>, displayed in the <strong>Group Metrics</strong> pane. This consolidated view helps you quickly understand what occurred during the flow and which detection tools flagged it.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20166.png" data-desc-position="bottom"><img alt="image.png" src="image%20166.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20167.png" data-desc-position="bottom"><img alt="image.png" src="image%20167.png"></a></p>
+<p>As you scroll down, you will see a list of <strong>alerts</strong> alongside the <strong>HTTP requests</strong> sent by the client to the external server.</p>
+<p>This provides a clear view of the interaction including what was requested, when it happened, and which alerts were triggered as a result, making it easier to piece together the sequence of events.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20168.png" data-desc-position="bottom"><img alt="image.png" src="image%20168.png"></a></p>
+<p>Since <strong><code>zeek.file</code></strong> records do not include network connection details, you will need to <strong>correlate them with the <code>zeek.conn</code> records</strong> to link the file activity to its corresponding network flow.</p>
+<p>Scroll down to the <strong><code>zeek.conn</code></strong> dataset, click <strong>Actions</strong>, then select <strong>Correlate</strong>. This will tie the file metadata to the relevant connection log, giving you the full context of how the file was transferred.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20169.png" data-desc-position="bottom"><img alt="image.png" src="image%20169.png"></a></p>
+<p>After correlating with the connection log, you should now see <strong><code>zeek.file</code> records</strong> appear.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20170.png" data-desc-position="bottom"><img alt="image.png" src="image%20170.png"></a></p>
+<p>If you scroll down and <strong>expand</strong> the <strong><code>zeek.file</code></strong> entry, you will find detailed information about the transferred <strong>executable file</strong> including file size, MIME type, and most importantly, <strong>hash values</strong> like <strong>MD5</strong>, <strong>SHA1</strong>, and <strong>SHA256</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20171.png" data-desc-position="bottom"><img alt="image.png" src="image%20171.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20172.png" data-desc-position="bottom"><img alt="image.png" src="image%20172.png"></a></p>
+<p>You can check if the file is known to be malicious by clicking on any of the <strong>hash values</strong> (MD5, SHA1, or SHA256) and selecting <strong>VirusTotal</strong>.</p>
+<p>This will open a link to VirusTotal with a lookup of the hash, showing if the file has been flagged by any antivirus engines or threat intelligence sources.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20173.png" data-desc-position="bottom"><img alt="image.png" src="image%20173.png"></a></p>
+<p>As expected, the VirusTotal results confirm that this is indeed a <strong>malicious file</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20174.png" data-desc-position="bottom"><img alt="image.png" src="image%20174.png"></a></p>
+<p>To link this file to your investigation, click the <strong>triangle icon</strong> on the relevant <strong><code>zeek.file</code></strong> record. Then choose the name of your case under <strong>"Attach event to a recently viewed case"</strong>.</p>
+<p>This ensures the event is documented as part of your case evidence.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20175.png" data-desc-position="bottom"><img alt="image.png" src="image%20175.png"></a></p>
+<p>If you return to the <strong>Cases</strong> tab and open the <strong>Events</strong> section for your case, you will see that the <strong><code>zeek.file</code></strong> record has been successfully added confirming it is now part of your investigation’s evidence trail.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20176.png" data-desc-position="bottom"><img alt="image.png" src="image%20176.png"></a></p>
+<p>To add the file hash as an <strong>Observable</strong>, open the event, scroll down to the hash section, and click on the <strong>eye icon</strong> next to the hash value.</p>
+<p>This will extract the hash and add it to the case as an observable, making it easier to track and hunt for across your environment.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20177.png" data-desc-position="bottom"><img alt="image.png" src="image%20177.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20178.png" data-desc-position="bottom"><img alt="image.png" src="image%20178.png"></a></p>
+<p>This action will automatically open the <strong>Add Observable</strong> pane with the hash values pre-filled. Simply click <strong>ADD</strong> to save the observable to your case.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20179.png" data-desc-position="bottom"><img alt="image.png" src="image%20179.png"></a></p>
+<p>You can now click the <strong>crosshair icon</strong> next to the observable to launch a <strong>new hunt</strong> focused on that hash. This helps you check whether the same file appears <strong>anywhere else in your environment</strong>, which could indicate further compromise.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20180.png" data-desc-position="bottom"><img alt="image.png" src="image%20180.png"></a></p>
+<p>You can keep building on the investigation by returning to the original <strong>Zbot C2 alerts</strong>, reviewing activity from other source IPs, and identifying any further signs of infection. Use the <strong>PCAPs and network metadata</strong> to extract additional <strong>Indicators of Compromise (IOCs)</strong> and document your findings clearly within the case.</p>
+<p><strong>Summary of Alert Triage and Case Creation:</strong></p>
+<ul>
+<li>The <strong>Alerts</strong> tab shows potential threats detected in your network.</li>
+<li>Analysts can <strong>review</strong>, <strong>acknowledge</strong>, <strong>dismiss</strong>, or <strong>escalate</strong> alerts to <strong>cases</strong> for further analysis.</li>
+<li>Once escalated, cases serve as a central record for investigations — storing related <strong>events</strong>, <strong>observables</strong>, and <strong>attachments</strong>.</li>
+</ul>
+<h2 id="threat-hunting"><strong>Threat Hunting</strong></h2>
+<p>Go to the <strong>Hunt</strong> page in the SOC web interface.</p>
+<p>In the <strong>Options</strong> drop-down:</p>
+<ul>
+<li><strong>Automatically apply filters, groupings and date ranges</strong> controls whether queries update automatically when you adjust search settings. If disabled, you will need to click the <strong>Hunt</strong> button manually to refresh results.</li>
+<li>The next three toggles let you <strong>exclude case data, detection rules, and SOC logs</strong> from your search. These are <strong>enabled by default</strong> to avoid clutter.</li>
+<li>You can also set an <strong>auto-refresh interval</strong> and choose a <strong>local time zone</strong> for viewing results.</li>
+</ul>
+<p>In the top-right corner, you will see a <strong>Total Found</strong> count showing how many records were returned by the current query.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20181.png" data-desc-position="bottom"><img alt="image.png" src="image%20181.png"></a></p>
+<p>In the top-left corner of the Hunt page, you will find the <strong>query drop-down</strong>. Clicking the down arrow reveals a list of <strong>prebuilt queries</strong>.</p>
+<p>Next to it is a <strong>free-text query box</strong>, where you can enter custom searches using <strong>Onion Query Language (OQL)</strong> which is ****a simple, powerful syntax tailored for Security Onion.</p>
+<p>By default, the query is <code>*</code>, which means:</p>
+<ul>
+<li><strong>Show all records from the last 24 hours</strong>.</li>
+<li>Group them by <strong>observer.name</strong> which, in a <strong>Standalone</strong> setup, is just your Security Onion VM.</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20182.png" data-desc-position="bottom"><img alt="image.png" src="image%20182.png"></a></p>
+<p>From the query drop-down, select <strong>Log Type</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20183.png" data-desc-position="bottom"><img alt="image.png" src="image%20183.png"></a></p>
+<p>We are now viewing <strong>all records</strong>, grouped by their <strong>event modules</strong> and <strong>datasets</strong>.</p>
+<ul>
+<li><strong>Base Metrics</strong> have been refreshed to reflect the current query.</li>
+<li>The <strong>bar graphs</strong> display the most common event modules, ranked from highest to lowest.</li>
+<li><strong>Group Metrics</strong> show how many records exist for each combination of <strong>event module</strong> and <strong>dataset</strong>, giving a clearer picture of log volume and distribution.</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20184.png" data-desc-position="bottom"><img alt="image.png" src="image%20184.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20185.png" data-desc-position="bottom"><img alt="image.png" src="image%20185.png"></a></p>
+<p>Scrolling down, you will see <strong>Suricata alerts</strong>, which are generated by the <strong>Network Intrusion Detection System (NIDS)</strong> built into Security Onion.</p>
+<p>You will also notice a variety of metadata produced by <strong>Zeek</strong>. For every network flow observed, Zeek logs:</p>
+<ul>
+<li>A <strong>connection record</strong> (basic flow info), and</li>
+<li>A <strong>protocol-specific record</strong> (e.g. <strong>HTTP</strong>, <strong>DNS</strong>) if the traffic matches known protocol patterns.</li>
+</ul>
+<p>This layered logging helps analysts get both high-level context and detailed protocol insights during threat hunts.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20186.png" data-desc-position="bottom"><img alt="image.png" src="image%20186.png"></a></p>
+<p>To look at <strong>zeek logs</strong>, click on <strong>zeek</strong> and select <strong>Include</strong>. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20187.png" data-desc-position="bottom"><img alt="image.png" src="image%20187.png"></a></p>
+<p>The query now reads <code>AND event.module:"zeek"</code>. This tells Security Onion to show <strong>only Zeek events</strong>, grouped by both <strong>event.module</strong> and <strong>event.dataset</strong>.</p>
+<p>But since we are already filtering for just <strong>Zeek</strong>, grouping by <code>event.module</code> is redundant. You can tidy up the view by:</p>
+<ul>
+<li><strong>Removing <code>groupby event.module</code></strong> from the query box, or</li>
+<li>Clicking the <strong>close icon</strong> above the group column to remove it.</li>
+</ul>
+<p>This will simplify the results, grouping only by <strong>event.dataset</strong>, which is more useful in this context.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20188.png" data-desc-position="bottom"><img alt="image.png" src="image%20188.png"></a></p>
+<p>With the query now refined to only show <strong>Zeek logs grouped by dataset</strong>, we are ready to begin our threat hunt. </p>
+<p>Our objective is to hunt for a suspicious or malicious <strong>HTTP traffic</strong>.</p>
+<p>To begin:</p>
+<ul>
+<li>Locate the <strong><code>zeek.http</code></strong> dataset in the Group Metrics pane.</li>
+<li>Click on it and choose <strong>Only</strong>.</li>
+</ul>
+<p>This filters the view to show <strong>just HTTP traffic</strong> parsed by Zeek, which includes helpful metadata like <strong>destination port</strong>, <strong>host</strong>, <strong>URI</strong>, and <strong>user-agent</strong> which is perfect for spotting suspicious patterns.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20189.png" data-desc-position="bottom"><img alt="image.png" src="image%20189.png"></a></p>
+<p>As shown by the Group Metrics, we are now looking at <strong>885 zeek.http</strong> records. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20190.png" data-desc-position="bottom"><img alt="image.png" src="image%20190.png"></a></p>
+<p>Scrolling down, we can see the list of individual events. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20191.png" data-desc-position="bottom"><img alt="image.png" src="image%20191.png"></a></p>
+<p>To dig deeper into the events, you can <strong>expand</strong> any individual log entry for more detail.</p>
+<p>Every field in the event can be used as a <strong>pivot point</strong> or to refine your view. For example:</p>
+<ul>
+<li>To group HTTP logs by <strong>destination port</strong>, click on the <code>destination.port</code> field and select <strong>Group By</strong>.</li>
+<li>Alternatively, click the <strong>stacked paper icon</strong> next to the field.</li>
+</ul>
+<p>Here is the difference:</p>
+<ul>
+<li><strong>Group By</strong>: Adds the field to your current table, refining the existing groupings.</li>
+<li><strong>New Group By</strong>: Creates a separate table with the new grouping applied, keeping the original intact.</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20192.png" data-desc-position="bottom"><img alt="image.png" src="image%20192.png"></a></p>
+<p>Now that we have grouped the <strong>HTTP logs by destination port</strong>, we can see they fall into <strong>four distinct buckets</strong>. While some use the standard port <strong>80</strong>, others are going to <strong>non-standard ports</strong> like <strong>2869</strong>.</p>
+<p>To cross-reference this with known alerts:</p>
+<ul>
+<li>Open the <strong>Alerts</strong> tab in a new browser tab.</li>
+<li><strong>Drill down</strong> into the alert titled <strong>ET MALWARE Zbot POST Request to C2</strong>.</li>
+</ul>
+<p>From there, you will see that <strong>port 80</strong> is indeed linked to <strong>command-and-control (C2) HTTP traffic</strong>, confirming its relevance to our investigation.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20193.png" data-desc-position="bottom"><img alt="image.png" src="image%20193.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20194.png" data-desc-position="bottom"><img alt="image.png" src="image%20194.png"></a></p>
+<p>Back on the <strong>Hunt</strong> page, to focus specifically on HTTP traffic using <strong>port 80</strong> (which we now know is linked to malicious activity):</p>
+<ul>
+<li>Click on the <code>destination.port</code> value <strong>80</strong> in the table.</li>
+<li>Select <strong>Include</strong>.</li>
+</ul>
+<p>This filters your results to show only HTTP traffic on port 80 helping narrow your investigation to flows potentially related to <strong>Zbot C2</strong> or similar threats.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20195.png" data-desc-position="bottom"><img alt="image.png" src="image%20195.png"></a></p>
+<p>Your query now reads <code>zeek.http AND destination.port: 80</code>. </p>
+<p>This means you are filtering for <strong>only Zeek HTTP logs</strong> where the <strong>destination port is 80</strong> so your results should now be limited to standard HTTP traffic, including any potentially <strong>malicious connections</strong> using that port (like the Zbot C2 we saw earlier).</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20196.png" data-desc-position="bottom"><img alt="image.png" src="image%20196.png"></a></p>
+<p>As you scroll through the filtered results, you will notice plenty of <strong>GET</strong> requests and a few <strong>POST</strong> requests.</p>
+<p>Since the <strong>Zbot C2 alert</strong> flagged <strong>POST requests</strong> as suspicious, let’s focus on those:</p>
+<ul>
+<li>Click on the <strong><code>http.method</code></strong> field where it shows <strong>POST</strong>.</li>
+<li>Select <strong>Group By</strong>.</li>
+</ul>
+<p>This will group your data by HTTP method, allowing you to isolate and analyse the <strong>POST requests</strong> more easily which are often associated with <strong>data exfiltration or C2 communication</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20197.png" data-desc-position="bottom"><img alt="image.png" src="image%20197.png"></a></p>
+<p>To focus on the POST requests, click on <strong>POST</strong> and select <strong>Include</strong>.  </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20198.png" data-desc-position="bottom"><img alt="image.png" src="image%20198.png"></a></p>
+<p>We can now see <strong>zeek.http</strong> requests using <strong>POST</strong> http method. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20199.png" data-desc-position="bottom"><img alt="image.png" src="image%20199.png"></a></p>
+<p>As you scroll down, you will now spot the same <strong>source IPs</strong> that were identified in the alert:</p>
+<p><strong>192.168.3.25</strong>, <strong>192.168.3.35</strong>, and <strong>192.168.3.65</strong> which is a strong indication of a match.</p>
+<p>To investigate further:</p>
+<ol>
+<li>Click on the <code>http.request.body.length</code> column header to sort the events by payload size. This helps surface larger POST requests which may contain encoded or exfiltrated data.</li>
+<li>Find the <strong>first event</strong> from <strong>192.168.3.65</strong>.</li>
+<li>Click <strong>Actions</strong>, then <strong>PCAP</strong> to open a packet capture view of that session.</li>
+</ol>
+<p>This gives you a direct look at the traffic, making it easier to identify signs of malware communications like beaconing or data uploads.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20200.png" data-desc-position="bottom"><img alt="image.png" src="image%20200.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20201.png" data-desc-position="bottom"><img alt="image.png" src="image%20201.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20202.png" data-desc-position="bottom"><img alt="image.png" src="image%20202.png"></a></p>
+<p>This is a typical example of <strong>beaconing behaviour</strong>, where an infected system is quietly reaching out to a remote server to check for instructions. We can tell because we are seeing <strong>repeated, identical HTTP POST requests</strong> being sent to the same URL (<code>youyou.php</code>).</p>
+<p>Each of these requests contains <strong>encoded binary data</strong>, likely being sent to a <strong>command-and-control (C2) server</strong>. The fact that the requests are <strong>structured the same way and sent at regular intervals</strong> strongly suggests they are automated, not made by a person using a web browser, but by malware or a background script.</p>
+<p>If we go back to the <strong>Hunt</strong> page and expand one of the logs, we will see a field called <code>log.id.uid</code>. This is an internal ID used by <strong>Zeek</strong> to link together multiple logs from the same network flow like connection records, HTTP logs, and file transfers, making it easier to follow the full picture of what happened.</p>
+<p>There is also a field called <code>network.community_id</code>. This is a unique hash made up of the source and destination IP addresses, ports, and protocol. It helps analysts <strong>correlate related events</strong> across tools like Zeek, Sysmon, firewall logs, or Elastic Agent data.</p>
+<p>To see all related logs for this HTTP event, just click the <code>network.community_id</code> field and choose <strong>Actions → Correlate</strong>. This will bring up all events tied to that same flow for deeper investigation.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20203.png" data-desc-position="bottom"><img alt="image.png" src="image%20203.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20204.png" data-desc-position="bottom"><img alt="image.png" src="image%20204.png"></a></p>
+<p>This opens a new Hunt window with an <strong>OR query</strong> that includes both the <strong>log ID</strong> and the <strong>community ID</strong> from the selected HTTP event.</p>
+<p>This query pulls in all related data so you can now view everything Security Onion has recorded about that flow, across different sources, all within the <strong>tables and visualisations</strong> on this page.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20205.png" data-desc-position="bottom"><img alt="image.png" src="image%20205.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20206.png" data-desc-position="bottom"><img alt="image.png" src="image%20206.png"></a></p>
+<p>We can focus on the zeek file records by clicking on <strong>zeek.file</strong> and selecting <strong>Include.</strong></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20207.png" data-desc-position="bottom"><img alt="image.png" src="image%20207.png"></a></p>
+<p>As you scroll down, you will see the individual events tied to that network flow.</p>
+<p>If these events occurred further along the <strong>attack chain</strong>, they may reveal what the attacker <strong>exfiltrated</strong> or accessed from your environment giving you insight into what data may have been compromised.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20208.png" data-desc-position="bottom"><img alt="image.png" src="image%20208.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20209.png" data-desc-position="bottom"><img alt="image.png" src="image%20209.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20210.png" data-desc-position="bottom"><img alt="image.png" src="image%20210.png"></a></p>
+<p>To work out where the initial infection came from, we will need to examine other <strong>Zeek file logs</strong> linked to the same system.</p>
+<p>Click on the <strong>source IP address</strong> and choose <strong>Include</strong>. This filters the Hunt results to show only activity involving that particular host, helping you trace the infection’s origin.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20211.png" data-desc-position="bottom"><img alt="image.png" src="image%20211.png"></a></p>
+<p>Remove the <strong>community ID</strong> filters from your query. This allows you to see <strong>all network flows</strong> related to the selected source IP, not just the ones tied to a single session. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20212.png" data-desc-position="bottom"><img alt="image.png" src="image%20212.png"></a></p>
+<p>There are <strong>22 different file records</strong> linked to the source IP <strong>192.168.3.65</strong>, suggesting this host has been involved in multiple file transfers, which may include the original point of infection.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20213.png" data-desc-position="bottom"><img alt="image.png" src="image%20213.png"></a></p>
+<p>As we scroll down, we notice <strong>one file is a Windows DOS executable</strong> which is a potential indicator of a malicious payload or the initial infection file. This needs a closer inspection.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20214.png" data-desc-position="bottom"><img alt="image.png" src="image%20214.png"></a></p>
+<p>The next step is to <strong>extract</strong> the executable from the <strong>PCAP file</strong> to confirm whether it was the initial point of compromise. After that, you can <strong>hunt across your network</strong> to check if any other systems have downloaded or executed the same file.</p>
+<p>The <strong>Hunt</strong> interface is designed for analysts to quickly explore and interpret collected data, allowing you to summarise patterns, compare records, and pivot between different log sources during an investigation.</p>
+<p>The <strong>Dashboards</strong> feature offers similar functionality but with a wide range of <strong>prebuilt visualisations</strong> for specific use cases.</p>
+<p>To get started, go to the <strong>Dashboards</strong> tab in the SOC web interface.</p>
+<p>The default view gives a high-level summary of all data within Security Onion, presented through <strong>SANCII diagrams</strong>, bar charts, pie graphs, and tables that break down each dataset.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20215.png" data-desc-position="bottom"><img alt="image.png" src="image%20215.png"></a></p>
+<p>Besides the default overview, there are several <strong>prebuilt dashboards</strong> tailored to specific protocols and data sources.</p>
+<p>If you would like to carry out a similar <strong>threat hunt via Dashboards</strong>, a good place to begin is the <strong>HTTP dashboard</strong>, which focuses specifically on HTTP traffic patterns and related events.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20216.png" data-desc-position="bottom"><img alt="image.png" src="image%20216.png"></a></p>
+<p>You will see a variety of <strong>tables and visualisations</strong> that summarise all HTTP connection data.</p>
+<p>To filter for <strong>port 80 traffic</strong>, you can do it just like in the Hunt interface, by selecting <strong>destination.port 80</strong> and choosing <strong>Include</strong> to narrow the results.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20217.png" data-desc-position="bottom"><img alt="image.png" src="image%20217.png"></a></p>
+<p>Scroll down the dashboard, find <code>destination.port 80</code>, and click <strong>Include</strong> to filter the results to show only HTTP traffic using port 80.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20218.png" data-desc-position="bottom"><img alt="image.png" src="image%20218.png"></a></p>
+<p>To focus on <strong>POST requests</strong>, scroll to <strong><code>http.method</code></strong>, click on <strong>POST</strong>, and choose <strong>Include</strong>. This will filter the dashboard to show only HTTP POST traffic.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20219.png" data-desc-position="bottom"><img alt="image.png" src="image%20219.png"></a></p>
+<p>The dashboard now displays <strong>only HTTP POST requests</strong>, allowing you to focus your analysis on traffic that may indicate data uploads or command-and-control activity.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20220.png" data-desc-position="bottom"><img alt="image.png" src="image%20220.png"></a></p>
+<p>Scroll down and <strong>sort the tables by</strong> <code>http.request.body.length</code> to prioritise entries with larger POST payloads. You should now see the <strong>same suspicious activity</strong> identified earlier in the <strong>Hunt interface</strong>, confirming consistency across both views.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20221.png" data-desc-position="bottom"><img alt="image.png" src="image%20221.png"></a></p>
+<p>Both <strong>Dashboards</strong> and <strong>Hunt</strong> pull from the <strong>same underlying data</strong>. They just offer different ways of interacting with it. </p>
+<p>You can use <strong>either interface</strong> for threat hunting and investigations, depending on whether you prefer visual summaries or a more flexible, query-driven approach.</p>
+<h2 id="detection-engineering"><strong>Detection Engineering</strong></h2>
+<p>Go to the <strong>Detections</strong> section in the SOC web interface. By default, it displays all available rules, grouped by detection language.</p>
+<p>Security Onion supports three types of detection rules, each tailored for a specific purpose:</p>
+<ul>
+<li><strong>Suricata</strong> rules are used for <strong>network-based detection</strong>. These rules scan live network traffic captured on the monitoring interface, looking for patterns such as specific IPs, ports, or keywords. For example, if you wanted to be alerted whenever “PHP” appeared in traffic on port 80, a Suricata rule would suit that need.</li>
+<li><strong>Yara</strong> rules are for <strong>file-based detection</strong>. Security Onion automatically extracts files from unencrypted network traffic such as <code>.exe</code>, <code>.docx</code>, or <code>.pdf</code> and checks them using Yara rules via the <em>strelka</em> module. These rules are useful for spotting files with suspicious patterns, like those containing malware-related strings or known risky behaviours (e.g. Office macros). If you need to detect an executable signed with a specific certificate, Yara is the way to go.</li>
+<li><strong>Sigma</strong> rules are used for <strong>log-based detection</strong>. They work by creating Elastic Query Language (EQL) queries that regularly scan collected logs (like Windows event logs or Sysmon) for known Indicators of Compromise (IOCs). When a match is found, an alert is generated.</li>
+</ul>
+<p>Each detection language targets a different layer: <strong>network traffic</strong>, <strong>file analysis</strong>, or <strong>system logs</strong> giving you a wide coverage across the attack surface.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20222.png" data-desc-position="bottom"><img alt="image.png" src="image%20222.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20223.png" data-desc-position="bottom"><img alt="image.png" src="image%20223.png"></a></p>
+<p>If you scroll down, you will see that the tables are fully interactive and can be used to adjust the query in the search bar.</p>
+<p>For instance, if you only want to view <strong>Sigma</strong> rules, simply click on <strong>sigma</strong> and choose <strong>Include</strong>. You will notice that the detection results and the list of enabled rules update to reflect that filter.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20224.png" data-desc-position="bottom"><img alt="image.png" src="image%20224.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20225.png" data-desc-position="bottom"><img alt="image.png" src="image%20225.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20226.png" data-desc-position="bottom"><img alt="image.png" src="image%20226.png"></a></p>
+<p>Most of the Sigma rules included with Security Onion are turned off by default. Each enabled rule runs an Elasticsearch query every few minutes, so enabling all of them could put heavy strain on the Grid and affect performance.</p>
+<p>To inspect a rule more closely, click the <strong>binoculars icon</strong> next to its name.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20227.png" data-desc-position="bottom"><img alt="image.png" src="image%20227.png"></a></p>
+<p>This opens the tuning interface for that specific rule. The <strong>Overview</strong> tab shows a summary of the rule, any related references, and the detection logic. In this example, the rule is set to trigger on POST requests to a web server that contain certain attributes. If those are detected, it may indicate an attempt to exploit an unauthenticated Remote Code Execution (RCE) vulnerability in the Zimbra Collaboration Suite and an alert will be generated.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20228.png" data-desc-position="bottom"><img alt="image.png" src="image%20228.png"></a></p>
+<p>On the right-hand side of the window, you will find additional details about the rule. This includes its <strong>Public ID</strong> (a unique identifier used internally), the <strong>rule type</strong>, the <strong>ruleset</strong> it belongs to, its <strong>severity</strong>, the <strong>author</strong>, the <strong>license</strong>, and the <strong>dates</strong> it was created and last updated. At the top, there is a <strong>slider</strong>, which is currently set to <strong>Disabled</strong>. You can click the slider to <strong>enable</strong> the rule.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20229.png" data-desc-position="bottom"><img alt="image.png" src="image%20229.png"></a></p>
+<p>The <strong>Operational Notes</strong> tab gives analysts a place to record notes about the rule, including any tuning they have applied and how effective the rule has been in their environment.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20230.png" data-desc-position="bottom"><img alt="image.png" src="image%20230.png"></a></p>
+<p>The <strong>Detection Source</strong> tab displays the complete Sigma rule text, including details not shown on the Overview page, such as possible false positives and the MITRE ATT&amp;CK technique IDs that the rule maps to.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20231.png" data-desc-position="bottom"><img alt="image.png" src="image%20231.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20232.png" data-desc-position="bottom"><img alt="image.png" src="image%20232.png"></a></p>
+<p>The <strong>Tuning</strong> tab gives you a tailored interface for adjusting each rule type to better suit your environment. For instance, <strong>Suricata</strong> rules can be suppressed or have thresholds set, while <strong>Sigma</strong> rules can be fine-tuned using <strong>Sigma filters</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20233.png" data-desc-position="bottom"><img alt="image.png" src="image%20233.png"></a></p>
+<p>The <strong>History</strong> tab gives you a full audit trail of any changes made to the rule since it was first brought into your Security Onion setup.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20234.png" data-desc-position="bottom"><img alt="image.png" src="image%20234.png"></a></p>
+<p>Let’s walk through a Detection Engineering scenario. You have found a gap in your current detections and you want to be alerted whenever a <strong>local user account is created</strong> on a Windows machine.</p>
+<p>Since your organisation uses Active Directory, the policy is that <strong>all accounts should be created through AD</strong>. So if a local account appears, it could mean:</p>
+<ul>
+<li>Someone is not following the policy,</li>
+<li>A misconfigured app has created it, or</li>
+<li>An attacker is trying to set up persistence.</li>
+</ul>
+<p>Whatever the cause, you want to know about it.</p>
+<p>The <strong>Windows Event ID 4720</strong> is triggered when a <strong>new local account is created</strong>. That is the event you will use to detect this behaviour.</p>
+<p>To simulate this, we will create a local administrator account on the Windows Server VM using the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="l l-Scalar l-Scalar-Plain">net user bob Passw0rd /add; net localgroup administrators bob /add</span>
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20235.png" data-desc-position="bottom"><img alt="image.png" src="image%20235.png"></a></p>
+<p>Go to the <strong>Detections</strong> page in the SOC web interface.</p>
+<p>Click on the <strong>plus icon</strong> to create a new rule and add it to your detection setup.</p>
+<p>This is where you will define the rule that alerts on the creation of local user accounts.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20236.png" data-desc-position="bottom"><img alt="image.png" src="image%20236.png"></a></p>
+<p>In the <strong>Add Detection</strong> window, choose <strong>Sigma</strong> from the drop-down menu. This is the best option since we’re creating a rule based on a log entry (Event ID 4720).</p>
+<p>Set the <strong>License</strong> field to <strong>None</strong>.</p>
+<p>You will see a pre-filled Sigma template which outlines all the key fields like title, ID, log source, detection condition, etc. The URLs at the top link to guides that help you write proper Sigma rules: <a href="https://github.com/SigmaHQ/sigma/wiki/Rule-Creation-Guide">Sigma Rule Creation Guide</a> and <a href="https://sigmahq.io/docs/basics/log-sources.html">Logsources Reference</a>. </p>
+<p>Replace the template with the following custom rule:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># This is a Sigma rule template, which uses YAML. Replace all template values with your own values.</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="c1"># The id (UUIDv4) is pregenerated and can safely be used.</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="c1"># Click "Convert" to convert the Sigma rule to use Security Onion field mappings within an EQL query</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="c1">#</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="c1"># Rule Creation Guide: https://github.com/SigmaHQ/sigma/wiki/Rule-Creation-Guide</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="c1"># Logsources: https://sigmahq.io/docs/basics/log-sources.html</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"Detecting</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Local</span><span class="nv"> </span><span class="s">Account</span><span class="nv"> </span><span class="s">Creation</span><span class="nv"> </span><span class="s">Event"</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">637b33d2-4125-48c5-982e-3f3a9df09fbe</span><span class="w">  </span><span class="c1"># You can generate a new UUID if needed</span>
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">experimental</span>
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="w">  </span><span class="no">This rule generates an alert when a local user account is created on a Windows endpoint. It matches Event ID 4720, which indicates a user account was successfully created.</span>
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="nt">references</span><span class="p">:</span>
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">'https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4720'</span>
+<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a><span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="s">'put</span><span class="nv"> </span><span class="s">your</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">here'</span>
+<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2025/05/17</span>
+<a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a><span class="nt">tags</span><span class="p">:</span>
+<a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">attack.persistence</span>
+<a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">attack.t1136.001</span><span class="w">  </span><span class="c1"># Create Account: Local Account</span>
+<a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a><span class="nt">logsource</span><span class="p">:</span>
+<a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a><span class="w">  </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">security</span>
+<a id="__codelineno-25-22" name="__codelineno-25-22" href="#__codelineno-25-22"></a><span class="w">  </span><span class="nt">product</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">windows</span>
+<a id="__codelineno-25-23" name="__codelineno-25-23" href="#__codelineno-25-23"></a><span class="nt">detection</span><span class="p">:</span>
+<a id="__codelineno-25-24" name="__codelineno-25-24" href="#__codelineno-25-24"></a><span class="w">  </span><span class="nt">selection</span><span class="p">:</span>
+<a id="__codelineno-25-25" name="__codelineno-25-25" href="#__codelineno-25-25"></a><span class="w">    </span><span class="nt">EventID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4720</span>
+<a id="__codelineno-25-26" name="__codelineno-25-26" href="#__codelineno-25-26"></a><span class="w">  </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">selection</span>
+<a id="__codelineno-25-27" name="__codelineno-25-27" href="#__codelineno-25-27"></a><span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="s">'high'</span><span class="w"> </span><span class="c1"># info | low | medium | high | critical</span>
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20237.png" data-desc-position="bottom"><img alt="image.png" src="image%20237.png"></a></p>
+<p>In a Sigma rule, the first section contains <strong>metadata</strong> such as the <strong>title</strong>, <strong>description</strong>, <strong>references</strong>, and <strong>tags</strong>. It is best to fill these out properly to help both yourself and other analysts who might investigate this alert later.</p>
+<p>In this example:</p>
+<ul>
+<li>The <strong>reference</strong> is a link to the official Microsoft documentation about Event ID 4720.</li>
+<li>If you have an internal SOP or playbook related to handling this alert, you can include that too.</li>
+<li>The <strong>tags</strong> align with the MITRE ATT&amp;CK framework. Creating a local account is a <strong>persistence</strong> tactic, and is listed under <strong>T1136.001</strong>.</li>
+</ul>
+<p>The <strong>logsource</strong> tells Security Onion where to look. In this case, the <strong>Windows Security Event log</strong>. It’s important to get this right so the rule runs against the right type of log data.</p>
+<p>The <strong>detection</strong> section says: if there is an event with <strong>Event ID 4720</strong>, trigger an alert.</p>
+<p>The <strong>level</strong> defines how serious the alert is. It is set to <strong>high</strong> by default but you can adjust it to match your environment.</p>
+<p>Note: the Sigma rule itself does not run directly. It gets <strong>converted into an EQL (Elasticsearch Query Language)</strong> query and that is what actually runs in the backend.</p>
+<p>To see this:</p>
+<ul>
+<li>Click <strong>Convert</strong> to preview the EQL version.</li>
+<li>To test it live, click <strong>Test in Kibana</strong>. This will open the query in Kibana Dev Tools and return any matching results.</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20238.png" data-desc-position="bottom"><img alt="image.png" src="image%20238.png"></a></p>
+<p>The query appears on the left-hand side, and when you click the <strong>play button</strong>, any matching events will be displayed on the right.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20239.png" data-desc-position="bottom"><img alt="image.png" src="image%20239.png"></a></p>
+<p>Even if you are not planning to test the query straight away, it is still a good idea to do the conversion step to make sure everything looks correct, especially for more complex detection rules.</p>
+<p>Everything looks fine here, so go ahead and click <strong>Create</strong> to add the Sigma rule to our list of detections.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20240.png" data-desc-position="bottom"><img alt="image.png" src="image%20240.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20241.png" data-desc-position="bottom"><img alt="image.png" src="image%20241.png"></a></p>
+<p>The rule is not enabled by default, but if you want to activate it, just click the slider to turn it on.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20242.png" data-desc-position="bottom"><img alt="image.png" src="image%20242.png"></a></p>
+<p>Now that the rule is active, any time a Windows Event ID 4720 is logged, which indicates a new local user account was created, we will receive an alert.</p>
+<p>To test this, a local admin account named <strong>joe</strong> was created on the Windows Server VM using:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="l l-Scalar l-Scalar-Plain">net user joe Passw0rd /add; net localgroup administrators joe /add</span>
+</code></pre></div>
+<p>Head to the <strong>Alerts</strong> page in the SOC web interface. You should see an alert confirming that the rule successfully triggered based on this activity.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%20243.png" data-desc-position="bottom"><img alt="image.png" src="image%20243.png"></a></p>
+<p>Start by identifying a <strong>detection gap</strong> (something your current setup is not alerting on but should be). Next, determine what <strong>logs or events</strong> you will need to collect to detect that activity. Once the necessary data is being ingested, write a <strong>detection rule</strong> using one of the supported rule languages (Suricata, YARA, or Sigma) in the <strong>Detections</strong> section of Security Onion. Finally, <strong>deploy</strong> the rule, <strong>test</strong> it to make sure it works as expected, and <strong>tune</strong> it to reduce false positives and ensure it fits your environment.</p>
+<h2 id="references"><strong>References</strong></h2>
+<ul>
+<li><a href="https://docs.securityonion.net/en/2.4/">https://docs.securityonion.net/en/2.4/</a></li>
+<li><a href="https://youtu.be/Jb_sb_vLrB0?si=yTvJcF0TiHFUYfZt">https://youtu.be/Jb_sb_vLrB0?si=yTvJcF0TiHFUYfZt</a></li>
+<li><a href="https://youtu.be/-6B04sZPdz4?si=MsMTW89rSw5Xfl39">https://youtu.be/-6B04sZPdz4?si=MsMTW89rSw5Xfl39</a></li>
+<li><a href="https://youtu.be/i9hxtIHwlQI?si=HMuiwdQlZgnDbHVu">https://youtu.be/i9hxtIHwlQI?si=HMuiwdQlZgnDbHVu</a></li>
+<li><a href="https://youtu.be/j0uWmqvYSrI?si=gnurOgxNyI-YsmxJ">https://youtu.be/j0uWmqvYSrI?si=gnurOgxNyI-YsmxJ</a></li>
+<li><a href="https://youtu.be/L1H7UoDoUY8?si=HSNe6HhhHX3ikjAc">https://youtu.be/L1H7UoDoUY8?si=HSNe6HhhHX3ikjAc</a></li>
+<li><a href="https://youtu.be/Tv8uis-ocjQ?si=OVLGlLLuX_Kb8EUM">https://youtu.be/Tv8uis-ocjQ?si=OVLGlLLuX_Kb8EUM</a></li>
+<li><a href="https://youtu.be/OQt0lvpvkr8?si=6-swKUUfLhEzOwSx">https://youtu.be/OQt0lvpvkr8?si=6-swKUUfLhEzOwSx</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../wazuh/wazuh.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Wazuh">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Wazuh
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-footer__link md-footer__link--next" aria-label="Next: Understanding IDS/IPS">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Understanding IDS/IPS
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2024–2026 <a href="https://github.com/cyberdefencekit" target="_blank" rel="noopener">Cyber Defence Kit by Joseph Jee</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/cyberdefencekit" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "header.autohide", "announce.dismiss", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

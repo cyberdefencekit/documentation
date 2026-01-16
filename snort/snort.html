@@ -1,0 +1,2623 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../understanding-IDS-IPS/understanding-IDS-IPS.html">
+      
+      
+        <link rel="next" href="../suricata/suricata.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/Cyber Defence Kit logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Snort - Cyber Defence Kit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#snort" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-header__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cyber Defence Kit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Snort
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="light-blue" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SIEM/understanding-SIEM.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SIEM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IDS/IPS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SIRP/understanding-SIRP.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SIRP
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SOAR/understanding-SOAR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOAR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-NTA/understanding-NTA.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NTA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-DFIR/understanding-DFIR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  DFIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-EDR/understanding-EDR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  EDR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../caldera/caldera.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MITRE
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-nav__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    Cyber Defence Kit
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIEM
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SIEM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIEM/understanding-SIEM.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SIEM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../splunk/splunk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Splunk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wazuh/wazuh.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wazuh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securityonion/securityonion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Onion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDS/IPS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDS/IPS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding IDS/IPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Snort
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="snort.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Snort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-snort3-on-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Snort3 on Host
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-setup-for-proof-of-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Setup for Proof of Concept
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab Setup for Proof of Concept">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download-pre-requisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download Pre-requisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-dependencies-and-snort3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download Dependencies and Snort3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-pre-requisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Pre-requisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-ids-with-local-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test IDS with local rules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test IDS with local rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-pulledpork3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Pulledpork3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting-for-registered-ruleset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting for Registered Ruleset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-ids-with-community-ruleset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test IDS with Community Ruleset
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-ips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test IPS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test IPS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-snort-ruleset-offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Snort Ruleset Offline
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#malware-traffic-analysis-reading-pcap-with-snort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Malware traffic analysis - reading pcap with Snort
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-snort-on-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Snort on Gateway
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Snort on Gateway">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-ids-and-ips-with-open-source-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test IDS and IPS with open source rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-ids-and-ips-with-custom-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test IDS and IPS with custom rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../suricata/suricata.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Suricata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIRP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SIRP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIRP/understanding-SIRP.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SIRP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../thehive/thehive.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TheHive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iris/iris.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IRIS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOAR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOAR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SOAR/understanding-SOAR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SOAR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shuffle/shuffle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shuffle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NTA
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NTA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-NTA/understanding-NTA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding NTA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wireshark/wireshark.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wireshark
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zeek/zeek.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zeek
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zui/zui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zui
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7">
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFIR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DFIR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-DFIR/understanding-DFIR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding DFIR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../velociraptor/velociraptor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Velociraptor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8">
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EDR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EDR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-EDR/understanding-EDR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding EDR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auroralite/auroralite.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aurora Lite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9">
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MITRE
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MITRE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../caldera/caldera.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caldera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigator/navigator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MITRE ATT&amp;CK Navigator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="snort"><strong>Snort</strong></h1>
+<p>Snort is an open-source network intrusion detection and prevention system (IDS/IPS) maintained by Cisco Systems. It is designed to monitor network traffic in real-time, analysing packets for signs of malicious activity, such as attacks, probes, or scans. Snort uses a combination of protocol analysis, content searching, and various preprocessors to detect and prevent intrusions.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XrSN68MEK38?si=XQGCpy92K97gdvvQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h2 id="install-snort3-on-host"><strong>Install Snort3 on Host</strong></h2>
+<p>In this demonstration, we will be installing Snort3 on an Ubuntu virtual machine. We will be simulating install in an air-gapped environment but note that some parts of the step requires internet connection.</p>
+<h2 id="lab-setup-for-proof-of-concept"><strong>Lab Setup for Proof of Concept</strong></h2>
+<p>In this proof of concept, attack simulation was conducted on the Kali machine in a safe and controlled setting. </p>
+<p><strong>Note: Do not attempt to replicate the attack simulation demonstrated here unless you are properly trained and it is safe to do so. Unauthorised attack simulation can lead to legal consequences and unintended damage to systems. Always ensure that such activities are conducted by qualified professionals in a secure, isolated environment.</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Host</strong></th>
+<th><strong>OS</strong></th>
+<th><strong>Role</strong></th>
+<th><strong>IP Address</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pfsense</td>
+<td>FreeBSD (pfSense v2.7.2)</td>
+<td>Firewall/Router (Gateway IDS/IPS)</td>
+<td>192.168.1.200 (WAN) / 10.0.0.2 (LAN)</td>
+</tr>
+<tr>
+<td>Snort</td>
+<td>Ubuntu 22.04 LTS</td>
+<td>Host IDS/IPS</td>
+<td>10.0.0.22</td>
+</tr>
+<tr>
+<td>WS2019</td>
+<td>Windows Server 2019</td>
+<td>Windows client</td>
+<td>10.0.0.24</td>
+</tr>
+<tr>
+<td>Kali</td>
+<td>Kali Linux 2024.2</td>
+<td>Attacker machine</td>
+<td>10.0.0.29</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="snort.drawio.png" data-desc-position="bottom"><img alt="snort.drawio.png" src="snort.drawio.png"></a></p>
+<h3 id="download-pre-requisites"><strong>Download Pre-requisites</strong></h3>
+<p>On a machine with internet connection:</p>
+<p>Make a folder called /snort/pre-reqs and cd into it.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">mkdir</span> <span class="n">snort</span><span class="o">/</span><span class="n">pre</span><span class="o">-</span><span class="n">reqs</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">cd</span> <span class="n">snort</span><span class="o">/</span><span class="n">pre</span><span class="o">-</span><span class="n">reqs</span>
+</code></pre></div>
+<p>Update the package lists and upgrade all the installed packages on your system to the latest available versions.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">upgrade</span> <span class="o">-</span><span class="n">y</span>
+</code></pre></div>
+<p>Download the required packages and their dependencies as a root user:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="o">--</span><span class="n">download</span><span class="o">-</span><span class="n">only</span> <span class="n">build</span><span class="o">-</span><span class="n">essential</span> <span class="n">autotools</span><span class="o">-</span><span class="n">dev</span> <span class="n">libdumbnet</span><span class="o">-</span><span class="n">dev</span> <span class="n">libluajit</span><span class="o">-</span><span class="mf">5.1</span><span class="o">-</span><span class="n">dev</span> \
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">libpcap</span><span class="o">-</span><span class="n">dev</span> <span class="n">zlib1g</span><span class="o">-</span><span class="n">dev</span> <span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="n">libhwloc</span><span class="o">-</span><span class="n">dev</span> <span class="n">cmake</span> <span class="n">liblzma</span><span class="o">-</span><span class="n">dev</span> <span class="n">openssl</span> <span class="n">libssl</span><span class="o">-</span><span class="n">dev</span> <span class="n">cpputest</span> \
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">libsqlite3</span><span class="o">-</span><span class="n">dev</span> <span class="n">libtool</span> <span class="n">uuid</span><span class="o">-</span><span class="n">dev</span> <span class="n">git</span> <span class="n">autoconf</span> <span class="n">bison</span> <span class="n">flex</span> <span class="n">libcmocka</span><span class="o">-</span><span class="n">dev</span> <span class="n">libnetfilter</span><span class="o">-</span><span class="n">queue</span><span class="o">-</span><span class="n">dev</span> \
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">libunwind</span><span class="o">-</span><span class="n">dev</span> <span class="n">libmnl</span><span class="o">-</span><span class="n">dev</span> <span class="n">ethtool</span> <span class="n">libjemalloc</span><span class="o">-</span><span class="n">dev</span> <span class="n">libpcre3</span><span class="o">-</span><span class="n">dev</span> <span class="n">libpcre16</span><span class="o">-</span><span class="mi">3</span> <span class="n">libpcre32</span><span class="o">-</span><span class="mi">3</span> <span class="n">libpcrecpp0v5</span> <span class="o">-</span><span class="n">o</span> <span class="n">Dir</span><span class="p">::</span><span class="n">Cache</span><span class="p">::</span><span class="n">archives</span><span class="o">=</span><span class="s2">"/home/cyber/snort/pre-reqs"</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1">#apt-get download libpcre3-dev libpcre16-3 libpcre32-3 libpcrecpp0v5</span>
+</code></pre></div>
+<p>If you get permission error, change the directory’s permission</p>
+<p>Error message:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">W</span><span class="p">:</span> <span class="n">Download</span> <span class="ow">is</span> <span class="n">performed</span> <span class="n">unsandboxed</span> <span class="k">as</span> <span class="n">root</span> <span class="k">as</span> <span class="n">file</span> <span class="s1">'/home/cyber/snort/pre-reqs/libpcre16-3_2</span><span class="si">%3a</span><span class="s1">8.39-13ubuntu0.22.04.1_amd64.deb'</span> <span class="n">couldn</span><span class="s1">'t be accessed by user '</span><span class="n">_apt</span><span class="s1">'. - pkgAcquire::Run (13: Permission denied)</span>
+</code></pre></div>
+<p>Change the directory permission:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">sudo</span> <span class="n">chmod</span> <span class="mi">755</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">cyber</span><span class="o">/</span><span class="n">snort</span><span class="o">/</span><span class="n">pre</span><span class="o">-</span><span class="n">reqs</span>
+</code></pre></div>
+<h3 id="download-dependencies-and-snort3"><strong>Download Dependencies and Snort3</strong></h3>
+<p>Change directory into snort</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">cd</span> <span class="o">~/</span><span class="n">snort</span>
+</code></pre></div>
+<p>Download dependencies (pcre, gperftools, ragel, boost, hyperscan, flatbuffers, libdaq, pulledpork3) and Snort by running:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">PCRE2Project</span><span class="o">/</span><span class="n">pcre2</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">pcre2</span><span class="o">-</span><span class="mf">10.44</span><span class="o">/</span><span class="n">pcre2</span><span class="o">-</span><span class="mf">10.44</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">gperftools</span><span class="o">/</span><span class="n">gperftools</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">gperftools</span><span class="o">-</span><span class="mf">2.15</span><span class="o">/</span><span class="n">gperftools</span><span class="o">-</span><span class="mf">2.15</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">colm</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">files</span><span class="o">/</span><span class="n">ragel</span><span class="o">/</span><span class="n">ragel</span><span class="o">-</span><span class="mf">6.10</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">boostorg</span><span class="o">.</span><span class="n">jfrog</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">artifactory</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">release</span><span class="o">/</span><span class="mf">1.86.0</span><span class="o">/</span><span class="n">source</span><span class="o">/</span><span class="n">boost_1_86_0</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">wget</span> <span class="p">[</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">intel</span><span class="o">/</span><span class="n">hyperscan</span><span class="o">/</span><span class="n">archive</span><span class="o">/</span><span class="n">refs</span><span class="o">/</span><span class="n">tags</span><span class="o">/</span><span class="n">v5</span><span class="mf">.4.2</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">intel</span><span class="o">/</span><span class="n">hyperscan</span><span class="o">/</span><span class="n">archive</span><span class="o">/</span><span class="n">refs</span><span class="o">/</span><span class="n">tags</span><span class="o">/</span><span class="n">v5</span><span class="mf">.4.2</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span><span class="p">)</span> <span class="o">-</span><span class="n">O</span> <span class="n">hyperscan</span><span class="o">-</span><span class="n">v5</span><span class="mf">.4.2</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">google</span><span class="o">/</span><span class="n">flatbuffers</span><span class="o">/</span><span class="n">archive</span><span class="o">/</span><span class="n">refs</span><span class="o">/</span><span class="n">tags</span><span class="o">/</span><span class="n">v2</span><span class="mf">.0.0</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> <span class="o">-</span><span class="n">O</span> <span class="n">flatbuffers</span><span class="o">-</span><span class="n">v2</span><span class="mf">.0.0</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">snort3</span><span class="o">/</span><span class="n">libdaq</span><span class="o">/</span><span class="n">archive</span><span class="o">/</span><span class="n">refs</span><span class="o">/</span><span class="n">tags</span><span class="o">/</span><span class="n">v3</span><span class="mf">.0.16</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> <span class="o">-</span><span class="n">O</span> <span class="n">libdaq</span><span class="o">-</span><span class="n">v3</span><span class="mf">.0.16</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">wget</span> <span class="p">[</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">snort3</span><span class="o">/</span><span class="n">snort3</span><span class="o">/</span><span class="n">archive</span><span class="o">/</span><span class="n">refs</span><span class="o">/</span><span class="n">tags</span><span class="o">/</span><span class="mf">3.3.5.0</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">snort3</span><span class="o">/</span><span class="n">snort3</span><span class="o">/</span><span class="n">archive</span><span class="o">/</span><span class="n">refs</span><span class="o">/</span><span class="n">tags</span><span class="o">/</span><span class="mf">3.3.5.0</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span><span class="p">)</span> <span class="o">-</span><span class="n">O</span> <span class="n">snort3</span><span class="o">-</span><span class="mf">3.3.5.0</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">shirkdog</span><span class="o">/</span><span class="n">pulledpork3</span><span class="o">.</span><span class="n">git</span>
+</code></pre></div>
+<h3 id="install-pre-requisites"><strong>Install Pre-requisites</strong></h3>
+<p>Transfer the snort folder to your air-gapped host. </p>
+<p>Change directory into pre-reqs and install the downloaded <code>.deb</code> files using <code>dpkg</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">sudo</span> <span class="n">dpkg</span> <span class="o">-</span><span class="n">i</span> <span class="o">*.</span><span class="n">deb</span>
+</code></pre></div>
+<h3 id="install-dependencies"><strong>Install Dependencies</strong></h3>
+<p>Change directory into snort folder and untar pcre2-10.44.tar.gz</p>
+<p>Change directory into pcre2-10.44 and run configure.</p>
+<p>Run make and then sudo make install.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">tar</span> <span class="o">-</span><span class="n">xzvf</span> <span class="n">pcre2</span><span class="o">-</span><span class="mf">10.44</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">cd</span> <span class="n">pcre2</span><span class="o">-</span><span class="mf">10.44</span><span class="o">/</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="o">./</span><span class="n">configure</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">make</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
+</code></pre></div>
+<p>Repeat the same process for gperftools-2.15.tar.gz</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">tar</span> <span class="o">-</span><span class="n">xzvf</span> <span class="n">gperftools</span><span class="o">-</span><span class="mf">2.15</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">cd</span> <span class="n">gperftools</span><span class="o">-</span><span class="mf">2.15</span><span class="o">/</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="o">./</span><span class="n">configure</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">make</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
+</code></pre></div>
+<p>Repeat the same process for ragel</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">tar</span> <span class="o">-</span><span class="n">xzvf</span> <span class="n">ragel</span><span class="o">-</span><span class="mf">6.10</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">cd</span> <span class="n">ragel</span><span class="o">-</span><span class="mf">6.10</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="o">./</span><span class="n">configure</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">make</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
+</code></pre></div>
+<p>Untar Boost C++ Libraries:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">tar</span> <span class="o">-</span><span class="n">xvzf</span> <span class="n">boost_1_86_0</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</code></pre></div>
+<p>For installing hyerperscan, run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">tar</span> <span class="o">-</span><span class="n">xvzf</span> <span class="n">hyperscan</span><span class="o">-</span><span class="n">v5</span><span class="mf">.4.2</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">mkdir</span> <span class="o">~/</span><span class="n">snort</span><span class="o">/</span><span class="n">hyperscan</span><span class="o">-</span><span class="mf">5.4.2</span><span class="o">-</span><span class="n">build</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">cd</span> <span class="n">hyperscan</span><span class="o">-</span><span class="mf">5.4.2</span><span class="o">-</span><span class="n">build</span><span class="o">/</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="n">cmake</span> <span class="o">-</span><span class="n">DCMAKE_INSTALL_PREFIX</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span> <span class="o">-</span><span class="n">DBOOST_ROOT</span><span class="o">=~/</span><span class="n">snort</span><span class="o">/</span><span class="n">boost_1_86_0</span><span class="o">/</span> <span class="o">../</span><span class="n">hyperscan</span><span class="o">-</span><span class="mf">5.4.2</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="n">make</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
+</code></pre></div>
+<p>Install flatbuffers:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">tar</span> <span class="o">-</span><span class="n">xzvf</span> <span class="n">flatbuffers</span><span class="o">-</span><span class="n">v2</span><span class="mf">.0.0</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">mkdir</span> <span class="n">flatbuffers</span><span class="o">-</span><span class="n">build</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">cd</span> <span class="n">flatbuffers</span><span class="o">-</span><span class="n">build</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">cmake</span> <span class="o">../</span><span class="n">flatbuffers</span><span class="o">-</span><span class="mf">2.0.0</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="n">make</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
+</code></pre></div>
+<p>Install Data Acquistion (DAQ) from Snort</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">tar</span> <span class="o">-</span><span class="n">xzvf</span> <span class="n">libdaq</span><span class="o">-</span><span class="n">v3</span><span class="mf">.0.16</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">cd</span> <span class="n">libdaq</span><span class="o">-</span><span class="mf">3.0.16</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="o">./</span><span class="n">bootstrap</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="o">./</span><span class="n">configure</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="n">make</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
+</code></pre></div>
+<p>Update the system's dynamic linker run-time bindings (shared libraries)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">sudo</span> <span class="n">ldconfig</span>
+</code></pre></div>
+<p>Install the latest version of Snort 3</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">tar</span> <span class="o">-</span><span class="n">xzvf</span> <span class="n">snort3</span><span class="o">-</span><span class="mf">3.3.5.0</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">cd</span> <span class="n">snort3</span><span class="o">-</span><span class="mf">3.3.5.0</span><span class="o">/</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="o">./</span><span class="n">configure_cmake</span><span class="o">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">prefix</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span> <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">jemalloc</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">cd</span> <span class="n">build</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">make</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
+</code></pre></div>
+<p>Verify Snort3 is installed by running:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">snort</span> <span class="o">-</span><span class="n">V</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>   <span class="p">,,</span><span class="n">_</span>     <span class="o">-*&gt;</span> <span class="n">Snort</span><span class="o">++</span> <span class="o">&lt;*-</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>  <span class="n">o</span><span class="s2">"  )~   Version 3.3.5.0</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>   <span class="s1">''''    By Martin Roesch &amp; The Snort Team</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="s1">           http://snort.org/contact#team</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="s1">           Copyright (C) 2014-2024 Cisco and/or its affiliates. All rights reserved.</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="s1">           Copyright (C) 1998-2013 Sourcefire, Inc., et al.</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="s1">           Using DAQ version 3.0.16</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="s1">           Using Hyperscan version 5.4.2 2024-09-10</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="s1">           Using Jemalloc version 5.2.1-0-gea6b3e973b477b8061e0076bb257dbd7f3faa756</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="s1">           Using libpcap version 1.10.1 (with TPACKET_V3)</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="s1">           Using LuaJIT version 2.1.0-beta3</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="s1">           Using LZMA version 5.2.5</span>
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="s1">           Using OpenSSL 3.0.2 15 Mar 2022</span>
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="s1">           Using PCRE version 8.39 2016-06-14</span>
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="s1">           Using ZLIB version 1.2.11</span>
+</code></pre></div>
+<p>Test snort by using its default config file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">snort</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">snort</span><span class="o">/</span><span class="n">snort</span><span class="o">.</span><span class="n">lua</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="o">...</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="n">Snort</span> <span class="n">successfully</span> <span class="n">validated</span> <span class="n">the</span> <span class="n">configuration</span> <span class="p">(</span><span class="k">with</span> <span class="mi">0</span> <span class="n">warnings</span><span class="p">)</span><span class="o">.</span>
+</code></pre></div>
+<p>Find your network interface by running <code>ip a</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">ip</span> <span class="n">a</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="o">...</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="mi">2</span><span class="p">:</span> <span class="n">ens32</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">BROADCAST</span><span class="p">,</span><span class="n">MULTICAST</span><span class="p">,</span><span class="n">UP</span><span class="p">,</span><span class="n">LOWER_UP</span><span class="o">&gt;</span> <span class="n">mtu</span> <span class="mi">1500</span> <span class="n">qdisc</span> <span class="n">fq_codel</span> <span class="n">state</span> <span class="n">UNKNOWN</span> <span class="n">group</span> <span class="n">default</span> <span class="n">qlen</span> <span class="mi">1000</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>    <span class="n">link</span><span class="o">/</span><span class="n">ether</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">c</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">86</span><span class="p">:</span><span class="mi">08</span><span class="p">:</span><span class="mi">64</span> <span class="n">brd</span> <span class="n">ff</span><span class="p">:</span><span class="n">ff</span><span class="p">:</span><span class="n">ff</span><span class="p">:</span><span class="n">ff</span><span class="p">:</span><span class="n">ff</span><span class="p">:</span><span class="n">ff</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>    <span class="n">altname</span> <span class="n">enp2s0</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>    <span class="n">inet</span> <span class="mf">10.0.0.22</span><span class="o">/</span><span class="mi">24</span> <span class="n">brd</span> <span class="mf">10.0.0.255</span> <span class="n">scope</span> <span class="k">global</span> <span class="n">dynamic</span> <span class="n">noprefixroute</span> <span class="n">ens32</span>
+</code></pre></div>
+<p>Run following:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">sudo</span> <span class="n">ethtool</span> <span class="o">-</span><span class="n">k</span> <span class="n">ens32</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">receive</span><span class="o">-</span><span class="n">offload</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="o">...</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="n">generic</span><span class="o">-</span><span class="n">receive</span><span class="o">-</span><span class="n">offload</span><span class="p">:</span> <span class="n">on</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="n">large</span><span class="o">-</span><span class="n">receive</span><span class="o">-</span><span class="n">offload</span><span class="p">:</span> <span class="n">off</span> <span class="p">[</span><span class="n">fixed</span><span class="p">]</span>
+</code></pre></div>
+<p>Create a service to disable Large Receive Offload (LRO)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">sudo</span> <span class="n">nano</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="n">system</span><span class="o">/</span><span class="n">ethtool</span><span class="o">.</span><span class="n">service</span>
+</code></pre></div>
+<p>Copy and paste following:</p>
+<p>Put your network interface </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="p">[</span><span class="n">Unit</span><span class="p">]</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="n">Description</span><span class="o">=</span><span class="n">Ethtool</span> <span class="n">Configration</span> <span class="k">for</span> <span class="n">Network</span> <span class="n">Interface</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="p">[</span><span class="n">Service</span><span class="p">]</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="n">Requires</span><span class="o">=</span><span class="n">network</span><span class="o">.</span><span class="n">target</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="n">Type</span><span class="o">=</span><span class="n">oneshot</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="n">ExecStart</span><span class="o">=/</span><span class="n">sbin</span><span class="o">/</span><span class="n">ethtool</span> <span class="o">-</span><span class="n">K</span> <span class="n">ens32</span> <span class="n">gro</span> <span class="n">off</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="n">ExecStart</span><span class="o">=/</span><span class="n">sbin</span><span class="o">/</span><span class="n">ethtool</span> <span class="o">-</span><span class="n">K</span> <span class="n">ens32</span> <span class="n">lro</span> <span class="n">off</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="p">[</span><span class="n">Install</span><span class="p">]</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="n">WantedBy</span><span class="o">=</span><span class="n">multi</span><span class="o">-</span><span class="n">user</span><span class="o">.</span><span class="n">target</span>
+</code></pre></div>
+<p>Enable and start the service</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">enable</span> <span class="n">ethtool</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">sudo</span> <span class="n">service</span> <span class="n">ethtool</span> <span class="n">start</span>
+</code></pre></div>
+<p>Verify that LRO is disabled by running</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">sudo</span> <span class="n">ethtool</span> <span class="o">-</span><span class="n">k</span> <span class="n">ens32</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">receive</span><span class="o">-</span><span class="n">offload</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="o">...</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="n">generic</span><span class="o">-</span><span class="n">receive</span><span class="o">-</span><span class="n">offload</span><span class="p">:</span> <span class="n">off</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="n">large</span><span class="o">-</span><span class="n">receive</span><span class="o">-</span><span class="n">offload</span><span class="p">:</span> <span class="n">off</span> <span class="p">[</span><span class="n">fixed</span><span class="p">]</span>
+</code></pre></div>
+<h2 id="test-ids-with-local-rules"><strong>Test IDS with local rules</strong></h2>
+<p>Create a folder called rules in the following directory</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">sudo</span> <span class="n">mkdir</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rules</span>
+</code></pre></div>
+<p>Create a file called local.rules</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">sudo</span> <span class="n">nano</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rules</span><span class="o">/</span><span class="n">local</span><span class="o">.</span><span class="n">rules</span>
+</code></pre></div>
+<p>Copy and paste following</p>
+<p>First alert detects any ICMP Ping traffic and second alert detects any SSH Authentication Attempt to our internal network </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">alert</span> <span class="n">icmp</span> <span class="nb">any</span> <span class="nb">any</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="n">HOME_NET</span> <span class="nb">any</span> <span class="p">(</span><span class="n">msg</span><span class="p">:</span><span class="s2">"ICMP Ping Detected"</span><span class="p">;</span> <span class="n">sid</span><span class="p">:</span><span class="mi">1000001</span><span class="p">;</span> <span class="n">rev</span><span class="p">:</span><span class="mi">1</span><span class="p">;)</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="n">alert</span> <span class="n">tcp</span> <span class="nb">any</span> <span class="nb">any</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="n">HOME_NET</span> <span class="mi">22</span> <span class="p">(</span><span class="n">msg</span><span class="p">:</span><span class="s2">"SSH Authentication Attempt"</span><span class="p">;</span> <span class="n">sid</span><span class="p">:</span><span class="mi">1000002</span><span class="p">;</span> <span class="n">rev</span><span class="p">:</span><span class="mi">1</span><span class="p">;)</span>
+</code></pre></div>
+<p>Run snort with configuration file to test the rule</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="n">snort</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">snort</span><span class="o">/</span><span class="n">snort</span><span class="o">.</span><span class="n">lua</span> <span class="o">-</span><span class="n">R</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rules</span><span class="o">/</span><span class="n">local</span><span class="o">.</span><span class="n">rules</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="o">...</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="n">Snort</span> <span class="n">successfully</span> <span class="n">validated</span> <span class="n">the</span> <span class="n">configuration</span> <span class="p">(</span><span class="k">with</span> <span class="mi">0</span> <span class="n">warnings</span><span class="p">)</span><span class="o">.</span>
+</code></pre></div>
+<p>Run snort to generate alert in a single line</p>
+<p>Snort will be listening on ens32 for any icmp traffic</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="n">sudo</span> <span class="n">snort</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">snort</span><span class="o">/</span><span class="n">snort</span><span class="o">.</span><span class="n">lua</span> <span class="o">-</span><span class="n">R</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rules</span><span class="o">/</span><span class="n">local</span><span class="o">.</span><span class="n">rules</span> <span class="o">-</span><span class="n">i</span> <span class="n">ens32</span> <span class="o">-</span><span class="n">A</span> <span class="n">alert_fast</span>
+</code></pre></div>
+<p>From another Linux host, execute ping and attempt ssh to 10.0.0.22. This will generate alerts on terminal verifying that the rule works:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="mi">09</span><span class="o">/</span><span class="mi">11</span><span class="o">-</span><span class="mi">22</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mf">05.659667</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">1000002</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="s2">"SSH Authentication Attempt"</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="n">Priority</span><span class="p">:</span> <span class="mi">0</span><span class="p">]</span> <span class="p">{</span><span class="n">TCP</span><span class="p">}</span> <span class="mf">10.0.0.21</span><span class="p">:</span><span class="mi">36708</span> <span class="o">-&gt;</span> <span class="mf">10.0.0.22</span><span class="p">:</span><span class="mi">22</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="mi">09</span><span class="o">/</span><span class="mi">11</span><span class="o">-</span><span class="mi">22</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mf">19.086427</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">1000001</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="s2">"ICMP Ping Detected"</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="n">Priority</span><span class="p">:</span> <span class="mi">0</span><span class="p">]</span> <span class="p">{</span><span class="n">ICMP</span><span class="p">}</span> <span class="mf">10.0.0.21</span> <span class="o">-&gt;</span> <span class="mf">10.0.0.22</span>
+</code></pre></div>
+<p>Edit Snort’s configuration </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">sudo</span> <span class="n">nano</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">snort</span><span class="o">/</span><span class="n">snort</span><span class="o">.</span><span class="n">lua</span>
+</code></pre></div>
+<p>For HOME_NET, setup the network addresses you are protecting.</p>
+<p>For EXTERNAL_NET, leave as any.</p>
+<p>In the ips section, uncomment enable_builtin_rules = true and add include = “/usr/local/etc/rules/local.rules”, (include comma)</p>
+<p>In the configure ourputs section uncomment alert_fast = {file=true} to enable logging for the alerts</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="o">--</span> <span class="n">HOME_NET</span> <span class="ow">and</span> <span class="n">EXTERNAL_NET</span> <span class="n">must</span> <span class="n">be</span> <span class="nb">set</span> <span class="n">now</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="o">--</span> <span class="n">setup</span> <span class="n">the</span> <span class="n">network</span> <span class="n">addresses</span> <span class="n">you</span> <span class="n">are</span> <span class="n">protecting</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="n">HOME_NET</span> <span class="o">=</span> <span class="s1">'10.0.0.0/24'</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="o">--</span> <span class="nb">set</span> <span class="n">up</span> <span class="n">the</span> <span class="n">external</span> <span class="n">network</span> <span class="n">addresses</span><span class="o">.</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="o">--</span> <span class="p">(</span><span class="n">leave</span> <span class="k">as</span> <span class="s2">"any"</span> <span class="ow">in</span> <span class="n">most</span> <span class="n">situations</span><span class="p">)</span>
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="n">EXTERNAL_NET</span> <span class="o">=</span> <span class="s1">'any'</span>
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="o">...</span>
+<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="n">ips</span> <span class="o">=</span>
+<a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="p">{</span>
+<a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a>    <span class="o">--</span> <span class="n">use</span> <span class="n">this</span> <span class="n">to</span> <span class="n">enable</span> <span class="n">decoder</span> <span class="ow">and</span> <span class="n">inspector</span> <span class="n">alerts</span>
+<a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a>    <span class="n">enable_builtin_rules</span> <span class="o">=</span> <span class="n">true</span><span class="p">,</span>
+<a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a>
+<a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a>    <span class="o">--</span> <span class="n">use</span> <span class="n">include</span> <span class="k">for</span> <span class="n">rules</span> <span class="n">files</span><span class="p">;</span> <span class="n">be</span> <span class="n">sure</span> <span class="n">to</span> <span class="nb">set</span> <span class="n">your</span> <span class="n">path</span>
+<a id="__codelineno-32-15" name="__codelineno-32-15" href="#__codelineno-32-15"></a>    <span class="o">--</span> <span class="n">note</span> <span class="n">that</span> <span class="n">rules</span> <span class="n">files</span> <span class="n">can</span> <span class="n">include</span> <span class="n">other</span> <span class="n">rules</span> <span class="n">files</span>
+<a id="__codelineno-32-16" name="__codelineno-32-16" href="#__codelineno-32-16"></a>    <span class="o">--</span> <span class="p">(</span><span class="n">see</span> <span class="n">also</span> <span class="n">related</span> <span class="n">path</span> <span class="nb">vars</span> <span class="n">at</span> <span class="n">the</span> <span class="n">top</span> <span class="n">of</span> <span class="n">snort_defaults</span><span class="o">.</span><span class="n">lua</span><span class="p">)</span>
+<a id="__codelineno-32-17" name="__codelineno-32-17" href="#__codelineno-32-17"></a>    <span class="n">include</span> <span class="o">=</span> <span class="s2">"/usr/local/etc/rules/local.rules"</span><span class="p">,</span>
+<a id="__codelineno-32-18" name="__codelineno-32-18" href="#__codelineno-32-18"></a>    <span class="n">variables</span> <span class="o">=</span> <span class="n">default_variables</span>
+<a id="__codelineno-32-19" name="__codelineno-32-19" href="#__codelineno-32-19"></a><span class="p">}</span>
+<a id="__codelineno-32-20" name="__codelineno-32-20" href="#__codelineno-32-20"></a><span class="o">...</span>
+<a id="__codelineno-32-21" name="__codelineno-32-21" href="#__codelineno-32-21"></a><span class="o">---------------------------------------------------------------------------</span>
+<a id="__codelineno-32-22" name="__codelineno-32-22" href="#__codelineno-32-22"></a><span class="o">--</span> <span class="mf">7.</span> <span class="n">configure</span> <span class="n">outputs</span>
+<a id="__codelineno-32-23" name="__codelineno-32-23" href="#__codelineno-32-23"></a><span class="o">---------------------------------------------------------------------------</span>
+<a id="__codelineno-32-24" name="__codelineno-32-24" href="#__codelineno-32-24"></a><span class="o">--</span> <span class="n">event</span> <span class="n">logging</span>
+<a id="__codelineno-32-25" name="__codelineno-32-25" href="#__codelineno-32-25"></a><span class="o">--</span> <span class="n">you</span> <span class="n">can</span> <span class="n">enable</span> <span class="k">with</span> <span class="n">defaults</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">command</span> <span class="n">line</span> <span class="k">with</span> <span class="o">-</span><span class="n">A</span> <span class="o">&lt;</span><span class="n">alert_type</span><span class="o">&gt;</span>
+<a id="__codelineno-32-26" name="__codelineno-32-26" href="#__codelineno-32-26"></a><span class="o">--</span> <span class="n">uncomment</span> <span class="n">below</span> <span class="n">to</span> <span class="nb">set</span> <span class="n">non</span><span class="o">-</span><span class="n">default</span> <span class="n">configs</span>
+<a id="__codelineno-32-27" name="__codelineno-32-27" href="#__codelineno-32-27"></a><span class="o">--</span><span class="n">alert_csv</span> <span class="o">=</span> <span class="p">{</span> <span class="p">}</span>
+<a id="__codelineno-32-28" name="__codelineno-32-28" href="#__codelineno-32-28"></a><span class="n">alert_fast</span> <span class="o">=</span> <span class="p">{</span><span class="n">file</span><span class="o">=</span><span class="n">true</span><span class="p">}</span>
+</code></pre></div>
+<p>Run snort to generate alert in a single line but exclude entry for local rules.</p>
+<p>Snort will be listening on ens32 for any icmp traffic</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="n">sudo</span> <span class="n">snort</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">snort</span><span class="o">/</span><span class="n">snort</span><span class="o">.</span><span class="n">lua</span> <span class="o">-</span><span class="n">i</span> <span class="n">ens32</span> <span class="o">-</span><span class="n">A</span> <span class="n">alert_fast</span>
+</code></pre></div>
+<p>Verify that alerts are generated from ping</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="mi">09</span><span class="o">/</span><span class="mi">11</span><span class="o">-</span><span class="mi">21</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="mf">15.522160</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">1000001</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="s2">"ICMP Ping Detected"</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="n">Priority</span><span class="p">:</span> <span class="mi">0</span><span class="p">]</span> <span class="p">{</span><span class="n">ICMP</span><span class="p">}</span> <span class="mf">10.0.0.24</span> <span class="o">-&gt;</span> <span class="mf">10.0.0.22</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="mi">09</span><span class="o">/</span><span class="mi">11</span><span class="o">-</span><span class="mi">21</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="mf">15.522206</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">1000001</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="s2">"ICMP Ping Detected"</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="n">Priority</span><span class="p">:</span> <span class="mi">0</span><span class="p">]</span> <span class="p">{</span><span class="n">ICMP</span><span class="p">}</span> <span class="mf">10.0.0.22</span> <span class="o">-&gt;</span> <span class="mf">10.0.0.24</span>
+</code></pre></div>
+<p>To output alert_fast as a text log file, run</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="n">mkdir</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">snort</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="n">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="mi">1000</span><span class="p">:</span><span class="mi">1000</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">snort</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="o">...</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="n">sudo</span> <span class="n">snort</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">snort</span><span class="o">/</span><span class="n">snort</span><span class="o">.</span><span class="n">lua</span> <span class="o">-</span><span class="n">i</span> <span class="n">ens32</span> <span class="o">-</span><span class="n">A</span> <span class="n">alert_fast</span> <span class="o">-</span><span class="n">l</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">snort</span>
+</code></pre></div>
+<p>Verify that alert_fast.txt file is generated</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="n">ls</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">snort</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="o">...</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="n">cat</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">snort</span><span class="o">/</span><span class="n">alert_fast</span><span class="o">.</span><span class="n">txt</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="o">...</span>
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="mi">09</span><span class="o">/</span><span class="mi">11</span><span class="o">-</span><span class="mi">23</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mf">18.831740</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">1000001</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="s2">"ICMP Ping Detected"</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="n">Priority</span><span class="p">:</span> <span class="mi">0</span><span class="p">]</span> <span class="p">{</span><span class="n">ICMP</span><span class="p">}</span> <span class="mf">10.0.0.21</span> <span class="o">-&gt;</span> <span class="mf">10.0.0.22</span>
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a><span class="mi">09</span><span class="o">/</span><span class="mi">11</span><span class="o">-</span><span class="mi">23</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mf">37.707792</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">1000002</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="s2">"SSH Authentication Attempt"</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="n">Priority</span><span class="p">:</span> <span class="mi">0</span><span class="p">]</span> <span class="p">{</span><span class="n">TCP</span><span class="p">}</span> <span class="mf">10.0.0.21</span><span class="p">:</span><span class="mi">60514</span> <span class="o">-&gt;</span> <span class="mf">10.0.0.22</span><span class="p">:</span><span class="mi">22</span>
+</code></pre></div>
+<h3 id="install-pulledpork3"><strong>Install Pulledpork3</strong></h3>
+<p>Note <code>git clone https://github.com/shirkdog/pulledpork3.git</code> command was run when downloading dependencies.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="n">cd</span> <span class="o">~/</span><span class="n">snort</span><span class="o">/</span><span class="n">pulledpork3</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="n">sudo</span> <span class="n">mkdir</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pulledpork3</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="n">sudo</span> <span class="n">cp</span> <span class="n">pulledpork</span><span class="o">.</span><span class="n">py</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pulledpork3</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="n">sudo</span> <span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="n">lib</span><span class="o">/</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pulledpork3</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="n">sudo</span> <span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pulledpork3</span><span class="o">/</span><span class="n">pulledpork</span><span class="o">.</span><span class="n">py</span>
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="n">sudo</span> <span class="n">mkdir</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">pulledpork3</span>
+<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="n">sudo</span> <span class="n">cp</span> <span class="n">etc</span><span class="o">/</span><span class="n">pulledpork</span><span class="o">.</span><span class="n">conf</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">pulledpork3</span><span class="o">/</span>
+</code></pre></div>
+<p>Verify that pulled pork is running</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pulledpork3</span><span class="o">/</span><span class="n">pulledpork</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">V</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="n">PulledPork</span> <span class="n">v3</span><span class="mf">.0.0.5</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>    <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">shirkdog</span><span class="o">/</span><span class="n">pulledpork3</span>
+<a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a>      <span class="n">_____</span> <span class="n">____</span>
+<a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a>     <span class="err">`</span><span class="o">----</span><span class="p">,</span>\    <span class="p">)</span>   <span class="n">PulledPork</span> <span class="n">v3</span><span class="mf">.0.0.5</span>
+<a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a>      <span class="err">`</span><span class="o">--==</span>\\  <span class="o">/</span>    <span class="n">Lowcountry</span> <span class="n">yellow</span> <span class="n">mustard</span> <span class="n">bbq</span> <span class="n">sauce</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">best</span> <span class="n">bbq</span> <span class="n">sauce</span><span class="o">.</span> <span class="n">Fight</span> <span class="n">me</span><span class="o">.</span>
+<a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a>       <span class="err">`</span><span class="o">--==</span>\\<span class="o">/</span>
+<a id="__codelineno-38-10" name="__codelineno-38-10" href="#__codelineno-38-10"></a>     <span class="o">.-~~~~-.</span><span class="n">Y</span><span class="o">|</span>\\<span class="n">_</span>  <span class="n">Copyright</span> <span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="mi">2021</span> <span class="n">Noah</span> <span class="n">Dietrich</span><span class="p">,</span> <span class="n">Colin</span> <span class="n">Grady</span><span class="p">,</span> <span class="n">Michael</span> <span class="n">Shirk</span>
+<a id="__codelineno-38-11" name="__codelineno-38-11" href="#__codelineno-38-11"></a>  <span class="nd">@_</span><span class="o">/</span>        <span class="o">/</span>  <span class="mi">66</span>\<span class="n">_</span>  <span class="ow">and</span> <span class="n">the</span> <span class="n">PulledPork</span> <span class="n">Team</span><span class="err">!</span>
+<a id="__codelineno-38-12" name="__codelineno-38-12" href="#__codelineno-38-12"></a>    <span class="o">|</span>    \   \   <span class="n">_</span><span class="p">(</span><span class="s2">")</span>
+<a id="__codelineno-38-13" name="__codelineno-38-13" href="#__codelineno-38-13"></a>     \   <span class="o">/-|</span> <span class="o">||</span><span class="s1">'--'</span>   <span class="n">Rules</span> <span class="n">give</span> <span class="n">me</span> <span class="n">wings</span><span class="err">!</span>
+<a id="__codelineno-38-14" name="__codelineno-38-14" href="#__codelineno-38-14"></a>      \<span class="n">_</span>\  \<span class="n">_</span>\\
+<a id="__codelineno-38-15" name="__codelineno-38-15" href="#__codelineno-38-15"></a><span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+</code></pre></div>
+<p>Edit pulledpork.conf </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="n">sudo</span> <span class="n">nano</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">pulledpork3</span><span class="o">/</span><span class="n">pulledpork</span><span class="o">.</span><span class="n">conf</span>
+</code></pre></div>
+<p>Change the community ruleset value to true.</p>
+<p><em>Yon can select registered ruleset but due to incompatibility between registered ruleset version (3.1.7.0) and the snort version (3.3.5.0), selecting registered ruleset will give you an error. Either install Snort v 3.1.X.X or wait for registered ruleset version (3.3.X.X) to get released or use the community ruleset in the meantime.</em> </p>
+<p>Copy and paste your Oinkcode (API Key). This step is optional.</p>
+<p>Comment out blocklist_path</p>
+<p>Uncomment snort_path and make sure it is set to the right path</p>
+<p>Uncomment local_rules and make sure it is set to the right path</p>
+<p>Comment sorule_path (optional but if uncommented, make a directory /usr/local/etc/so_rules/)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="c1"># Which Snort/Talos rulesets do you want to download (recomended: choose only one)</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="n">community_ruleset</span> <span class="o">=</span> <span class="n">true</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="n">registered_ruleset</span> <span class="o">=</span> <span class="n">false</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="n">LightSPD_ruleset</span> <span class="o">=</span> <span class="n">false</span>
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>
+<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="c1"># Your Snort oinkcode is required for snort/talos Subscription, Light_SPD, and Registered rules&gt;</span>
+<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="n">oinkcode</span> <span class="o">=</span> 
+<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a>
+<a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a><span class="c1"># Where to write the blocklist file (single file containing all blocklists downloaded)</span>
+<a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a><span class="c1">#blocklist_path = /usr/local/etc/lists/default.blocklist</span>
+<a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a>
+<a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a><span class="c1"># Where is the Snort Executable located (if not on the system path)</span>
+<a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a><span class="n">snort_path</span> <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">snort</span>
+<a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a>
+<a id="__codelineno-40-15" name="__codelineno-40-15" href="#__codelineno-40-15"></a><span class="c1"># Local Rules files</span>
+<a id="__codelineno-40-16" name="__codelineno-40-16" href="#__codelineno-40-16"></a><span class="c1"># Specify local rules files, comma-separated</span>
+<a id="__codelineno-40-17" name="__codelineno-40-17" href="#__codelineno-40-17"></a><span class="n">local_rules</span> <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rules</span><span class="o">/</span><span class="n">local</span><span class="o">.</span><span class="n">rules</span>  
+<a id="__codelineno-40-18" name="__codelineno-40-18" href="#__codelineno-40-18"></a>
+<a id="__codelineno-40-19" name="__codelineno-40-19" href="#__codelineno-40-19"></a><span class="c1"># where should so rules be saved</span>
+<a id="__codelineno-40-20" name="__codelineno-40-20" href="#__codelineno-40-20"></a><span class="c1"># so rules will only be processed if this is uncommented</span>
+<a id="__codelineno-40-21" name="__codelineno-40-21" href="#__codelineno-40-21"></a><span class="n">sorule_path</span> <span class="o">=</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">so_rules</span><span class="o">/</span>
+</code></pre></div>
+<p>To obtain the Oinkcode, create an account in Snort3.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image.png" data-desc-position="bottom"><img alt="image.png" src="image.png"></a></p>
+<p>Run Pulledpork3 </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="n">sudo</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pulledpork3</span><span class="o">/</span><span class="n">pulledpork</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">pulledpork3</span><span class="o">/</span><span class="n">pulledpork</span><span class="o">.</span><span class="n">conf</span>
+</code></pre></div>
+<p>If you receive error below, make a directory called so_rules</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="n">ERROR</span><span class="p">:</span> <span class="err">`</span><span class="n">sorule_path</span><span class="err">`</span> <span class="ow">is</span> <span class="n">configured</span> <span class="n">but</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">a</span> <span class="n">directory</span><span class="p">:</span>  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">so_rules</span><span class="o">/</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="o">...</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="n">sudo</span> <span class="n">mkdir</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">so_rules</span><span class="o">/</span>
+</code></pre></div>
+<h3 id="troubleshooting-for-registered-ruleset"><strong>Troubleshooting for Registered Ruleset</strong></h3>
+<p>If you have selected registered ruleset and receive the error below, edit snort rules version number in pulledpork.py</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="n">WARNING</span><span class="p">:</span> <span class="n">Unable</span> <span class="n">to</span> <span class="n">load</span> <span class="n">rules</span> <span class="n">archive</span><span class="p">:</span>  <span class="mi">422</span> <span class="n">Client</span> <span class="n">Error</span><span class="p">:</span> <span class="n">Unprocessable</span> <span class="n">Content</span> <span class="k">for</span> <span class="n">url</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">snort</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">rules</span><span class="o">/</span><span class="n">snortrules</span><span class="o">-</span><span class="n">snapshot</span><span class="o">-</span><span class="mf">3350.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span><span class="err">?</span><span class="n">oinkcode</span><span class="o">=&lt;</span><span class="n">hidden</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>Make a backup copy of pulledpork.py and edit pulledpork.py</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pulledpork3</span><span class="o">/</span><span class="n">pulledpork</span><span class="o">.</span><span class="n">py</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pulledpork3</span><span class="o">/</span><span class="n">oldpulledpork</span><span class="o">.</span><span class="n">py</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="n">sudo</span> <span class="n">nano</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pulledpork3</span><span class="o">/</span><span class="n">pulledpork</span><span class="o">.</span><span class="n">py</span>
+</code></pre></div>
+<p>Edit RULESET_URL_SNORT_REGISTERED</p>
+<p>The snortrules-snapshot version number can be found on <a href="https://www.snort.org/downloads">https://www.snort.org/downloads</a></p>
+<p>The numbers indicate version number so 31730 (v3.1.7.0) is the latest registered Snort rulest. </p>
+<p>Community rules are free and maintained by the Snort community. Registered rules are available for free but require you to create an account on the Snort website and obtain an Oinkcode. Subscriber rules required a paid subscription and provides immediate access to the most up-to-date rules. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="n">RULESET_URL_SNORT_REGISTERED</span> <span class="o">=</span> <span class="s1">'https://snort.org/rules/snortrules-snapshot-31470.tar.gz'</span>
+</code></pre></div>
+<h3 id="test-ids-with-community-ruleset"><strong>Test IDS with Community Ruleset</strong></h3>
+<p>Rerun Pulledpork:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="n">sudo</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pulledpork3</span><span class="o">/</span><span class="n">pulledpork</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">pulledpork3</span><span class="o">/</span><span class="n">pulledpork</span><span class="o">.</span><span class="n">conf</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="o">...</span>
+<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="n">Writing</span> <span class="n">rules</span> <span class="n">to</span><span class="p">:</span>  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rules</span><span class="o">/</span><span class="n">pulledpork</span><span class="o">.</span><span class="n">rules</span>
+<a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a><span class="n">Program</span> <span class="n">execution</span> <span class="n">complete</span><span class="o">.</span>
+</code></pre></div>
+<p>Edit snort’s config to point to Pulledpork’s rules</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="n">sudo</span> <span class="n">nano</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">snort</span><span class="o">/</span><span class="n">snort</span><span class="o">.</span><span class="n">lua</span>
+</code></pre></div>
+<p>Change the include path to point to pulledpork.rules</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="n">ips</span> <span class="o">=</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="p">{</span>
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>    <span class="o">--</span> <span class="n">use</span> <span class="n">this</span> <span class="n">to</span> <span class="n">enable</span> <span class="n">decoder</span> <span class="ow">and</span> <span class="n">inspector</span> <span class="n">alerts</span>
+<a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a>    <span class="n">enable_builtin_rules</span> <span class="o">=</span> <span class="n">true</span><span class="p">,</span>
+<a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a>
+<a id="__codelineno-48-6" name="__codelineno-48-6" href="#__codelineno-48-6"></a>    <span class="o">--</span> <span class="n">use</span> <span class="n">include</span> <span class="k">for</span> <span class="n">rules</span> <span class="n">files</span><span class="p">;</span> <span class="n">be</span> <span class="n">sure</span> <span class="n">to</span> <span class="nb">set</span> <span class="n">your</span> <span class="n">path</span>
+<a id="__codelineno-48-7" name="__codelineno-48-7" href="#__codelineno-48-7"></a>    <span class="o">--</span> <span class="n">note</span> <span class="n">that</span> <span class="n">rules</span> <span class="n">files</span> <span class="n">can</span> <span class="n">include</span> <span class="n">other</span> <span class="n">rules</span> <span class="n">files</span>
+<a id="__codelineno-48-8" name="__codelineno-48-8" href="#__codelineno-48-8"></a>    <span class="o">--</span> <span class="p">(</span><span class="n">see</span> <span class="n">also</span> <span class="n">related</span> <span class="n">path</span> <span class="nb">vars</span> <span class="n">at</span> <span class="n">the</span> <span class="n">top</span> <span class="n">of</span> <span class="n">snort_defaults</span><span class="o">.</span><span class="n">lua</span><span class="p">)</span>
+<a id="__codelineno-48-9" name="__codelineno-48-9" href="#__codelineno-48-9"></a>    <span class="n">include</span> <span class="o">=</span> <span class="s2">"/usr/local/etc/rules/pulledpork.rules"</span><span class="p">,</span>
+<a id="__codelineno-48-10" name="__codelineno-48-10" href="#__codelineno-48-10"></a>    <span class="n">variables</span> <span class="o">=</span> <span class="n">default_variables</span>
+<a id="__codelineno-48-11" name="__codelineno-48-11" href="#__codelineno-48-11"></a><span class="p">}</span>
+</code></pre></div>
+<p>You can see what the rules look like</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="n">cat</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rules</span><span class="o">/</span><span class="n">pulledpork</span><span class="o">.</span><span class="n">rules</span> <span class="o">|</span> <span class="n">less</span>
+</code></pre></div>
+<p>Test Snort</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="n">snort</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">snort</span><span class="o">/</span><span class="n">snort</span><span class="o">.</span><span class="n">lua</span> <span class="o">--</span><span class="n">plugin</span><span class="o">-</span><span class="n">path</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">so_rules</span><span class="o">/</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="o">...</span>
+<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="n">Snort</span> <span class="n">successfully</span> <span class="n">validated</span> <span class="n">the</span> <span class="n">configuration</span> <span class="p">(</span><span class="k">with</span> <span class="mi">0</span> <span class="n">warnings</span><span class="p">)</span><span class="o">.</span>
+</code></pre></div>
+<p>Trigger alert by running:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="n">curl</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">testmyids</span><span class="o">.</span><span class="n">com</span>
+</code></pre></div>
+<p>Verify that alerts are generated by the community rules</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="n">tail</span> <span class="n">alert_fast</span><span class="o">.</span><span class="n">txt</span> 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="mi">09</span><span class="o">/</span><span class="mi">16</span><span class="o">-</span><span class="mi">23</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mf">10.392572</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">498</span><span class="p">:</span><span class="mi">11</span><span class="p">]</span> <span class="s2">"INDICATOR-COMPROMISE id check returned root"</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="n">Classification</span><span class="p">:</span> <span class="n">Potentially</span> <span class="n">Bad</span> <span class="n">Traffic</span><span class="p">]</span> <span class="p">[</span><span class="n">Priority</span><span class="p">:</span> <span class="mi">2</span><span class="p">]</span> <span class="p">{</span><span class="n">TCP</span><span class="p">}</span> <span class="mf">217.160.0.187</span><span class="p">:</span><span class="mi">80</span> <span class="o">-&gt;</span> <span class="mf">10.0.0.22</span><span class="p">:</span><span class="mi">36062</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="mi">09</span><span class="o">/</span><span class="mi">16</span><span class="o">-</span><span class="mi">23</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mf">12.926837</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">498</span><span class="p">:</span><span class="mi">11</span><span class="p">]</span> <span class="s2">"INDICATOR-COMPROMISE id check returned root"</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="n">Classification</span><span class="p">:</span> <span class="n">Potentially</span> <span class="n">Bad</span> <span class="n">Traffic</span><span class="p">]</span> <span class="p">[</span><span class="n">Priority</span><span class="p">:</span> <span class="mi">2</span><span class="p">]</span> <span class="p">{</span><span class="n">TCP</span><span class="p">}</span> <span class="mf">217.160.0.187</span><span class="p">:</span><span class="mi">80</span> <span class="o">-&gt;</span> <span class="mf">10.0.0.22</span><span class="p">:</span><span class="mi">36076</span>
+</code></pre></div>
+<h2 id="test-ips"><strong>Test IPS</strong></h2>
+<p>Start Snort in IPS mode using DAQ AFPacket by running:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="n">sudo</span> <span class="n">snort</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">snort</span><span class="o">/</span><span class="n">snort</span><span class="o">.</span><span class="n">lua</span> <span class="o">--</span><span class="n">daq</span> <span class="n">afpacket</span> <span class="o">-</span><span class="n">A</span> <span class="n">alert_fast</span> <span class="o">-</span><span class="n">l</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">snort</span> <span class="o">-</span><span class="n">i</span> <span class="n">ens32</span>
+</code></pre></div>
+<p>Note to run Snort in IPS mode using DAQ NFQueue, run: </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="n">sudo</span> <span class="n">snort</span> <span class="o">-</span><span class="n">Q</span> <span class="o">--</span><span class="n">daq</span> <span class="n">nfq</span> <span class="o">--</span><span class="n">daq</span><span class="o">-</span><span class="n">var</span> <span class="n">device</span><span class="o">=</span><span class="n">ens32</span> <span class="o">--</span><span class="n">daq</span><span class="o">-</span><span class="n">var</span> <span class="n">queue</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">snort</span><span class="o">/</span><span class="n">snort</span><span class="o">.</span><span class="n">lua</span> <span class="o">-</span><span class="n">A</span> <span class="n">alert_fast</span> <span class="o">-</span><span class="n">l</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">snort</span>
+</code></pre></div>
+<p>Create the queue. To send traffic for the interface <code>ens32</code> to NFQ, for incoming and outgoing traffic on the <code>ens32</code> interface:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="n">sudo</span> <span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">i</span> <span class="n">ens32</span> <span class="o">-</span><span class="n">j</span> <span class="n">NFQUEUE</span> <span class="o">--</span><span class="n">queue</span><span class="o">-</span><span class="n">num</span> <span class="mi">1</span>
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="n">sudo</span> <span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">OUTPUT</span> <span class="o">-</span><span class="n">o</span> <span class="n">ens32</span> <span class="o">-</span><span class="n">j</span> <span class="n">NFQUEUE</span> <span class="o">--</span><span class="n">queue</span><span class="o">-</span><span class="n">num</span> <span class="mi">1</span>
+</code></pre></div>
+<p>For forwarded traffic (if Snort is installed at the gateway):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="n">sudo</span> <span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">FORWARD</span> <span class="o">-</span><span class="n">i</span> <span class="n">ens32</span> <span class="o">-</span><span class="n">j</span> <span class="n">NFQUEUE</span> <span class="o">--</span><span class="n">queue</span><span class="o">-</span><span class="n">num</span> <span class="mi">1</span>
+</code></pre></div>
+<p>Verify iptables configuration by running:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="n">sudo</span> <span class="n">iptables</span> <span class="o">-</span><span class="n">L</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="n">n</span>
+</code></pre></div>
+<p>To determine the line numbers for your <code>NFQUEUE</code> rules, run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="n">sudo</span> <span class="n">iptables</span> <span class="o">-</span><span class="n">L</span> <span class="o">--</span><span class="n">line</span><span class="o">-</span><span class="n">numbers</span>
+</code></pre></div>
+<p>This will output a list of all the rules in your iptables with their corresponding line numbers. You should look for the rules in the <code>INPUT</code> and <code>OUTPUT</code> chains that mention <code>NFQUEUE</code>, and note their line numbers. Once you have the line numbers, you can delete the rules using:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="n">sudo</span> <span class="n">iptables</span> <span class="o">-</span><span class="n">D</span> <span class="n">INPUT</span> <span class="o">&lt;</span><span class="n">line_number</span><span class="o">&gt;</span>
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="n">sudo</span> <span class="n">iptables</span> <span class="o">-</span><span class="n">D</span> <span class="n">OUTPUT</span> <span class="o">&lt;</span><span class="n">line_number</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>Change verb in the local.rules from <code>alert</code> to <code>drop</code> </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="n">nano</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rules</span><span class="o">/</span><span class="n">local</span><span class="o">.</span><span class="n">rules</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="n">drop</span> <span class="n">icmp</span> <span class="nb">any</span> <span class="nb">any</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="n">HOME_NET</span> <span class="nb">any</span> <span class="p">(</span><span class="n">msg</span><span class="p">:</span><span class="s2">"ICMP Ping Detected"</span><span class="p">;</span> <span class="n">sid</span><span class="p">:</span><span class="mi">1000001</span><span class="p">;</span> <span class="n">rev</span><span class="p">:</span><span class="mi">1</span><span class="p">;)</span>
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a><span class="n">drop</span> <span class="n">tcp</span> <span class="nb">any</span> <span class="nb">any</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="n">HOME_NET</span> <span class="mi">22</span> <span class="p">(</span><span class="n">msg</span><span class="p">:</span><span class="s2">"SSH Authentication Attempt"</span><span class="p">;</span> <span class="n">sid</span><span class="p">:</span><span class="mi">1000002</span><span class="p">;</span> <span class="n">rev</span><span class="p">:</span><span class="mi">1</span><span class="p">;)</span>
+</code></pre></div>
+<p>From another internal host, run ping to Snort virtual machine. Ping should not go through.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="n">ping</span> <span class="mf">10.0.0.22</span>
+</code></pre></div>
+<p>Verify that alerts have been generated in alert_fast.txt</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="n">tail</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">snort</span><span class="o">/</span><span class="n">alert_fast</span><span class="o">.</span><span class="n">txt</span>
+</code></pre></div>
+<p>Note: running Snort in IPS mode using DAQ NFQueue is ideal in this scenario but this does not generate logs in alert_fast.txt. For demonstration purposes, Snort was run in IPS mode using DAQ AFPacket.</p>
+<h3 id="install-snort-ruleset-offline"><strong>Install Snort Ruleset Offline</strong></h3>
+<p><strong>On a machine with internet connection,</strong> download snort3-community-rules.tar.gz from <a href="https://www.snort.org/downloads">https://www.snort.org/downloads</a></p>
+<p><strong>Transfer the tarball to the air-gapped environment.</strong> </p>
+<p>Make a folder called snort-rules</p>
+<p>Untar the tarball to snort-rules folder</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="n">mkdir</span> <span class="o">~/</span><span class="n">snort</span><span class="o">/</span><span class="n">snort</span><span class="o">-</span><span class="n">rules</span>
+<a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a><span class="n">tar</span> <span class="o">-</span><span class="n">xvzf</span> <span class="n">snort3</span><span class="o">-</span><span class="n">community</span><span class="o">-</span><span class="n">rules</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> <span class="o">-</span><span class="n">C</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">cyber</span><span class="o">/</span><span class="n">snort</span><span class="o">/</span><span class="n">snort</span><span class="o">-</span><span class="n">rules</span><span class="o">/</span>
+</code></pre></div>
+<p>Merge all <code>.rules</code> into single rule file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="n">cat</span> <span class="o">*.</span><span class="n">rules</span> <span class="o">&gt;</span> <span class="n">merged</span><span class="o">.</span><span class="n">rules</span>
+</code></pre></div>
+<p>Move the Merged File to the pulledpork.rules in the Snort Rules Directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="n">sudo</span> <span class="n">mv</span> <span class="n">merged</span><span class="o">.</span><span class="n">rules</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">snort</span><span class="o">/</span><span class="n">rules</span><span class="o">/</span><span class="n">pulledpork</span><span class="o">.</span><span class="n">rules</span>
+</code></pre></div>
+<h2 id="malware-traffic-analysis-reading-pcap-with-snort"><strong>Malware traffic analysis - reading pcap with Snort</strong></h2>
+<p>Make a directory called test and cd into it.</p>
+<p>Download a sample pcap from https://www.malware-traffic-analysis.net</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="n">mkdir</span> <span class="o">~/</span><span class="n">test</span>
+<a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a><span class="n">cd</span> <span class="o">~/</span><span class="n">test</span>
+<a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">malware</span><span class="o">-</span><span class="n">traffic</span><span class="o">-</span><span class="n">analysis</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="mi">2024</span><span class="o">/</span><span class="mi">02</span><span class="o">/</span><span class="mi">08</span><span class="o">/</span><span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="n">TA577</span><span class="o">-</span><span class="n">Pikabot</span><span class="o">-</span><span class="n">infection</span><span class="o">-</span><span class="n">traffic</span><span class="o">.</span><span class="n">pcap</span><span class="o">.</span><span class="n">zip</span>
+<a id="__codelineno-68-4" name="__codelineno-68-4" href="#__codelineno-68-4"></a><span class="n">unzip</span> <span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="n">TA577</span><span class="o">-</span><span class="n">Pikabot</span><span class="o">-</span><span class="n">infection</span><span class="o">-</span><span class="n">traffic</span><span class="o">.</span><span class="n">pcap</span><span class="o">.</span><span class="n">zip</span> 
+</code></pre></div>
+<p>Read the pcap with Snort and focus on signatures generated</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="n">snort</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">snort</span><span class="o">/</span><span class="n">snort</span><span class="o">.</span><span class="n">lua</span> <span class="o">--</span><span class="n">plugin</span><span class="o">-</span><span class="n">path</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">so_rules</span><span class="o">/</span> <span class="o">-</span><span class="n">r</span> <span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="n">TA577</span><span class="o">-</span><span class="n">Pikabot</span><span class="o">-</span><span class="n">infection</span><span class="o">-</span><span class="n">traffic</span><span class="o">.</span><span class="n">pcap</span> <span class="o">-</span><span class="n">A</span> <span class="n">alert_fast</span> <span class="o">-</span><span class="n">q</span> <span class="o">&gt;</span> <span class="n">pcap</span><span class="o">-</span><span class="n">signatures_pikabot</span><span class="o">.</span><span class="n">txt</span>
+</code></pre></div>
+<p>Cat out or grep out pcap-signatures_pikabot.txt</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="n">cyber</span><span class="nd">@Snort</span><span class="p">:</span><span class="o">~/</span><span class="n">test</span><span class="err">$</span> <span class="n">cat</span> <span class="n">pcap</span><span class="o">-</span><span class="n">signatures_pikabot</span><span class="o">.</span><span class="n">txt</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">d</span> <span class="s2">"]"</span> <span class="o">-</span><span class="n">f</span> <span class="mi">3</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">d</span> <span class="s2">"["</span> <span class="o">-</span><span class="n">f</span> <span class="mi">1</span> <span class="o">|</span>  <span class="n">cut</span> <span class="o">-</span><span class="n">d</span> <span class="s1">'"'</span> <span class="o">-</span><span class="n">f</span> <span class="mi">2</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">|</span> <span class="n">uniq</span> <span class="o">-</span><span class="n">c</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">-</span><span class="n">nr</span>
+<a id="__codelineno-70-2" name="__codelineno-70-2" href="#__codelineno-70-2"></a>    <span class="mi">110</span> <span class="p">(</span><span class="n">arp_spoof</span><span class="p">)</span> <span class="n">unicast</span> <span class="n">ARP</span> <span class="n">request</span>
+<a id="__codelineno-70-3" name="__codelineno-70-3" href="#__codelineno-70-3"></a>      <span class="mi">4</span> <span class="n">PROTOCOL</span><span class="o">-</span><span class="n">DNS</span> <span class="n">SPOOF</span> <span class="n">query</span> <span class="n">response</span> <span class="k">with</span> <span class="n">TTL</span> <span class="n">of</span> <span class="mi">1</span> <span class="nb">min</span><span class="o">.</span> <span class="ow">and</span> <span class="n">no</span> <span class="n">authority</span>
+<a id="__codelineno-70-4" name="__codelineno-70-4" href="#__codelineno-70-4"></a>      <span class="mi">4</span> <span class="n">INDICATOR</span><span class="o">-</span><span class="n">SCAN</span> <span class="n">UPnP</span> <span class="n">service</span> <span class="n">discover</span> <span class="n">attempt</span>
+<a id="__codelineno-70-5" name="__codelineno-70-5" href="#__codelineno-70-5"></a>      <span class="mi">1</span> <span class="p">(</span><span class="n">http_inspect</span><span class="p">)</span> <span class="n">URI</span> <span class="n">path</span> <span class="n">contains</span> <span class="n">consecutive</span> <span class="n">slash</span> <span class="n">characters</span>
+<a id="__codelineno-70-6" name="__codelineno-70-6" href="#__codelineno-70-6"></a>      <span class="mi">1</span> <span class="p">(</span><span class="n">http_inspect</span><span class="p">)</span> <span class="n">Content</span><span class="o">-</span><span class="n">Transfer</span><span class="o">-</span><span class="n">Encoding</span> <span class="n">used</span> <span class="k">as</span> <span class="n">HTTP</span> <span class="n">header</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a><span class="n">grep</span> <span class="o">-</span><span class="n">i</span> <span class="n">spoof</span> <span class="n">pcap</span><span class="o">-</span><span class="n">signatures_pikabot</span><span class="o">.</span><span class="n">txt</span> 
+<a id="__codelineno-71-2" name="__codelineno-71-2" href="#__codelineno-71-2"></a><span class="mi">02</span><span class="o">/</span><span class="mi">09</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="mf">59.548577</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">254</span><span class="p">:</span><span class="mi">17</span><span class="p">]</span> <span class="s2">"PROTOCOL-DNS SPOOF query response with TTL of 1 min. and no authority"</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="n">Classification</span><span class="p">:</span> <span class="n">Potentially</span> <span class="n">Bad</span> <span class="n">Traffic</span><span class="p">]</span> <span class="p">[</span><span class="n">Priority</span><span class="p">:</span> <span class="mi">2</span><span class="p">]</span> <span class="p">{</span><span class="n">UDP</span><span class="p">}</span> <span class="mf">10.2.8.1</span><span class="p">:</span><span class="mi">53</span> <span class="o">-&gt;</span> <span class="mf">10.2.8.101</span><span class="p">:</span><span class="mi">64560</span>
+<a id="__codelineno-71-3" name="__codelineno-71-3" href="#__codelineno-71-3"></a><span class="mi">02</span><span class="o">/</span><span class="mi">09</span><span class="o">-</span><span class="mi">05</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mf">14.405544</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="mi">112</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="s2">"(arp_spoof) unicast ARP request"</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="n">Priority</span><span class="p">:</span> <span class="mi">3</span><span class="p">]</span> <span class="p">{</span><span class="n">ARP</span><span class="p">}</span>  <span class="o">-&gt;</span> 
+</code></pre></div>
+<h2 id="install-snort-on-gateway"><strong>Install Snort on Gateway</strong></h2>
+<p>While Suricata can be installed on a host, it can also be installed on a gateway such as <strong>pfSense</strong>. The pfSense&nbsp;is a free and open source firewall and router. For installing and configuring pfSense, refer to pfSense <a href="https://docs.netgate.com/pfsense/en/latest/">documentation</a> and instruction <a href="https://youtu.be/Ayr_av2EX_U?si=c4k5XdMjTvNpqRa4">video</a>. pfSense can be downloaded from <a href="https://www.pfsense.org/download/">here.</a></p>
+<p>Full demonstration video on configuring Suricata on pfSense can be found <a href="https://youtu.be/SapAcfHbQSE?si=PWCVnzLmpqgTVvh1">here</a>. </p>
+<p>After competing basic configuration on pfSense, navigate to System &gt; Package Manager &gt; Available Packages on pfSense web UI.</p>
+<p>Search for <code>snort</code> and click install (confirm when prompted). Internet connection is required.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%201.png" data-desc-position="bottom"><img alt="image.png" src="image%201.png"></a></p>
+<p>Navigate to Services &gt; Snort &gt; Global Settings tab. </p>
+<h3 id="test-ids-and-ips-with-open-source-rules"><strong>Test IDS and IPS with open source rules</strong></h3>
+<p>In this demonstration, we are running Snort on the <strong>WAN</strong> interface. Full demonstration video can be found <a href="https://youtu.be/TvQfD5oUN5o?si=-Wx0jDCGnpeXz-8M">here</a>. </p>
+<p>Select Enable Snort VRT. Copy and paste your Snort Oinkmaster Code (you will need to create an account in <a href="https://www.snort.org/">https://www.snort.org/</a>).</p>
+<p>Enable Snort GPLv2, and ET Open.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%202.png" data-desc-position="bottom"><img alt="image.png" src="image%202.png"></a></p>
+<p>Enable OpenAppID, AppID Open Text Rules, and FEODO Tracker Botnet C2 IP Rules.</p>
+<p>Set Rule Update Interval to 1 Day and select Hide Deprecated Rules Categories.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%203.png" data-desc-position="bottom"><img alt="image.png" src="image%203.png"></a></p>
+<p>Select Remove Blocked Hosts interval to your preferred time. Click save.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%204.png" data-desc-position="bottom"><img alt="image.png" src="image%204.png"></a></p>
+<p>Navigate to the Updates tab and click Update Rules.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%205.png" data-desc-position="bottom"><img alt="image.png" src="image%205.png"></a></p>
+<p>Once the update is complete, you will see timestamps of when the update is completed.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%206.png" data-desc-position="bottom"><img alt="image.png" src="image%206.png"></a></p>
+<p>Navigate to Interfaces tab and add a WAN interface. Enable Interface and name it <strong>WAN</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%207.png" data-desc-position="bottom"><img alt="image.png" src="image%207.png"></a></p>
+<p>Select Block Offenders. Set IPS Mode to Legacy Mode and select SRC IP to Block. Click Save.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%208.png" data-desc-position="bottom"><img alt="image.png" src="image%208.png"></a></p>
+<p>Navigate to WAN Categories. Select Use IPS Policy and set IPS Policy to Security. Click Save.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%209.png" data-desc-position="bottom"><img alt="image.png" src="image%209.png"></a></p>
+<p>Navigate to WAN Rules. Select IPS Policy-Security and click Apply.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2010.png" data-desc-position="bottom"><img alt="image.png" src="image%2010.png"></a></p>
+<p>Navigate to WAN IP Rep and select Enable IP Reputation. Click Save.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2011.png" data-desc-position="bottom"><img alt="image.png" src="image%2011.png"></a></p>
+<p>Make sure the WAN interface is up and running. If not, click the play button.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2012.png" data-desc-position="bottom"><img alt="image.png" src="image%2012.png"></a></p>
+<p>Navigate to Firewall &gt; NAT and add 1:1 NAT for Windows host. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2013.png" data-desc-position="bottom"><img alt="image.png" src="image%2013.png"></a></p>
+<p>Navigate to Firewall &gt; Virtual IPs and add Public IP for Windows host.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="public_ip.png" data-desc-position="bottom"><img alt="public ip.png" src="public_ip.png"></a></p>
+<p>From Kali machine, run <code>nmap (public IP)</code>  </p>
+<p>Navigate to Alerts and verify that alerts have been generated.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="public_ip%201.png" data-desc-position="bottom"><img alt="public ip.png" src="public_ip%201.png"></a></p>
+<p>Navigate to Blocked and verify that the Kali machine is being blocked</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2014.png" data-desc-position="bottom"><img alt="image.png" src="image%2014.png"></a></p>
+<h3 id="test-ids-and-ips-with-custom-rules"><strong>Test IDS and IPS with custom rules</strong></h3>
+<p>In this demonstration, we are running Snort on the <strong>LAN</strong> interface. </p>
+<p>Navigate to Snort Interfaces &gt; WAN Settings. In this demonstration, we have changed the WAN to LAN. Enable interface and name it as the <strong>LAN</strong> interface. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2015.png" data-desc-position="bottom"><img alt="image.png" src="image%2015.png"></a></p>
+<p>Save and Edit the LAN interface. Note instead of WAN Settings it now displays LAN Settings.</p>
+<p>Navigate to LAN Rules and select custom.rules. Copy and paste the following rule to detect ping from internal to external network.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="n">alert</span> <span class="n">icmp</span> <span class="err">$</span><span class="n">HOME_NET</span> <span class="nb">any</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="mf">8.8.8.8</span><span class="p">]</span> <span class="nb">any</span> <span class="p">(</span><span class="n">msg</span><span class="p">:</span><span class="s2">"ICMP Ping Detected to EXTERNAL IP"</span><span class="p">;</span> <span class="n">sid</span><span class="p">:</span><span class="mi">1000001</span><span class="p">;</span> <span class="n">rev</span><span class="p">:</span><span class="mi">1</span><span class="p">;)</span>
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2016.png" data-desc-position="bottom"><img alt="image.png" src="image%2016.png"></a></p>
+<p>Turn on the LAN interface by clicking the play button.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2017.png" data-desc-position="bottom"><img alt="image.png" src="image%2017.png"></a></p>
+<p>From the Windows host that is connect to an internal network, run ping to 8.8.8.8</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="n">ping</span> <span class="mf">8.8.8.8</span>
+</code></pre></div>
+<p>Navigate to Alerts and verify that Alerts have been generated.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2018.png" data-desc-position="bottom"><img alt="image.png" src="image%2018.png"></a></p>
+<p>Navigate to Snort Interfaces &gt; LAN Settings. </p>
+<p>Select Block Offenders. Set IPS Mode to Inline Mode and click Save.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2019.png" data-desc-position="bottom"><img alt="image.png" src="image%2019.png"></a></p>
+<p>Navigate to LAN Rules. Select custom.rules. Change the rule verb from <code>alert</code> to <code>drop</code> </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="n">drop</span> <span class="n">icmp</span> <span class="err">$</span><span class="n">HOME_NET</span> <span class="nb">any</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="mf">8.8.8.8</span><span class="p">]</span> <span class="nb">any</span> <span class="p">(</span><span class="n">msg</span><span class="p">:</span><span class="s2">"ICMP Ping Detected to EXTERNAL IP"</span><span class="p">;</span> <span class="n">sid</span><span class="p">:</span><span class="mi">1000001</span><span class="p">;</span> <span class="n">rev</span><span class="p">:</span><span class="mi">1</span><span class="p">;)</span>
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2020.png" data-desc-position="bottom"><img alt="image.png" src="image%2020.png"></a></p>
+<p>From the Windows host that is connect to an internal network, run ping to 8.8.8.8</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="n">ping</span> <span class="mf">8.8.8.8</span>
+</code></pre></div>
+<p>Verify that pings were dropped.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2021.png" data-desc-position="bottom"><img alt="image.png" src="image%2021.png"></a></p>
+<h2 id="references"><strong>References</strong></h2>
+<ul>
+<li>https://docs.snort.org/start/</li>
+<li>https://github.com/snort3/snort3</li>
+<li>https://youtu.be/j7Wapw3Gxvg?si=cVRojAePvL7z5rMx</li>
+<li>https://youtu.be/TvQfD5oUN5o?si=-Wx0jDCGnpeXz-8M</li>
+<li>https://youtu.be/SapAcfHbQSE?si=LPiMoqLVnZ5D2Lqx</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Understanding IDS/IPS">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Understanding IDS/IPS
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../suricata/suricata.html" class="md-footer__link md-footer__link--next" aria-label="Next: Suricata">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Suricata
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2024–2026 <a href="https://github.com/cyberdefencekit" target="_blank" rel="noopener">Cyber Defence Kit by Joseph Jee</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/cyberdefencekit" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "header.autohide", "announce.dismiss", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

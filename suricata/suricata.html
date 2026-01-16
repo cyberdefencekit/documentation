@@ -1,0 +1,2471 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../snort/snort.html">
+      
+      
+        <link rel="next" href="../understanding-SIRP/understanding-SIRP.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/Cyber Defence Kit logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Suricata - Cyber Defence Kit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#suricata" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-header__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cyber Defence Kit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Suricata
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="light-blue" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SIEM/understanding-SIEM.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SIEM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IDS/IPS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SIRP/understanding-SIRP.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SIRP
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SOAR/understanding-SOAR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOAR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-NTA/understanding-NTA.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NTA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-DFIR/understanding-DFIR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  DFIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-EDR/understanding-EDR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  EDR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../caldera/caldera.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MITRE
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-nav__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    Cyber Defence Kit
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIEM
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SIEM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIEM/understanding-SIEM.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SIEM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../splunk/splunk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Splunk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wazuh/wazuh.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wazuh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securityonion/securityonion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Onion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDS/IPS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDS/IPS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding IDS/IPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snort/snort.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Snort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Suricata
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="suricata.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Suricata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lab-setup-for-proof-of-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Setup for Proof of Concept
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-suricata-on-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Suricata on Host
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Suricata on Host">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#suricata-update-offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suricata-update offline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#suricata-update-online-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suricata-update online (recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-suricata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Suricata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alerting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alerting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eve-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EVE JSON
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-ips-inline-for-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up IPS inline for Linux
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-ips-with-netfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up IPS with Netfilter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-suricata-on-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Suricata on Gateway
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Suricata on Gateway">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing IDS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finetuning-rules-to-reduce-false-positives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finetuning rules to reduce false positives
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-ips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing IPS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIRP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SIRP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIRP/understanding-SIRP.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SIRP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../thehive/thehive.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TheHive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iris/iris.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IRIS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOAR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOAR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SOAR/understanding-SOAR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SOAR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shuffle/shuffle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shuffle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NTA
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NTA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-NTA/understanding-NTA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding NTA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wireshark/wireshark.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wireshark
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zeek/zeek.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zeek
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zui/zui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zui
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7">
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFIR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DFIR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-DFIR/understanding-DFIR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding DFIR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../velociraptor/velociraptor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Velociraptor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8">
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EDR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EDR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-EDR/understanding-EDR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding EDR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auroralite/auroralite.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aurora Lite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9">
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MITRE
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MITRE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../caldera/caldera.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caldera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigator/navigator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MITRE ATT&amp;CK Navigator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="suricata"><strong>Suricata</strong></h1>
+<p>Suricata is an open-source network threat detection engine developed by the Open Information Security Foundation (OISF). It provides capabilities for real-time intrusion detection (IDS), inline intrusion prevention (IPS), network security monitoring (NSM), and offline packet capture (pcap) processing. </p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vI5qRZgY1ws?si=fXH6ei0qWLlRhD99" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h2 id="lab-setup-for-proof-of-concept"><strong>Lab Setup for Proof of Concept</strong></h2>
+<p>In this proof of concept, instead of simulating attacks, the Windows host acted as a compromised machine where malicious websites were visited to trigger alerts in a safe and controlled setting.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Host</strong></th>
+<th><strong>OS</strong></th>
+<th><strong>Role</strong></th>
+<th><strong>IP Address</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pfsense</td>
+<td>FreeBSD (pfSense v2.7.2)</td>
+<td>Firewall/Router (Gateway IDS/IPS)</td>
+<td>192.168.1.200 (WAN) / 10.0.0.2 (LAN)</td>
+</tr>
+<tr>
+<td>Suricata</td>
+<td>Ubuntu 22.04 LTS</td>
+<td>Host IDS/IPS</td>
+<td>10.0.0.27</td>
+</tr>
+<tr>
+<td>WS2019</td>
+<td>Windows Server 2019</td>
+<td>Compromised machine</td>
+<td>10.0.0.24</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="suricata.drawio_%281%29.png" data-desc-position="bottom"><img alt="suricata.drawio (1).png" src="suricata.drawio_%281%29.png"></a></p>
+<h2 id="install-suricata-on-host"><strong>Install Suricata on Host</strong></h2>
+<p>In this demonstration, we will be installing Suricata on the Ubuntu virtual machine. We will be simulating install in an air-gapped environment but note that some parts of the step requires internet connection.</p>
+<p>On a Ubuntu machine with internet access
+Add the necessary repository for Suricata:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">software</span><span class="o">-</span><span class="n">properties</span><span class="o">-</span><span class="n">common</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">sudo</span> <span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span> <span class="n">ppa</span><span class="p">:</span><span class="n">oisf</span><span class="o">/</span><span class="n">suricata</span><span class="o">-</span><span class="n">stable</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+</code></pre></div>
+<p>Create a directory to store Suricata. Adjust the directory permissions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>~/suricata-offline
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>~/suricata-offline
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>~/suricata-offline
+</code></pre></div>
+<p>Download the Suricata package and all its dependencies:</p>
+<p>Download the Emerging Threats Open rule set:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>download<span class="w"> </span>suricata
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>wget<span class="w"> </span>https://rules.emergingthreats.net/open/suricata-7.0.6/emerging.rules.tar.gz
+</code></pre></div>
+<p>Create a directory to store dependencies. Adjust the directory permissions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>dependencies
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">cd</span><span class="w"> </span>dependencies
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>~/suricata-offline/dependencies
+</code></pre></div>
+<p>Download the required dependencies</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>download<span class="w"> </span>autoconf<span class="w"> </span>automake<span class="w"> </span>build-essential<span class="w"> </span>cargo<span class="w"> </span>cbindgen<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span>libjansson-dev<span class="w"> </span>libpcap-dev<span class="w"> </span>libpcre2-dev<span class="w"> </span>libtool<span class="w"> </span>libyaml-dev<span class="w"> </span>make<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span>pkg-config<span class="w"> </span>rustc<span class="w"> </span>zlib1g-dev<span class="w"> </span>libc6-dev<span class="w"> </span>gcc<span class="w"> </span>g++<span class="w"> </span>dpkg-dev<span class="w"> </span>binutils<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span>libpcre2-16-0<span class="w"> </span>libpcre2-posix3<span class="w"> </span>libdpkg-perl<span class="w"> </span>libstd-rust-dev<span class="w"> </span>libssh2-1<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span>libpcap0.8-dev<span class="w"> </span>m4<span class="w"> </span>autotools-dev<span class="w"> </span>binutils-common<span class="w"> </span>libbinutils<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span>binutils-x86-64-linux-gnu<span class="w"> </span>g++-11<span class="w"> </span>gcc-11<span class="w"> </span>libc-dev-bin<span class="w"> </span>linux-libc-dev<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span>libcrypt-dev<span class="w"> </span>rpcsvc-proto<span class="w"> </span>libtirpc-dev<span class="w"> </span>libnsl-dev<span class="w"> </span>libdbus-1-dev<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span>libstd-rust-1.75<span class="w"> </span>libctf-nobfd0<span class="w"> </span>libctf0<span class="w"> </span>lto-disabled-list<span class="w"> </span>libstdc++-11-dev<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span>libcc1-0<span class="w"> </span>libgcc-11-dev<span class="w"> </span>libsigsegv2<span class="w"> </span><span class="nv">libc6</span><span class="o">=</span><span class="m">2</span>.35-0ubuntu3.8<span class="w"> </span>libitm1<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span>libasan6<span class="w"> </span>liblsan0<span class="w"> </span>libtsan0<span class="w"> </span>libubsan1<span class="w"> </span>libquadmath0<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span>libevent-pthreads-2.1-7<span class="w"> </span>libhiredis0.14<span class="w"> </span>libhtp2<span class="w"> </span>libhyperscan5<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span>libluajit-5.1-2<span class="w"> </span>libnet1<span class="w"> </span>libnetfilter-queue1<span class="w"> </span>libluajit-5.1-common<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">    </span>liblzma-dev<span class="w"> </span>libevent-core-2.1-7<span class="w"> </span>curl<span class="w"> </span>jq<span class="w"> </span><span class="nv">libcurl4</span><span class="o">=</span><span class="m">7</span>.81.0-1ubuntu1.17<span class="w"> </span><span class="nv">libjq1</span><span class="o">=</span><span class="m">1</span>.6-2.1ubuntu3<span class="w"> </span>libonig5<span class="w"> </span>libc6-dbg<span class="w"> </span>libc6<span class="w"> </span>zlib1g
+</code></pre></div>
+<p>Transfer suricata-offline folder to /opt directory in Ubuntu machine without internet access. </p>
+<p>Install dependencies and suricata</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/suricata-offline/dependencies
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>*
+</code></pre></div>
+<p>Install Suricata</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/suricata-offline/
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>suricata_1%3a7.0.6-0ubuntu2_amd64.deb
+</code></pre></div>
+<p>After installing Suricata, you can check which version of Suricata you have running and with what options, as well as the service state:</p>
+<p>Suricata is running in exited state, which typically indicates that the service started successfully and then exited without issues because it's running in IDS mode.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>suricata<span class="w"> </span>--build-info
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>suricata
+</code></pre></div>
+<h3 id="basic-setup"><strong>Basic setup</strong></h3>
+<p>First, determine the interface(s) and IP address(es) on which Suricata should be inspecting network packets:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ip<span class="w"> </span>a
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>...
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="m">2</span>:<span class="w"> </span>ens32:<span class="w"> </span>&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>fq_codel<span class="w"> </span>state<span class="w"> </span>UP<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span>link/ether<span class="w"> </span><span class="m">00</span>:0c:29:51:ef:1b<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span>altname<span class="w"> </span>enp2s0
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span>inet<span class="w"> </span><span class="m">10</span>.0.0.25/24<span class="w"> </span>brd<span class="w"> </span><span class="m">10</span>.0.0.255<span class="w"> </span>scope<span class="w"> </span>global<span class="w"> </span>noprefixroute<span class="w"> </span>ens32
+</code></pre></div>
+<p>Use that information to configure Suricata:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/suricata/suricata.yaml
+</code></pre></div>
+<p>Specify internal network in the HOME_NET </p>
+<p>Specify network interface in af-packet and pcap.</p>
+<p>Set use-mmap to yes.</p>
+<p>Set community-id to true</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>vars:
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="c1"># more specific is better for alert accuracy and performance</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span>address-groups:
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span>HOME_NET:<span class="w"> </span><span class="s2">"[10.0.0.0/24]"</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>...
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>community-id:<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>...
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>af-packet:
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span>-<span class="w"> </span>interface:<span class="w"> </span>ens32
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">      </span>cluster-id:<span class="w"> </span><span class="m">99</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">      </span>cluster-type:<span class="w"> </span>cluster_flow
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">      </span>defrag:<span class="w"> </span>yes
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">      </span>use-mmap:<span class="w"> </span>yes
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>...
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="c1"># Cross platform libpcap capture support</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>pcap:
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">  </span>-<span class="w"> </span>interface:<span class="w"> </span>ens32
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w"> </span>checksum-validation:<span class="w"> </span>no
+</code></pre></div>
+<h3 id="suricata-update-offline"><strong>Suricata-update offline</strong></h3>
+<p>Run <code>suricata-update</code> to update rules and create /var/lib/suricata folder</p>
+<p>Note it is expected to get the error “Failed to fetch https://rules.emergingthreats.net/open/suricata-7.0.6/emerging.rules.tar.gz:”</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>suricata-update
+</code></pre></div>
+<p>Make a folder called suricata-rules and extract <code>emerging.rules.tar.gz</code> to that directory</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>suricata-rules
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>sudo<span class="w"> </span>tar<span class="w"> </span>-xvzf<span class="w"> </span>emerging.rules.tar.gz<span class="w"> </span>-C<span class="w"> </span>/opt/suricata-offline/suricata-rules/
+</code></pre></div>
+<p>Append the rules from the file to the main /var/lib/suricata/rules/suricata.rules file</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">'find /opt/suricata-offline/suricata-rules/rules/ -name "*.rules" -exec cat {} + &gt;&gt; /var/lib/suricata/rules/suricata.rules'</span>
+</code></pre></div>
+<h3 id="suricata-update-online-recommended"><strong>Suricata-update online (recommended)</strong></h3>
+<p>Running suricata-update with internet connection simplifies the process of downloading and installing rulesets.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>suricata-update
+</code></pre></div>
+<p>You can also list sources and download rules from a specific source</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>sudo<span class="w"> </span>suricata-update<span class="w"> </span>list-sources
+</code></pre></div>
+<p><strong>Summary of different license types:</strong></p>
+<ul>
+<li><strong>MIT</strong> is very permissive, allowing almost any use, even commercial.</li>
+<li><strong>Commercial</strong> requires you to pay or subscribe for usage rights, often with strict terms.</li>
+<li><strong>CC-BY-SA-4.0</strong> requires you to give credit and share any modifications under the same license.</li>
+<li><strong>GPL-3.0</strong> requires sharing modifications under the same open-source license and offering the source code.</li>
+<li><strong>Non-Commercial</strong> restricts usage to personal or non-commercial contexts.</li>
+</ul>
+<p>To download the ruleset from a specific source, run:</p>
+<p>If required, update sources</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo<span class="w"> </span>suricata-update<span class="w"> </span>update-sources
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>sudo<span class="w"> </span>suricata-update<span class="w"> </span>enable-source<span class="w"> </span>&lt;Name&gt;
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>sudo<span class="w"> </span>suricata-update
+</code></pre></div>
+<p>Test Suricata configuration file by running</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo<span class="w"> </span>suricata<span class="w"> </span>-T<span class="w"> </span>-c<span class="w"> </span>/etc/suricata/suricata.yaml<span class="w"> </span>-v
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1">#Example output</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>Notice:<span class="w"> </span>suricata:<span class="w"> </span>This<span class="w"> </span>is<span class="w"> </span>Suricata<span class="w"> </span>version<span class="w"> </span><span class="m">7</span>.0.6<span class="w"> </span>RELEASE<span class="w"> </span>running<span class="w"> </span><span class="k">in</span><span class="w"> </span>SYSTEM<span class="w"> </span>mode
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>Info:<span class="w"> </span>cpu:<span class="w"> </span>CPUs/cores<span class="w"> </span>online:<span class="w"> </span><span class="m">2</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>Info:<span class="w"> </span>suricata:<span class="w"> </span>Running<span class="w"> </span>suricata<span class="w"> </span>under<span class="w"> </span><span class="nb">test</span><span class="w"> </span>mode
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>Info:<span class="w"> </span>suricata:<span class="w"> </span>Setting<span class="w"> </span>engine<span class="w"> </span>mode<span class="w"> </span>to<span class="w"> </span>IDS<span class="w"> </span>mode<span class="w"> </span>by<span class="w"> </span>default
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>Info:<span class="w"> </span>exception-policy:<span class="w"> </span>master<span class="w"> </span>exception-policy<span class="w"> </span><span class="nb">set</span><span class="w"> </span>to:<span class="w"> </span>auto
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>Info:<span class="w"> </span>logopenfile:<span class="w"> </span>fast<span class="w"> </span>output<span class="w"> </span>device<span class="w"> </span><span class="o">(</span>regular<span class="o">)</span><span class="w"> </span>initialized:<span class="w"> </span>fast.log
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>Info:<span class="w"> </span>logopenfile:<span class="w"> </span>eve-log<span class="w"> </span>output<span class="w"> </span>device<span class="w"> </span><span class="o">(</span>regular<span class="o">)</span><span class="w"> </span>initialized:<span class="w"> </span>eve.json
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>Info:<span class="w"> </span>logopenfile:<span class="w"> </span>stats<span class="w"> </span>output<span class="w"> </span>device<span class="w"> </span><span class="o">(</span>regular<span class="o">)</span><span class="w"> </span>initialized:<span class="w"> </span>stats.log
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>Info:<span class="w"> </span>detect:<span class="w"> </span><span class="m">1</span><span class="w"> </span>rule<span class="w"> </span>files<span class="w"> </span>processed.<span class="w"> </span><span class="m">39802</span><span class="w"> </span>rules<span class="w"> </span>successfully<span class="w"> </span>loaded,<span class="w"> </span><span class="m">0</span><span class="w"> </span>rules<span class="w"> </span>failed,<span class="w"> </span><span class="m">0</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>Info:<span class="w"> </span>threshold-config:<span class="w"> </span>Threshold<span class="w"> </span>config<span class="w"> </span>parsed:<span class="w"> </span><span class="m">0</span><span class="w"> </span>rule<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>found
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>Info:<span class="w"> </span>detect:<span class="w"> </span><span class="m">39805</span><span class="w"> </span>signatures<span class="w"> </span>processed.<span class="w"> </span><span class="m">1158</span><span class="w"> </span>are<span class="w"> </span>IP-only<span class="w"> </span>rules,<span class="w"> </span><span class="m">4116</span><span class="w"> </span>are<span class="w"> </span>inspecting<span class="w"> </span>packet<span class="w"> </span>payload,<span class="w"> </span><span class="m">34321</span><span class="w"> </span>inspect<span class="w"> </span>application<span class="w"> </span>layer,<span class="w"> </span><span class="m">108</span><span class="w"> </span>are<span class="w"> </span>decoder<span class="w"> </span>event<span class="w"> </span>only
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>Notice:<span class="w"> </span>suricata:<span class="w"> </span>Configuration<span class="w"> </span>provided<span class="w"> </span>was<span class="w"> </span>successfully<span class="w"> </span>loaded.<span class="w"> </span>Exiting.
+</code></pre></div>
+<p>Note the difference in number of signatures processed, inspecting packet payload and inspect application layers when suricata-update was executed without internet access:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">Info</span><span class="p">:</span> <span class="n">detect</span><span class="p">:</span> <span class="mi">39669</span> <span class="n">signatures</span> <span class="n">processed</span><span class="o">.</span> <span class="mi">1158</span> <span class="n">are</span> <span class="n">IP</span><span class="o">-</span><span class="n">only</span> <span class="n">rules</span><span class="p">,</span> <span class="mi">4110</span> <span class="n">are</span> <span class="n">inspecting</span> <span class="n">packet</span> <span class="n">payload</span><span class="p">,</span> <span class="mi">34193</span> <span class="n">inspect</span> <span class="n">application</span> <span class="n">layer</span><span class="p">,</span> <span class="mi">108</span> <span class="n">are</span> <span class="n">decoder</span> <span class="n">event</span> <span class="n">only</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">Notice</span><span class="p">:</span> <span class="n">suricata</span><span class="p">:</span> <span class="n">Configuration</span> <span class="n">provided</span> <span class="n">was</span> <span class="n">successfully</span> <span class="n">loaded</span><span class="o">.</span> <span class="n">Exiting</span><span class="o">.</span>
+</code></pre></div>
+<h3 id="running-suricata"><strong>Running Suricata</strong></h3>
+<p>With the rules installed, Suricata can run properly and thus we restart it:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>suricata
+</code></pre></div>
+<p>To make sure Suricata is running check the Suricata log:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>sudo<span class="w"> </span>tail<span class="w"> </span>/var/log/suricata/suricata.log
+</code></pre></div>
+<p>The last line will be similar to this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="m">5933</span><span class="w"> </span>-<span class="w"> </span>Suricata-Main<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-09-12<span class="w"> </span><span class="m">13</span>:26:11<span class="w"> </span>Notice:<span class="w"> </span>threads:<span class="w"> </span>Threads<span class="w"> </span>created<span class="w"> </span>-&gt;<span class="w"> </span>W:<span class="w"> </span><span class="m">2</span><span class="w"> </span>FM:<span class="w"> </span><span class="m">1</span><span class="w"> </span>FR:<span class="w"> </span><span class="m">1</span><span class="w">   </span>Engine<span class="w"> </span>started.
+</code></pre></div>
+<p>The actual thread count will depend on the system and the configuration.</p>
+<p>To see statistics, check the&nbsp;<code>stats.log</code>&nbsp;file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/suricata/stats.log
+</code></pre></div>
+<p>By default, it is updated every 8 seconds to show updated values with the current state, like how many packets have been processed and what type of traffic was decoded.</p>
+<h3 id="alerting"><strong>Alerting</strong></h3>
+<p>To test the IDS functionality of Suricata it's best to test with a signature. The signature with ID&nbsp;<code>2100498</code>&nbsp;from the ET Open ruleset is written specific for such test cases.</p>
+<p>2100498:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>alert<span class="w"> </span>ip<span class="w"> </span>any<span class="w"> </span>any<span class="w"> </span>-&gt;<span class="w"> </span>any<span class="w"> </span>any<span class="w"> </span><span class="o">(</span>msg:<span class="s2">"GPL ATTACK_RESPONSE id check returned root"</span><span class="p">;</span><span class="w"> </span>content:<span class="s2">"uid=0|28|root|29|"</span><span class="p">;</span><span class="w"> </span>classtype:bad-unknown<span class="p">;</span><span class="w"> </span>sid:2100498<span class="p">;</span><span class="w"> </span>rev:7<span class="p">;</span><span class="w"> </span>metadata:created_at<span class="w"> </span>2010_09_23,<span class="w"> </span>updated_at<span class="w"> </span>2010_09_23<span class="p">;</span><span class="o">)</span>
+</code></pre></div>
+<p>The syntax and logic behind those signatures is covered in other chapters. This will alert on any IP traffic that has the content within its payload. This rule can be triggered quite easy. Before we trigger it, start&nbsp;<code>tail</code>&nbsp;to see updates to&nbsp;<code>fast.log</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>curl<span class="w"> </span>http://testmynids.org/uid/index.html
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>sudo<span class="w"> </span>tail<span class="w"> </span>/var/log/suricata/fast.log
+</code></pre></div>
+<p>The following output should now be seen in the log:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="m">09</span>/12/2024-13:51:32.520238<span class="w">  </span><span class="o">[</span>**<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1</span>:2100498:7<span class="o">]</span><span class="w"> </span>GPL<span class="w"> </span>ATTACK_RESPONSE<span class="w"> </span>id<span class="w"> </span>check<span class="w"> </span>returned<span class="w"> </span>root<span class="w"> </span><span class="o">[</span>**<span class="o">]</span><span class="w"> </span><span class="o">[</span>Classification:<span class="w"> </span>Potentially<span class="w"> </span>Bad<span class="w"> </span>Traffic<span class="o">]</span><span class="w"> </span><span class="o">[</span>Priority:<span class="w"> </span><span class="m">2</span><span class="o">]</span><span class="w"> </span><span class="o">{</span>TCP<span class="o">}</span><span class="w"> </span><span class="m">65</span>.9.141.53:80<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">10</span>.0.0.25:34606Alerts:
+</code></pre></div>
+<p>This should include the timestamp and the IP of your system.</p>
+<h3 id="custom-rules"><strong>Custom rules</strong></h3>
+<p>Stop Suricata service:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>suricata
+</code></pre></div>
+<p>Create local.rules</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/usr/share/suricata/rules/local.rules
+</code></pre></div>
+<p>Write following rule to alert on ping to internal network (note syntax is very similar to Snort)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>alert<span class="w"> </span>icmp<span class="w"> </span>any<span class="w"> </span>any<span class="w"> </span>-&gt;<span class="w"> </span><span class="nv">$HOME_NET</span><span class="w"> </span>any<span class="w"> </span><span class="o">(</span>msg:<span class="w"> </span><span class="s2">"ICMP Ping Detected"</span><span class="p">;</span><span class="w"> </span>sid:1<span class="p">;</span><span class="w"> </span>rev:1<span class="p">;</span><span class="o">)</span>
+</code></pre></div>
+<p>Edit suricata.yml</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/suricata/suricata.yaml<span class="w"> </span>
+</code></pre></div>
+<p>Add local.rules to rule-files</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>default-rule-path:<span class="w"> </span>/var/lib/suricata/rules
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>rule-files:
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="w">  </span>-<span class="w"> </span>suricata.rules
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="w">  </span>-<span class="w"> </span>/usr/share/suricata/rules/local.rules
+</code></pre></div>
+<p>Test Suricata configuration:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>sudo<span class="w"> </span>suricata<span class="w"> </span>-T<span class="w"> </span>-c<span class="w"> </span>/etc/suricata/suricata.yaml<span class="w"> </span>-v
+</code></pre></div>
+<p>Start Suricata and verify it is running and active. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>suricata
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>suricata
+</code></pre></div>
+<p>Execute ping to Suricata host from another host in internal network</p>
+<p>Verify that the alerts have been logged</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>sudo<span class="w"> </span>tail<span class="w"> </span>/var/log/suricata/fast.log
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="m">09</span>/12/2024-14:14:31.052314<span class="w">  </span><span class="o">[</span>**<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1</span>:1:1<span class="o">]</span><span class="w"> </span>ICMP<span class="w"> </span>Ping<span class="w"> </span>Detected<span class="w"> </span><span class="o">[</span>**<span class="o">]</span><span class="w"> </span><span class="o">[</span>Classification:<span class="w"> </span><span class="o">(</span>null<span class="o">)]</span><span class="w"> </span><span class="o">[</span>Priority:<span class="w"> </span><span class="m">3</span><span class="o">]</span><span class="w"> </span><span class="o">{</span>ICMP<span class="o">}</span><span class="w"> </span><span class="m">10</span>.0.0.25:0<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">10</span>.0.0.20:0
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="m">09</span>/12/2024-14:14:57.907164<span class="w">  </span><span class="o">[</span>**<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1</span>:1:1<span class="o">]</span><span class="w"> </span>ICMP<span class="w"> </span>Ping<span class="w"> </span>Detected<span class="w"> </span><span class="o">[</span>**<span class="o">]</span><span class="w"> </span><span class="o">[</span>Classification:<span class="w"> </span><span class="o">(</span>null<span class="o">)]</span><span class="w"> </span><span class="o">[</span>Priority:<span class="w"> </span><span class="m">3</span><span class="o">]</span><span class="w"> </span><span class="o">{</span>ICMP<span class="o">}</span><span class="w"> </span><span class="m">10</span>.0.0.20:3<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">10</span>.0.0.1:3
+</code></pre></div>
+<h3 id="eve-json"><strong>EVE JSON</strong></h3>
+<p>The more advanced output is the EVE JSON output which is explained in detail in&nbsp;<a href="https://docs.suricata.io/en/latest/output/eve/eve-json-output.html#eve-json-output">Eve JSON Output</a>. To see what this looks like it's recommended to use&nbsp;<code>jq</code>&nbsp;to parse the JSON output.
+Alerts:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>sudo<span class="w"> </span>tail<span class="w"> </span>/var/log/suricata/eve.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">'select(.event_type=="alert")'</span>
+</code></pre></div>
+<p>This will display more detail about each alert with a better readability, including meta-data.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="o">{</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">  </span><span class="s2">"timestamp"</span>:<span class="w"> </span><span class="s2">"2024-09-12T14:21:18.932116+1200"</span>,
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">  </span><span class="s2">"flow_id"</span>:<span class="w"> </span><span class="m">1750955545135946</span>,
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="w">  </span><span class="s2">"in_iface"</span>:<span class="w"> </span><span class="s2">"ens32"</span>,
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="w">  </span><span class="s2">"event_type"</span>:<span class="w"> </span><span class="s2">"alert"</span>,
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="w">  </span><span class="s2">"src_ip"</span>:<span class="w"> </span><span class="s2">"10.0.0.25"</span>,
+<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="w">  </span><span class="s2">"src_port"</span>:<span class="w"> </span><span class="m">0</span>,
+<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="w">  </span><span class="s2">"dest_ip"</span>:<span class="w"> </span><span class="s2">"10.0.0.20"</span>,
+<a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a><span class="w">  </span><span class="s2">"dest_port"</span>:<span class="w"> </span><span class="m">0</span>,
+<a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a><span class="w">  </span><span class="s2">"proto"</span>:<span class="w"> </span><span class="s2">"ICMP"</span>,
+<a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a><span class="w">  </span><span class="s2">"icmp_type"</span>:<span class="w"> </span><span class="m">0</span>,
+<a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a><span class="w">  </span><span class="s2">"icmp_code"</span>:<span class="w"> </span><span class="m">0</span>,
+<a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a><span class="w">  </span><span class="s2">"pkt_src"</span>:<span class="w"> </span><span class="s2">"wire/pcap"</span>,
+<a id="__codelineno-37-14" name="__codelineno-37-14" href="#__codelineno-37-14"></a><span class="w">  </span><span class="s2">"community_id"</span>:<span class="w"> </span><span class="s2">"1:7Z0C1taw8mzKweAktDBR9AYDoBA="</span>,
+<a id="__codelineno-37-15" name="__codelineno-37-15" href="#__codelineno-37-15"></a><span class="w">  </span><span class="s2">"alert"</span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-37-16" name="__codelineno-37-16" href="#__codelineno-37-16"></a><span class="w">    </span><span class="s2">"action"</span>:<span class="w"> </span><span class="s2">"allowed"</span>,
+<a id="__codelineno-37-17" name="__codelineno-37-17" href="#__codelineno-37-17"></a><span class="w">    </span><span class="s2">"gid"</span>:<span class="w"> </span><span class="m">1</span>,
+<a id="__codelineno-37-18" name="__codelineno-37-18" href="#__codelineno-37-18"></a><span class="w">    </span><span class="s2">"signature_id"</span>:<span class="w"> </span><span class="m">1</span>,
+<a id="__codelineno-37-19" name="__codelineno-37-19" href="#__codelineno-37-19"></a><span class="w">    </span><span class="s2">"rev"</span>:<span class="w"> </span><span class="m">1</span>,
+<a id="__codelineno-37-20" name="__codelineno-37-20" href="#__codelineno-37-20"></a><span class="w">    </span><span class="s2">"signature"</span>:<span class="w"> </span><span class="s2">"ICMP Ping Detected"</span>,
+<a id="__codelineno-37-21" name="__codelineno-37-21" href="#__codelineno-37-21"></a><span class="w">    </span><span class="s2">"category"</span>:<span class="w"> </span><span class="s2">""</span>,
+<a id="__codelineno-37-22" name="__codelineno-37-22" href="#__codelineno-37-22"></a><span class="w">    </span><span class="s2">"severity"</span>:<span class="w"> </span><span class="m">3</span>
+<a id="__codelineno-37-23" name="__codelineno-37-23" href="#__codelineno-37-23"></a><span class="w">  </span><span class="o">}</span>,
+<a id="__codelineno-37-24" name="__codelineno-37-24" href="#__codelineno-37-24"></a><span class="w">  </span><span class="s2">"direction"</span>:<span class="w"> </span><span class="s2">"to_client"</span>,
+<a id="__codelineno-37-25" name="__codelineno-37-25" href="#__codelineno-37-25"></a><span class="w">  </span><span class="s2">"flow"</span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-37-26" name="__codelineno-37-26" href="#__codelineno-37-26"></a><span class="w">    </span><span class="s2">"pkts_toserver"</span>:<span class="w"> </span><span class="m">1</span>,
+<a id="__codelineno-37-27" name="__codelineno-37-27" href="#__codelineno-37-27"></a><span class="w">    </span><span class="s2">"pkts_toclient"</span>:<span class="w"> </span><span class="m">1</span>,
+<a id="__codelineno-37-28" name="__codelineno-37-28" href="#__codelineno-37-28"></a><span class="w">    </span><span class="s2">"bytes_toserver"</span>:<span class="w"> </span><span class="m">98</span>,
+<a id="__codelineno-37-29" name="__codelineno-37-29" href="#__codelineno-37-29"></a><span class="w">    </span><span class="s2">"bytes_toclient"</span>:<span class="w"> </span><span class="m">98</span>,
+<a id="__codelineno-37-30" name="__codelineno-37-30" href="#__codelineno-37-30"></a><span class="w">    </span><span class="s2">"start"</span>:<span class="w"> </span><span class="s2">"2024-09-12T14:21:18.931964+1200"</span>,
+<a id="__codelineno-37-31" name="__codelineno-37-31" href="#__codelineno-37-31"></a><span class="w">    </span><span class="s2">"src_ip"</span>:<span class="w"> </span><span class="s2">"10.0.0.20"</span>,
+<a id="__codelineno-37-32" name="__codelineno-37-32" href="#__codelineno-37-32"></a><span class="w">    </span><span class="s2">"dest_ip"</span>:<span class="w"> </span><span class="s2">"10.0.0.25"</span>
+<a id="__codelineno-37-33" name="__codelineno-37-33" href="#__codelineno-37-33"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-37-34" name="__codelineno-37-34" href="#__codelineno-37-34"></a><span class="o">}</span>
+</code></pre></div>
+<p>Stats:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/suricata/eve.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">'select(.event_type=="stats")|.stats.capture.kernel_packets'</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/suricata/eve.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">'select(.event_type=="stats")'</span>
+</code></pre></div>
+<p>The first example displays the number of packets captured by the kernel; the second examples shows all of the statistics.</p>
+<h3 id="setting-up-ips-inline-for-linux"><strong>Setting up IPS inline for Linux</strong></h3>
+<h3 id="setting-up-ips-with-netfilter"><strong>Setting up IPS with Netfilter</strong></h3>
+<p>To check if you have NFQ enabled in your Suricata build, enter the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="n">suricata</span> <span class="o">--</span><span class="n">build</span><span class="o">-</span><span class="n">info</span>
+</code></pre></div>
+<p>and make sure that <code>NFQueue support: yes</code> is listed in the output.</p>
+<p>Edit local.rules to add a sample rule for IPS mode:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/usr/share/suricata/rules/local.rules
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="c1">#IDS Mode</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="n">alert</span> <span class="n">icmp</span> <span class="nb">any</span> <span class="nb">any</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="n">HOME_NET</span> <span class="nb">any</span> <span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="s2">"ICMP Ping Detected"</span><span class="p">;</span> <span class="n">sid</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span> <span class="n">rev</span><span class="p">:</span><span class="mi">1</span><span class="p">;)</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="c1">#IPS Mode</span>
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="n">drop</span> <span class="n">icmp</span> <span class="nb">any</span> <span class="nb">any</span> <span class="o">-&gt;</span> <span class="mf">1.1.1.1</span> <span class="nb">any</span> <span class="p">(</span><span class="n">msg</span><span class="p">:</span><span class="s2">"ICMP Detected and Blocked to 1.1.1.1"</span><span class="p">;</span> <span class="n">sid</span><span class="p">:</span><span class="mi">2</span><span class="p">;</span> <span class="n">rev</span><span class="p">:</span><span class="mi">1</span><span class="p">;)</span>
+</code></pre></div>
+<p>Run Suricata with the NFQ mode and use the&nbsp;<code>-q</code>&nbsp;option. This option tells Suricata which queue numbers it should use.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="n">sudo</span> <span class="n">suricata</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">suricata</span><span class="o">/</span><span class="n">suricata</span><span class="o">.</span><span class="n">yaml</span> <span class="o">-</span><span class="n">q</span> <span class="mi">0</span>
+</code></pre></div>
+<p>In this scenario, you are sending traffic that is generated by your computer to Suricata. Run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="n">sudo</span> <span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">j</span> <span class="n">NFQUEUE</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="n">sudo</span> <span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">OUTPUT</span> <span class="o">-</span><span class="n">j</span> <span class="n">NFQUEUE</span>
+</code></pre></div>
+<p>If Suricata is installed on the gateway (e.g. Firewall), you can send traffic that passes through Suricata by running:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="n">sudo</span> <span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">FORWARD</span> <span class="o">-</span><span class="n">j</span> <span class="n">NFQUEUE</span>
+</code></pre></div>
+<p>Execute <code>ping 1.1.1.1</code> and check Suricata alerts:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="n">ping</span> <span class="mf">1.1.1.1</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="n">tail</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">suricata</span><span class="o">/</span><span class="n">fast</span><span class="o">.</span><span class="n">log</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="mi">09</span><span class="o">/</span><span class="mi">14</span><span class="o">/</span><span class="mi">2024</span><span class="o">-</span><span class="mi">16</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mf">08.050136</span>  <span class="p">[</span><span class="n">Drop</span><span class="p">]</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="n">ICMP</span> <span class="n">Detected</span> <span class="ow">and</span> <span class="n">Blocked</span> <span class="n">to</span> <span class="mf">1.1.1.1</span> <span class="p">[</span><span class="o">**</span><span class="p">]</span> <span class="p">[</span><span class="n">Classification</span><span class="p">:</span> <span class="p">(</span><span class="n">null</span><span class="p">)]</span> <span class="p">[</span><span class="n">Priority</span><span class="p">:</span> <span class="mi">3</span><span class="p">]</span> <span class="p">{</span><span class="n">ICMP</span><span class="p">}</span> <span class="mf">10.0.0.27</span><span class="p">:</span><span class="mi">8</span> <span class="o">-&gt;</span> <span class="mf">1.1.1.1</span><span class="p">:</span><span class="mi">0</span>
+</code></pre></div>
+<p>To see if you have set your&nbsp;<code>iptables</code>&nbsp;rules correct make sure Suricata is running and enter:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="n">sudo</span> <span class="n">iptables</span> <span class="o">-</span><span class="n">vnL</span>
+</code></pre></div>
+<p>In the example you can see if packets are being logged.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="n">Chain</span> <span class="n">INPUT</span> <span class="p">(</span><span class="n">policy</span> <span class="n">ACCEPT</span> <span class="mi">0</span> <span class="n">packets</span><span class="p">,</span> <span class="mi">0</span> <span class="nb">bytes</span><span class="p">)</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a> <span class="n">pkts</span> <span class="nb">bytes</span> <span class="n">target</span>     <span class="n">prot</span> <span class="n">opt</span> <span class="ow">in</span>     <span class="n">out</span>     <span class="n">source</span>               <span class="n">destination</span>         
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a> <span class="mi">1032</span> <span class="mi">1101</span><span class="n">K</span> <span class="n">NFQUEUE</span>    <span class="nb">all</span>  <span class="o">--</span>  <span class="o">*</span>      <span class="o">*</span>       <span class="mf">0.0.0.0</span><span class="o">/</span><span class="mi">0</span>            <span class="mf">0.0.0.0</span><span class="o">/</span><span class="mi">0</span>            <span class="n">NFQUEUE</span> <span class="n">num</span> <span class="mi">0</span>
+<a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a>
+<a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a><span class="n">Chain</span> <span class="n">FORWARD</span> <span class="p">(</span><span class="n">policy</span> <span class="n">ACCEPT</span> <span class="mi">0</span> <span class="n">packets</span><span class="p">,</span> <span class="mi">0</span> <span class="nb">bytes</span><span class="p">)</span>
+<a id="__codelineno-48-6" name="__codelineno-48-6" href="#__codelineno-48-6"></a> <span class="n">pkts</span> <span class="nb">bytes</span> <span class="n">target</span>     <span class="n">prot</span> <span class="n">opt</span> <span class="ow">in</span>     <span class="n">out</span>     <span class="n">source</span>               <span class="n">destination</span>         
+<a id="__codelineno-48-7" name="__codelineno-48-7" href="#__codelineno-48-7"></a>
+<a id="__codelineno-48-8" name="__codelineno-48-8" href="#__codelineno-48-8"></a><span class="n">Chain</span> <span class="n">OUTPUT</span> <span class="p">(</span><span class="n">policy</span> <span class="n">ACCEPT</span> <span class="mi">0</span> <span class="n">packets</span><span class="p">,</span> <span class="mi">0</span> <span class="nb">bytes</span><span class="p">)</span>
+<a id="__codelineno-48-9" name="__codelineno-48-9" href="#__codelineno-48-9"></a> <span class="n">pkts</span> <span class="nb">bytes</span> <span class="n">target</span>     <span class="n">prot</span> <span class="n">opt</span> <span class="ow">in</span>     <span class="n">out</span>     <span class="n">source</span>               <span class="n">destination</span>         
+<a id="__codelineno-48-10" name="__codelineno-48-10" href="#__codelineno-48-10"></a> <span class="mi">1469</span>  <span class="mi">126</span><span class="n">K</span> <span class="n">NFQUEUE</span>    <span class="nb">all</span>  <span class="o">--</span>  <span class="o">*</span>      <span class="o">*</span>       <span class="mf">0.0.0.0</span><span class="o">/</span><span class="mi">0</span>            <span class="mf">0.0.0.0</span><span class="o">/</span><span class="mi">0</span>            <span class="n">NFQUEUE</span> <span class="n">num</span> <span class="mi">0</span>
+</code></pre></div>
+<h2 id="install-suricata-on-gateway"><strong>Install Suricata on Gateway</strong></h2>
+<p>While Suricata can be installed on a host, it can also be installed on a gateway such as <strong>pfSense</strong>. The pfSense&nbsp;is a free and open source firewall and router. For installing and configuring pfSense, refer to pfSense <a href="https://docs.netgate.com/pfsense/en/latest/">documentation</a> and instruction <a href="https://youtu.be/Ayr_av2EX_U?si=c4k5XdMjTvNpqRa4">video</a>. pfSense can be downloaded from <a href="https://www.pfsense.org/download/">here.</a></p>
+<p>Full demonstration video on configuring Suricata on pfSense can be found <a href="https://youtu.be/u1gZrJEQ_30?si=9rbd6SHLVnTHhHoz">here</a>. </p>
+<p>After competing basic configuration on pfSense, navigate to System &gt; Package Manager &gt; Available Packages on pfSense web UI.</p>
+<p>Search for <code>suricata</code> and click install (confirm when prompted). Internet connection is required.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image.png" data-desc-position="bottom"><img alt="image.png" src="image.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%201.png" data-desc-position="bottom"><img alt="image.png" src="image%201.png"></a></p>
+<p>Once install is complete, navigate to Services &gt; Suricata &gt; Global Settings.</p>
+<p>Select <strong>Install ETOpen Emerging Threats rules, Install Feodo Tracker Botnet C2 IP rules</strong> and <strong>Install ABUSE.ch SSL Blacklist rules</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%202.png" data-desc-position="bottom"><img alt="image.png" src="image%202.png"></a></p>
+<p>Select 1 Day for Update Interval and select <strong>Live Rule Swap on Update</strong>.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%203.png" data-desc-position="bottom"><img alt="image.png" src="image%203.png"></a></p>
+<p>Leave rest of settings default and click save.</p>
+<p>Navigate to Update section and click Update.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%204.png" data-desc-position="bottom"><img alt="image.png" src="image%204.png"></a></p>
+<p>Once rule set update is complete, you will see timestamps of recent update.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%205.png" data-desc-position="bottom"><img alt="image.png" src="image%205.png"></a></p>
+<p>Navigate to Interfaces section and click Add.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%206.png" data-desc-position="bottom"><img alt="image.png" src="image%206.png"></a></p>
+<p>Select interface to run Suricata. In this demonstration, Suricata is installed on the LAN interface.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%207.png" data-desc-position="bottom"><img alt="image.png" src="image%207.png"></a></p>
+<p>For the EVE Output Settings, select EVE JSON Log and Output Type as FILE. Leave rest of the settings as default values and click Save.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%208.png" data-desc-position="bottom"><img alt="image.png" src="image%208.png"></a></p>
+<p>Within the Interface section, navigate to LAN Categories and Select All rulesets and click Save.</p>
+<p>You can read about each rule in the LAN Rules section and enable certain rule instead of enabling all rules. <a href="https://tools.emergingthreats.net/docs/ETPro%20Rule%20Categories.pdf">Pointproof documentation</a> explains about the emerging rules. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%209.png" data-desc-position="bottom"><img alt="image.png" src="image%209.png"></a></p>
+<p>On pfSense VM, selection option 8 for shell and run <code>top -s 1</code> to monitor CPU</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="n">top</span> <span class="o">-</span><span class="n">s</span> <span class="mi">1</span>
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2010.png" data-desc-position="bottom"><img alt="image.png" src="image%2010.png"></a></p>
+<p>Navigate back to Interfaces section and run Suricata by clicking the play button.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2011.png" data-desc-position="bottom"><img alt="image.png" src="image%2011.png"></a></p>
+<p>After a while, you will see a green tick box on Suricata Status, but CPU usage is still at 99%. Wait until CPU usage drops below 30% of pfSense VM CLI.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2012.png" data-desc-position="bottom"><img alt="image.png" src="image%2012.png"></a></p>
+<p>Navigate to the Alerts tab, and verify that there are no alerts.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2013.png" data-desc-position="bottom"><img alt="image.png" src="image%2013.png"></a></p>
+<h3 id="testing-ids"><strong>Testing IDS</strong></h3>
+<p>Suricata by default generates alert when a user access .to domain. From the Windows host connected to pfSense on an internal network, navigate to <a href="https://amzn.to/3xPjJbS">https://amzn.to/3xPjJbS</a> on a web browser.</p>
+<p>Note that the alerts have been generated but these are false positives.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2014.png" data-desc-position="bottom"><img alt="image.png" src="image%2014.png"></a></p>
+<h3 id="finetuning-rules-to-reduce-false-positives"><strong>Finetuning rules to reduce false positives</strong></h3>
+<p>Copy GID:SID <code>1:2027757</code> . Navigate to SID Mgmt tab, select Enable Automatic SID State Management. Edit the <strong>disablesid-sample.conf</strong></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2015.png" data-desc-position="bottom"><img alt="image.png" src="image%2015.png"></a></p>
+<p>Edit the List Name as LAN-Disabled. Delete the existing content and copy and paste the following:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="c1">#ET DNS Query for .to TLD</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="mi">1</span><span class="p">:</span><span class="mi">2027757</span>
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2016.png" data-desc-position="bottom"><img alt="image.png" src="image%2016.png"></a></p>
+<p>Repeat the same process for <strong>dropsid-sample.conf</strong> and <strong>enablesid-sample.conf.</strong> Change the List Name of <strong>dropsid-sample.conf</strong> to <strong>LAN-Drops</strong> and <strong>enablesid-sample.conf</strong> to <strong>LAN-Enabled</strong>. Make sure they each have <strong>nothing</strong> in the content.</p>
+<p>For Interface SID Management List Assignments, select <strong>Rebuild</strong>. Select <strong>LAN-Enabled</strong> for Enable SID List, <strong>LAN-Disabled</strong> for Disable SID List.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2017.png" data-desc-position="bottom"><img alt="image.png" src="image%2017.png"></a></p>
+<p>Navigate back to Alerts tab and clear alerts</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2018.png" data-desc-position="bottom"><img alt="image.png" src="image%2018.png"></a></p>
+<p>From the Windows host connected to pfSense on an internal network. Wait for CPU percentage to drop. Navigate to <a href="https://amzn.to/3xPjJbS">https://amzn.to/3xPjJbS</a> on a web browser. Verify that alerts have not been generated.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2019.png" data-desc-position="bottom"><img alt="image.png" src="image%2019.png"></a></p>
+<p>Navigate to Interface Settings &gt; LAN Rules. Select emerging-dns.rules.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2020.png" data-desc-position="bottom"><img alt="image.png" src="image%2020.png"></a></p>
+<p>Search for <code>.to</code> . Verify that ET DNS Query for .to TLD is Auto-disabled by settings on SID Mgmt tab.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2021.png" data-desc-position="bottom"><img alt="image.png" src="image%2021.png"></a></p>
+<h3 id="testing-ips"><strong>Testing IPS</strong></h3>
+<p>Disable Hardware Checksum Offloading. Navigate to System &gt; Advanced &gt; Networking.</p>
+<p>Select Disable hardware checksum offload and save. pfSense will reboot to apply changes.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2022.png" data-desc-position="bottom"><img alt="image.png" src="image%2022.png"></a></p>
+<p>Navigate to Suricata &gt; LAN Interface settings</p>
+<p>In the Alert and Block Settings, select Block Offenders and Inline mode for IPS mode.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2023.png" data-desc-position="bottom"><img alt="image.png" src="image%2023.png"></a></p>
+<p>Navigate to SID Mgmt and edit LAN-Drops. Copy and paste the following list:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="n">emerging</span><span class="o">-</span><span class="mi">3</span><span class="n">coresec</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="n">emerging</span><span class="o">-</span><span class="n">ciarmy</span>
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="n">emerging</span><span class="o">-</span><span class="n">compromised</span>
+<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="n">emerging</span><span class="o">-</span><span class="n">current_events</span>
+<a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a><span class="n">emerging</span><span class="o">-</span><span class="n">drop</span>
+<a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a><span class="n">emerging</span><span class="o">-</span><span class="n">dshield</span>
+<a id="__codelineno-51-7" name="__codelineno-51-7" href="#__codelineno-51-7"></a><span class="n">emerging</span><span class="o">-</span><span class="n">dns</span>
+<a id="__codelineno-51-8" name="__codelineno-51-8" href="#__codelineno-51-8"></a><span class="n">emerging</span><span class="o">-</span><span class="n">botcc</span>
+<a id="__codelineno-51-9" name="__codelineno-51-9" href="#__codelineno-51-9"></a><span class="n">emerging</span><span class="o">-</span><span class="n">malware</span>
+<a id="__codelineno-51-10" name="__codelineno-51-10" href="#__codelineno-51-10"></a><span class="n">emerging</span><span class="o">-</span><span class="n">tor</span>
+<a id="__codelineno-51-11" name="__codelineno-51-11" href="#__codelineno-51-11"></a><span class="n">emerging</span><span class="o">-</span><span class="n">trojan</span>
+<a id="__codelineno-51-12" name="__codelineno-51-12" href="#__codelineno-51-12"></a><span class="n">emerging</span><span class="o">-</span><span class="n">scan</span>
+<a id="__codelineno-51-13" name="__codelineno-51-13" href="#__codelineno-51-13"></a><span class="n">feodotracker</span>
+<a id="__codelineno-51-14" name="__codelineno-51-14" href="#__codelineno-51-14"></a><span class="n">sslblacklist_tls_cert</span>
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2024.png" data-desc-position="bottom"><img alt="image.png" src="image%2024.png"></a></p>
+<p>For Interface SID Management List Assignments, select Rebuild and select LAN-Drops for Drop SID LIst. Click Save.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2025.png" data-desc-position="bottom"><img alt="image.png" src="image%2025.png"></a></p>
+<p>Navigate to Interface tab and restart Suricata</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2026.png" data-desc-position="bottom"><img alt="image.png" src="image%2026.png"></a></p>
+<p>On Windows host, browse through <strong><code>http://malware.wicar.org/</code></strong>: This site hosts files and URLs that trigger IPS/IDS signatures without actually hosting real malware.</p>
+<p>Verify that the alerts have been generated.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2027.png" data-desc-position="bottom"><img alt="image.png" src="image%2027.png"></a></p>
+<p>Part of our LAN-Drops includes a rule that will drop a traffic when a user visits <code>.cc</code> TLD</p>
+<p>From Windows host, run <code>nslookup something.cc</code> </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="n">PS</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">Administrator</span>\<span class="n">Downloads</span><span class="o">&gt;</span> <span class="n">nslookup</span> <span class="n">something</span><span class="o">.</span><span class="n">cc</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="n">Server</span><span class="p">:</span>  <span class="n">UnKnown</span>
+<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="n">Address</span><span class="p">:</span>  <span class="p">::</span><span class="mi">1</span>
+<a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a>
+<a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a><span class="n">DNS</span> <span class="n">request</span> <span class="n">timed</span> <span class="n">out</span><span class="o">.</span>
+<a id="__codelineno-52-6" name="__codelineno-52-6" href="#__codelineno-52-6"></a>    <span class="n">timeout</span> <span class="n">was</span> <span class="mi">2</span> <span class="n">seconds</span><span class="o">.</span>
+<a id="__codelineno-52-7" name="__codelineno-52-7" href="#__codelineno-52-7"></a><span class="n">DNS</span> <span class="n">request</span> <span class="n">timed</span> <span class="n">out</span><span class="o">.</span>
+<a id="__codelineno-52-8" name="__codelineno-52-8" href="#__codelineno-52-8"></a>    <span class="n">timeout</span> <span class="n">was</span> <span class="mi">2</span> <span class="n">seconds</span><span class="o">.</span>
+<a id="__codelineno-52-9" name="__codelineno-52-9" href="#__codelineno-52-9"></a><span class="o">***</span> <span class="n">Request</span> <span class="n">to</span> <span class="n">UnKnown</span> <span class="n">timed</span><span class="o">-</span><span class="n">out</span>
+</code></pre></div>
+<p>Alerts log shows that DNS query to .cc TLD has been dropped</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2028.png" data-desc-position="bottom"><img alt="image.png" src="image%2028.png"></a></p>
+<h2 id="references"><strong>References</strong></h2>
+<ul>
+<li>https://docs.suricata.io/en/latest/index.html</li>
+<li>https://documentation.wazuh.com/current/proof-of-concept-guide/integrate-network-ids-suricata.html</li>
+<li>https://youtu.be/UXKbh0jPPpg?si=9_Ry4dN7_X7HHpvH</li>
+<li>https://github.com/nn-df/suricata-installation-ips-mode</li>
+<li>https://tools.emergingthreats.net/docs/ETPro Rule Categories.pdf</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../snort/snort.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Snort">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Snort
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../understanding-SIRP/understanding-SIRP.html" class="md-footer__link md-footer__link--next" aria-label="Next: Understanding SIRP">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Understanding SIRP
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2024–2026 <a href="https://github.com/cyberdefencekit" target="_blank" rel="noopener">Cyber Defence Kit by Joseph Jee</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/cyberdefencekit" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "header.autohide", "announce.dismiss", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

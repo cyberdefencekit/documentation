@@ -1,0 +1,2301 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../understanding-NTA/understanding-NTA.html">
+      
+      
+        <link rel="next" href="../zeek/zeek.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/Cyber Defence Kit logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Wireshark - Cyber Defence Kit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#wireshark" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-header__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cyber Defence Kit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Wireshark
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="light-blue" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SIEM/understanding-SIEM.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SIEM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IDS/IPS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SIRP/understanding-SIRP.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SIRP
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SOAR/understanding-SOAR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOAR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../understanding-NTA/understanding-NTA.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NTA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-DFIR/understanding-DFIR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  DFIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-EDR/understanding-EDR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  EDR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../caldera/caldera.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MITRE
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-nav__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    Cyber Defence Kit
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIEM
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SIEM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIEM/understanding-SIEM.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SIEM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../splunk/splunk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Splunk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wazuh/wazuh.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wazuh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securityonion/securityonion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Onion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDS/IPS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDS/IPS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding IDS/IPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snort/snort.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Snort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../suricata/suricata.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Suricata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIRP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SIRP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIRP/understanding-SIRP.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SIRP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../thehive/thehive.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TheHive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iris/iris.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IRIS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOAR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOAR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SOAR/understanding-SOAR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SOAR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shuffle/shuffle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shuffle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NTA
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NTA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-NTA/understanding-NTA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding NTA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wireshark
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="wireshark.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wireshark
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lab-setup-for-proof-of-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Setup for Proof of Concept
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-wireshark-on-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Wireshark on Windows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-wireshark-on-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Wireshark on Linux
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#malware-traffic-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Malware Traffic Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Malware Traffic Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exporting-files-from-http-traffic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exporting Files From HTTP Traffic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exporting-files-from-smb-traffic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exporting Files from SMB Traffic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exporting-emails-from-smtp-traffic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exporting Emails from SMTP Traffic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exporting-files-from-ftp-traffic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exporting Files from FTP Traffic
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tshark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TShark
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zeek/zeek.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zeek
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zui/zui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zui
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7">
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFIR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DFIR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-DFIR/understanding-DFIR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding DFIR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../velociraptor/velociraptor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Velociraptor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8">
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EDR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EDR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-EDR/understanding-EDR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding EDR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auroralite/auroralite.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aurora Lite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9">
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MITRE
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MITRE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../caldera/caldera.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caldera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigator/navigator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MITRE ATT&amp;CK Navigator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="wireshark"><strong>Wireshark</strong></h1>
+<p>Wireshark is a free and open-source network protocol analyser widely used for network troubleshooting, analysis, software and protocol development, and education. Essentially, it's a tool that allows you to capture and examine data packets traveling through a network in real-time or from saved capture files.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zb0Z57afrew?si=NGMDytk39_3J84xb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h2 id="lab-setup-for-proof-of-concept"><strong>Lab Setup for Proof of Concept</strong></h2>
+<p>In this proof of concept, Wireshark was installed on a Windows Virtual Machine (VM),  and malware traffic analysis was conducted using Wireshark. </p>
+<table>
+<thead>
+<tr>
+<th><strong>Host</strong></th>
+<th><strong>OS</strong></th>
+<th><strong>Role</strong></th>
+<th><strong>IP Address</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fortigate</td>
+<td>Fortios 7.6.0</td>
+<td>Firewall/Router</td>
+<td>192.168.1.111 (WAN) / 10.0.0.1 (LAN)</td>
+</tr>
+<tr>
+<td>WS2019</td>
+<td>Windows Server 2019</td>
+<td>Wireshark</td>
+<td>10.0.0.40</td>
+</tr>
+<tr>
+<td>Kali</td>
+<td>Kali Linux 2024.2</td>
+<td>Linux Client</td>
+<td>10.0.0.22</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="Wireshark.drawio.png" data-desc-position="bottom"><img alt="Wireshark.drawio.png" src="Wireshark.drawio.png"></a></p>
+<h2 id="install-wireshark-on-windows"><strong>Install Wireshark on Windows</strong></h2>
+<p>If you are running Windows or macOS you can download an official release at&nbsp;<a href="https://www.wireshark.org/download.html">https://www.wireshark.org/download.html</a>. For Linux and other OS, download both source and binary distributions from the Wireshark download page. Select the package most appropriate for your system. In this demo, we will focus on installing and running Wireshark on Windows. </p>
+<p>Double-click on the installer file and follow the prompts. Make sure T Shark is selected.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image.png" data-desc-position="bottom"><img alt="image.png" src="image.png"></a></p>
+<p>Once install is complete, open Wireshark. You will be presented with network interfaces attacked to your computer.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%201.png" data-desc-position="bottom"><img alt="image.png" src="image%201.png"></a></p>
+<p>For demonstration, double-click on the loopback interface. Immediately, Wireshark will start capturing traffic on the loopback interface.</p>
+<p>You can stop the traffic capture by clicking the stop button.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%202.png" data-desc-position="bottom"><img alt="image.png" src="image%202.png"></a></p>
+<p>From the menu, select Statistics, Capture File Properties. You can see Time for first and last packet as long as elapsed time. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%203.png" data-desc-position="bottom"><img alt="image.png" src="image%203.png"></a></p>
+<p>To view Protocol Hierarchy, select Statistics, Protocol Hierarchy. You will be presented of list of protocols that exist in this packet capture (PCAP). </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%204.png" data-desc-position="bottom"><img alt="image.png" src="image%204.png"></a></p>
+<p>You can Apply or Prepare as Filter on any selected value.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%205.png" data-desc-position="bottom"><img alt="image.png" src="image%205.png"></a></p>
+<p>To view Conversations, select Statistics, Conversations and click IPv4. This shows conversations between one host and another host. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%206.png" data-desc-position="bottom"><img alt="image.png" src="image%206.png"></a></p>
+<p>To view Endpoints, select Statistics, Endpoints and click IPv4. This will tell us what endpoints exist in this PCAP. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%207.png" data-desc-position="bottom"><img alt="image.png" src="image%207.png"></a></p>
+<h2 id="install-wireshark-on-linux"><strong>Install Wireshark on Linux</strong></h2>
+<p><strong>Create a directory for the packages:</strong>
+Open a terminal and create a directory to store the Wireshark package and its dependencies.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir<span class="w"> </span>wireshark-offline
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>wireshark-offline
+</code></pre></div>
+<p><strong>Download the Wireshark package and its dependencies</strong>:
+On an Ubuntu machine with internet access, use the following commands to download Wireshark and all its dependencies into the <code>wireshark-offline</code> folder.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">download</span> <span class="n">wireshark</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">apt</span><span class="o">-</span><span class="n">cache</span> <span class="n">depends</span> <span class="n">wireshark</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">Depends</span> <span class="o">|</span> <span class="n">sed</span> <span class="s2">"s/.*ends:\ //"</span> <span class="o">|</span> <span class="n">xargs</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">download</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">download</span> <span class="n">libminizip1</span> <span class="n">libqt5core5a</span> <span class="n">libqt5gui5</span> <span class="n">libqt5multimedia5</span> <span class="n">libqt5printsupport5</span> <span class="n">libqt5widgets5</span> <span class="n">libwireshark15</span> <span class="n">libwiretap12</span> <span class="n">libwsutil13</span> <span class="n">wireshark</span><span class="o">-</span><span class="n">common</span> <span class="n">libqt5svg5</span> <span class="n">libdouble</span><span class="o">-</span><span class="n">conversion3</span> <span class="n">libmd4c0</span> <span class="n">libqt5dbus5</span> <span class="n">libqt5network5</span> <span class="n">libxcb</span><span class="o">-</span><span class="n">xinerama0</span> <span class="n">libxcb</span><span class="o">-</span><span class="n">xinput0</span> <span class="n">libbcg729</span><span class="o">-</span><span class="mi">0</span> <span class="n">libc</span><span class="o">-</span><span class="n">ares2</span> <span class="n">liblua5</span><span class="mf">.2</span><span class="o">-</span><span class="mi">0</span> <span class="n">libsmi2ldbl</span> <span class="n">libsnappy1v5</span> <span class="n">libspandsp2</span> <span class="n">libwireshark</span><span class="o">-</span><span class="n">data</span> <span class="n">libssh</span><span class="o">-</span><span class="n">gcrypt</span><span class="o">-</span><span class="mi">4</span>
+</code></pre></div>
+<p>Transfer the downloaded <code>.deb</code> files to your offline Ubuntu VM</p>
+<p><strong>Install the dependencies</strong>:
+On your offline Ubuntu VM, navigate to the folder where you transferred the <code>.deb</code> files and run the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">sudo</span> <span class="n">dpkg</span> <span class="o">-</span><span class="n">i</span> <span class="o">*.</span><span class="n">deb</span>
+</code></pre></div>
+<p>Restart the PC and run Wireshark</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">wireshark</span>
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%208.png" data-desc-position="bottom"><img alt="image.png" src="image%208.png"></a></p>
+<h2 id="malware-traffic-analysis"><strong>Malware Traffic Analysis</strong></h2>
+<p>The pcaps used in this tutorial are contained in a password-protected ZIP archive located at our&nbsp;<a href="https://github.com/PaloAltoNetworks/Unit42-Wireshark-tutorials/blob/main/Wireshark-tutorial-extracting-objects-5-pcaps.zip"><strong>GitHub repository</strong></a>. Download the file named&nbsp;Wireshark-tutorial-extracting-objects-5-pcaps.zip. Use&nbsp;<em>infected</em>&nbsp;as the password and extract the five pcaps, as shown below.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%209.png" data-desc-position="bottom"><img alt="image.png" src="image%209.png"></a></p>
+<p>The five extracted pcaps are:</p>
+<ul>
+<li>Wireshark-tutorial-extracting-objects-from-a-pcap-1-of-5.pcap</li>
+<li>Wireshark-tutorial-extracting-objects-from-a-pcap-2-of-5.pcap</li>
+<li>Wireshark-tutorial-extracting-objects-from-a-pcap-3-of-5.pcap</li>
+<li>Wireshark-tutorial-extracting-objects-from-a-pcap-4-of-5.pcap</li>
+<li>Wireshark-tutorial-extracting-objects-from-a-pcap-5-of-5.pcap</li>
+</ul>
+<p>As a network packet analyser, Wireshark combines data from multiple IP packets and the associated TCP frames to reveal the content of a pcap. We can extract some of these objects revealed by Wireshark.</p>
+<h3 id="exporting-files-from-http-traffic"><strong>Exporting Files From HTTP Traffic</strong></h3>
+<p>Some Windows-based infections involve malware binaries or malicious code sent over unencrypted HTTP traffic. We can extract these objects from the pcap. An example of this is found in our first pcap named&nbsp;Wireshark-tutorial-extracting-objects-from-a-pcap-1-of-5.pcap. Open this pcap in Wireshark and filter on <strong>http.request</strong> as shown below.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2010.png" data-desc-position="bottom"><img alt="image.png" src="image%2010.png"></a></p>
+<p>After filtering on&nbsp;http.request, find the two GET requests to&nbsp;smart-fax[.]com. The first request ends with&nbsp;.doc, indicating the first request may have returned a Microsoft Word document. The second request ends with&nbsp;.exe, indicating the second request may have returned a Windows executable file. The HTTP GET requests are listed below.</p>
+<ul>
+<li>smart-fax[.]com - GET /Documents/Invoice&amp;MSO-Request.doc</li>
+<li>smart-fax[.]com - GET /knr.exe</li>
+</ul>
+<p>We can export these objects from the HTTP object list by using the menu path:</p>
+<ul>
+<li>File → Export Objects → HTTP...</li>
+</ul>
+<p>This menu path results in a window titled “Wireshark Export HTTP object list” as shown below. Select the first line with Invoice&amp;MSO-Request.doc as the filename and save it. Select the second line with knr.exe as the filename and save it.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2011.png" data-desc-position="bottom"><img alt="image.png" src="image%2011.png"></a></p>
+<p>Note, the Content Type column from the HTTP object list shows what the server identified the file as in its HTTP response headers. In some cases, a server hosting malware will intentionally label Windows executables as a different type of file in an effort to avoid detection. Fortunately, the first pcap in this tutorial is a very straight-forward example.</p>
+<p>After extracting these files from the pcap, we should confirm the file types. </p>
+<p>In Windows, we can use PowerShell or Command Prompt command to obtain hash</p>
+<ul>
+<li>Get-FileHash <em>[filename]</em> -Algorithm SHA256</li>
+<li>certutil -hashfile <em>[filename]</em> SHA256</li>
+</ul>
+<p>In Linux, we can use a terminal window or command line interface (CLI) for the following commands:</p>
+<ul>
+<li>file&nbsp;<em>[filename]</em></li>
+<li>shasum -a 256&nbsp;<em>[filename]</em></li>
+</ul>
+<p>The&nbsp;file&nbsp;command identifies the type of file. The&nbsp;shasum&nbsp;command returns the file hash, in this case a SHA256 file hash.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>└─$<span class="w"> </span>file<span class="w"> </span><span class="s1">'Invoice&amp;MSO-Request.doc'</span><span class="w"> </span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Invoice<span class="p">&amp;</span>MSO-Request.doc:<span class="w"> </span>Composite<span class="w"> </span>Document<span class="w"> </span>File<span class="w"> </span>V2<span class="w"> </span>Document,<span class="w"> </span>Little<span class="w"> </span>Endian,<span class="w"> </span>Os:<span class="w"> </span>Windows,<span class="w"> </span>Version<span class="w"> </span><span class="m">6</span>.3,<span class="w"> </span>Code<span class="w"> </span>page:<span class="w"> </span><span class="m">1252</span>,<span class="w"> </span>Template:<span class="w"> </span>Normal.dotm,<span class="w"> </span>Last<span class="w"> </span>Saved<span class="w"> </span>By:<span class="w"> </span>Administrator,<span class="w"> </span>Revision<span class="w"> </span>Number:<span class="w"> </span><span class="m">2</span>,<span class="w"> </span>Name<span class="w"> </span>of<span class="w"> </span>Creating<span class="w"> </span>Application:<span class="w"> </span>Microsoft<span class="w"> </span>Office<span class="w"> </span>Word,<span class="w"> </span>Create<span class="w"> </span>Time/Date:<span class="w"> </span>Thu<span class="w"> </span>Jun<span class="w"> </span><span class="m">27</span><span class="w"> </span><span class="m">19</span>:24:00<span class="w"> </span><span class="m">2019</span>,<span class="w"> </span>Last<span class="w"> </span>Saved<span class="w"> </span>Time/Date:<span class="w"> </span>Thu<span class="w"> </span>Jun<span class="w"> </span><span class="m">27</span><span class="w"> </span><span class="m">19</span>:24:00<span class="w"> </span><span class="m">2019</span>,<span class="w"> </span>Number<span class="w"> </span>of<span class="w"> </span>Pages:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>Number<span class="w"> </span>of<span class="w"> </span>Words:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>Number<span class="w"> </span>of<span class="w"> </span>Characters:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>Security:<span class="w"> </span><span class="m">0</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>└─$<span class="w"> </span>shasum<span class="w"> </span>-a<span class="w"> </span><span class="m">256</span><span class="w"> </span><span class="s1">'Invoice&amp;MSO-Request.doc'</span><span class="w"> </span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>f808229aa516ba134889f81cd699b8d246d46d796b55e13bee87435889a054fb<span class="w">  </span>Invoice<span class="p">&amp;</span>MSO-Request.doc
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>└─$<span class="w"> </span>file<span class="w"> </span>knr.exe<span class="w">                  </span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>knr.exe:<span class="w"> </span>PE32<span class="w"> </span>executable<span class="w"> </span><span class="o">(</span>GUI<span class="o">)</span><span class="w"> </span>Intel<span class="w"> </span><span class="m">80386</span>,<span class="w"> </span><span class="k">for</span><span class="w"> </span>MS<span class="w"> </span>Windows,<span class="w"> </span><span class="m">5</span><span class="w"> </span>sections
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>└─$<span class="w"> </span>shasum<span class="w"> </span>-a<span class="w"> </span><span class="m">256</span><span class="w"> </span>knr.exe<span class="w">                  </span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>749e161661290e8a2d190b1a66469744127bc25bf46e5d0c6f2e835f4b92db18<span class="w">  </span>knr.exe
+</code></pre></div>
+<p>The information above confirms our suspected Word document is in fact a Microsoft Word document. It also confirms the suspected Windows executable file is indeed a Windows executable. We can check the SHA256 hashes against VirusTotal to see if these files are detected as malware. We can also do an internet search on the SHA256 hashes to possibly find additional information.</p>
+<p>In addition to these Windows executables or other malware files, we can also extract webpages from unencrypted HTTP traffic.</p>
+<p>Use Wireshark to open our second pcap for this tutorial, Wireshark-tutorial-extracting-objects-from-a-pcap-2-of-5.pcap. This pcap contains traffic of someone entering login credentials on a fake PayPal login page.</p>
+<p>When reviewing network traffic from a phishing site, we might want to know what the phishing webpage actually looks like. We can extract the HTML pages, images and other web content using the Export HTTP object menu. In this case, we can extract and view just the initial HTML page. After extracting that initial HTML page, viewing it in a web browser should reveal the page shown below.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2012.png" data-desc-position="bottom"><img alt="image.png" src="image%2012.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2013.png" data-desc-position="bottom"><img alt="image.png" src="image%2013.png"></a></p>
+<p>Alternatively, your html might also look like below (same content).</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2014.png" data-desc-position="bottom"><img alt="image.png" src="image%2014.png"></a></p>
+<p>Use this method with caution. If you extract malicious HTML code from a pcap and view it in a web browser, the HTML might call out to malicious domains, which is why we recommend doing this in an isolated test environment.</p>
+<h3 id="exporting-files-from-smb-traffic"><strong>Exporting Files from SMB Traffic</strong></h3>
+<p>Some malware uses Microsoft's Server Message Block (SMB) protocol to spread across an Active Directory (AD)-based network. A banking Trojan known as Trickbot added a worm module&nbsp;<a href="https://securityintelligence.com/news/trickbot-learns-from-wannacry-and-petya-by-adding-self-spreading-worm-module/"><strong>as early as July 2017</strong></a>&nbsp;that uses an exploit based on&nbsp;<a href="https://www.wired.co.uk/article/what-is-eternal-blue-exploit-vulnerability-patch"><strong>EternalBlue</strong></a>&nbsp;to spread across a network over SMB. Trickbot is no longer an active malware family, but this section contains a June 2019 Trickbot infection that is ideal for this tutorial.</p>
+<p>Use Wireshark to open our third pcap for this tutorial,&nbsp;Wireshark-tutorial-extracting-objects-from-a-pcap-3-of-5.pcap. This pcap contains a Trickbot infection from June 2019 where malware is sent over SMB traffic from an infected client to the domain controller.</p>
+<p>This pcap takes place in the following AD environment:</p>
+<ul>
+<li>Domain:&nbsp;cliffstone[.]net</li>
+<li>Network segment:&nbsp;10.6.26[.]0&nbsp;through&nbsp;10.6.26[.]255&nbsp;(10.6.26[.]0/24)</li>
+<li>Domain controller IP:&nbsp;10.6.26[.]6</li>
+<li>Domain controller hostname:&nbsp;CLIFFSTONE-DC</li>
+<li>Segment gateway:&nbsp;10.6.26[.]1</li>
+<li>Broadcast address:&nbsp;10.6.26[.]255</li>
+<li>Windows client:&nbsp;QUINN-OFFICE-PC&nbsp;at&nbsp;10.6.26[.]110</li>
+</ul>
+<p>In this pcap, a Trickbot infection uses SMB to spread from an infected client at&nbsp;10.6.26[.]110&nbsp;to its domain controller at&nbsp;10.6.26[.]6. To see the associated malware, use the following menu path shown below:</p>
+<ul>
+<li>File → Export Objects → SMB...</li>
+</ul>
+<p>This brings up an Export SMB object list, listing the SMB objects we can export from the pcap as shown below.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2015.png" data-desc-position="bottom"><img alt="image.png" src="image%2015.png"></a></p>
+<p>Two entries near the middle of the list have&nbsp;\10.6.26[.]6\C$&nbsp;as the hostname. A closer examination of their respective filename fields indicates these are two Windows executable files. See Table below for details.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Packet Number</strong></th>
+<th><strong>Hostname</strong></th>
+<th><strong>Content Type</strong></th>
+<th><strong>Size</strong></th>
+<th><strong>Filename</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7058</td>
+<td>\10.6.26[.]6\C$</td>
+<td>FILE (712704/712704) W [100.0%]</td>
+<td>712 kB</td>
+<td>\WINDOWS\d0p2nc6ka3f_fixhohlycj4ovqfcy_smchzo_ub83urjpphrwahjwhv_o5c0fvf6.exe</td>
+</tr>
+<tr>
+<td>7936</td>
+<td>\10.6.26[.]6\C$</td>
+<td>FILE (115712/115712) W [100.0%]</td>
+<td>115 kB</td>
+<td>\WINDOWS\oiku9bu68cxqenfmcsos2aek6t07_guuisgxhllixv8dx2eemqddnhyh46l8n_di.exe</td>
+</tr>
+</tbody>
+</table>
+<p>In the Content Type column, we need [100.00%] to export a correct copy of these files. Any number less than 100 percent indicates there was some data loss in the network traffic, resulting in a corrupt or incomplete copy of the file. These Trickbot-related files from the pcap have SHA256 file hashes as shown in Table.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>PS<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\D</span>ownloads&gt;<span class="w"> </span>Get-FileHash<span class="w"> </span>sample1.exe<span class="w"> </span>-Algorithm<span class="w"> </span>SHA256
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Algorithm<span class="w">       </span>Hash<span class="w">                                                                   </span>Path
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>---------<span class="w">       </span>----<span class="w">                                                                   </span>----
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>SHA256<span class="w">          </span>59896AE5F3EDCB999243C7BFDC0B17EB7FE28F3A66259D797386EA470C010040<span class="w">       </span>C:<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\D</span>ownlo...
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>PS<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\D</span>ownloads&gt;<span class="w"> </span>Get-FileHash<span class="w"> </span>sample2.exe<span class="w"> </span>-Algorithm<span class="w"> </span>SHA256
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>Algorithm<span class="w">       </span>Hash<span class="w">                                                                   </span>Path
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>---------<span class="w">       </span>----<span class="w">                                                                   </span>----
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>SHA256<span class="w">          </span>CF99990BEE6C378CBF56239B3CC88276EEC348D82740F84E9D5C343751F82560<span class="w">       </span>C:<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\D</span>ownlo...
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th><strong>SHA256 hash</strong></th>
+<th><strong>File size</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>59896ae5f3edcb999243c7bfdc0b17eb7fe28f3a66259d797386ea470c010040</td>
+<td>712 kB</td>
+</tr>
+<tr>
+<td>cf99990bee6c378cbf56239b3cc88276eec348d82740f84e9d5c343751f82560</td>
+<td>115 kB</td>
+</tr>
+</tbody>
+</table>
+<h3 id="exporting-emails-from-smtp-traffic"><strong>Exporting Emails from SMTP Traffic</strong></h3>
+<p>Certain types of malware are designed to turn an infected Windows host into a spambot. These spambot hosts send hundreds of spam messages or malicious emails every minute. If any of these messages are sent using unencrypted SMTP, we can export these messages from a pcap of the traffic.</p>
+<p>One such example is from our next pcap,&nbsp;Wireshark-tutorial-extracting-objects-from-a-pcap-4-of-5.pcap. In this pcap, an infected Windows client sends&nbsp;<strong>sextortion spam</strong>. This pcap contains five seconds of spambot traffic from a single infected Windows host.</p>
+<p>Open the pcap in Wireshark and filter on&nbsp;<strong>smtp.data.fragment</strong>&nbsp;as shown below. This should reveal 50 examples of subject lines in the Info column on our Wireshark column display.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2016.png" data-desc-position="bottom"><img alt="image.png" src="image%2016.png"></a></p>
+<p>We can export these messages using the following menu path as shown in Figure 12:</p>
+<ul>
+<li>File → Export Objects → IMF...</li>
+</ul>
+<p>IMF stands for&nbsp;<strong>Internet Message Format</strong>, which is saved as a name with an&nbsp;.eml&nbsp;file extension.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2017.png" data-desc-position="bottom"><img alt="image.png" src="image%2017.png"></a></p>
+<p>The exported .eml files can be reviewed with a text editor or an email client like Outlook as shown below.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2018.png" data-desc-position="bottom"><img alt="image.png" src="image%2018.png"></a></p>
+<h3 id="exporting-files-from-ftp-traffic"><strong>Exporting Files from FTP Traffic</strong></h3>
+<p>Some malware families use FTP during malware infections. Our next pcap contains malware executables retrieved from an FTP server. It also contains stolen information sent from the infected Windows host back to the same FTP server.</p>
+<p>Our final pcap for this tutorial is&nbsp;Wireshark-tutorial-extracting-objects-from-a-pcap-5-of-5.pcap. Open the pcap in Wireshark and use the following filter:</p>
+<ul>
+<li>ftp.request.command&nbsp;or&nbsp;(ftp-data and tcp.seq eq 1)</li>
+</ul>
+<p>The results are shown below. We should see&nbsp;USER&nbsp;for the username and&nbsp;PASS&nbsp;for the password. This is followed by&nbsp;RETR&nbsp;statements, which are requests to retrieve files. The filtered results show&nbsp;RETR&nbsp;statements for the following files:</p>
+<ul>
+<li>RETR q.exe</li>
+<li>RETR w.exe</li>
+<li>RETR e.exe</li>
+<li>RETR r.exe</li>
+<li>RETR t.exe</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2019.png" data-desc-position="bottom"><img alt="image.png" src="image%2019.png"></a></p>
+<p>This Wireshark filter also shows the start of files sent over the FTP data channel. After the&nbsp;RETR&nbsp;statements for the&nbsp;.exe&nbsp;files, our column display should reveal&nbsp;STOR&nbsp;statements representing store requests to send HTML-based log files back to the same FTP server approximately every 18 seconds.</p>
+<p>In Wireshark version 4.0.0 or newer, we can export files from the FTP data channel using the following menu path as shown in Figure 16:</p>
+<ul>
+<li>File → Export Objects → FTP-DATA...</li>
+</ul>
+<p>This brings up a Window listing the FTP data objects we can export as shown below. This lists all of the HTML files sent to the FTP server containing information stolen from the infected Windows host.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2020.png" data-desc-position="bottom"><img alt="image.png" src="image%2020.png"></a></p>
+<p>We can view the exported files in a text editor or a browser as shown below. These files contain login credentials from the infected host’s email client and web browser.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2021.png" data-desc-position="bottom"><img alt="image.png" src="image%2021.png"></a></p>
+<p>While this export FTP-DATA function works for the&nbsp;.html&nbsp;files, it did not present us with any of the&nbsp;.exe&nbsp;files retrieved from the FTP server. We must export these using another method.</p>
+<p>This method involves finding the start of FTP data streams for each of the&nbsp;.exe&nbsp;files returned from the FTP server. To find these TCP frames, use the following Wireshark filter:</p>
+<ul>
+<li>ftp-data.command contains ".exe" and tcp.seq eq 1</li>
+</ul>
+<p>The results are shown below, revealing an FTP data stream for each of the&nbsp;.exe&nbsp;files.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2022.png" data-desc-position="bottom"><img alt="image.png" src="image%2022.png"></a></p>
+<p>We can follow the TCP stream for each of the frames, and we can export these files from the TCP stream window. First, follow the TCP stream for the first result that shows (SIZE q.exe) in the Info column as shown below (right-click → Follow → TCP Stream)</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2023.png" data-desc-position="bottom"><img alt="image.png" src="image%2023.png"></a></p>
+<p>The TCP stream window shows hints that this is a Windows executable or DLL file. The first two bytes are the ASCII characters MZ. The TCP stream also reveals the string This program cannot be run in DOS mode.</p>
+<p>But to confirm this is a Windows executable or DLL file, we must export it from the TCP stream. To do this, select “Raw” in the "Show data as" menu.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2024.png" data-desc-position="bottom"><img alt="image.png" src="image%2024.png"></a></p>
+<p>The TCP stream now shows the information in hexadecimal text, and we can export this raw data as a file using the "Save as..." button as shown above. This is an FTP data stream for a file named q.exe, and we have to manually type that when saving the file.</p>
+<p>When saving the file as q.exe in a Linux or similar CLI environment, we can confirm this is a Windows executable file and get the SHA256 hash using the commands shown below.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>└─$<span class="w"> </span>file<span class="w"> </span>q.exe<span class="w">  </span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>q.exe:<span class="w"> </span>PE32<span class="w"> </span>executable<span class="w"> </span><span class="o">(</span>GUI<span class="o">)</span><span class="w"> </span>Intel<span class="w"> </span><span class="m">80386</span>,<span class="w"> </span><span class="k">for</span><span class="w"> </span>MS<span class="w"> </span>Windows,<span class="w"> </span><span class="m">4</span><span class="w"> </span>sections
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>└─$<span class="w"> </span>shasum<span class="w"> </span>-a<span class="w"> </span><span class="m">256</span><span class="w"> </span>q.exe<span class="w">  </span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>ca34b0926cdc3242bbfad1c4a0b42cc2750d90db9a272d92cfb6cb7034d2a3bd<span class="w">  </span>q.exe
+</code></pre></div>
+<p>This SHA256 hash shows a&nbsp;high detection rate as malware on VirusTotal. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2025.png" data-desc-position="bottom"><img alt="image.png" src="image%2025.png"></a></p>
+<p>Follow the same process to export the other&nbsp;.exe&nbsp;files in the pcap.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>└─$<span class="w"> </span>file<span class="w"> </span>w.exe
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>w.exe:<span class="w"> </span>PE32<span class="w"> </span>executable<span class="w"> </span><span class="o">(</span>GUI<span class="o">)</span><span class="w"> </span>Intel<span class="w"> </span><span class="m">80386</span>,<span class="w"> </span><span class="k">for</span><span class="w"> </span>MS<span class="w"> </span>Windows,<span class="w"> </span><span class="m">5</span><span class="w"> </span>sections
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>└─$<span class="w"> </span>file<span class="w"> </span>e.exe<span class="w">                    </span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>e.exe:<span class="w"> </span>PE32+<span class="w"> </span>executable<span class="w"> </span><span class="o">(</span>GUI<span class="o">)</span><span class="w"> </span>x86-64,<span class="w"> </span><span class="k">for</span><span class="w"> </span>MS<span class="w"> </span>Windows,<span class="w"> </span><span class="m">6</span><span class="w"> </span>sections
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>└─$<span class="w"> </span>file<span class="w"> </span>r.exe
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>r.exe:<span class="w"> </span>PE32+<span class="w"> </span>executable<span class="w"> </span><span class="o">(</span>GUI<span class="o">)</span><span class="w"> </span>x86-64,<span class="w"> </span><span class="k">for</span><span class="w"> </span>MS<span class="w"> </span>Windows,<span class="w"> </span><span class="m">6</span><span class="w"> </span>sections
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>└─$<span class="w"> </span>file<span class="w"> </span>t.exe
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>t.exe:<span class="w"> </span>PE32<span class="w"> </span>executable<span class="w"> </span><span class="o">(</span>GUI<span class="o">)</span><span class="w"> </span>Intel<span class="w"> </span><span class="m">80386</span>,<span class="w"> </span><span class="k">for</span><span class="w"> </span>MS<span class="w"> </span>Windows,<span class="w"> </span><span class="m">4</span><span class="w"> </span>sections
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>└─$<span class="w"> </span>shasum<span class="w"> </span>-a<span class="w"> </span><span class="m">256</span><span class="w"> </span>w.exe
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>08eb941447078ef2c6ad8d91bb2f52256c09657ecd3d5344023edccf7291e9fc<span class="w">  </span>w.exe
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>└─$<span class="w"> </span>shasum<span class="w"> </span>-a<span class="w"> </span><span class="m">256</span><span class="w"> </span>e.exe<span class="w">      </span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>32e1b3732cd779af1bf7730d0ec8a7a87a084319f6a0870dc7362a15ddbd3199<span class="w">  </span>e.exe
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>└─$<span class="w"> </span>shasum<span class="w"> </span>-a<span class="w"> </span><span class="m">256</span><span class="w"> </span>r.exe
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>4ebd58007ee933a0a8348aee2922904a7110b7fb6a316b1c7fb2c6677e613884<span class="w">  </span>r.exe
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>└─$<span class="w"> </span>shasum<span class="w"> </span>-a<span class="w"> </span><span class="m">256</span><span class="w"> </span>t.exe
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>10ce4b79180a2ddd924fdc95951d968191af2ee3b7dfc96dd6a5714dbeae613a<span class="w">  </span>t.exe
+</code></pre></div>
+<p>This should give you the following files as shown below in Table</p>
+<table>
+<thead>
+<tr>
+<th><strong>SHA256 hash</strong></th>
+<th><strong>Filename</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ca34b0926cdc3242bbfad1c4a0b42cc2750d90db9a272d92cfb6cb7034d2a3bd</td>
+<td>q.exe</td>
+</tr>
+<tr>
+<td>08eb941447078ef2c6ad8d91bb2f52256c09657ecd3d5344023edccf7291e9fc</td>
+<td>w.exe</td>
+</tr>
+<tr>
+<td>32e1b3732cd779af1bf7730d0ec8a7a87a084319f6a0870dc7362a15ddbd3199</td>
+<td>e.exe</td>
+</tr>
+<tr>
+<td>4ebd58007ee933a0a8348aee2922904a7110b7fb6a316b1c7fb2c6677e613884</td>
+<td>r.exe</td>
+</tr>
+<tr>
+<td>10ce4b79180a2ddd924fdc95951d968191af2ee3b7dfc96dd6a5714dbeae613a</td>
+<td>t.exe</td>
+</tr>
+</tbody>
+</table>
+<p>These five .exe files are all Windows executables, and they all have a high detection rate as malware on VirusTotal.</p>
+<p>Wireshark does an excellent job of combining data from multiple IP packets and the associated TCP frames to show objects sent over unencrypted network traffic. Using the methods outlined in this tutorial, we can also use Wireshark to extract these objects from a pcap. This can be extremely helpful if you need to examine items during an investigation of suspicious activity.</p>
+<h2 id="tshark"><strong>TShark</strong></h2>
+<p>TShark is a terminal oriented version of Wireshark designed for capturing and displaying packets when an interactive user interface isn’t necessary or available.</p>
+<p>If a PCAP is larger than 500 MB, Wireshark will struggle to analyse. For example, if we are interested in the IP address 23.63.254.163, we can run a filter on Tshark and output it into another PCAP. We can then use Wireshark to read this new PCAP, which should be a manageable size.</p>
+<p>Open PowerShell and navigate to the directory where Wireshark is installed.</p>
+<p>Run <code>tshark.exe</code>, use the <code>-r</code> flag to point it to your PCAP of interest, use the <code>-w</code> flag to point to your output path including the new PCAP name, and specify the filter (e.g., <code>ip.addr == (value)</code>).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>PS<span class="w"> </span>C:<span class="se">\p</span>rogram<span class="w"> </span>files<span class="se">\w</span>ireshark&gt;<span class="w"> </span>.<span class="se">\t</span>shark.exe<span class="w"> </span>-r<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\D</span>ownloads<span class="se">\W</span>ireshark-tutorial-extracting-objects-5-pcaps<span class="se">\W</span>ireshark-tutorial-extracting-objects-from-a-pcap-1-of-5.pcap<span class="w"> </span>-w<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\D</span>ownloads<span class="se">\W</span>ireshark-tutorial-extracting-objects-5-pcaps<span class="se">\n</span>ewdata.pcap<span class="w"> </span>ip.addr<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">23</span>.63.254.163
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2026.png" data-desc-position="bottom"><img alt="image.png" src="image%2026.png"></a></p>
+<p>This produces a new PCAP file of manageable size, filtering on the IP address 23.63.254.163.</p>
+<h2 id="references"><strong>References</strong></h2>
+<ul>
+<li>https://unit42.paloaltonetworks.com/using-wireshark-exporting-objects-from-a-pcap/</li>
+<li>https://youtu.be/XZlasFStzqM?si=L0LHw4RODO8tgku8</li>
+<li>https://www.wireshark.org/docs/</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../understanding-NTA/understanding-NTA.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Understanding NTA">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Understanding NTA
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../zeek/zeek.html" class="md-footer__link md-footer__link--next" aria-label="Next: Zeek">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Zeek
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2024–2026 <a href="https://github.com/cyberdefencekit" target="_blank" rel="noopener">Cyber Defence Kit by Joseph Jee</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/cyberdefencekit" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "header.autohide", "announce.dismiss", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
