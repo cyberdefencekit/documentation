@@ -2,6 +2,7 @@
 
 [![Built with MkDocs Material](https://img.shields.io/badge/MkDocs-Material-blue?style=plastic)](https://squidfunk.github.io/mkdocs-material/)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey?style=plastic)](https://creativecommons.org/licenses/by/4.0/)
+[![Documentation](https://img.shields.io/badge/docs-live-brightgreen?style=plastic)](https://cyberdefencekit.github.io/documentation/)
 
 ---
 
@@ -56,8 +57,7 @@ Work through the documentation and proof-of-concept material to explore attack s
 
 ## Licence
 
-Cyber Defence Kit documentation is created by **Joseph Jee** and licensed under the  
-**Creative Commons Attribution 4.0 International (CC BY 4.0) Licence**.
+Cyber Defence Kit documentation is created by **Joseph Jee** and licensed under the **Creative Commons Attribution 4.0 International (CC BY 4.0) Licence**.
 
 You are free to share and adapt the content with proper attribution.
 
