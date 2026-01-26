@@ -1,77 +1,66 @@
 # Cyber Defence Kit Documentation
 
-Welcome to the **Cyber Defence Kit Documentation** repository! This project provides comprehensive, well-structured documentation for the Cyber Defence Kit, designed to assist users in deploying and utilising various tools for security operations and incident response.
+[![Built with MkDocs Material](https://img.shields.io/badge/MkDocs-Material-blue?style=plastic)](https://squidfunk.github.io/mkdocs-material/)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey?style=plastic)](https://creativecommons.org/licenses/by/4.0/)
 
-## Built With
+---
 
-This documentation is built using [**MkDocs Material**](https://squidfunk.github.io/mkdocs-material/), a powerful and customisable static site generator that brings documentation to life with:
+## Welcome to the Cyber Defence Kit
 
-- A modern, responsive design
-- Easy-to-use Markdown syntax
-- Advanced features like search, versioning, and integrations
+### Introduction
 
-## Features
+The **Cyber Defence Kit (CDK)** began as a personal exploration of open-source cybersecurity tools and gradually evolved into a shared learning resource.
 
-- **Clear Structure**: Organised sections for easy navigation and understanding.
-- **Searchable**: Quickly find the information you need.
-- **Customisable**: Built with MkDocs Material, allowing for future enhancements and theming.
-- **Interactive Elements**: Supports embedding code blocks, diagrams, and more.
+Each step of the journey was documented through proof-of-concept videos, notes, lessons learned, and practical tips, all shared openly to make these tools more accessible. The goal is to encourage others to explore, implement, and truly understand open-source cybersecurity solutions through hands-on practice.
 
-## Getting Started
+This documentation serves as a central reference for how the Cyber Defence Kit is built, tested, and used in real-world style lab environments.
 
-To view the documentation locally, follow these steps:
+<p align="center">
+  <img width="1920" height="1080" alt="CDK_intro_visual" src="https://github.com/user-attachments/assets/90965f0b-beda-4e82-aa5a-51c77fe6771a" />
+</p>
 
-1. Clone this repository:
-    
-    ```bash
-    git clone https://github.com/cyberdefencekit/documentation.git
-    cd documentation
-    ```
-    
-2. Install the required dependencies:
-    
-    ```bash
-    pip install mkdocs-material
-    ```
-    
-3. Install the missing dependencies:
-    
-    ```bash
-    pip install "mkdocs-material[imaging]"
-    pip install mkdocs-glightbox
-    ```
-    
-4. Serve the documentation locally:
-    
-    ```bash
-    mkdocs serve
-    ```
-    
-5. Open your browser and navigate to `http://127.0.0.1:8000`.
+---
 
-### Installation Notes
+## Getting started
 
-If the `mkdocs` command is not available after installing `mkdocs-material`, it’s likely due to the following reasons:
+To begin leveraging the Cyber Defence Kit:
 
-1. The `mkdocs` executable is installed in the user's local `~/.local/bin/` directory, which may not be included in your system's `PATH` environment variable.
-2. Without the correct `PATH` configuration, the terminal cannot locate the `mkdocs` executable.
+### Understand the toolkit
+Familiarise yourself with the components of the kit and how they fit together. The documentation is structured to help you understand not just *what* each tool does, but *why* it exists in the overall design.
 
-To resolve this, you can either:
+### Set up your environment
+Prepare your system by reviewing the hardware and software requirements before installation.  
+This includes planning for different deployment scenarios, such as:
 
-- Add `~/.local/bin/` to your `PATH`:
-    
-    ```bash
-    echo 'export PATH=$PATH:~/.local/bin' >> ~/.bashrc
-    source ~/.bashrc
-    ```
-    
-- Install `mkdocs` system-wide using your package manager:
-    
-    ```bash
-    sudo apt install mkdocs
-    ```
-    
+- Standard lab environments  
+- Resource-constrained systems  
+- Air-gapped or offline environments  
+
+### Learn and explore
+Work through the documentation and proof-of-concept material to explore attack simulation, detection, and response workflows. The focus is on learning by doing, experimenting safely, and understanding the trade-offs involved.
+
+---
+
+## Important notes
+
+- **Security first**  
+  Always follow security best practices when installing, configuring, and operating tools within the Cyber Defence Kit.
+
+- **Air-gapped environments**  
+  Special considerations are required for installations without internet access. These are documented where relevant, including offline dependencies and update strategies.
+
+- **Legal compliance**  
+  Ensure all activities carried out using this kit comply with applicable laws, policies, and regulatory requirements. The Cyber Defence Kit is intended strictly for defensive learning and research purposes.
+
+---
 
 ## Licence
 
-Cyber Defence Kit documentation is created by **[Joseph Jee](https://josephjee.com)** and licensed under the **[Creative Commons Attribution 4.0 International (CC BY 4.0) License](https://creativecommons.org/licenses/by/4.0/)**. You are free to share and adapt the content with proper attribution.
+Cyber Defence Kit documentation is created by **Joseph Jee** and licensed under the  
+**Creative Commons Attribution 4.0 International (CC BY 4.0) Licence**.
+
+You are free to share and adapt the content with proper attribution.
+
+---
+
+*This is a personal, learning-focused project and is not affiliated with any vendor or organisation.*
