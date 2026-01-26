@@ -1,0 +1,3314 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../understanding-SOAR/understanding-SOAR.html">
+      
+      
+        <link rel="next" href="../understanding-NTA/understanding-NTA.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/Cyber Defence Kit logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Shuffle - Cyber Defence Kit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#shuffle" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-header__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cyber Defence Kit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Shuffle
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="light-blue" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="light-blue" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SIEM/understanding-SIEM.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SIEM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IDS/IPS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-SIRP/understanding-SIRP.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SIRP
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../understanding-SOAR/understanding-SOAR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOAR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-NTA/understanding-NTA.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NTA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-DFIR/understanding-DFIR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  DFIR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../understanding-EDR/understanding-EDR.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  EDR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../caldera/caldera.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MITRE
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Cyber Defence Kit" class="md-nav__button md-logo" aria-label="Cyber Defence Kit" data-md-component="logo">
+      
+  <img src="../images/Cyber Defence Kit logo.png" alt="logo">
+
+    </a>
+    Cyber Defence Kit
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIEM
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SIEM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIEM/understanding-SIEM.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SIEM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../splunk/splunk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Splunk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wazuh/wazuh.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wazuh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securityonion/securityonion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Onion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDS/IPS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDS/IPS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-IDS-IPS/understanding-IDS-IPS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding IDS/IPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snort/snort.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Snort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../suricata/suricata.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Suricata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIRP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SIRP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SIRP/understanding-SIRP.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SIRP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../thehive/thehive.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TheHive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iris/iris.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IRIS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOAR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOAR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-SOAR/understanding-SOAR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding SOAR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shuffle
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="shuffle.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shuffle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lab-setup-for-proof-of-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Setup for Proof of Concept
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-shuffle-online" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Shuffle online
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Shuffle online">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-docker-using-the-apt-repository-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Docker using the apt repository (Ubuntu)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-docker-engine-manually-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Docker Engine manually (Ubuntu)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-docker-engine-manually-centos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Docker Engine manually (CentOS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-shuffle-github-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download Shuffle GitHub Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-shuffle-offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Shuffle offline
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Shuffle offline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-requisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-requisite
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull-images-on-original-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pull images on original machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull-and-save-docker-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pull and Save Docker images
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-github-repositories-as-a-zip-archives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download GitHub repositories as a zip archives
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-automated-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating Automated Workflows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow Zero
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow Zero">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wazuh-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wazuh server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shuffle_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shuffle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-one" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow One
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow One">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-wazuh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Wazuh
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-wazuh-windows-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Wazuh Windows Client
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-wazuh-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Wazuh Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-windows-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Windows Client
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-wazuh-manager_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Wazuh Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-shuffle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Shuffle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upload-the-required-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload the required Apps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-wazuh-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Wazuh server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-shuffle_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Shuffle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-thehive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure TheHive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-shuffle_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Shuffle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-two" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow Two
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow Two">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-shuffle_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Shuffle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-workflow_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-wazuh-server_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Wazuh server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-shuffle_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Shuffle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NTA
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NTA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-NTA/understanding-NTA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding NTA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wireshark/wireshark.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wireshark
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zeek/zeek.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zeek
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zui/zui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zui
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7">
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFIR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DFIR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-DFIR/understanding-DFIR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding DFIR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../velociraptor/velociraptor.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Velociraptor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8">
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EDR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EDR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-EDR/understanding-EDR.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding EDR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auroralite/auroralite.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aurora Lite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9">
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MITRE
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MITRE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../caldera/caldera.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caldera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigator/navigator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MITRE ATT&amp;CK Navigator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="shuffle"><strong>Shuffle</strong></h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/toqzkIN1urA?si=rqZTpP_4flYw_cFz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h2 id="lab-setup-for-proof-of-concept"><strong>Lab Setup for Proof of Concept</strong></h2>
+<p>In this proof of concept, Shuffle is installed on an Ubuntu VM. Automated workflows were created using Shuffle, Wazuh, and TheHive. An attack simulation was conducted on the Windows and Ubuntu hosts in a safe and controlled environment.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Host</strong></th>
+<th><strong>OS</strong></th>
+<th><strong>Role</strong></th>
+<th><strong>IP Address</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fortigate</td>
+<td>Fortios 7.6.0</td>
+<td>Firewall/Router</td>
+<td>192.168.1.111 (WAN) / 10.0.0.1 (LAN)</td>
+</tr>
+<tr>
+<td>shuffle</td>
+<td>Ubuntu 22.04 LTS</td>
+<td>Shuffle (SOAR)</td>
+<td>10.0.0.28</td>
+</tr>
+<tr>
+<td>WazuhServer</td>
+<td>Centos Stream 9</td>
+<td>Wazuh server (SIEM server)</td>
+<td>10.0.0.20</td>
+</tr>
+<tr>
+<td>hive</td>
+<td>Ubuntu 22.04 LTS</td>
+<td>TheHive (IR)</td>
+<td>10.0.0.40</td>
+</tr>
+<tr>
+<td>WS2019</td>
+<td>Windows Server 2019</td>
+<td>Wazuh agent (SIEM client)</td>
+<td>10.0.0.24</td>
+</tr>
+<tr>
+<td>SyslogUbuntu</td>
+<td>Ubuntu 22.04 LTS</td>
+<td>Wazuh agent, rsyslog server</td>
+<td>10.0.0.26</td>
+</tr>
+<tr>
+<td>Kali</td>
+<td>Kali Linux 2024.2</td>
+<td>Attacker machine</td>
+<td>192.168.1.161, 10.0.0.29</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="Shuffle.drawio.png" data-desc-position="bottom"><img alt="Shuffle.drawio.png" src="Shuffle.drawio.png"></a></p>
+<h2 id="install-shuffle-online"><strong>Install Shuffle online</strong></h2>
+<h3 id="install-docker-using-the-apt-repository-ubuntu"><strong>Install Docker using the apt repository (Ubuntu)</strong></h3>
+<p>Before you install Docker Engine for the first time on a new host machine, you need to set up the Docker repository. Afterward, you can install and update Docker from the repository.</p>
+<p>Set up Docker's apt repository.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Add Docker's official GPG key:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ca</span><span class="o">-</span><span class="n">certificates</span> <span class="n">curl</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">sudo</span> <span class="n">install</span> <span class="o">-</span><span class="n">m</span> <span class="mi">0755</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">keyrings</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">sudo</span> <span class="n">curl</span> <span class="o">-</span><span class="n">fsSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">linux</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">gpg</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">keyrings</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">asc</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">sudo</span> <span class="n">chmod</span> <span class="n">a</span><span class="o">+</span><span class="n">r</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">keyrings</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">asc</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># Add the repository to Apt sources:</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">echo</span> \
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  <span class="s2">"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu </span><span class="se">\</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="s2">  $(. /etc/os-release &amp;&amp; echo "</span><span class="err">$</span><span class="n">VERSION_CODENAME</span><span class="s2">") stable"</span> <span class="o">|</span> \
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>  <span class="n">sudo</span> <span class="n">tee</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">sources</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">list</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+</code></pre></div>
+<p>Install the Docker packages.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">docker</span><span class="o">-</span><span class="n">ce</span> <span class="n">docker</span><span class="o">-</span><span class="n">ce</span><span class="o">-</span><span class="n">cli</span> <span class="n">containerd</span><span class="o">.</span><span class="n">io</span> <span class="n">docker</span><span class="o">-</span><span class="n">buildx</span><span class="o">-</span><span class="n">plugin</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">-</span><span class="n">plugin</span>
+</code></pre></div>
+<p>Verify that the Docker Engine installation is successful by running the&nbsp;<code>hello-world</code>&nbsp;image.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">sudo</span> <span class="n">docker</span> <span class="n">run</span> <span class="n">hello</span><span class="o">-</span><span class="n">world</span>
+</code></pre></div>
+<h3 id="install-docker-engine-manually-ubuntu"><strong>Install Docker Engine manually (Ubuntu)</strong></h3>
+<p><em>All the required deb files for Docker Engine have been downloaded and put together in the folder called </em><em>docker</em><em>. For your reference, the steps for downloading the required deb files for Docker Engine are documented below.</em></p>
+<p><strong>On Ubuntu host with internet connection:</strong></p>
+<p><strong>Option 1</strong></p>
+<p>Run the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">curl</span> <span class="o">-</span><span class="n">L</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">get</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span> <span class="o">|</span> <span class="n">sh</span>
+</code></pre></div>
+<p><strong>Option 2</strong></p>
+<p>You will need to <a href="https://download.docker.com/linux/ubuntu/dists/">download</a> a new file each time you want to upgrade Docker Engine.
+Select your Ubuntu version in the list.</p>
+<p>Go to&nbsp;<code>pool/stable/</code>&nbsp;and select the applicable architecture (<code>amd64</code>,&nbsp;<code>armhf</code>,&nbsp;<code>arm64</code>, or&nbsp;<code>s390x</code>).</p>
+<p>Download the following&nbsp;<code>deb</code>&nbsp;files for the Docker Engine, CLI, containerd, and Docker Compose packages:</p>
+<ul>
+<li><code>containerd.io_&lt;version&gt;_&lt;arch&gt;.deb</code></li>
+<li><code>docker-ce_&lt;version&gt;_&lt;arch&gt;.deb</code></li>
+<li><code>docker-ce-cli_&lt;version&gt;_&lt;arch&gt;.deb</code></li>
+<li><code>docker-buildx-plugin_&lt;version&gt;_&lt;arch&gt;.deb</code></li>
+<li><code>docker-compose-plugin_&lt;version&gt;_&lt;arch&gt;.deb</code></li>
+</ul>
+<p>Install the&nbsp;<code>.deb</code>&nbsp;packages. Change directory into the docker folder and run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">cd</span> <span class="n">docker</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">sudo</span> <span class="n">dpkg</span> <span class="o">-</span><span class="n">i</span> <span class="o">*</span>
+</code></pre></div>
+<p>Run <code>sudo service docker start</code></p>
+<h3 id="install-docker-engine-manually-centos"><strong>Install Docker Engine manually (CentOS)</strong></h3>
+<p><em>All the required deb files for Docker Engine have been downloaded and put together in the folder called </em><em>docker</em><em>. For your reference, the steps for downloading the required deb files for Docker Engine are documented below.</em></p>
+<p><strong>On CentOS host with internet connection:</strong></p>
+<p>If you can't use Docker's rpm repository to install Docker Engine, you can download the .rpm file for your release and install it manually. You need to download a new file each time you want to upgrade Docker Engine.</p>
+<p>Go to <a href="https://download.docker.com/linux/centos/">https://download.docker.com/linux/centos/</a> and choose your version of CentOS. Then browse to x86_64/stable/Packages/ and download the .rpm file for the Docker version you want to install.</p>
+<p>Go to&nbsp;<code>pool/stable/</code>&nbsp;and select the applicable architecture (<code>amd64</code>,&nbsp;<code>armhf</code>,&nbsp;<code>arm64</code>, or&nbsp;<code>s390x</code>).</p>
+<p>Download the following&nbsp;rpm&nbsp;files for the Docker Engine, CLI, containerd, and Docker Compose packages:</p>
+<ul>
+<li><code>containerd.io_&lt;version&gt;_&lt;arch&gt;.rpm</code></li>
+<li><code>docker-ce_&lt;version&gt;_&lt;arch&gt;.rpm</code></li>
+<li><code>docker-ce-cli_&lt;version&gt;_&lt;arch&gt;.rpm</code></li>
+<li><code>docker-buildx-plugin_&lt;version&gt;_&lt;arch&gt;.rpm</code></li>
+<li><code>docker-compose-plugin_&lt;version&gt;_&lt;arch&gt;.rpm</code></li>
+</ul>
+<p>Install the&nbsp;<code>.rpm</code>&nbsp;packages. Change directory into the docker folder and run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">cd</span> <span class="n">docker</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">sudo</span> <span class="n">yum</span> <span class="n">install</span> <span class="o">*</span>
+</code></pre></div>
+<p>Start the docker</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>service<span class="w"> </span>docker<span class="w"> </span>start
+</code></pre></div>
+<h3 id="download-shuffle-github-repository"><strong>Download Shuffle GitHub Repository</strong></h3>
+<p>Clone or download the Shuffle repository as a zip archive from the <a href="https://github.com/Shuffle/Shuffle">Shuffle GitHub</a> page. If git command cannot be installed, download the zip.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">git</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">cd</span> <span class="o">/</span><span class="n">opt</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">sudo</span> <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Shuffle</span><span class="o">/</span><span class="n">Shuffle</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">cd</span> <span class="n">Shuffle</span>
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image.png" data-desc-position="bottom"><img alt="image.png" src="image.png"></a></p>
+<p>If Shuffle-main.zip is downloaded, unzip  to the /opt directory </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">sudo</span> <span class="n">unzip</span> <span class="n">Shuffle</span><span class="o">-</span><span class="n">main</span><span class="o">.</span><span class="n">zip</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">opt</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">sudo</span> <span class="n">unzip</span> <span class="n">python</span><span class="o">-</span><span class="n">apps</span><span class="o">-</span><span class="n">master</span><span class="o">.</span><span class="n">zip</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">Shuffle</span><span class="o">-</span><span class="n">main</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">apps</span>
+</code></pre></div>
+<p>Change into /opt/Shuffle directory</p>
+<p>Fix prerequisites for the Opensearch database (Elasticsearch):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">cd</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">Shuffle</span><span class="o">-</span><span class="n">main</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">mkdir</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">database</span>                    <span class="c1"># Create a database folder</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="mi">1000</span><span class="p">:</span><span class="mi">1000</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">database</span>  <span class="c1"># IF you get an error using 'chown', add the user first with 'sudo useradd opensearch'</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">sudo</span> <span class="n">swapoff</span> <span class="o">-</span><span class="n">a</span>                           <span class="c1"># Disable swap</span>
+</code></pre></div>
+<p>Run docker-compose.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">cd</span> 
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>
+</code></pre></div>
+<p>Recommended for Opensearch to work well</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">sudo</span> <span class="n">sysctl</span> <span class="o">-</span><span class="n">w</span> <span class="n">vm</span><span class="o">.</span><span class="n">max_map_count</span><span class="o">=</span><span class="mi">262144</span>             
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1"># https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html</span>
+</code></pre></div>
+<h2 id="install-shuffle-offline"><strong>Install Shuffle offline</strong></h2>
+<p>This procedure will help you export what you need to run Shuffle on a no internet host.</p>
+<h3 id="pre-requisite"><strong>Pre-requisite</strong></h3>
+<ul>
+<li>Both machines has Docker and Docker Compose installed already</li>
+<li>Your host machine already needs the images on it to make them exportable</li>
+</ul>
+<h3 id="pull-images-on-original-machine"><strong>Pull images on original machine</strong></h3>
+<p>Shuffle need a few base images to work:</p>
+<ul>
+<li>shuffle-frontend</li>
+<li>shuffle-backend</li>
+<li>shuffle-orborus</li>
+<li>shuffle-worker</li>
+<li>shuffle:app_sdk</li>
+<li>opensearch</li>
+<li>shuffle-subflow</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">docker</span> <span class="n">pull</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">backend</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">docker</span> <span class="n">pull</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">frontend</span> 
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">docker</span> <span class="n">pull</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">orborus</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="n">docker</span> <span class="n">pull</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">app_sdk</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="n">docker</span> <span class="n">pull</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">worker</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="n">docker</span> <span class="n">pull</span> <span class="n">opensearchproject</span><span class="o">/</span><span class="n">opensearch</span><span class="p">:</span><span class="mf">2.14.0</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="n">docker</span> <span class="n">pull</span> <span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">subflow</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="n">docker</span> <span class="n">pull</span> <span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span><span class="p">:</span><span class="n">shuffle</span><span class="o">-</span><span class="n">tools_1</span><span class="mf">.2.0</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="n">docker</span> <span class="n">pull</span> <span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span><span class="p">:</span><span class="n">wazuh_1</span><span class="mf">.0.0</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="n">docker</span> <span class="n">pull</span> <span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span><span class="p">:</span><span class="n">thehive_1</span><span class="mf">.1.3</span>
+</code></pre></div>
+<p>Be careful with the versioning for opensearch, all other are going to use the tag "latest". You will also need to download and transfer ALL the apps you want to use. These can be discovered as such:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">docker</span> <span class="n">images</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">i</span> <span class="n">shuffle</span>
+</code></pre></div>
+<p>Save images and archive them</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>mkdir shuffle-export
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>cd shuffle-export
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>docker save ghcr.io/shuffle/shuffle-backend:latest &gt; backend.tar
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>docker save ghcr.io/shuffle/shuffle-frontend:latest &gt; frontend.tar
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>docker save ghcr.io/shuffle/shuffle-orborus:latest &gt; orborus.tar
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>docker save ghcr.io/shuffle/shuffle-app_sdk:latest &gt; app_sdk.tar
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>##docker save frikky/shuffle:app_sdk &gt; app_sdk.tar
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>##docker save ghcr.io/frikky/shuffle-worker:latest &gt; worker.tar
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>docker save ghcr.io/shuffle/shuffle-worker:latest &gt; worker.tar
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>docker save opensearchproject/opensearch:2.14.0 &gt; opensearch.tar
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>docker save frikky/shuffle-subflow:latest &gt; sublow.tar
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>docker save frikky/shuffle:shuffle-tools_1.2.0 &gt; shuffle-tools.tar
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>docker save frikky/shuffle:wazuh_1.0.0 &gt; wazuh.tar
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>docker save frikky/shuffle:thehive_1.1.3 &gt; thehive.tar
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>git clone https://github.com/Shuffle/python-apps.git
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>wget https://raw.githubusercontent.com/Shuffle/Shuffle/master/.env
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>wget https://raw.githubusercontent.com/Shuffle/Shuffle/master/docker-compose.yml
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a>cd .. 
+<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>tar cvf shuffle-export.tar.gz shuffle-export
+</code></pre></div>
+<p>Export shuffle-export.tar.gz to the host without internet connection</p>
+<p>Import docker images to host without internet</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">tar</span> <span class="n">xvf</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">export</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> <span class="o">-</span><span class="n">C</span> <span class="o">/</span><span class="n">opt</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">cd</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">export</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">find</span> <span class="o">-</span><span class="nb">type</span> <span class="n">f</span> <span class="o">-</span><span class="n">name</span> <span class="s2">"*.tar"</span> <span class="o">-</span><span class="n">exec</span> <span class="n">docker</span> <span class="n">load</span> <span class="o">--</span><span class="nb">input</span> <span class="s2">"</span><span class="si">{}</span><span class="s2">"</span> \<span class="p">;</span>
+</code></pre></div>
+<p>Create folders to add the python apps</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">mkdir</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">apps</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="n">python</span><span class="o">-</span><span class="n">apps</span><span class="o">/*</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">apps</span><span class="o">/</span>
+</code></pre></div>
+<p>Create a folder called shuffle-database and change the ownership.</p>
+<p>If you get an error using 'chown', add the user first with 'sudo useradd opensearch'</p>
+<p>Disable swap</p>
+<p>Set the <code>vm.max_map_count</code> kernel parameter to 262144. This is often needed for applications like Elasticsearch or Opensearch that require a higher limit for the number of virtual memory areas a process can have.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">mkdir</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">database</span>  
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="mi">1000</span><span class="p">:</span><span class="mi">1000</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">database</span>  
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="n">sudo</span> <span class="n">swapoff</span> <span class="o">-</span><span class="n">a</span>                          
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="n">sudo</span> <span class="n">sysctl</span> <span class="o">-</span><span class="n">w</span> <span class="n">vm</span><span class="o">.</span><span class="n">max_map_count</span><span class="o">=</span><span class="mi">262144</span>
+</code></pre></div>
+<p>Run <code>docker images</code> </p>
+<p>Edit the image names in docker-compose.yml to align it with the output from <code>docker images</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">docker</span> <span class="n">images</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">REPOSITORY</span>                               <span class="n">TAG</span>                     <span class="n">IMAGE</span> <span class="n">ID</span>       <span class="n">CREATED</span>         <span class="n">SIZE</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="n">registry</span><span class="o">.</span><span class="n">hub</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span>   <span class="n">shuffle</span><span class="o">-</span><span class="n">subflow_1</span><span class="mf">.0.0</span>   <span class="mi">5</span><span class="n">ed48be6f649</span>   <span class="mi">33</span> <span class="n">hours</span> <span class="n">ago</span>    <span class="mi">293</span><span class="n">MB</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span>                           <span class="n">app_sdk</span>                 <span class="mi">1</span><span class="n">dde46cd09da</span>   <span class="mi">10</span> <span class="n">days</span> <span class="n">ago</span>     <span class="mi">291</span><span class="n">MB</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">worker</span>            <span class="n">latest</span>                  <span class="n">adb137fa1718</span>   <span class="mi">15</span> <span class="n">months</span> <span class="n">ago</span>   <span class="mf">44.4</span><span class="n">MB</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="n">opensearchproject</span><span class="o">/</span><span class="n">opensearch</span>             <span class="mf">2.5.0</span>                   <span class="mi">5</span><span class="n">a030d679ac7</span>   <span class="mi">18</span> <span class="n">months</span> <span class="n">ago</span>   <span class="mf">1.17</span><span class="n">GB</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">backend</span>           <span class="n">latest</span>                  <span class="mf">2e3</span><span class="n">d97ae8e30</span>   <span class="mi">21</span> <span class="n">months</span> <span class="n">ago</span>   <span class="mf">57.9</span><span class="n">MB</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">frontend</span>          <span class="n">latest</span>                  <span class="n">be49fe2395d3</span>   <span class="mi">21</span> <span class="n">months</span> <span class="n">ago</span>   <span class="mi">191</span><span class="n">MB</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">orborus</span>           <span class="n">latest</span>                  <span class="mi">068</span><span class="n">b942b0302</span>   <span class="mi">21</span> <span class="n">months</span> <span class="n">ago</span>   <span class="mf">29.9</span><span class="n">MB</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">services</span><span class="p">:</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>  <span class="n">frontend</span><span class="p">:</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    <span class="n">image</span><span class="p">:</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">frontend</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>  <span class="n">backend</span><span class="p">:</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>    <span class="n">image</span><span class="p">:</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">backend</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>  <span class="n">orborus</span><span class="p">:</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>    <span class="n">image</span><span class="p">:</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">orborus</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>  <span class="n">opensearch</span><span class="p">:</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>    <span class="n">image</span><span class="p">:</span> <span class="n">opensearchproject</span><span class="o">/</span><span class="n">opensearch</span><span class="p">:</span><span class="mf">2.5.0</span> 
+</code></pre></div>
+<p>Run docker-compose.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>
+</code></pre></div>
+<h3 id="troubleshooting"><strong>Troubleshooting</strong></h3>
+<p>Verify that there are no major errors in the logs and all containers are up and running </p>
+<p>Check docker processes</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">docker</span> <span class="n">ps</span> 
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="n">CONTAINER</span> <span class="n">ID</span>   <span class="n">IMAGE</span>                                    <span class="n">COMMAND</span>                  <span class="n">CREATED</span>         <span class="n">STATUS</span>         <span class="n">PORTS</span>                                                                                <span class="n">NAMES</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="mi">6304</span><span class="n">c903bdde</span>   <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">frontend</span><span class="p">:</span><span class="n">latest</span>   <span class="s2">"/entrypoint.sh ngin…"</span>   <span class="mi">3</span> <span class="n">minutes</span> <span class="n">ago</span>   <span class="n">Up</span> <span class="mi">3</span> <span class="n">minutes</span>   <span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">3001</span><span class="o">-&gt;</span><span class="mi">80</span><span class="o">/</span><span class="n">tcp</span><span class="p">,</span> <span class="p">[::]:</span><span class="mi">3001</span><span class="o">-&gt;</span><span class="mi">80</span><span class="o">/</span><span class="n">tcp</span><span class="p">,</span> <span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">3443</span><span class="o">-&gt;</span><span class="mi">443</span><span class="o">/</span><span class="n">tcp</span><span class="p">,</span> <span class="p">[::]:</span><span class="mi">3443</span><span class="o">-&gt;</span><span class="mi">443</span><span class="o">/</span><span class="n">tcp</span>   <span class="n">shuffle</span><span class="o">-</span><span class="n">frontend</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="mi">899</span><span class="n">ab92ccdd5</span>   <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">backend</span><span class="p">:</span><span class="n">latest</span>    <span class="s2">"./webapp"</span>               <span class="mi">3</span> <span class="n">minutes</span> <span class="n">ago</span>   <span class="n">Up</span> <span class="mi">3</span> <span class="n">minutes</span>   <span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">5001</span><span class="o">-&gt;</span><span class="mi">5001</span><span class="o">/</span><span class="n">tcp</span><span class="p">,</span> <span class="p">:::</span><span class="mi">5001</span><span class="o">-&gt;</span><span class="mi">5001</span><span class="o">/</span><span class="n">tcp</span>                                            <span class="n">shuffle</span><span class="o">-</span><span class="n">backend</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="n">cccd0236ead3</span>   <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">orborus</span><span class="p">:</span><span class="n">latest</span>    <span class="s2">"./orborus"</span>              <span class="mi">3</span> <span class="n">minutes</span> <span class="n">ago</span>   <span class="n">Up</span> <span class="mi">3</span> <span class="n">minutes</span>                                                                                        <span class="n">shuffle</span><span class="o">-</span><span class="n">orborus</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="n">faa724f843ad</span>   <span class="n">opensearchproject</span><span class="o">/</span><span class="n">opensearch</span><span class="p">:</span><span class="mf">2.5.0</span>       <span class="s2">"./opensearch-docker…"</span>   <span class="mi">3</span> <span class="n">minutes</span> <span class="n">ago</span>   <span class="n">Up</span> <span class="mi">3</span> <span class="n">minutes</span>   <span class="mi">9300</span><span class="o">/</span><span class="n">tcp</span><span class="p">,</span> <span class="mi">9600</span><span class="o">/</span><span class="n">tcp</span><span class="p">,</span> <span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">9200</span><span class="o">-&gt;</span><span class="mi">9200</span><span class="o">/</span><span class="n">tcp</span><span class="p">,</span> <span class="p">:::</span><span class="mi">9200</span><span class="o">-&gt;</span><span class="mi">9200</span><span class="o">/</span><span class="n">tcp</span><span class="p">,</span> <span class="mi">9650</span><span class="o">/</span><span class="n">tcp</span>              <span class="n">shuffle</span><span class="o">-</span><span class="n">opensearch</span>
+</code></pre></div>
+<p>Check docker container logs</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">docker</span> <span class="n">logs</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">backend</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="n">docker</span> <span class="n">logs</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">frontend</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="n">docker</span> <span class="n">logs</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">orborus</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="n">docker</span> <span class="n">logs</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">opensearch</span>
+</code></pre></div>
+<p>Check loaded docker images</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">root</span><span class="nd">@shuffleoffline</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">exp</span><span class="c1"># docker images</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">REPOSITORY</span>                               <span class="n">TAG</span>                                        <span class="n">IMAGE</span> <span class="n">ID</span>       <span class="n">CREATED</span>        <span class="n">SIZE</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span>                           <span class="n">TheHive</span><span class="o">-</span><span class="mi">244</span><span class="n">ac27f71490576f2152f1a478763dd</span>   <span class="mi">04651821</span><span class="n">b9a9</span>   <span class="mi">11</span> <span class="n">hours</span> <span class="n">ago</span>   <span class="mi">292</span><span class="n">MB</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span>                           <span class="n">thehive_1</span><span class="mf">.1.0</span>                              <span class="mi">04651821</span><span class="n">b9a9</span>   <span class="mi">11</span> <span class="n">hours</span> <span class="n">ago</span>   <span class="mi">292</span><span class="n">MB</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span>                           <span class="n">Wazuh</span><span class="o">-</span><span class="mi">2</span><span class="n">f5945bb5a582a6b676ba7c212412cdb</span>     <span class="n">c6e36c51b505</span>   <span class="mi">11</span> <span class="n">hours</span> <span class="n">ago</span>   <span class="mi">292</span><span class="n">MB</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span>                           <span class="n">wazuh_1</span><span class="mf">.1.0</span>                                <span class="n">c6e36c51b505</span>   <span class="mi">11</span> <span class="n">hours</span> <span class="n">ago</span>   <span class="mi">292</span><span class="n">MB</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                                   <span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                                     <span class="mi">15951</span><span class="n">f6d8452</span>   <span class="mi">25</span> <span class="n">hours</span> <span class="n">ago</span>   <span class="mi">291</span><span class="n">MB</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                                   <span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                                     <span class="n">b99fc014293d</span>   <span class="mi">25</span> <span class="n">hours</span> <span class="n">ago</span>   <span class="mi">291</span><span class="n">MB</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                                   <span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                                     <span class="mf">5e2</span><span class="n">ccf369d65</span>   <span class="mi">25</span> <span class="n">hours</span> <span class="n">ago</span>   <span class="mi">291</span><span class="n">MB</span>
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                                   <span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                                     <span class="n">dafc616bc131</span>   <span class="mi">25</span> <span class="n">hours</span> <span class="n">ago</span>   <span class="mi">291</span><span class="n">MB</span>
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                                   <span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>                                     <span class="mi">71</span><span class="n">fa350d234f</span>   <span class="mi">25</span> <span class="n">hours</span> <span class="n">ago</span>   <span class="mi">291</span><span class="n">MB</span>
+<a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span>                           <span class="n">shuffle</span><span class="o">-</span><span class="n">tools_1</span><span class="mf">.2.0</span>                        <span class="mi">4159398549</span><span class="n">c0</span>   <span class="mi">3</span> <span class="n">days</span> <span class="n">ago</span>     <span class="mi">387</span><span class="n">MB</span>
+<a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span>                           <span class="n">shuffle</span><span class="o">-</span><span class="n">tools_1</span><span class="mf">.1.0</span>                        <span class="mi">5712</span><span class="n">b5ea194b</span>   <span class="mi">3</span> <span class="n">days</span> <span class="n">ago</span>     <span class="mi">362</span><span class="n">MB</span>
+<a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a><span class="n">registry</span><span class="o">.</span><span class="n">hub</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span>   <span class="n">shuffle</span><span class="o">-</span><span class="n">tools_1</span><span class="mf">.1.0</span>                        <span class="mi">5712</span><span class="n">b5ea194b</span>   <span class="mi">3</span> <span class="n">days</span> <span class="n">ago</span>     <span class="mi">362</span><span class="n">MB</span>
+<a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">subflow</span>                   <span class="n">latest</span>                                     <span class="mi">5</span><span class="n">ed48be6f649</span>   <span class="mi">3</span> <span class="n">days</span> <span class="n">ago</span>     <span class="mi">293</span><span class="n">MB</span>
+<a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span>                           <span class="n">thehive_1</span><span class="mf">.1.3</span>                              <span class="mi">9</span><span class="n">b1209a0ba38</span>   <span class="mi">3</span> <span class="n">days</span> <span class="n">ago</span>     <span class="mi">297</span><span class="n">MB</span>
+<a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span>                           <span class="n">app_sdk</span>                                    <span class="mi">1</span><span class="n">dde46cd09da</span>   <span class="mi">12</span> <span class="n">days</span> <span class="n">ago</span>    <span class="mi">291</span><span class="n">MB</span>
+<a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a><span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">frontend</span>         <span class="n">latest</span>                                     <span class="mi">30</span><span class="n">c4090d085c</span>   <span class="mi">3</span> <span class="n">weeks</span> <span class="n">ago</span>    <span class="mi">196</span><span class="n">MB</span>
+<a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a><span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">worker</span>           <span class="n">latest</span>                                     <span class="mi">9</span><span class="n">f7c39d5fb1e</span>   <span class="mi">3</span> <span class="n">weeks</span> <span class="n">ago</span>    <span class="mi">79</span><span class="n">MB</span>
+<a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a><span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">backend</span>          <span class="n">latest</span>                                     <span class="mf">59613e03</span><span class="n">c036</span>   <span class="mi">3</span> <span class="n">weeks</span> <span class="n">ago</span>    <span class="mf">93.4</span><span class="n">MB</span>
+<a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a><span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">app_sdk</span>          <span class="n">latest</span>                                     <span class="mi">3</span><span class="n">ac4837de611</span>   <span class="mi">3</span> <span class="n">weeks</span> <span class="n">ago</span>    <span class="mi">291</span><span class="n">MB</span>
+<a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a><span class="n">opensearchproject</span><span class="o">/</span><span class="n">opensearch</span>             <span class="mf">2.14.0</span>                                     <span class="n">bf1e1cd1fa30</span>   <span class="mi">2</span> <span class="n">months</span> <span class="n">ago</span>   <span class="mf">1.33</span><span class="n">GB</span>
+<a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a><span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">orborus</span>          <span class="n">latest</span>                                     <span class="mi">7457</span><span class="n">cc8b6210</span>   <span class="mi">3</span> <span class="n">months</span> <span class="n">ago</span>   <span class="mf">67.7</span><span class="n">MB</span>
+<a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a><span class="n">frikky</span><span class="o">/</span><span class="n">shuffle</span>                           <span class="n">wazuh_1</span><span class="mf">.0.0</span>                                <span class="mi">8</span><span class="n">a72f12273c6</span>   <span class="mi">3</span> <span class="n">years</span> <span class="n">ago</span>    <span class="mi">66</span><span class="n">MB</span>
+</code></pre></div>
+<p>If the orborus logs shows that it is trying to pull the images from the internet, tag your locally loaded images by running docker tag <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="" data-desc-position="bottom"><img id></a> <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="" data-desc-position="bottom"><img name></a></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">docker</span> <span class="n">logs</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">orborus</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="o">...</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="mi">2024</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">07</span> <span class="mi">23</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span><span class="mi">59</span> <span class="p">[</span><span class="n">DEBUG</span><span class="p">]</span> <span class="n">Pulling</span> <span class="n">image</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">app_sdk</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="mi">2024</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">07</span> <span class="mi">23</span><span class="p">:</span><span class="mi">37</span><span class="p">:</span><span class="mi">39</span> <span class="p">[</span><span class="n">ERROR</span><span class="p">]</span> <span class="n">Failed</span> <span class="n">getting</span> <span class="n">image</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">app_sdk</span><span class="p">:</span><span class="n">latest</span><span class="p">:</span> <span class="n">Error</span> <span class="n">response</span> <span class="kn">from</span><span class="w"> </span><span class="nn">daemon</span><span class="p">:</span> <span class="n">Get</span> <span class="s2">"https://ghcr.io/v2/"</span><span class="p">:</span> <span class="n">dial</span> <span class="n">tcp</span><span class="p">:</span> <span class="n">lookup</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span> <span class="n">on</span> <span class="mf">127.0.0.53</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span> <span class="n">read</span> <span class="n">udp</span> <span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">58367</span><span class="o">-&gt;</span><span class="mf">127.0.0.53</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span> <span class="n">i</span><span class="o">/</span><span class="n">o</span> <span class="n">timeout</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">docker</span> <span class="n">tag</span> <span class="mi">3</span><span class="n">ac4837de611</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">app_sdk</span><span class="p">:</span><span class="n">latest</span>
+</code></pre></div>
+<p>If you are using older version of opensearch (&lt; 2.14.0), you may encounter authentication issues as shown by the opensearch logs:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">docker</span> <span class="n">logs</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">opensearch</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="o">...</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="n">Authentication</span> <span class="k">finally</span> <span class="n">failed</span> <span class="k">for</span> <span class="n">admin</span> <span class="kn">from</span><span class="w"> </span><span class="mf">172.18.0.4</span><span class="p">:</span><span class="mi">51382</span>
+</code></pre></div>
+<p>If this is the case, access the opensearch, navigate to /config/opensearch-security and edit the configuration file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">opensearch</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="p">[</span><span class="n">opensearch</span><span class="nd">@shuffle</span><span class="o">-</span><span class="n">opensearch</span> <span class="n">config</span><span class="p">]</span><span class="err">$</span> <span class="n">cd</span> <span class="n">config</span><span class="o">/</span><span class="n">opensearch</span><span class="o">-</span><span class="n">security</span><span class="o">/</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="p">[</span><span class="n">opensearch</span><span class="nd">@shuffle</span><span class="o">-</span><span class="n">opensearch</span> <span class="n">opensearch</span><span class="o">-</span><span class="n">security</span><span class="p">]</span><span class="err">$</span> <span class="n">cat</span> <span class="n">internal_users</span><span class="o">.</span><span class="n">yml</span> 
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="o">---</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="c1"># This is the internal user database</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="c1"># The hash value is a bcrypt hash and can be generated with plugin/tools/hash.sh</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="n">_meta</span><span class="p">:</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>  <span class="nb">type</span><span class="p">:</span> <span class="s2">"internalusers"</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>  <span class="n">config_version</span><span class="p">:</span> <span class="mi">2</span>
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="c1"># Define your internal users here</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>
+<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="c1">## Demo users</span>
+<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>
+<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="n">admin</span><span class="p">:</span>
+<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>  <span class="nb">hash</span><span class="p">:</span> <span class="s2">"$2a$12$VcCDgh2NDk07JGN0rjGbM.Ad41qVR/YFJcgHp0UGns5JDymv..TOG"</span>
+<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>  <span class="n">reserved</span><span class="p">:</span> <span class="n">true</span>
+<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>  <span class="n">backend_roles</span><span class="p">:</span>
+<a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a>  <span class="o">-</span> <span class="s2">"admin"</span>
+<a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a>  <span class="n">description</span><span class="p">:</span> <span class="s2">"Demo admin user"</span>
+</code></pre></div>
+<p>There admin hash does not match with admin password defined in .env file</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># DATABASE CONFIGURATIONS</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="o">...</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="n">SHUFFLE_OPENSEARCH_USERNAME</span><span class="o">=</span><span class="s2">"admin"</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="n">SHUFFLE_OPENSEARCH_PASSWORD</span><span class="o">=</span><span class="s2">"StrongShufflePassword321!"</span>
+</code></pre></div>
+<p>The bcrypt hash for the password should be:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1">#htpasswd -bnBC 12 "" StrongShufflePassword321!</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="err">$</span><span class="mi">2</span><span class="n">y</span><span class="err">$</span><span class="mi">12</span><span class="err">$</span><span class="mi">5</span><span class="n">juqU2</span><span class="o">/</span><span class="n">ybhsBB4H928meCO4ZHtzTFSfDRO87AlAF43fhZOWgDlX1W</span>
+</code></pre></div>
+<p>Replace the current hash for the <code>admin</code> user in the <code>internal_users.yml</code> file with the newly generated hash. 
+After editing the <code>internal_users.yml</code>, apply the changes to OpenSearch by running the <code>securityadmin_demo.sh</code> script inside the OpenSearch container:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="p">[</span><span class="n">opensearch</span><span class="nd">@shuffle</span><span class="o">-</span><span class="n">opensearch</span> <span class="n">opensearch</span><span class="o">-</span><span class="n">security</span><span class="p">]</span><span class="err">$</span> <span class="n">vi</span> <span class="n">internal_users</span><span class="o">.</span><span class="n">yml</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="c1"># "i" for insert, copy and paste theh hash, "Esc" then ":wq" </span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="p">[</span><span class="n">opensearch</span><span class="nd">@shuffle</span><span class="o">-</span><span class="n">opensearch</span> <span class="n">opensearch</span><span class="o">-</span><span class="n">security</span><span class="p">]</span><span class="err">$</span> <span class="n">cd</span> <span class="o">../../</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="p">[</span><span class="n">opensearch</span><span class="nd">@shuffle</span><span class="o">-</span><span class="n">opensearch</span> <span class="o">~</span><span class="p">]</span><span class="err">$</span> <span class="n">pwd</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">opensearch</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="p">[</span><span class="n">opensearch</span><span class="nd">@shuffle</span><span class="o">-</span><span class="n">opensearch</span> <span class="o">~</span><span class="p">]</span><span class="err">$</span> <span class="o">./</span><span class="n">securityadmin_demo</span><span class="o">.</span><span class="n">sh</span> 
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="p">[</span><span class="n">opensearch</span><span class="nd">@shuffle</span><span class="o">-</span><span class="n">opensearch</span> <span class="o">~</span><span class="p">]</span><span class="err">$</span> <span class="n">exit</span>
+</code></pre></div>
+<p>Change the file permission for *.pem in <code>/usr/share/opensearch/config</code> </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">opensearch</span><span class="o">/</span><span class="n">config</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="n">chmod</span> <span class="mi">0600</span> <span class="o">*.</span><span class="n">pem</span>
+</code></pre></div>
+<p>Restart the shuffle-opensearch and shuffle-backend container </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="n">docker</span> <span class="n">restart</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">opensearch</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="n">docker</span> <span class="n">restart</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">backend</span>
+</code></pre></div>
+<h3 id="pull-and-save-docker-images"><strong>Pull and Save Docker images</strong></h3>
+<p><em>All the required Docker images have been pulled as saved as </em><em>shuffle_images.tar</em><em>. For your reference, the steps for pulling and saving the required Docker images are documented below.</em></p>
+<p>For this step, we are preparing images from a Ubuntu host with internet connection and Docker installed. The prepared images will then be transferred to the air-gapped environment.</p>
+<p><strong>On Ubuntu host with internet connection and Docker Engine installed:</strong></p>
+<p>Open <code>docker-compose.yml</code> file from <a href="https://github.com/Shuffle/Shuffle/blob/main/docker-compose.yml">Shuffle GitHub</a> to identify the images you need. 
+Look for the <code>image</code> key under each service.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="n">services</span><span class="p">:</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>  <span class="n">frontend</span><span class="p">:</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>    <span class="n">image</span><span class="p">:</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">frontend</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>  <span class="n">backend</span><span class="p">:</span>
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>    <span class="n">image</span><span class="p">:</span><span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">backend</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>  <span class="n">orborus</span><span class="p">:</span>
+<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>    <span class="n">image</span><span class="p">:</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">orborus</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>    <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">app_sdk</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a>    <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">worker</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a>  <span class="n">opensearch</span><span class="p">:</span>
+<a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a>    <span class="n">image</span><span class="p">:</span> <span class="n">opensearchproject</span><span class="o">/</span><span class="n">opensearch</span><span class="p">:</span><span class="mf">2.14.0</span>
+</code></pre></div>
+<p>Pull the Images using <code>docker pull:</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="n">docker</span> <span class="n">pull</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">frontend</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="n">docker</span> <span class="n">pull</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">backend</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="n">docker</span> <span class="n">pull</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">orborus</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="n">docker</span> <span class="n">pull</span> <span class="n">opensearchproject</span><span class="o">/</span><span class="n">opensearch</span><span class="p">:</span><span class="mf">2.14.0</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="n">docker</span> <span class="n">pull</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">app_sdk</span><span class="p">:</span><span class="n">latest</span>
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="n">docker</span> <span class="n">pull</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">worker</span><span class="p">:</span><span class="n">latest</span>
+</code></pre></div>
+<p>Verify the Images are pulled by running <code>docker images</code></p>
+<p>Save the docker images for a transfer to an air-gapped environment</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="n">docker</span> <span class="n">save</span> <span class="o">-</span><span class="n">o</span> <span class="n">shuffle_images</span><span class="o">.</span><span class="n">tar</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">frontend</span><span class="p">:</span><span class="n">latest</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">backend</span><span class="p">:</span><span class="n">latest</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">orborus</span><span class="p">:</span><span class="n">latest</span> <span class="n">opensearchproject</span><span class="o">/</span><span class="n">opensearch</span><span class="p">:</span><span class="mf">2.14.0</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">app_sdk</span><span class="p">:</span><span class="n">latest</span> <span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">worker</span><span class="p">:</span><span class="n">latest</span>
+</code></pre></div>
+<h3 id="download-github-repositories-as-a-zip-archives"><strong>Download GitHub repositories as a zip archives</strong></h3>
+<p><em>All the required GitHub repositories are downloaded as </em><em>Shuffle-main.zip</em><em> and </em><em>python-apps-master.zip</em><em>. For your reference, the steps for downloading the required GitHub repositories are documented below.</em> </p>
+<p><strong>On Ubuntu host with internet connection and Docker installed:</strong></p>
+<p>Download two repositories as zip archives from the <a href="https://github.com/Shuffle/Shuffle">Shuffle GitHub</a> and <a href="https://github.com/Shuffle/python-apps">Shuffle Python Apps GitHub</a> page.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image.png" data-desc-position="bottom"><img alt="image.png" src="image.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%201.png" data-desc-position="bottom"><img alt="image.png" src="image%201.png"></a></p>
+<p>Transfer the docker folder, shuffle_images.tar, Shuffle.zip and python-apps.zip to the Ubuntu host without internet connection. </p>
+<p><strong>Repeat the steps above to install Docker Engine.</strong> </p>
+<p>Load the Docker images:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>sudo docker load -i shuffle_images.tar
+</code></pre></div>
+<p>Unzip Shuffle.zip to the /opt directory and python-apps.zip to the /opt/Shuffle-main/shuffle-apps directory</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="n">sudo</span> <span class="n">unzip</span> <span class="n">Shuffle</span><span class="o">-</span><span class="n">main</span><span class="o">.</span><span class="n">zip</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">opt</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="n">sudo</span> <span class="n">unzip</span> <span class="n">python</span><span class="o">-</span><span class="n">apps</span><span class="o">.</span><span class="n">zip</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">Shuffle</span><span class="o">/</span><span class="n">shuffle</span><span class="o">-</span><span class="n">apps</span>
+</code></pre></div>
+<p>Change into /opt/Shuffle-main directory</p>
+<p>Create “shuffle-database” folder</p>
+<p>Run prerequisites for the Opensearch database (Elasticsearch):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="n">cd</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">Shuffle</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="n">sudo</span> <span class="n">mkdir</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">database</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="c1"># IF you get an error using 'chown', add the user first with 'sudo useradd opensearch'                    </span>
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="n">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="mi">1000</span><span class="p">:</span><span class="mi">1000</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">database</span>  
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="c1"># Disable swap</span>
+<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="n">sudo</span> <span class="n">swapoff</span> <span class="o">-</span><span class="n">a</span>                          
+</code></pre></div>
+<p>In the /opt/Shuffle-main folder, run docker-compose.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="n">sudo</span> <span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>
+</code></pre></div>
+<p>Recommended for Opensearch to work well</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="n">sudo</span> <span class="n">sysctl</span> <span class="o">-</span><span class="n">w</span> <span class="n">vm</span><span class="o">.</span><span class="n">max_map_count</span><span class="o">=</span><span class="mi">262144</span>             
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="c1"># https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html</span>
+</code></pre></div>
+<h2 id="creating-automated-workflows"><strong>Creating Automated Workflows</strong></h2>
+<h2 id="workflow-zero"><strong>Workflow Zero</strong></h2>
+<p>After installation, go to&nbsp;http://(IP address):3001</p>
+<p>Create administrator account.</p>
+<p>Sign in with the same Username and Password. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%202.png" data-desc-position="bottom"><img alt="image.png" src="image%202.png"></a></p>
+<p>Select New to Shuffle</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%203.png" data-desc-position="bottom"><img alt="image.png" src="image%203.png"></a></p>
+<p>Click Apps</p>
+<p>Verify there are activated apps</p>
+<p>If there are issues with loading the apps, click refresh or download from GitHub (internet required) </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%204.png" data-desc-position="bottom"><img alt="image.png" src="image%204.png"></a></p>
+<p>Create a new workflow on Shuffle titled “Wazuh integration test.”</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%205.png" data-desc-position="bottom"><img alt="image.png" src="image%205.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%206.png" data-desc-position="bottom"><img alt="image.png" src="image%206.png"></a></p>
+<p>Click on the&nbsp;<strong>Triggers</strong>&nbsp;tab in the bottom left and drag the&nbsp;<strong>Webhook</strong>&nbsp;to the workspace.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%207.png" data-desc-position="bottom"><img alt="image.png" src="image%207.png"></a></p>
+<p>Click on the webhook and rename it to&nbsp;<strong>Wazuh alerts</strong>. Copy and save the webhook URI and start the webhook. The webhook URI looks like the following: <code>http://10.0.0.27:3001/api/v1/hooks/webhook_d5c7de34-7dcd-4360-994f-4a134cde3d67</code></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%208.png" data-desc-position="bottom"><img alt="image.png" src="image%208.png"></a></p>
+<h3 id="wazuh-server"><strong>Wazuh server</strong></h3>
+<p>Download the custom integration script <a href="https://github.com/Shuffle/Shuffle/blob/main/functions/extensions/wazuh/custom-shuffle">custom-shuffle</a> and <a href="https://github.com/Shuffle/Shuffle/blob/main/functions/extensions/wazuh/custom-shuffle.py">custom-shuffle.py</a> from the Shuffle GitHub page. Save it as custom-shuffle and custom-shuffle.py in /var/ossec/integrations directory of Wazuh manager.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="p">[</span><span class="n">root</span><span class="nd">@Centos</span> <span class="n">integrations</span><span class="p">]</span><span class="c1"># ls</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="o">**</span><span class="n">custom</span><span class="o">-</span><span class="n">shuffle</span>  <span class="n">custom</span><span class="o">-</span><span class="n">shuffle</span><span class="o">.</span><span class="n">py</span><span class="o">**</span>  <span class="n">maltiverse</span>  <span class="n">maltiverse</span><span class="o">.</span><span class="n">py</span>  <span class="n">pagerduty</span>  <span class="n">pagerduty</span><span class="o">.</span><span class="n">py</span>  <span class="n">shuffle</span>  <span class="n">shuffle</span><span class="o">.</span><span class="n">py</span>  <span class="n">slack</span>  <span class="n">slack</span><span class="o">.</span><span class="n">py</span>  <span class="n">virustotal</span>  <span class="n">virustotal</span><span class="o">.</span><span class="n">py</span>
+</code></pre></div>
+<p>The script must contain execution permissions and belong to the&nbsp;<code>root</code>&nbsp;user of the&nbsp;<code>wazuh</code>&nbsp;group. The commands below assign permissions and ownership to the&nbsp;<code>/var/ossec/integrations/custom-script</code>&nbsp;script.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="n">chmod</span> <span class="mi">750</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">ossec</span><span class="o">/</span><span class="n">integrations</span><span class="o">/</span><span class="n">custom</span><span class="o">-</span><span class="n">shuffle</span><span class="o">*</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="n">chown</span> <span class="n">root</span><span class="p">:</span><span class="n">wazuh</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">ossec</span><span class="o">/</span><span class="n">integrations</span><span class="o">/</span><span class="n">custom</span><span class="o">-</span><span class="n">shuffle</span><span class="o">*</span>
+</code></pre></div>
+<p>Copy the content from <a href="https://github.com/Shuffle/Shuffle/blob/main/functions/extensions/wazuh/ossec.conf">ossec.conf</a> from the Shuffle GitHub page.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="o">&lt;</span><span class="n">integration</span><span class="o">&gt;</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>  <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="n">custom</span><span class="o">-</span><span class="n">shuffle</span><span class="o">&lt;/</span><span class="n">name</span><span class="o">&gt;</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>  <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="mi">9</span><span class="o">&lt;/</span><span class="n">level</span><span class="o">&gt;</span>
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>  <span class="o">&lt;</span><span class="n">hook_url</span><span class="o">&gt;</span><span class="n">http</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">IP</span><span class="o">&gt;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">PORT</span><span class="o">&gt;/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">hooks</span><span class="o">/</span><span class="n">webhook_hookid</span><span class="o">&lt;/</span><span class="n">hook_url</span><span class="o">&gt;</span>
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>  <span class="o">&lt;</span><span class="n">alert_format</span><span class="o">&gt;</span><span class="n">json</span><span class="o">&lt;/</span><span class="n">alert_format</span><span class="o">&gt;</span>
+<a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a><span class="o">&lt;/</span><span class="n">integration</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>Paste it into /var/ossec/etc/ossec.conf and edit it</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a> <span class="o">&lt;</span><span class="n">integration</span><span class="o">&gt;</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>      <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="n">custom</span><span class="o">-</span><span class="n">shuffle</span><span class="o">&lt;/</span><span class="n">name</span><span class="o">&gt;</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>      <span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="mi">3</span><span class="o">&lt;/</span><span class="n">level</span><span class="o">&gt;</span>
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a>      <span class="o">&lt;</span><span class="n">hook_url</span><span class="o">&gt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.0.0.27</span><span class="p">:</span><span class="mi">3001</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">hooks</span><span class="o">/</span><span class="n">webhook_d5c7de34</span><span class="o">-</span><span class="mi">7</span><span class="n">dcd</span><span class="o">-</span><span class="mi">4360</span><span class="o">-</span><span class="mi">994</span><span class="n">f</span><span class="o">-</span><span class="mi">4</span><span class="n">a134cde3d67</span><span class="o">&lt;/</span><span class="n">hook_url</span><span class="o">&gt;</span>
+<a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a>      <span class="o">&lt;</span><span class="n">alert_format</span><span class="o">&gt;</span><span class="n">json</span><span class="o">&lt;/</span><span class="n">alert_format</span><span class="o">&gt;</span>
+<a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a>  <span class="o">&lt;/</span><span class="n">integration</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>Where:</p>
+<ul>
+<li><code>&lt;name&gt;</code>: This is the name of the integration and must match with your custom-shuffle downloaded from GitHub.</li>
+<li><code>&lt;hook_url&gt;</code>: This is the webhook URI copied from the Shuffle webhook. Note: <code>https://</code> can be used but it is not recommended as it causes a certificate mismatch error with the author’s self-signed certificate.</li>
+<li><code>&lt;level&gt;</code>: This is used to forward a specific alert level.</li>
+<li><code>&lt;alert_format&gt;</code>: This forwards alerts to Shuffle in JSON format.</li>
+</ul>
+<p>Restart the Wazuh manager service to apply changes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">wazuh</span><span class="o">-</span><span class="n">manager</span>
+</code></pre></div>
+<p>Verify that there are no errors in the ossec and integrations logs</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="n">tail</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">ossec</span><span class="o">/</span><span class="n">logs</span><span class="o">/</span><span class="n">ossec</span><span class="o">.</span><span class="n">log</span> 
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="n">tail</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">ossec</span><span class="o">/</span><span class="n">logs</span><span class="o">/</span><span class="n">integrations</span><span class="o">.</span><span class="n">log</span>
+</code></pre></div>
+<h3 id="shuffle_1"><strong>Shuffle</strong></h3>
+<p>Click on the Shuffle Tools app named “<strong>Change me</strong>” and rename it to&nbsp;<strong>Receive_Wazuh_alerts</strong>. Set the call option to “<code>$exec</code>”, and save the workflow. This Shuffle app now repeats the events that are received by the&nbsp;<strong>Wazuh alerts</strong>&nbsp;webhook. This allows us to test that Shuffle can receive Wazuh alerts.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%209.png" data-desc-position="bottom"><img alt="image.png" src="image%209.png"></a></p>
+<p>Click on the&nbsp;<strong>show executions</strong>&nbsp;button.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2010.png" data-desc-position="bottom"><img alt="image.png" src="image%2010.png"></a></p>
+<p>Select any execution and expand it for details. You should see a Wazuh alert in the output.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2011.png" data-desc-position="bottom"><img alt="image.png" src="image%2011.png"></a></p>
+<p><strong>Note:</strong> You may need to wait for a duration of time for Wazuh alerts to appear in Shuffle. This is dependent on the number of events generated in your environment. To manually trigger alerts, restart the Wazuh manager service on the Wazuh server.</p>
+<p>This shows that Wazuh is sending alerts to Shuffle and the integration is successful. </p>
+<h2 id="workflow-one"><strong>Workflow One</strong></h2>
+<h3 id="configure-wazuh"><strong>Configure Wazuh</strong></h3>
+<h3 id="configure-wazuh-windows-client"><strong>Configure Wazuh Windows Client</strong></h3>
+<p>Add Administrator’s Download folder to exclusion in the Windows Security setting.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2012.png" data-desc-position="bottom"><img alt="image.png" src="image%2012.png"></a></p>
+<p>Download and transfer mimikatz.exe. Mimikatz is a tool that can steal passwords and other login information from a Windows computer's memory, often used by attackers or penetration testers to gain access to more secure areas of the system.</p>
+<p>Open PowerShell as Administrator. Execute mimikatz.exe</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2013.png" data-desc-position="bottom"><img alt="image.png" src="image%2013.png"></a></p>
+<h3 id="configure-wazuh-manager"><strong>Configure Wazuh Manager</strong></h3>
+<p>On Wazuh Manager, verify that there are entries related to Mimikatz in the archives file</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="n">cat</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">ossec</span><span class="o">/</span><span class="n">logs</span><span class="o">/</span><span class="n">archives</span><span class="o">/</span><span class="n">archives</span><span class="o">.</span><span class="n">json</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">i</span> <span class="n">mimikatz</span>
+</code></pre></div>
+<p>Verify that searching for “mimikatz.exe” in wazuh-archive-* index returns a result</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2014.png" data-desc-position="bottom"><img alt="image.png" src="image%2014.png"></a></p>
+<p>Add a custom rule in /var/ossec/etc/rules/local_rules.xml</p>
+<p>Make sure indentation aligns with other rules</p>
+<p><code>nano /var/ossec/etc/rules/local_rules.xml</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="o">&lt;</span><span class="n">rule</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"100200"</span> <span class="n">level</span><span class="o">=</span><span class="s2">"15"</span><span class="o">&gt;</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>  <span class="o">&lt;</span><span class="n">if_group</span><span class="o">&gt;</span><span class="n">sysmon_event1</span><span class="o">&lt;/</span><span class="n">if_group</span><span class="o">&gt;</span>
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a>  <span class="o">&lt;</span><span class="n">field</span> <span class="n">name</span><span class="o">=</span><span class="s2">"win.eventdata.originalFileName"</span> <span class="nb">type</span><span class="o">=</span><span class="s2">"pcre2"</span><span class="o">&gt;</span><span class="p">(</span><span class="err">?</span><span class="n">i</span><span class="p">)</span><span class="n">mimikatz</span><span class="o">&lt;/</span><span class="n">field</span><span class="o">&gt;</span>
+<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a>  <span class="o">&lt;</span><span class="n">description</span><span class="o">&gt;</span><span class="n">Mimikatz</span> <span class="n">Usage</span> <span class="n">Detected</span><span class="o">&lt;/</span><span class="n">description</span><span class="o">&gt;</span>
+<a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a>  <span class="o">&lt;</span><span class="n">mitre</span><span class="o">&gt;</span>
+<a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a>    <span class="o">&lt;</span><span class="nb">id</span><span class="o">&gt;</span><span class="n">T1003</span><span class="o">&lt;/</span><span class="nb">id</span><span class="o">&gt;</span>
+<a id="__codelineno-49-7" name="__codelineno-49-7" href="#__codelineno-49-7"></a>  <span class="o">&lt;/</span><span class="n">mitre</span><span class="o">&gt;</span>
+<a id="__codelineno-49-8" name="__codelineno-49-8" href="#__codelineno-49-8"></a><span class="o">&lt;/</span><span class="n">rule</span><span class="o">&gt;</span>
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2015.png" data-desc-position="bottom"><img alt="image.png" src="image%2015.png"></a></p>
+<p>Restart Wazuh Manager</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="n">systemctl</span> <span class="n">restart</span> <span class="n">wazuh</span><span class="o">-</span><span class="n">manager</span>
+</code></pre></div>
+<h3 id="configure-windows-client"><strong>Configure Windows Client</strong></h3>
+<p>Rename mimikatz.exe to something else (e.g. justanexe)</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2016.png" data-desc-position="bottom"><img alt="image.png" src="image%2016.png"></a></p>
+<p>Open PowerShell as Administrator and execute mimikatz (justanexe)</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2017.png" data-desc-position="bottom"><img alt="image.png" src="image%2017.png"></a></p>
+<h3 id="configure-wazuh-manager_1"><strong>Configure Wazuh Manager</strong></h3>
+<p>On Wazuh Manager, verify that there are entries related to ruld id 10020 Mimikatz Usage Detected</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2018.png" data-desc-position="bottom"><img alt="image.png" src="image%2018.png"></a></p>
+<h3 id="configure-shuffle"><strong>Configure Shuffle</strong></h3>
+<h3 id="upload-the-required-apps"><strong>Upload the required Apps</strong></h3>
+<p>On a machine with internet connection:</p>
+<p>Search for Wazuh, TheHive and VirusTotal in <a href="https://shuffler.io/search">https://shuffler.io/search</a></p>
+<p>Download the OpenAPIs (JSON file)</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2019.png" data-desc-position="bottom"><img alt="image.png" src="image%2019.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2020.png" data-desc-position="bottom"><img alt="image.png" src="image%2020.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2021.png" data-desc-position="bottom"><img alt="image.png" src="image%2021.png"></a></p>
+<p>Transfer the JSON files to the air-gapped environement.</p>
+<p>Navigate to Shuffle web UI and into Apps.</p>
+<p>Select Generate from Open API</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2022.png" data-desc-position="bottom"><img alt="image.png" src="image%2022.png"></a></p>
+<p>Upload the Wazuh JSON file</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2023.png" data-desc-position="bottom"><img alt="image.png" src="image%2023.png"></a></p>
+<p>Scroll to the bottom and click save.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2024.png" data-desc-position="bottom"><img alt="image.png" src="image%2024.png"></a></p>
+<p>Repeat the same proccess for TheHive</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2025.png" data-desc-position="bottom"><img alt="image.png" src="image%2025.png"></a></p>
+<p>Verify that Wazuh, TheHive and Virustotal appear in the Activated Apps </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2026.png" data-desc-position="bottom"><img alt="image.png" src="image%2026.png"></a></p>
+<p>To ensure that the new app is recognized by Shuffle, restart the Shuffle backend and frontend containers:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="n">docker</span> <span class="n">restart</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">backend</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="n">docker</span> <span class="n">restart</span> <span class="n">shuffle</span><span class="o">-</span><span class="n">frontend</span>
+</code></pre></div>
+<h3 id="create-a-workflow"><strong>Create a Workflow</strong></h3>
+<p>Repeat the steps covered in Introduction to Shuffle.</p>
+<p>Create a new workflow called SOC Automation Example. </p>
+<p>Click on the&nbsp;<strong>Triggers</strong>&nbsp;tab in the bottom left and drag the&nbsp;<strong>Webhook</strong>&nbsp;to the workspace.</p>
+<p>Click on the webhook and rename it to&nbsp;<strong>Wazuh alerts</strong>. Copy and save the webhook URI and start the webhook. The webhook URI looks like the following: </p>
+<p><code>http://10.0.0.28:3001/api/v1/hooks/webhook_6f32bbd0-9ca9-498c-9abe-c55b1f573d09</code></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2027.png" data-desc-position="bottom"><img alt="image.png" src="image%2027.png"></a></p>
+<h3 id="configure-wazuh-server"><strong>Configure Wazuh server</strong></h3>
+<p>Download the custom integration script <a href="https://github.com/Shuffle/Shuffle/blob/main/functions/extensions/wazuh/custom-shuffle">custom-shuffle</a> and <a href="https://github.com/Shuffle/Shuffle/blob/main/functions/extensions/wazuh/custom-shuffle.py">custom-shuffle.py</a>. Save it as custom-shuffle and custom-shuffle.py in /var/ossec/integrations directory. The script must contain execution permissions and belong to the&nbsp;<code>root</code>&nbsp;user of the&nbsp;<code>wazuh</code>&nbsp;group: </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="n">chmod</span> <span class="mi">750</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">ossec</span><span class="o">/</span><span class="n">integrations</span><span class="o">/</span><span class="n">custom</span><span class="o">-</span><span class="n">shuffle</span><span class="o">*</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="n">chown</span> <span class="n">root</span><span class="p">:</span><span class="n">wazuh</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">ossec</span><span class="o">/</span><span class="n">integrations</span><span class="o">/</span><span class="n">custom</span><span class="o">-</span><span class="n">shuffle</span><span class="o">*</span>
+</code></pre></div>
+<p>Copy and paste the following into /var/ossec/etc/ossec.conf</p>
+<p>This is the rule id for Mimikatz Usage Detected that we defined in the Wazuh Manager</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a> <span class="o">&lt;</span><span class="n">integration</span><span class="o">&gt;</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>      <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="n">custom</span><span class="o">-</span><span class="n">shuffle</span><span class="o">&lt;/</span><span class="n">name</span><span class="o">&gt;</span>
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a>      <span class="o">&lt;</span><span class="n">rule_id</span><span class="o">&gt;</span><span class="mi">100200</span><span class="o">&lt;/</span><span class="n">rule_id</span><span class="o">&gt;</span>
+<a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a>      <span class="o">&lt;</span><span class="n">hook_url</span><span class="o">&gt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.0.0.28</span><span class="p">:</span><span class="mi">3001</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">hooks</span><span class="o">/</span><span class="n">webhook_6f32bbd0</span><span class="o">-</span><span class="mi">9</span><span class="n">ca9</span><span class="o">-</span><span class="mi">498</span><span class="n">c</span><span class="o">-</span><span class="mi">9</span><span class="n">abe</span><span class="o">-</span><span class="n">c55b1f573d09</span><span class="o">&lt;/</span><span class="n">hook_url</span><span class="o">&gt;</span>
+<a id="__codelineno-53-5" name="__codelineno-53-5" href="#__codelineno-53-5"></a>      <span class="o">&lt;</span><span class="n">alert_format</span><span class="o">&gt;</span><span class="n">json</span><span class="o">&lt;/</span><span class="n">alert_format</span><span class="o">&gt;</span>
+<a id="__codelineno-53-6" name="__codelineno-53-6" href="#__codelineno-53-6"></a>  <span class="o">&lt;/</span><span class="n">integration</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>Restart the Wazuh manager service to apply changes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">wazuh</span><span class="o">-</span><span class="n">manager</span>
+</code></pre></div>
+<p>Verify that there are no errors in the ossec and integrations logs</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="n">tail</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">ossec</span><span class="o">/</span><span class="n">logs</span><span class="o">/</span><span class="n">ossec</span><span class="o">.</span><span class="n">log</span> 
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="n">tail</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">ossec</span><span class="o">/</span><span class="n">logs</span><span class="o">/</span><span class="n">integrations</span><span class="o">.</span><span class="n">log</span>
+</code></pre></div>
+<h3 id="configure-shuffle_1"><strong>Configure Shuffle</strong></h3>
+<p>Click on the Shuffle Tools app named “<strong>Change me</strong>” and rename it to&nbsp;<strong>Receive_Wazuh_alerts</strong>. Set the call option to “<code>$exec</code>”, and save the workflow. This Shuffle app now repeats the events that are received by the&nbsp;<strong>Wazuh alerts</strong>&nbsp;webhook. This allows us to test that Shuffle can receive Wazuh alerts.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2028.png" data-desc-position="bottom"><img alt="image.png" src="image%2028.png"></a></p>
+<p>On Windows host, open PowerShell as Administrator and execute mimikatz (justanexe)</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2017.png" data-desc-position="bottom"><img alt="image.png" src="image%2017.png"></a></p>
+<p>On Wazuh server, verify logs related to Mimikatz are generated </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="n">tail</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">ossec</span><span class="o">/</span><span class="n">logs</span><span class="o">/</span><span class="n">integrations</span><span class="o">.</span><span class="n">log</span>
+</code></pre></div>
+<p>Verify Shuffle is receiving alerts without any errors </p>
+<p>Alerts should be green indicating status is FINISHED</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2029.png" data-desc-position="bottom"><img alt="image.png" src="image%2029.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2030.png" data-desc-position="bottom"><img alt="image.png" src="image%2030.png"></a></p>
+<p>The results displays a SHA1, MD5 and SHA256 hashes</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2031.png" data-desc-position="bottom"><img alt="image.png" src="image%2031.png"></a></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="n">SHA1</span><span class="o">=</span><span class="n">E3B6EA8C46FA831CEC6F235A5CF48B38A4AE8D69</span><span class="p">,</span><span class="n">MD5</span><span class="o">=</span><span class="mi">29</span><span class="n">EFD64DD3C7FE1E2B022B7AD73A1BA5</span><span class="p">,</span><span class="n">SHA256</span><span class="o">=</span><span class="mi">61</span><span class="n">C0810A23580CF492A6BA4F7654566108331E7A4134C968C2D6A05261B2D8A1</span><span class="p">,</span><span class="n">IMPHASH</span><span class="o">=</span><span class="mi">55</span><span class="n">EE500BB4BDFC49F27A98AE456D8EDF</span>
+</code></pre></div>
+<p>Create a regular expression to specifically extract the SHA256 hash from the string.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="n">SHA256</span><span class="o">=</span><span class="p">([</span><span class="n">A</span><span class="o">-</span><span class="n">Fa</span><span class="o">-</span><span class="n">f0</span><span class="o">-</span><span class="mi">9</span><span class="p">]{</span><span class="mi">64</span><span class="p">})</span>
+</code></pre></div>
+<p>Click Shuffle Tools icon. Change the Name to Capture_SHA256_HASH, Find Actions to Regex Capture group, Input data to $exec.text.win.eventdata.hashes and Regex to SHA256=([A-Fa-f0-9]{64})</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2032.png" data-desc-position="bottom"><img alt="image.png" src="image%2032.png"></a></p>
+<p>Save the workflow. Trigger the rule id 100200 by running mimikatz (justanexe) from Windows host.</p>
+<p>You should see SHA256 hash returned in the results. If you are not seeing the SHA256 hash, try restarting your Shuffle by running <code>docker compose down</code>  and <code>docker compose up -d</code></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2033.png" data-desc-position="bottom"><img alt="image.png" src="image%2033.png"></a></p>
+<p>Drag and drop Virustotal app. Change the Name to Virustotal, set Find Actions to Get a has report.</p>
+<p>Click Authenticate VirusTotal V3 and copy and paste your VirusTotal API key. You must create an account in VirusTotal to obtain the API key. <strong>Note: Internet connection was enabled from this point.</strong></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2034.png" data-desc-position="bottom"><img alt="image.png" src="image%2034.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2035.png" data-desc-position="bottom"><img alt="image.png" src="image%2035.png"></a></p>
+<p>For ID, select Capture_SHA256_Hash list</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2036.png" data-desc-position="bottom"><img alt="image.png" src="image%2036.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2037.png" data-desc-position="bottom"><img alt="image.png" src="image%2037.png"></a></p>
+<p>Save the workflow. Restart Shuffle if required.</p>
+<p>Verify that Virustotal get_a_hash_report returns SHA256 hash of mimikatz with status code 200.</p>
+<p>Expand the last_analysis_stats. Malicious: 65 indicates that 65 scanners have detected this executable as malicious. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2038.png" data-desc-position="bottom"><img alt="image.png" src="image%2038.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2039.png" data-desc-position="bottom"><img alt="image.png" src="image%2039.png"></a></p>
+<h3 id="configure-thehive"><strong>Configure TheHive</strong></h3>
+<p>Login to TheHive web UI</p>
+<p>Create a new organisation called Cyber and click Confirm</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2040.png" data-desc-position="bottom"><img alt="image.png" src="image%2040.png"></a></p>
+<p>Click Cyber organisation</p>
+<p>Add a new user with following details</p>
+<ul>
+<li>Type: Normal</li>
+<li>Login: cyber@test.com</li>
+<li>Name: cyber</li>
+<li>Profile: analyst</li>
+</ul>
+<p>Save and add another user</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2041.png" data-desc-position="bottom"><img alt="image.png" src="image%2041.png"></a></p>
+<p>Add the second user with following details</p>
+<ul>
+<li>Type: Service</li>
+<li>Login: shuffle@test.com</li>
+<li>Name: SOAR</li>
+<li>Profile: analyst</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2042.png" data-desc-position="bottom"><img alt="image.png" src="image%2042.png"></a></p>
+<p>Click Preview on the cyber user and set a new password</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2043.png" data-desc-position="bottom"><img alt="image.png" src="image%2043.png"></a></p>
+<p>Click Preview on the SOAR user and create an API key</p>
+<p>Copy the API key <code>Gq9gm4G4Vx2/Hajy0ezbwNbKVozXCgzR</code></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2044.png" data-desc-position="bottom"><img alt="image.png" src="image%2044.png"></a></p>
+<p>Log out of the web UI as admin and login as the cyber user.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2045.png" data-desc-position="bottom"><img alt="image.png" src="image%2045.png"></a></p>
+<h3 id="configure-shuffle_2"><strong>Configure Shuffle</strong></h3>
+<p>Drag and drop TheHive app to the Workflow.</p>
+<p>Click TheHive App and click Authenticate TheHive.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2046.png" data-desc-position="bottom"><img alt="image.png" src="image%2046.png"></a></p>
+<p>Copy and paste the API key <code>Gq9gm4G4Vx2/Hajy0ezbwNbKVozXCgzR</code></p>
+<p>Enter the url for TheHive <code>http://10.0.0.40:9000</code></p>
+<p>Click Submit.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2047.png" data-desc-position="bottom"><img alt="image.png" src="image%2047.png"></a></p>
+<p>Set Find Actions to Create alert</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2048.png" data-desc-position="bottom"><img alt="image.png" src="image%2048.png"></a></p>
+<p>Connect Virustotal App to TheHive app</p>
+<p>There seems to be a bug with how TheHive app handles some of its parameters at the backend.</p>
+<p>To bypass the error, set the values for Flag and Pap in JSON first.</p>
+<p>Uncheck Show Body textbox. You should see Hide Body. Click Expand Window icon.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2049.png" data-desc-position="bottom"><img alt="image.png" src="image%2049.png"></a></p>
+<p>Manually set the Flag to false and Pap to 2. Click Submit.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="p">{</span>
+<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a>  <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"{{ '''$</span><span class="si">{description}</span><span class="s2">''' | replace: '</span><span class="se">\n</span><span class="s2">', '</span><span class="se">\\</span><span class="s2">r</span><span class="se">\\</span><span class="s2">n' }}"</span><span class="p">,</span>
+<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a>  <span class="s2">"externallink"</span><span class="p">:</span> <span class="s2">"$</span><span class="si">{externallink}</span><span class="s2">"</span><span class="p">,</span>
+<a id="__codelineno-59-4" name="__codelineno-59-4" href="#__codelineno-59-4"></a>  <span class="s2">"flag"</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+<a id="__codelineno-59-5" name="__codelineno-59-5" href="#__codelineno-59-5"></a>  <span class="s2">"pap"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-59-6" name="__codelineno-59-6" href="#__codelineno-59-6"></a>  <span class="s2">"severity"</span><span class="p">:</span> <span class="s2">"$</span><span class="si">{severity}</span><span class="s2">"</span><span class="p">,</span>
+<a id="__codelineno-59-7" name="__codelineno-59-7" href="#__codelineno-59-7"></a>  <span class="s2">"source"</span><span class="p">:</span> <span class="s2">"$</span><span class="si">{source}</span><span class="s2">"</span><span class="p">,</span>
+<a id="__codelineno-59-8" name="__codelineno-59-8" href="#__codelineno-59-8"></a>  <span class="s2">"sourceRef"</span><span class="p">:</span> <span class="s2">"$</span><span class="si">{sourceref}</span><span class="s2">"</span><span class="p">,</span>
+<a id="__codelineno-59-9" name="__codelineno-59-9" href="#__codelineno-59-9"></a>  <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"$</span><span class="si">{status}</span><span class="s2">"</span><span class="p">,</span>
+<a id="__codelineno-59-10" name="__codelineno-59-10" href="#__codelineno-59-10"></a>  <span class="s2">"summary"</span><span class="p">:</span> <span class="s2">"$</span><span class="si">{summary}</span><span class="s2">"</span><span class="p">,</span>
+<a id="__codelineno-59-11" name="__codelineno-59-11" href="#__codelineno-59-11"></a>  <span class="s2">"tags"</span><span class="p">:</span> <span class="s2">"$</span><span class="si">{tags}</span><span class="s2">"</span><span class="p">,</span>
+<a id="__codelineno-59-12" name="__codelineno-59-12" href="#__codelineno-59-12"></a>  <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"$</span><span class="si">{title}</span><span class="s2">"</span><span class="p">,</span>
+<a id="__codelineno-59-13" name="__codelineno-59-13" href="#__codelineno-59-13"></a>  <span class="s2">"tlp"</span><span class="p">:</span> <span class="err">$</span><span class="p">{</span><span class="n">tlp</span><span class="p">},</span>
+<a id="__codelineno-59-14" name="__codelineno-59-14" href="#__codelineno-59-14"></a>  <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"$</span><span class="si">{type}</span><span class="s2">"</span>
+<a id="__codelineno-59-15" name="__codelineno-59-15" href="#__codelineno-59-15"></a><span class="p">}</span>
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2050.png" data-desc-position="bottom"><img alt="image.png" src="image%2050.png"></a></p>
+<p>Check the Show Body and this will allow you to edit the app in GUI.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2051.png" data-desc-position="bottom"><img alt="image.png" src="image%2051.png"></a></p>
+<p>Set the values to the following.</p>
+<p><strong>Note: the values in brackets indicate the Execution Argument. Add the execution argument by clicking the <code>+</code> icon.</strong> </p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th>Create_Alert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Severity</strong></td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Summary</strong></td>
+<td>Mimikatz detected on host: (computer) and the processID: (processID) and commandLine: (commandLine)</td>
+</tr>
+<tr>
+<td><strong>Tags</strong></td>
+<td>[”T1003”]</td>
+</tr>
+<tr>
+<td><strong>Title</strong></td>
+<td>(title)</td>
+</tr>
+<tr>
+<td><strong>Description</strong></td>
+<td>(rule description)</td>
+</tr>
+<tr>
+<td><strong>Flag</strong></td>
+<td>false</td>
+</tr>
+<tr>
+<td><strong>Pap</strong></td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Source</strong></td>
+<td>Wazuh</td>
+</tr>
+<tr>
+<td><strong>Sourceref</strong></td>
+<td>Incident-(timestamp)</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>New</td>
+</tr>
+<tr>
+<td><strong>Tlp</strong></td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Type</strong></td>
+<td>Internal</td>
+</tr>
+</tbody>
+</table>
+<p>Save the workflow. Click Show Execution (person icon) then rerun the workflow (refresh icon).</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2052.png" data-desc-position="bottom"><img alt="image.png" src="image%2052.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2053.png" data-desc-position="bottom"><img alt="image.png" src="image%2053.png"></a></p>
+<p>Verify status code from TheHive is 201</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2054.png" data-desc-position="bottom"><img alt="image.png" src="image%2054.png"></a></p>
+<p>Verify that the Mimikatz Usage Detected alert is generated on TheHive UI.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2055.png" data-desc-position="bottom"><img alt="image.png" src="image%2055.png"></a></p>
+<p>Click on the alert to view the details.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2056.png" data-desc-position="bottom"><img alt="image.png" src="image%2056.png"></a></p>
+<p>Drag and drop the Email app to the workflow.</p>
+<p>Edit the Email app with following details:</p>
+<p><strong>Note: the values in brackets indicate the Execution Argument. Add the execution argument by clicking the <code>+</code> icon.</strong> </p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th>Email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Find Actions</strong></td>
+<td>Send email shuffle</td>
+</tr>
+<tr>
+<td><strong>Apikey</strong></td>
+<td>(Create account on <a href="https://shuffler.io/">https://shuffler.io/</a> to obtain API key)</td>
+</tr>
+<tr>
+<td><strong>Recipients</strong></td>
+<td>(Email address receiving the alert)</td>
+</tr>
+<tr>
+<td><strong>Subject</strong></td>
+<td>Mimikatz detected</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td>Time: (utcTime)</td>
+</tr>
+<tr>
+<td>Title: (title)</td>
+<td></td>
+</tr>
+<tr>
+<td>Host: (computer)</td>
+<td></td>
+</tr>
+<tr>
+<td>Malicious: (malicious)*</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>*Select VirusTotal metadata instead of the Execution Argument |</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2057.png" data-desc-position="bottom"><img alt="image.png" src="image%2057.png"></a></p>
+<p>Save and rerun the workflow. If you want to get status code 201 from TheHive, you must delete existing alert. Verify that the results are successful and you received the email. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2058.png" data-desc-position="bottom"><img alt="image.png" src="image%2058.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2059.png" data-desc-position="bottom"><img alt="image.png" src="image%2059.png"></a></p>
+<p>Duplicate TheHive app in the workflow. </p>
+<p>Edit the TheHive app with following details:</p>
+<p><strong>Note: the values in brackets indicate the metadata from Create_Alert. Add the data by clicking the <code>+</code> icon.</strong> </p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th>Create_Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alertid</td>
+<td>(body id)</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2060.png" data-desc-position="bottom"><img alt="image.png" src="image%2060.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2061.png" data-desc-position="bottom"><img alt="image.png" src="image%2061.png"></a></p>
+<p>Save and rerun the workflow. You may need to delete existing alert in TheHive. </p>
+<p>Verify that results return status code 201.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2062.png" data-desc-position="bottom"><img alt="image.png" src="image%2062.png"></a></p>
+<p>Verify that the case has been created in TheHive.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2063.png" data-desc-position="bottom"><img alt="image.png" src="image%2063.png"></a></p>
+<h2 id="workflow-two"><strong>Workflow Two</strong></h2>
+<h3 id="configure-shuffle_3"><strong>Configure Shuffle</strong></h3>
+<h3 id="create-a-workflow_1"><strong>Create a Workflow</strong></h3>
+<p>Repeat the steps covered in Introduction to Shuffle.</p>
+<p>Create a new workflow called SOC Automation Example Two. </p>
+<p>Click on the&nbsp;<strong>Triggers</strong>&nbsp;tab in the bottom left and drag the&nbsp;<strong>Webhook</strong>&nbsp;to the workspace.</p>
+<p>Click on the webhook and rename it to&nbsp;<strong>Wazuh alerts</strong>. Copy and save the webhook URI and start the webhook. The webhook URI looks like the following: </p>
+<p><code>http://10.0.0.28:3001/api/v1/hooks/webhook_d8fde57c-5501-4063-8954-00af9f3056d3</code></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2064.png" data-desc-position="bottom"><img alt="image.png" src="image%2064.png"></a></p>
+<h3 id="configure-wazuh-server_1"><strong>Configure Wazuh server</strong></h3>
+<p>Download the custom integration script <a href="https://github.com/Shuffle/Shuffle/blob/main/functions/extensions/wazuh/custom-shuffle">custom-shuffle</a> and <a href="https://github.com/Shuffle/Shuffle/blob/main/functions/extensions/wazuh/custom-shuffle.py">custom-shuffle.py</a>. Save it as custom-shuffle and custom-shuffle.py in /var/ossec/integrations directory. The script must contain execution permissions and belong to the&nbsp;<code>root</code>&nbsp;user of the&nbsp;<code>wazuh</code>&nbsp;group: </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="n">chmod</span> <span class="mi">750</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">ossec</span><span class="o">/</span><span class="n">integrations</span><span class="o">/</span><span class="n">custom</span><span class="o">-</span><span class="n">shuffle</span><span class="o">*</span>
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="n">chown</span> <span class="n">root</span><span class="p">:</span><span class="n">wazuh</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">ossec</span><span class="o">/</span><span class="n">integrations</span><span class="o">/</span><span class="n">custom</span><span class="o">-</span><span class="n">shuffle</span><span class="o">*</span>
+</code></pre></div>
+<p>Copy and paste the following into /var/ossec/etc/ossec.conf</p>
+<p>The rule id 100100 has been configured to use Wazuh’s active response to block malicious IP address. Refer to Blocking a known malicious actor (testing custom active response) from Introduction to Wazh. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a> <span class="o">&lt;</span><span class="n">integration</span><span class="o">&gt;</span>
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>      <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="n">custom</span><span class="o">-</span><span class="n">shuffle</span><span class="o">&lt;/</span><span class="n">name</span><span class="o">&gt;</span>
+<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a>      <span class="o">&lt;</span><span class="n">rule_id</span><span class="o">&gt;**</span><span class="mi">100100</span><span class="o">**&lt;/</span><span class="n">rule_id</span><span class="o">&gt;</span>
+<a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a>      <span class="o">&lt;</span><span class="n">hook_url</span><span class="o">&gt;**</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.0.0.28</span><span class="p">:</span><span class="mi">3001</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">hooks</span><span class="o">/</span><span class="n">webhook_d8fde57c</span><span class="o">-</span><span class="mi">5501</span><span class="o">-</span><span class="mi">4063</span><span class="o">-</span><span class="mi">8954</span><span class="o">-</span><span class="mi">00</span><span class="n">af9f3056d3</span><span class="o">**&lt;/</span><span class="n">hook_url</span><span class="o">&gt;</span>
+<a id="__codelineno-61-5" name="__codelineno-61-5" href="#__codelineno-61-5"></a>      <span class="o">&lt;</span><span class="n">alert_format</span><span class="o">&gt;</span><span class="n">json</span><span class="o">&lt;/</span><span class="n">alert_format</span><span class="o">&gt;</span>
+<a id="__codelineno-61-6" name="__codelineno-61-6" href="#__codelineno-61-6"></a>  <span class="o">&lt;/</span><span class="n">integration</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>Restart the Wazuh manager service to apply changes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">wazuh</span><span class="o">-</span><span class="n">manager</span>
+</code></pre></div>
+<p>Verify that there are no errors in the ossec and integrations logs</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="n">tail</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">ossec</span><span class="o">/</span><span class="n">logs</span><span class="o">/</span><span class="n">ossec</span><span class="o">.</span><span class="n">log</span> 
+<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a><span class="n">tail</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">ossec</span><span class="o">/</span><span class="n">logs</span><span class="o">/</span><span class="n">integrations</span><span class="o">.</span><span class="n">log</span>
+</code></pre></div>
+<h3 id="configure-shuffle_4"><strong>Configure Shuffle</strong></h3>
+<p>Click on the Shuffle Tools app named “<strong>Change me</strong>” and rename it to&nbsp;<strong>Receive_Wazuh_alerts</strong>. Set the call option to “<code>$exec</code>”, and save the workflow. This Shuffle app now repeats the events that are received by the&nbsp;<strong>Wazuh alerts</strong>&nbsp;webhook. This allows us to test that Shuffle can receive Wazuh alerts.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2065.png" data-desc-position="bottom"><img alt="image.png" src="image%2065.png"></a></p>
+<p>Save the workflow.</p>
+<p>On kali machine, run curl command to access http://10.0.0.26</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="n">curl</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.0.0.26</span> 
+</code></pre></div>
+<p>On Wazuh manager, verify that this has triggered an alert by checking integrations log </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="n">tail</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">ossec</span><span class="o">/</span><span class="n">logs</span><span class="o">/</span><span class="n">integrations</span><span class="o">.</span><span class="n">log</span>
+</code></pre></div>
+<p>On Shuffle, click Show Executions and verify that there is a successful result.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2066.png" data-desc-position="bottom"><img alt="image.png" src="image%2066.png"></a></p>
+<p>Drag and Drop HTTP app to the workflow.</p>
+<p>Edit the app with following detals:</p>
+<p>For Statement, use your wazuh API user’s credentials.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th>Get-Wazuh-API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Find Actions</strong></td>
+<td>Curl</td>
+</tr>
+<tr>
+<td><strong>Statement</strong></td>
+<td>curl -u wazuh-wui:"password" -k -X GET "https://10.0.0.20:55000/security/user/authenticate?raw=true"</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2067.png" data-desc-position="bottom"><img alt="image.png" src="image%2067.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2068.png" data-desc-position="bottom"><img alt="image.png" src="image%2068.png"></a></p>
+<p>Drag and Drop Virustotal, Email and Wazuh apps to the workflow. Connect the apps in the order shown below:</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2069.png" data-desc-position="bottom"><img alt="image.png" src="image%2069.png"></a></p>
+<p>Edit the Wazuh app with following details:</p>
+<p>Note: Arguments must be an array format <code>["value1"]</code></p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th>Wazuh</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Find Actions</strong></td>
+<td>Run Command</td>
+</tr>
+<tr>
+<td><strong>Apikey</strong></td>
+<td>(Get-Wazuh-API)</td>
+</tr>
+<tr>
+<td><strong>Url</strong></td>
+<td>https://10.0.0.20:55000</td>
+</tr>
+<tr>
+<td><strong>Agents list</strong></td>
+<td>(agent id)</td>
+</tr>
+<tr>
+<td><strong>Wait for complete</strong></td>
+<td>true</td>
+</tr>
+<tr>
+<td><strong>Arguments</strong></td>
+<td>[”(srcip)”]</td>
+</tr>
+<tr>
+<td><strong>Commnad</strong></td>
+<td>firewall-drop60</td>
+</tr>
+</tbody>
+</table>
+<p>If you get an error with retrieving Wazuh API key, manually authenticate Wazuh App by providing Wazuh API key and Wazuh URL. Obtain API key from Get-Wazuh-API app (you will need to run your workflow to get the result):</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2070.png" data-desc-position="bottom"><img alt="image.png" src="image%2070.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2071.png" data-desc-position="bottom"><img alt="image.png" src="image%2071.png"></a></p>
+<p>On Wazuh Manager, verify that active response is configured in <strong>ossec.conf</strong></p>
+<p>The&nbsp;<code>firewall-drop</code>&nbsp;command integrates with the Ubuntu local iptables firewall and drops incoming network connection from the attacker endpoint for 60 seconds:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="o">&lt;</span><span class="n">ossec_config</span><span class="o">&gt;</span>
+<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>  <span class="o">&lt;</span><span class="n">active</span><span class="o">-</span><span class="n">response</span><span class="o">&gt;</span>
+<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a>    <span class="o">&lt;</span><span class="n">command</span><span class="o">&gt;</span><span class="n">firewall</span><span class="o">-</span><span class="n">drop</span><span class="o">&lt;/</span><span class="n">command</span><span class="o">&gt;</span>
+<a id="__codelineno-66-4" name="__codelineno-66-4" href="#__codelineno-66-4"></a>    <span class="o">&lt;</span><span class="n">location</span><span class="o">&gt;</span><span class="n">local</span><span class="o">&lt;/</span><span class="n">location</span><span class="o">&gt;</span>
+<a id="__codelineno-66-5" name="__codelineno-66-5" href="#__codelineno-66-5"></a>    <span class="o">&lt;</span><span class="n">rules_id</span><span class="o">&gt;</span><span class="mi">100100</span><span class="o">&lt;/</span><span class="n">rules_id</span><span class="o">&gt;</span>
+<a id="__codelineno-66-6" name="__codelineno-66-6" href="#__codelineno-66-6"></a>    <span class="o">&lt;</span><span class="n">timeout</span><span class="o">&gt;</span><span class="mi">60</span><span class="o">&lt;/</span><span class="n">timeout</span><span class="o">&gt;</span>
+<a id="__codelineno-66-7" name="__codelineno-66-7" href="#__codelineno-66-7"></a>  <span class="o">&lt;/</span><span class="n">active</span><span class="o">-</span><span class="n">response</span><span class="o">&gt;</span>
+<a id="__codelineno-66-8" name="__codelineno-66-8" href="#__codelineno-66-8"></a><span class="o">&lt;/</span><span class="n">ossec_config</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>When using the API, use the active-response command appended with timeout value. For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="n">firewall</span><span class="o">-</span><span class="n">drop60</span>
+</code></pre></div>
+<p>You can verify the command name to use with API by running <code>agent-control -L</code> located in /var/ossec/bin/</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="p">[</span><span class="n">root</span><span class="nd">@Centos</span> <span class="n">siem</span><span class="p">]</span><span class="c1"># cd /var/ossec/bin</span>
+<a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a><span class="p">[</span><span class="n">root</span><span class="nd">@Centos</span> <span class="nb">bin</span><span class="p">]</span><span class="c1"># ./agent_control -L</span>
+<a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a>
+<a id="__codelineno-68-4" name="__codelineno-68-4" href="#__codelineno-68-4"></a><span class="n">Wazuh</span> <span class="n">agent_control</span><span class="o">.</span> <span class="n">Available</span> <span class="n">active</span> <span class="n">responses</span><span class="p">:</span>
+<a id="__codelineno-68-5" name="__codelineno-68-5" href="#__codelineno-68-5"></a>
+<a id="__codelineno-68-6" name="__codelineno-68-6" href="#__codelineno-68-6"></a>   <span class="n">Response</span> <span class="n">name</span><span class="p">:</span> <span class="n">firewall</span><span class="o">-</span><span class="n">drop60</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">firewall</span><span class="o">-</span><span class="n">drop</span>
+</code></pre></div>
+<p>Edit the Virustotal app with following details:</p>
+<p>Note: the values in brackets indicate the Execution Argument. Add the execution argument by clicking the <code>+</code> icon. </p>
+<p>Authenticate with your VirusTotal API key (you will need to create an account).</p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th>Virustotal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Find Actions</strong></td>
+<td>Gen an IP address report</td>
+</tr>
+<tr>
+<td><strong>IP</strong></td>
+<td>(srcip)</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2072.png" data-desc-position="bottom"><img alt="image.png" src="image%2072.png"></a></p>
+<p>Save the workflow. Make sure webhook has been started. </p>
+<p>Trigger alert by running curl command from Kali machine:</p>
+<p>Note: for demonstration purposes, two network adapters have been assigned to both Ubuntu and Kali hosts. The network 192.168.1.0/24 belongs to Bridged network (Adapter #1) and 10.0.0.0/24 belongs to LAN segment (Adapter #2).  </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="n">curl</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.0.0.26</span>
+<a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a><span class="n">curl</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168.1.111</span>
+</code></pre></div>
+<p>Edit the Email app with following details:</p>
+<p>Note: the values in brackets indicate the Execution Argument. Add the execution argument by clicking the <code>+</code> icon. </p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th>Email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Find Actions</strong></td>
+<td>Send email shuffle</td>
+</tr>
+<tr>
+<td><strong>Apikey</strong></td>
+<td>(Create account on <a href="https://shuffler.io/">https://shuffler.io/</a> to obtain API key)</td>
+</tr>
+<tr>
+<td><strong>Recipients</strong></td>
+<td>(Email address receiving the alert)</td>
+</tr>
+<tr>
+<td><strong>Subject</strong></td>
+<td>Malicious activity detected</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td>Title: (title)</td>
+</tr>
+<tr>
+<td>Timestamp: (timestamp)</td>
+<td></td>
+</tr>
+<tr>
+<td>Source IP: (srcip)</td>
+<td></td>
+</tr>
+<tr>
+<td>Malicious: (malicious)*</td>
+<td></td>
+</tr>
+<tr>
+<td>VirusTotal Result: (result)*</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>*These metadata are obtained from Virustotal instead of Execution Argument |</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2073.png" data-desc-position="bottom"><img alt="image.png" src="image%2073.png"></a></p>
+<p>Save workflow. Trigger alert by accessing <a href="http://192.168.1.111">http://192.168.1.111</a> from Kali machine multiple times in a row.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="n">curl</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168.1.111</span>
+</code></pre></div>
+<p>Verify that workflow returns successful result. Verify status code 200 is returned by Virustotal and Wazuh. </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2074.png" data-desc-position="bottom"><img alt="image.png" src="image%2074.png"></a></p>
+<p>Verify that active response blocks Kali machine:</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2075.png" data-desc-position="bottom"><img alt="image.png" src="image%2075.png"></a></p>
+<p>Verify that you received an email from Shuffle:</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="image%2076.png" data-desc-position="bottom"><img alt="image.png" src="image%2076.png"></a></p>
+<h2 id="references"><strong>References</strong></h2>
+<ul>
+<li>https://medium.com/shuffle-automation/introducing-shuffle-an-open-source-soar-platform-part-1-58a529de7d12</li>
+<li>https://github.com/Shuffle/Shuffle/blob/main/.github/install-guide.md</li>
+<li>https://docs.docker.com/desktop/install/ubuntu/</li>
+<li>https://shuffler.io/docs/configuration#servers</li>
+<li>https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository</li>
+<li>https://wazuh.com/blog/integrating-wazuh-with-shuffle/</li>
+<li>https://documentation.wazuh.com/current/user-manual/manager/integration-with-external-apis.html</li>
+<li>https://youtu.be/GNXK00QapjQ?si=OHCAyUO2IAMzZF0U</li>
+<li>https://youtu.be/FBISHA7V15c?si=26Qe8BxiPxJVx7FP</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../understanding-SOAR/understanding-SOAR.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Understanding SOAR">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Understanding SOAR
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../understanding-NTA/understanding-NTA.html" class="md-footer__link md-footer__link--next" aria-label="Next: Understanding NTA">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Understanding NTA
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2024–2026 <a href="https://github.com/cyberdefencekit" target="_blank" rel="noopener">Cyber Defence Kit by Joseph Jee</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/cyberdefencekit" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "header.autohide", "announce.dismiss", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
