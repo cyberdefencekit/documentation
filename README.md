@@ -10,7 +10,7 @@
 
 ### Introduction
 
-The **Cyber Defence Kit (CDK)** began as a personal exploration of open-source cybersecurity tools and gradually evolved into a shared learning resource.
+The **[Cyber Defence Kit (CDK)](https://cyberdefencekit.github.io/documentation/)** began as a personal exploration of open-source cybersecurity tools and gradually evolved into a shared learning resource.
 
 Each step of the journey was documented through proof-of-concept videos, notes, lessons learned, and practical tips, all shared openly to make these tools more accessible. The goal is to encourage others to explore, implement, and truly understand open-source cybersecurity solutions through hands-on practice.
 
